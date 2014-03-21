@@ -1,0 +1,517 @@
+#define ASR_WEAPON_TYPE_RIFLE 1
+#define ASR_WEAPON_TYPE_PISTOL 2
+#define ASR_WEAPON_TYPE_SNIPER 3
+#define ASR_WEAPON_TYPE_LAUNCHER 4
+#define ASR_WEAPON_TYPE_MG 5
+#define ASR_WEAPON_TYPE_AR 6
+
+/*
+Define how much AI dispersion degrades with lower skill on 3 levels:
+ - hi-mag scopes (> 8X)
+ - magnifying sights (usually 3-6X)
+ - iron sights or low magnifying sights (1-2X)
+*/
+#define ASR_AI_DISP_SNIPER aiDispersionCoefX = 10; aiDispersionCoefY = 15
+#define ASR_AI_DISP_MARKSMAN aiDispersionCoefX = 15; aiDispersionCoefY = 20
+#define ASR_AI_DISP_REGULAR aiDispersionCoefX = 20; aiDispersionCoefY = 25
+
+/*
+Fire modes
+*/
+
+// handguns
+#define ASR_AI_ROF_PISTOL_SEMI \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 70;\
+		minRange = 0;\
+		minRangeProbab = 0.2;\
+		midRange = 40;\
+		midRangeProbab = 0.1;\
+		maxRange = 80;\
+		maxRangeProbab = 0.05
+
+//gls
+#define ASR_AI_ROF_GL_SINGLE \
+		aiRateOfFire = 5;\
+		aiRateOfFireDistance = 50;\
+		minRange = 60;\
+		minRangeProbab = 0.6;\
+		midRange = 120;\
+		midRangeProbab = 0.7;\
+		maxRange = 400;\
+		maxRangeProbab = 0.2
+
+// assault rifles, carbines
+#define ASR_AI_ROF_RIFLE_SMALL_SINGLE \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 200;\
+		minRange = 70;\
+		minRangeProbab = 0.7;\
+		midRange = 150;\
+		midRangeProbab = 0.5;\
+		maxRange = 500;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_RIFLE_SMALL_SEMI \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 200;\
+		minRange = 0;\
+		minRangeProbab = 0.9;\
+		midRange = 150;\
+		midRangeProbab = 0.5;\
+		maxRange = 500;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_RIFLE_SMALL_MSCOPE_SINGLE \
+		aiRateOfFire = 2;\
+		aiRateOfFireDistance = 400;\
+		minRange = 70;\
+		minRangeProbab = 0.8;\
+		midRange = 300;\
+		midRangeProbab = 0.6;\
+		maxRange = 700;\
+		maxRangeProbab = 0.2
+#define ASR_AI_ROF_RIFLE_SMALL_HSCOPE_SINGLE \
+		aiRateOfFire = 3;\
+		aiRateOfFireDistance = 400;\
+		minRange = 70;\
+		minRangeProbab = 0.8;\
+		midRange = 300;\
+		midRangeProbab = 0.6;\
+		maxRange = 900;\
+		maxRangeProbab = 0.2
+#define ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 60;\
+		minRange = 20;\
+		minRangeProbab = 0.8;\
+		midRange = 30;\
+		midRangeProbab = 0.7;\
+		maxRange = 80;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_RIFLE_SMALL_FULLAUTO \
+		aiRateOfFire = 0.1;\
+		aiRateOfFireDistance = 50;\
+		minRange = 0;\
+		minRangeProbab = 0.9;\
+		midRange = 10;\
+		midRangeProbab = 0.8;\
+		maxRange = 20;\
+		maxRangeProbab = 0.3
+#define ASR_AI_ROF_RIFLE_SMALL_FAR_BURST \
+		aiRateOfFire = 5;\
+		aiRateOfFireDistance = 500;\
+		minRange = 400;\
+		minRangeProbab = 0.05;\
+		midRange = 500;\
+		midRangeProbab = 0.3;\
+		maxRange = 700;\
+		maxRangeProbab = 0.1
+
+
+// CQB rifles (short barrels, small calibre)
+#define ASR_AI_ROF_CQB_SINGLE \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 200;\
+		minRange = 70;\
+		minRangeProbab = 0.7;\
+		midRange = 150;\
+		midRangeProbab = 0.5;\
+		maxRange = 400;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_CQB_SEMI \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 200;\
+		minRange = 0;\
+		minRangeProbab = 0.9;\
+		midRange = 150;\
+		midRangeProbab = 0.5;\
+		maxRange = 400;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_CQB_MSCOPE_SINGLE \
+		aiRateOfFire = 2;\
+		aiRateOfFireDistance = 400;\
+		minRange = 70;\
+		minRangeProbab = 0.8;\
+		midRange = 200;\
+		midRangeProbab = 0.6;\
+		maxRange = 500;\
+		maxRangeProbab = 0.2
+#define ASR_AI_ROF_CQB_FAR_BURST \
+		aiRateOfFire = 6;\
+		aiRateOfFireDistance = 500;\
+		minRange = 300;\
+		minRangeProbab = 0.05;\
+		midRange = 400;\
+		midRangeProbab = 0.3;\
+		maxRange = 600;\
+		maxRangeProbab = 0.1
+
+
+// battle rifles, 7.62 assault rifles
+#define ASR_AI_ROF_RIFLE_MEDIUM_SINGLE \
+		aiRateOfFire = 2;\
+		aiRateOfFireDistance = 300;\
+		minRange = 40;\
+		minRangeProbab = 0.8;\
+		midRange = 150;\
+		midRangeProbab = 0.5;\
+		maxRange = 500;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_RIFLE_MEDIUM_SEMI \
+		aiRateOfFire = 2;\
+		aiRateOfFireDistance = 300;\
+		minRange = 0;\
+		minRangeProbab = 0.9;\
+		midRange = 150;\
+		midRangeProbab = 0.5;\
+		maxRange = 500;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_RIFLE_MEDIUM_MSCOPE_SINGLE \
+		aiRateOfFire = 3;\
+		aiRateOfFireDistance = 500;\
+		minRange = 40;\
+		minRangeProbab = 0.9;\
+		midRange = 300;\
+		midRangeProbab = 0.8;\
+		maxRange = 700;\
+		maxRangeProbab = 0.2
+#define ASR_AI_ROF_RIFLE_MEDIUM_HSCOPE_SINGLE \
+		aiRateOfFire = 8;\
+		aiRateOfFireDistance = 1000;\
+		minRange = 40;\
+		minRangeProbab = 0.7;\
+		midRange = 500;\
+		midRangeProbab = 0.8;\
+		maxRange = 1200;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_RIFLE_MEDIUM_CLOSE_BURST \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 100;\
+		minRange = 10;\
+		minRangeProbab = 0.8;\
+		midRange = 20;\
+		midRangeProbab = 0.7;\
+		maxRange = 40;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_RIFLE_MEDIUM_FULLAUTO \
+		aiRateOfFire = 0.1;\
+		aiRateOfFireDistance = 20;\
+		minRange = 0;\
+		minRangeProbab = 0.9;\
+		midRange = 5;\
+		midRangeProbab = 0.8;\
+		maxRange = 10;\
+		maxRangeProbab = 0.1
+
+// sniper rifles (hi mag. scopes, medium-high calibre)
+#define ASR_AI_ROF_RIFLE_SNIPER762_SEMI \
+		aiRateOfFire = 6;\
+		aiRateOfFireDistance = 1000;\
+		minRange = 0;\
+		minRangeProbab = 0.4;\
+		midRange = 500;\
+		midRangeProbab = 0.8;\
+		maxRange = 1200;\
+		maxRangeProbab = 0.1
+
+#define ASR_AI_ROF_RIFLE_SNIPER338_SEMI \
+		aiRateOfFire = 8;\
+		aiRateOfFireDistance = 1000;\
+		minRange = 1;\
+		minRangeProbab = 0.4;\
+		midRange = 500;\
+		midRangeProbab = 0.8;\
+		maxRange = 1500;\
+		maxRangeProbab = 0.1
+
+#define ASR_AI_ROF_RIFLE_SNIPER50_SEMI \
+		aiRateOfFire = 10;\
+		aiRateOfFireDistance = 1200;\
+		minRange = 1;\
+		minRangeProbab = 0.4;\
+		midRange = 500;\
+		midRangeProbab = 0.8;\
+		maxRange = 2500;\
+		maxRangeProbab = 0.1
+
+// light-medium machineguns
+#define ASR_AI_ROF_MG_FULLAUTO \
+		aiRateOfFire = 0.1;\
+		aiRateOfFireDistance = 20;\
+		minRange = 0;\
+		minRangeProbab = 0.9;\
+		midRange = 20;\
+		midRangeProbab = 0.7;\
+		maxRange = 50;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_MG_CLOSE_BURST \
+		burst = 6;\
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 200;\
+		minRange = 50;\
+		minRangeProbab = 0.8;\
+		midRange = 100;\
+		midRangeProbab = 0.7;\
+		maxRange = 150;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_MG_MEDIUM_BURST \
+		burst = 8;\
+		aiRateOfFire = 2;\
+		aiRateOfFireDistance = 400;\
+		minRange = 80;\
+		minRangeProbab = 0.8;\
+		midRange = 150;\
+		midRangeProbab = 0.7;\
+		maxRange = 350;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_MG_FAR_BURST \
+		burst = 5;\
+		aiRateOfFire = 2;\
+		aiRateOfFireDistance = 600;\
+		minRange = 200;\
+		minRangeProbab = 0.8;\
+		midRange = 300;\
+		midRangeProbab = 0.7;\
+		maxRange = 600;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_MG_SCOPE_BURST \
+		burst = 5;\
+		aiRateOfFire = 3;\
+		aiRateOfFireDistance = 800;\
+		minRange = 400;\
+		minRangeProbab = 0.8;\
+		midRange = 600;\
+		midRangeProbab = 0.7;\
+		maxRange = 1000;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_MG_VERYFAR_BURST \
+		burst = 8;\
+		aiRateOfFire = 4;\
+		aiRateOfFireDistance = 1000;\
+		minRange = 400;\
+		minRangeProbab = 0.7;\
+		midRange = 500;\
+		midRangeProbab = 0.2;\
+		maxRange = 700;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_MG_SINGLE \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 300;\
+		minRange = 200;\
+		minRangeProbab = 0.2;\
+		midRange = 300;\
+		midRangeProbab = 0.3;\
+		maxRange = 500;\
+		maxRangeProbab = 0.1
+
+// submachineguns
+#define ASR_AI_ROF_SMG_SINGLE \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 200;\
+		minRange = 50;\
+		minRangeProbab = 0.9;\
+		midRange = 80;\
+		midRangeProbab = 0.5;\
+		maxRange = 250;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_SMG_BURST \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 30;\
+		minRange = 30;\
+		minRangeProbab = 0.8;\
+		midRange = 40;\
+		midRangeProbab = 0.5;\
+		maxRange = 60;\
+		maxRangeProbab = 0.2
+#define ASR_AI_ROF_SMG_FULLAUTO \
+		aiRateOfFire = 0.1;\
+		aiRateOfFireDistance = 20;\
+		minRange = 0;\
+		minRangeProbab = 0.9;\
+		midRange = 20;\
+		midRangeProbab = 0.8;\
+		maxRange = 30;\
+		maxRangeProbab = 0.2
+
+//modes
+
+//pistol ammo
+#define ASR_AI_SMG_MODES \
+			class Single: Mode_SemiAuto { \
+				ASR_AI_ROF_SMG_SINGLE; \
+			}; \
+			class Burst: Mode_Burst { \
+				ASR_AI_ROF_SMG_BURST; \
+			}; \
+			class FullAuto: Mode_FullAuto { \
+				ASR_AI_ROF_SMG_FULLAUTO; \
+			}
+
+
+//7.62
+#define ASR_AI_RIFLE_MEDIUM_MODES(semibase,fullbase) \
+		class Single: ##semibase { \
+			ASR_AI_ROF_RIFLE_MEDIUM_SINGLE; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		class FullAuto: ##fullbase { \
+			ASR_AI_ROF_RIFLE_MEDIUM_FULLAUTO; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		class ASR_AI_Burst_close: FullAuto { \
+			showToPlayer = 0; \
+			burst = 4; \
+			ASR_AI_ROF_RIFLE_MEDIUM_CLOSE_BURST; \
+		}; \
+		class ASR_AI_Single_optics1: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 1; \
+			ASR_AI_ROF_RIFLE_MEDIUM_MSCOPE_SINGLE; \
+			ASR_AI_DISP_MARKSMAN; \
+		}; \
+		class ASR_AI_Single_optics2: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 2; \
+			ASR_AI_ROF_RIFLE_MEDIUM_HSCOPE_SINGLE; \
+			ASR_AI_DISP_SNIPER; \
+		}; \
+		class ASR_SemiAuto: Single { \
+			ASR_AI_ROF_RIFLE_MEDIUM_SEMI; \
+		}
+
+//6.5
+
+#define ASR_AI_RIFLE_SMALL_XMODES \
+		class ASR_AI_Burst_close: FullAuto { \
+			showToPlayer = 0; \
+			burst = 5; \
+			ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST; \
+		}; \
+		class ASR_AI_Burst_close2: ASR_AI_Burst_close { \
+			burst = 4; \
+		}; \
+		class ASR_AI_Burst_far: FullAuto { \
+			showToPlayer = 0; \
+			burst = 5; \
+			ASR_AI_ROF_RIFLE_SMALL_FAR_BURST; \
+		}; \
+		class ASR_AI_Single_optics1: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 1; \
+			ASR_AI_ROF_RIFLE_SMALL_MSCOPE_SINGLE; \
+			ASR_AI_DISP_MARKSMAN; \
+		}; \
+		class ASR_AI_Single_optics2: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 2; \
+			ASR_AI_ROF_RIFLE_SMALL_HSCOPE_SINGLE; \
+			ASR_AI_DISP_SNIPER; \
+		}; \
+		class ASR_SemiAuto: Single { \
+			ASR_AI_ROF_RIFLE_SMALL_SEMI; \
+		}; \
+		class ASR_Burst3: Single { \
+			ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST; \
+			ASR_AI_DISP_REGULAR; \
+			showToPlayer = 1; \
+			burst = 3; \
+			displayName = $STR_DN_MODE_BURST; \
+			textureType = "burst"; \
+			soundBurst = 0; \
+		}; \
+		class ASR_Burst2: ASR_Burst3 { \
+			burst = 2; \
+		}
+
+#define ASR_AI_RIFLE_SMALL_MODES(semibase,fullbase) \
+		class Single: ##semibase { \
+			ASR_AI_ROF_RIFLE_SMALL_SINGLE; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		class FullAuto: ##fullbase { \
+			ASR_AI_ROF_RIFLE_SMALL_FULLAUTO; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		ASR_AI_RIFLE_SMALL_XMODES
+
+#define ASR_AI_RIFLE_SMALL_CQB_MODES(semibase,fullbase) \
+		class Single: ##semibase { \
+			ASR_AI_ROF_CQB_SINGLE; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		class FullAuto: ##fullbase { \
+			ASR_AI_ROF_RIFLE_SMALL_FULLAUTO; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		class ASR_AI_Burst_close: FullAuto { \
+			showToPlayer = 0; \
+			burst = 5; \
+			ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST; \
+		}; \
+		class ASR_AI_Burst_close2: ASR_AI_Burst_close { \
+			burst = 4; \
+		}; \
+		class ASR_AI_Burst_far: FullAuto { \
+			showToPlayer = 0; \
+			burst = 4; \
+			ASR_AI_ROF_CQB_FAR_BURST; \
+		}; \
+		class ASR_AI_Single_optics1: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 1; \
+			ASR_AI_ROF_CQB_MSCOPE_SINGLE; \
+			ASR_AI_DISP_MARKSMAN; \
+		}; \
+		class ASR_AI_Single_optics2: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 2; \
+			ASR_AI_ROF_CQB_MSCOPE_SINGLE; \
+			ASR_AI_DISP_SNIPER; \
+		}; \
+		class ASR_SemiAuto: Single { \
+			ASR_AI_ROF_CQB_SEMI; \
+		}; \
+		class ASR_Burst3: Single { \
+			ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST; \
+			ASR_AI_DISP_REGULAR; \
+			showToPlayer = 1; \
+			burst = 3; \
+			displayName = $STR_DN_MODE_BURST; \
+			textureType = "burst"; \
+			soundBurst = 0; \
+		}; \
+		class ASR_Burst2: ASR_Burst3 { \
+			burst = 2; \
+		}
+
+#define ASR_AI_MG_MODES(m,fullbase,semibase) \
+		class ##m: ##fullbase { \
+			ASR_AI_ROF_MG_FULLAUTO; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		class ASR_AI_Burst_close: ##m { \
+			showToPlayer = 0; \
+			ASR_AI_ROF_MG_CLOSE_BURST; \
+		}; \
+		class ASR_AI_Burst_short: ASR_AI_Burst_close { \
+			ASR_AI_ROF_MG_MEDIUM_BURST; \
+		}; \
+		class ASR_AI_Burst_medium: ASR_AI_Burst_close { \
+			ASR_AI_ROF_MG_FAR_BURST; \
+		}; \
+		class ASR_AI_Burst_far: ASR_AI_Burst_close { \
+			ASR_AI_ROF_MG_VERYFAR_BURST; \
+		}; \
+		class ASR_AI_Burst_far_optic1: ASR_AI_Burst_close { \
+			requiredOpticType = 1; \
+			ASR_AI_ROF_MG_SCOPE_BURST; \
+			ASR_AI_DISP_MARKSMAN; \
+		}; \
+		class ASR_AI_Burst_far_optic2: ASR_AI_Burst_close { \
+			requiredOpticType = 2; \
+			ASR_AI_ROF_MG_SCOPE_BURST; \
+			ASR_AI_DISP_SNIPER; \
+		}; \
+		class Single: ##semibase { \
+			ASR_AI_ROF_MG_SINGLE; \
+			ASR_AI_DISP_REGULAR; \
+		}
