@@ -11,7 +11,8 @@ _return = if (count _this > 2) then {[]} else {objNull};
 {
 	_distance = if (typeName _x == "GROUP") then {_position distance (getPosATL leader _x)} else {_position distance _x};
 	if (_distance < _radius) then {
-		if !(call _code) exitwith {};
+		scopename "if_distance";
+		if !(call _code) then {breakOut "if_distance"};
 		if (count _this > 2) then {
 			_return set [count _return, _x];
 		} else {
