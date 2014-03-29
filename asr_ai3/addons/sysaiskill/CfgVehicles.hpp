@@ -165,18 +165,6 @@ class CfgVehicles {
 	class B_support_AMort_F : B_Soldier_support_base_F {
 		__COST_REG;
 	};
-	class B_CTRG_soldier_GL_LAT_F : B_Soldier_base_F {
-		__COST_REG;
-	};
-	class B_CTRG_soldier_engineer_exp_F : B_Soldier_base_F {
-		__COST_REG;
-	};
-	class B_CTRG_soldier_M_medic_F : B_Soldier_base_F {
-		__COST_REG;
-	};
-	class B_CTRG_soldier_AR_A_F : B_Soldier_base_F {
-		__COST_REG;
-	};
 
 // ar
 	class B_soldier_AR_F: B_Soldier_base_F {
@@ -290,6 +278,27 @@ class CfgVehicles {
 		__SKILL_SOF1;
 		__COST_SPECIAL;
 		minFireTime = 5;
+	};
+	class B_CTRG_soldier_GL_LAT_F : B_Soldier_base_F {
+		__SKILL_SOF2;
+		__COST_SPECIAL;
+		minFireTime = 5;
+	};
+	class B_CTRG_soldier_engineer_exp_F : B_Soldier_base_F {
+		__SKILL_SOF2;
+		__COST_SPECIAL;
+		minFireTime = 5;
+	};
+	class B_CTRG_soldier_M_medic_F : B_Soldier_base_F {
+		__SKILL_SOF2;
+		__COST_SPECIAL;
+		minFireTime = 5;
+	};
+	class B_CTRG_soldier_AR_A_F : B_Soldier_base_F {
+		__SKILL_SOF2;
+		__COST_SPECIAL;
+		minFireTime = 5;
+		__CROUCH_MORE;
 	};
 
  // OPFOR
