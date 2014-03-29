@@ -15,7 +15,7 @@ for "_i" from 0 to (_house select 1) do {
 
 if (count _indices > 0) then {
   {
-  	if (_unit call FUNC(isUnc)) exitWith {};
+  	if (_unit call FNCMAIN(isUnc)) exitWith {};
   	_housepos = (_house select 0) buildingPos _x;
   	TRACE_2("Try to move unit to house",_unit,_housepos);
   	if (unitReady _unit && str _housepos != '[0,0,0]') then {
@@ -23,7 +23,7 @@ if (count _indices > 0) then {
   		_unit setUnitPosWeak "Up";
   		_unit doMove _housepos;
   		_timeout = time + 90;
-  		waitUntil {moveToCompleted _unit || moveToFailed _unit || unitReady _unit || _unit call FUNC(isUnc) || _timeout < time};
+  		waitUntil {moveToCompleted _unit || moveToFailed _unit || unitReady _unit || _unit call FNCMAIN(isUnc) || _timeout < time};
   		if (_unit call FUNC(isUnderRoof)) then {
   			_unit setUnitPosWeak "Up";
   		} else {

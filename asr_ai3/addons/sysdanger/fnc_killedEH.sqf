@@ -25,7 +25,7 @@ if (GVAR(joinlastunit) == 1) then {
 								if (_nleader call FUNC(isValidUnit)) then {
 									if (!isPlayer _nleader && vehicle _nleader == _nleader && canStand _nleader) then {
 										// if broken legs, join only if group has medic
-										if (canStand _dude || {_x call FUNC(isMedic)} count (units _ngrp) > 0) then {
+										if (canStand _dude || {_x call FNCMAIN(isMedic)} count (units _ngrp) > 0) then {
 											TRACE_2("Lone dude joins another group",_dude,_ngrp);
 											_dude allowFleeing 0.1; //the unit is probably fleeing but now it found some friends, morale boost :)
 											[_dude] joinSilent _ngrp;

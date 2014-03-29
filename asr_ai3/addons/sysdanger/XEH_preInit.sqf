@@ -45,6 +45,4 @@ PREP(firedExplosive);
 PREP(fired);
 PREP(firedEH);
 PREP(killedEH);
-PREP(isMedic);
-PREP(isUnc);
 PREP(hasRadio);
