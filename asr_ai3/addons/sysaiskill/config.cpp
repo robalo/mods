@@ -29,8 +29,8 @@ PRELOAD_ADDONS;
 
 // lower some skills while maintaining an option for top skilled units (reduce skills for 0 - 0.8, but keep them high for 0.8 - 1).
 class CfgAISkill {
-	aimingAccuracy[] = {0, 0, 0.8, 0.6, 1, 1};
-	aimingShake[] = {0, 0, 0.8, 0.6, 1, 1};
+	aimingAccuracy[] = {0, 0, 0.8, 0.7, 1, 1};
+	aimingShake[] = {0, 0, 0.8, 0.7, 1, 1};
 	commanding[] = {0, 0, 0.8, 0.6, 1, 1};
 };
 
