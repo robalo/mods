@@ -17,6 +17,7 @@ _go2cover = {
 	_unit setDestination [_cover, "LEADER PLANNED", true];
 	waitUntil {moveToCompleted _unit || moveToFailed _unit || unitReady _unit || time > _until + 30};
 	_unit setSpeedMode _speed;
+	if (_unit == leader _unit) then {(group _unit) lockwp false};
 };
 
 _coverposa = [_unit,_source,_distance] call FUNC(findCover);

@@ -4,6 +4,7 @@ PARAMS_2(_grp,_rtype);
 private ["_leader","_enemy","_dest","_weapons","_wc","_weap","_fg"];
 _leader = leader _grp;
 _grp setVariable [QGVAR(reacting),(diag_ticktime + 60 + random 120)];
+
 sleep (10 + random 20);
 if (count (_grp call CBA_fnc_getAlive) == 0) exitWith {};
 
@@ -16,6 +17,8 @@ switch (_rtype) do {
 				_dest = getPosATL _enemy;
 				[_grp, _dest, 10, "SAD", "COMBAT", "RED", "NORMAL"] call CBA_fnc_addWaypoint;
 			};
+		} else { // reset
+			_grp setVariable [QGVAR(reacting),diag_ticktime];
 		};
 	};
 	case "defend": {
@@ -41,7 +44,7 @@ switch (_rtype) do {
 			} forEach units _grp;
 		} else {
 			// get inside some houses
-			[_grp,150,600] spawn FUNC(searchNearby); // must replace this with something better
+			[_grp,150,600] spawn FUNC(checkHouses); // must replace this with something better
 		};
 	};
 	case "support": {
@@ -59,14 +62,8 @@ switch (_rtype) do {
 					};
 				};
 			} forEach _fg;
-		};
-	};
-	case "house": {
-		if (random 1 < GVAR(usebuildings)) then {
-			if (_leader call FUNC(isValidUnit)) then {
-				TRACE_1("Group matches conditions to allow building search",_grp);
-				[_grp] spawn FUNC(searchNearby);
-			};
+		} else { // reset
+			_grp setVariable [QGVAR(reacting),diag_ticktime];
 		};
 	};
 };

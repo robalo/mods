@@ -17,8 +17,8 @@ item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
 item14[] = {"AI__not_in_vehic",4,218,-810.000000,-400.000000,-630.000000,-310.000000,1.000000,"AI " \n "not in vehicle"};
 item15[] = {"Cause_3_4_5_AMMO",4,218,-940.000000,-100.000000,-720.000000,50.000000,4.000000,"Cause 3.4,5" \n "AMMO IMPACT NEAR," \n "ENEMY NEAR" \n "OR DEAD TEAMMATE" \n ""};
-item16[] = {"Reactions",2,250,-990.000000,100.000000,-820.000000,180.000000,0.000000,"Reactions"};
-item17[] = {"set_vars_check_danger",2,4346,-840.000000,-270.000000,-620.000000,-190.000000,0.000000,"set vars" \n "check danger cause"};
+item16[] = {"Reactions",2,4346,-990.000000,100.000000,-820.000000,180.000000,0.000000,"Reactions"};
+item17[] = {"set_vars_check_danger",2,250,-840.000000,-270.000000,-620.000000,-190.000000,0.000000,"set vars" \n "check danger cause"};
 item18[] = {"Cause_1_HEARD_SH",4,218,-1190.000000,-100.000000,-990.000000,40.000000,3.000000,"Cause 1" \n "HEARD" \n "SHOOTING"};
 version=1;
 class LayoutItems
@@ -58,7 +58,7 @@ link21[] = {17,15};
 link22[] = {17,18};
 link23[] = {18,16};
 globals[] = {10.000000,1,0,1,16777215,640,480,1,234,6316128,1,-1544.314819,9.874646,590.131897,-524.731995,888,730,1};
-window[] = {2,-1,-1,-1,-1,832,52,1088,52,3,906};
+window[] = {2,-1,-1,-1,-1,910,130,1166,130,3,906};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -281,38 +281,7 @@ class FSM
     class Reactions
     {
       name = "Reactions";
-      init = /*%FSM<STATEINIT""">*/"// if no player in group and no waypoints active, experiment with some random reactions" \n
-       "if (isServer && _this == leader _grp) then {" \n
-       "	if ({isPlayer _x} count (units _grp) == 0) then {" \n
-       "		if (asr_ai3_sysdanger_seekcover == 1) then {" \n
-       "			[_this,_dangerCausedBy,_dangerUntil] call asr_ai3_sysdanger_fnc_moveToCover;" \n
-       "		};" \n
-       "		if (_grp getVariable [""asr_ai3_sysdanger_reacting"",0] < diag_ticktime) then {" \n
-       "			if (!(currentWaypoint _grp > 0 && currentWaypoint _grp < count waypoints _grp)) then {" \n
-       "    				switch (round random 3) do {" \n
-       "					case 0: { // attack" \n
-       "						if (asr_ai3_sysdanger_reactions select 0 == 1) then {" \n
-       "							[_grp,""attack""] spawn asr_ai3_sysdanger_fnc_reaction;" \n
-       "						};" \n
-       "    					};" \n
-       "					case 1: { // defend" \n
-       "						if (asr_ai3_sysdanger_reactions select 1 == 1) then {" \n
-       "							[_grp,""defend""] spawn asr_ai3_sysdanger_fnc_reaction;" \n
-       "						};" \n
-       "	    				};" \n
-       "					case 2: { // support" \n
-       "						if (asr_ai3_sysdanger_reactions select 2 == 1) then {" \n
-       "							[_grp,""support""] spawn asr_ai3_sysdanger_fnc_reaction;" \n
-       "						};" \n
-       "	    				};" \n
-       "				};" \n
-       "			};" \n
-       "			//we can use this even with waypoints" \n
-       "			[_grp,""house""] spawn asr_ai3_sysdanger_fnc_reaction;" \n
-       "		};//can react again" \n
-       "	};//no player in group" \n
-       "};//server,group leader" \n
-       ""/*%FSM</STATEINIT""">*/;
+      init = /*%FSM<STATEINIT""">*/"[_this,_grp,_dangerCausedBy,_dangerUntil] call asr_ai3_sysdanger_fnc_doSomething;"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -365,7 +334,7 @@ class FSM
           priority = 4.000000;
           to="Reactions";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_asrenabled && _dangerCause in [3,4,5]"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_asrenabled && _dangerCause in [3,4,5] && isServer && _this == leader _grp"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -375,7 +344,7 @@ class FSM
           priority = 3.000000;
           to="Reactions";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_dangerCause == 1 && _asrenabled && side _dangerCausedBy != side _this"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_dangerCause == 1 && _asrenabled && side _dangerCausedBy != side _this && isServer && _this == leader _grp"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
