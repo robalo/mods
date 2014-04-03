@@ -96,7 +96,7 @@ class CfgWeapons {
 	class muzzle_snds_H_MG: muzzle_snds_H {
 		class ItemInfo: ItemInfo {
   		modes[] = {"FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2"};
-  		ASR_AI_MG_MODES(manual,Mode_FullAuto,Mode_SemiAuto);
+  		ASR_AI_MG_MODES(manual,Mode_FullAuto,manual);
 		};
 	};
 	//9mm pistol, SMG
