@@ -15,10 +15,8 @@ if (_knowledge > 1) then {
 		_knowledge = floor _knowledge;
 	};
 	
-	{	// reveal less precise info
-		if (!isPlayer _x && _x call FUNC(isValidUnit)) then {
-			_x reveal [_target, _knowledge * (0.6 + random 0.2)];
-		};
+	{ // reveal less precise info
+		if (_x call FUNC(isValidUnit)) then {_x reveal [_target, _knowledge * (0.6 + random 0.2)]};
 	} foreach units _receiver;
 
 	#ifndef DEBUG_MODE_FULL
