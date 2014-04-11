@@ -54,3 +54,4 @@ PREP(isValidUnit);
 PREP(setUnitSkill);
 PREP(modUnitSkill);
 PREP(sunElevation); //by CarlGustaffa: http://forums.bistudio.com/showthread.php?t=107476
+PREP(changeVD);
