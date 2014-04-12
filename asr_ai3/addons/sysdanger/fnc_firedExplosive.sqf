@@ -118,7 +118,7 @@ if (isPlayer gunner _veh || isPlayer driver _veh) then {
 		_distance = _exPos distance _x;
 		TRACE_3("Unit hears this explosion",_x,_ammo,_distance);
 		if (_distance < 150 && !_early) then {
-			if (_x == vehicle _x) then { // for units not in vehicles or static weapons
+			if (GVAR(seekcover) == 1 && _x == vehicle _x) then { // for units not in vehicles or static weapons
 				_lastime = _x getVariable [QGVAR(lastMoveToCoverTime),-120];
 				if (time > _lastime + 120) then {
 					if (_x == leader _x || random 5 > 1) then {
