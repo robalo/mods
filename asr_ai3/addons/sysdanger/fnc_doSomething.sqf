@@ -8,8 +8,7 @@ if ({isPlayer _x} count (units _grp) > 0) exitWith {}; // not if player in group
 if (_grp getVariable [QGVAR(reacting),0] < diag_ticktime) then { // what to do ?
 
 	if (currentWaypoint _grp > 0 && currentWaypoint _grp < count waypoints _grp) then { // going somewhere ?
-		if (GVAR(seekcover) == 1) then { // check for cover near and divert
-			_grp lockwp true;
+		if (GVAR(seekcover) == 1 && isNil QGVAR(mToCover)) then { // check for cover near and divert
 			[_unit,_dangerCausedBy,_dangerUntil,50] call FUNC(moveToCover);
 		};
 		if (random 1 < GVAR(usebuildings)) then { // use building
@@ -37,8 +36,7 @@ if (_grp getVariable [QGVAR(reacting),0] < diag_ticktime) then { // what to do ?
 
 } else { // already doing something, do better
 
-	if (GVAR(seekcover) == 1) then { // check for cover near and divert
-		_grp lockwp true;
+	if (GVAR(seekcover) == 1 && isNil QGVAR(mToCover)) then { // check for cover near and divert
 		[_unit,_dangerCausedBy,_dangerUntil,50] call FUNC(moveToCover);
 	};
 	if (random 1 < GVAR(usebuildings)) then { // use building
