@@ -1,6 +1,6 @@
 //for using on DS and HC
 //sets new VD based on sun position and fog
-#define DEBUG_MODE_FULL
+//#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 private ["_sunel","_newvd"];
 _sunel = call FUNC(sunElevation);
