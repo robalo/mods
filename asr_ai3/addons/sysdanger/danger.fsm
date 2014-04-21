@@ -6,8 +6,8 @@ item1[] = {"End",1,250,-150.000000,440.000000,-60.000000,490.000000,0.000000,"En
 item2[] = {"Rest",8,218,-740.000000,340.000000,-570.000000,450.000000,0.000000,"Rest"};
 item3[] = {"Timeout",4,218,-370.000000,60.000000,-260.000000,150.000000,1.000000,"Timeout"};
 item4[] = {"Reacting_on_danger",0,250,-620.000000,-500.000000,-410.000000,-450.000000,0.000000,"Reacting on danger!"};
-item5[] = {"Cause_0_ENEMY_DE",4,218,-1370.000000,-200.000000,-1190.000000,-80.000000,6.000000,"Cause 0" \n "ENEMY" \n "DETECTED"};
-item6[] = {"Signal_enemy___Radio",2,250,-1340.000000,50.000000,-1220.000000,130.000000,0.000000,"Signal enemy" \n "+" \n "Radio report"};
+item5[] = {"Cause_0_ENEMY_DETECTED",4,218,-1370.000000,-200.000000,-1190.000000,-80.000000,6.000000,"Cause 0" \n "ENEMY" \n "DETECTED/NEAR"};
+item6[] = {"Signal_enemy___Radio",2,4346,-1340.000000,50.000000,-1220.000000,130.000000,0.000000,"Signal enemy" \n "+" \n "Radio report"};
 item7[] = {"Cause__8_CAN_FIR",4,218,-500.000000,-260.000000,-310.000000,-140.000000,7.000000,"Cause: 8" \n "CAN FIRE"};
 item8[] = {"Stop_to_fire___ASR",2,250,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
 item9[] = {"Check_queue",2,250,-260.000000,240.000000,-90.000000,300.000000,0.000000,"Check queue"};
@@ -16,8 +16,8 @@ item11[] = {"Always",8,218,-240.000000,330.000000,-120.000000,410.000000,0.00000
 item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
 item14[] = {"AI__not_in_vehic",4,218,-810.000000,-400.000000,-630.000000,-310.000000,1.000000,"AI " \n "not in vehicle"};
-item15[] = {"Cause_3_4_5_AMMO",4,218,-940.000000,-100.000000,-720.000000,50.000000,4.000000,"Cause 3.4,5" \n "AMMO IMPACT NEAR," \n "ENEMY NEAR" \n "OR DEAD TEAMMATE" \n ""};
-item16[] = {"Reactions",2,4346,-990.000000,100.000000,-820.000000,180.000000,0.000000,"Reactions"};
+item15[] = {"Cause_3_4_5_AMMO",4,218,-940.000000,-100.000000,-720.000000,50.000000,4.000000,"Cause 3.4,5" \n "AMMO IMPACT NEAR," \n "OR DEAD TEAMMATE" \n ""};
+item16[] = {"Reactions",2,250,-990.000000,100.000000,-820.000000,180.000000,0.000000,"Reactions"};
 item17[] = {"set_vars_check_danger",2,250,-840.000000,-270.000000,-620.000000,-190.000000,0.000000,"set vars" \n "check danger cause"};
 item18[] = {"Cause_1_HEARD_SH",4,218,-1190.000000,-100.000000,-990.000000,40.000000,3.000000,"Cause 1" \n "HEARD" \n "SHOOTING"};
 version=1;
@@ -57,8 +57,8 @@ link20[] = {17,7};
 link21[] = {17,15};
 link22[] = {17,18};
 link23[] = {18,16};
-globals[] = {10.000000,1,0,1,16777215,640,480,1,234,6316128,1,-1544.314819,9.874646,590.131897,-524.731995,888,730,1};
-window[] = {2,-1,-1,-1,-1,910,130,1166,130,3,906};
+globals[] = {10.000000,1,0,1,16777215,640,480,1,234,6316128,1,-1423.421631,83.081993,550.300415,-538.558716,1010,730,1};
+window[] = {2,-1,-1,-1,-1,988,208,1244,208,3,1028};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -156,7 +156,7 @@ class FSM
        "	};" \n
        "};" \n
        "" \n
-       "if (_asrenabled && isServer) then {" \n
+       "if (_asrenabled) then {" \n
        "	// report to other groups" \n
        "	if (asr_ai3_sysdanger_radionet == 1 && _grp knowsAbout _dangerCausedBy > 1) then {" \n
        "		[_grp,_dangerCausedBy] spawn asr_ai3_sysdanger_fnc_broadcastInfo;" \n
@@ -318,13 +318,13 @@ class FSM
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
-        /*%FSM<LINK "Cause_0_ENEMY_DE">*/
-        class Cause_0_ENEMY_DE
+        /*%FSM<LINK "Cause_0_ENEMY_DETECTED">*/
+        class Cause_0_ENEMY_DETECTED
         {
           priority = 6.000000;
           to="Signal_enemy___Radio";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_dangerCause == 0"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_dangerCause == 0 || _dangerCause == 3"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -334,7 +334,7 @@ class FSM
           priority = 4.000000;
           to="Reactions";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_asrenabled && _dangerCause in [3,4,5] && isServer && _this == leader _grp"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_asrenabled && (_dangerCause == 4 || _dangerCause == 5) && _this == leader _grp"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -344,7 +344,7 @@ class FSM
           priority = 3.000000;
           to="Reactions";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_dangerCause == 1 && _asrenabled && side _dangerCausedBy != side _this && isServer && _this == leader _grp"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_dangerCause == 1 && _asrenabled && side _dangerCausedBy != side _this && _this == leader _grp"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
