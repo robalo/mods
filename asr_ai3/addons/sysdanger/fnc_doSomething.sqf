@@ -14,21 +14,23 @@ if (_grp getVariable [QGVAR(reacting),0] < diag_ticktime) then { // what to do ?
 		if (random 1 < GVAR(usebuildings)) then { // use building
 			[_grp] spawn FUNC(checkHouses);
 		};
-	} else { // do something
-		switch (round random 3) do {
-			case 0: { // attack
-				if (GVAR(reactions) select 0 == 1) then {
-					[_grp,"attack"] spawn FUNC(reaction);
+	} else { // do something -- skip if GAIA
+		if (count (_grp getVariable ["GAIA_zone_intend",[]]) == 0) then {
+			switch (round random 3) do {
+				case 0: { // attack
+					if (GVAR(reactions) select 0 == 1) then {
+						[_grp,"attack"] spawn FUNC(reaction);
+					};
 				};
-			};
-			case 1: { // defend
-				if (GVAR(reactions) select 1 == 1) then {
-					[_grp,"defend"] spawn FUNC(reaction);
+				case 1: { // defend
+					if (GVAR(reactions) select 1 == 1) then {
+						[_grp,"defend"] spawn FUNC(reaction);
+					};
 				};
-			};
-			case 2: { // support
-				if (GVAR(reactions) select 2 == 1) then {
-					[_grp,"support"] spawn FUNC(reaction);
+				case 2: { // support
+					if (GVAR(reactions) select 2 == 1) then {
+						[_grp,"support"] spawn FUNC(reaction);
+					};
 				};
 			};
 		};

@@ -12,10 +12,13 @@ if (GVAR(enabled) == 0) exitWith {
 LOG(MSG_INIT);
 private ["_sets","_levelor","_i","_thisLevel","_j","_cn","_a","_facts"];
 
-ASR_AI_CFGREAD(hitcoef,number,0.75);
-ASR_AI_CFGREAD(debug,number,0);
-ASR_AI_CFGREAD(civ,number,0);
-ASR_AI_CFGREAD(dynsvd,number,1);
+ASR_AI_CFGREAD(debug,number,0); TRACE_1("",GVAR(debug));
+ASR_AI_CFGREAD(hitcoef,number,0.5); TRACE_1("",GVAR(hitcoef));
+ASR_AI_CFGREAD(civ,number,0); TRACE_1("",GVAR(civ));
+ASR_AI_CFGREAD(dynsvd,number,1); TRACE_1("",GVAR(dynsvd));
+ASR_AI_CFGREAD(gunshothearing,number,1.1); TRACE_1("",GVAR(gunshothearing));
+ASR_AI_CFGREAD(joinlast,number,2); TRACE_1("",GVAR(joinlast));
+ASR_AI_CFGREAD(removegimps,number,300); TRACE_1("",GVAR(removegimps));
 
 //read skill sets and unit overrides from config
 _sets = [];
@@ -55,3 +58,6 @@ PREP(setUnitSkill);
 PREP(modUnitSkill);
 PREP(sunElevation); //by CarlGustaffa: http://forums.bistudio.com/showthread.php?t=107476
 PREP(changeVD);
+PREP(firedEH);
+PREP(killedEH);
+PREP(removeGimp);

@@ -23,7 +23,7 @@ if (primaryWeapon _unit == "") exitWith {GVAR(smokin) = nil};
 _nearestEnemy = _unit findNearestEnemy _unit;
 if (isNull _nearestEnemy) exitWith {GVAR(smokin) = nil};
 
-_hasSmoke = _unit call FUNC(hasSmoke);
+_hasSmoke = _unit call FNCMAIN(hasSmoke);
 if (count _hasSmoke != 2) exitWith {GVAR(smokin) = nil};
 
 _anim = switch (stance _unit) do {
@@ -63,4 +63,5 @@ if (_unit distance _dangerpos > 50) then {
 	sleep 2; _smoke = _smokeveh createVehicle _pos;
 };
 
+sleep 1;
 GVAR(smokin) = nil;

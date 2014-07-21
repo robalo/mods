@@ -41,11 +41,37 @@ Fire modes
 		maxRange = 400;\
 		maxRangeProbab = 0.2
 
+#define ASR_AI_ROF_GL_PRIORITY \
+		aiRateOfFire = 6;\
+		aiRateOfFireDistance = 50;\
+		minRange = 60;\
+		minRangeProbab = 0.8;\
+		midRange = 120;\
+		midRangeProbab = 0.9;\
+		maxRange = 400;\
+		maxRangeProbab = 0.4
+
+//shotguns
+#define ASR_AI_ROF_SHOTGUN_SEMI \
+		minRange = 0;\
+		minRangeProbab = 0.7;\
+		midRange = 60;\
+		midRangeProbab = 0.2;\
+		maxRange = 120;\
+		maxRangeProbab = 0.05;
+#define ASR_AI_ROF_SHOTGUN_AUTO \
+		minRange = 0;\
+		minRangeProbab = 0.8;\
+		midRange = 40;\
+		midRangeProbab = 0.5;\
+		maxRange = 60;\
+		maxRangeProbab = 0.1;
+
 // assault rifles, carbines
 #define ASR_AI_ROF_RIFLE_SMALL_SINGLE \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 200;\
-		minRange = 60;\
+		minRange = 50;\
 		minRangeProbab = 0.7;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
@@ -63,7 +89,7 @@ Fire modes
 #define ASR_AI_ROF_RIFLE_SMALL_MSCOPE_SINGLE \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 400;\
-		minRange = 60;\
+		minRange = 50;\
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.6;\
@@ -72,7 +98,7 @@ Fire modes
 #define ASR_AI_ROF_RIFLE_SMALL_HSCOPE_SINGLE \
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 400;\
-		minRange = 60;\
+		minRange = 50;\
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.6;\
@@ -85,7 +111,7 @@ Fire modes
 		minRangeProbab = 0.8;\
 		midRange = 30;\
 		midRangeProbab = 0.7;\
-		maxRange = 70;\
+		maxRange = 60;\
 		maxRangeProbab = 0.1
 #define ASR_AI_ROF_RIFLE_SMALL_FULLAUTO \
 		aiRateOfFire = 0.2;\
@@ -111,7 +137,7 @@ Fire modes
 #define ASR_AI_ROF_CQB_SINGLE \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 200;\
-		minRange = 60;\
+		minRange = 50;\
 		minRangeProbab = 0.7;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
@@ -129,7 +155,7 @@ Fire modes
 #define ASR_AI_ROF_CQB_MSCOPE_SINGLE \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 400;\
-		minRange = 60;\
+		minRange = 50;\
 		minRangeProbab = 0.8;\
 		midRange = 200;\
 		midRangeProbab = 0.6;\
@@ -222,17 +248,7 @@ Fire modes
 		midRangeProbab = 0.8;\
 		maxRange = 1500;\
 		maxRangeProbab = 0.1
-
-#define ASR_AI_ROF_RIFLE_SNIPER50_SEMI \
-		aiRateOfFire = 10;\
-		aiRateOfFireDistance = 1200;\
-		minRange = 1;\
-		minRangeProbab = 0.4;\
-		midRange = 500;\
-		midRangeProbab = 0.8;\
-		maxRange = 2500;\
-		maxRangeProbab = 0.1
-
+		
 // light-medium machineguns
 #define ASR_AI_ROF_MG_FULLAUTO \
 		aiRateOfFire = 0.2;\
@@ -389,6 +405,12 @@ Fire modes
 		class ASR_AI_Burst_close2: ASR_AI_Burst_close { \
 			burst = 4; \
 		}; \
+		class ASR_AI_Burst_close3: ASR_AI_Burst_close { \
+			burst = 2 + floor random 4; \
+		}; \
+		class ASR_AI_Burst_close4: ASR_AI_Burst_close { \
+			burst = 2 + floor random 4; \
+		}; \
 		class ASR_AI_Burst_far: FullAuto { \
 			showToPlayer = 0; \
 			burst = 5; \
@@ -514,4 +536,66 @@ Fire modes
 		class Single: ##semibase { \
 			ASR_AI_ROF_MG_SINGLE; \
 			ASR_AI_DISP_REGULAR; \
+		}
+
+
+#define ASR_AI_ROF_BIGSNIPER_SEMI \
+		aiRateOfFire = 3;\
+		aiRateOfFireDistance = 300;\
+		minRange = 1;\
+		minRangeProbab = 0.4;\
+		midRange = 150;\
+		midRangeProbab = 0.7;\
+		maxRange = 500;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_BIGSNIPER_MSCOPE_SEMI \
+		aiRateOfFire = 4;\
+		aiRateOfFireDistance = 500;\
+		minRange = 150;\
+		minRangeProbab = 0.2;\
+		midRange = 500;\
+		midRangeProbab = 0.7;\
+		maxRange = 1500;\
+		maxRangeProbab = 0.4
+#define ASR_AI_ROF_BIGSNIPER_HSCOPE_SEMI \
+		aiRateOfFire = 8;\
+		aiRateOfFireDistance = 1000;\
+		minRange = 250;\
+		minRangeProbab = 0.2;\
+		midRange = 750;\
+		midRangeProbab = 0.7;\
+		maxRange = 1000;\
+		maxRangeProbab = 0.4
+#define ASR_AI_ROF_BIGSNIPER_HSCOPE_FAR_SEMI \
+		aiRateOfFire = 10;\
+		aiRateOfFireDistance = 1200;\
+		minRange = 500;\
+		minRangeProbab = 0.3;\
+		midRange = 1200;\
+		midRangeProbab = 0.7;\
+		maxRange = 2500;\
+		maxRangeProbab = 0.1
+
+#define ASR_AI_BIGSNIPER_MODES(semibase) \
+		class Single: ##semibase { \
+			ASR_AI_ROF_BIGSNIPER_SEMI; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		class ASR_AI_Single_optics1: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 1; \
+			ASR_AI_ROF_BIGSNIPER_MSCOPE_SEMI; \
+			ASR_AI_DISP_MARKSMAN; \
+		}; \
+		class ASR_AI_Single_optics2: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 2; \
+			ASR_AI_ROF_BIGSNIPER_HSCOPE_SEMI; \
+			ASR_AI_DISP_SNIPER; \
+		}; \
+		class ASR_AI_Single_far_optics2: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 2; \
+			ASR_AI_ROF_BIGSNIPER_HSCOPE_FAR_SEMI; \
+			ASR_AI_DISP_SNIPER; \
 		}

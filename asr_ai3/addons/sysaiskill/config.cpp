@@ -36,3 +36,4 @@ class CfgAISkill {
 
 #include "CfgVehicles.hpp"
 #include "CfgEventhandlers.hpp"
+//#include "CfgFunctions.hpp"

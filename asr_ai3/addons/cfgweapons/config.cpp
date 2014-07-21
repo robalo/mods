@@ -8,7 +8,6 @@ class CfgPatches {
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
 			"A3_Weapons_F",
-			"A3_Weapons_F_Acc",
 			"A3_Weapons_F_Launchers_NLAW",
 			"A3_Weapons_F_Launchers_LAW",
 			"A3_Weapons_F_EBR",
@@ -22,18 +21,13 @@ class CfgPatches {
 			"A3_Weapons_F_Rifles_SDAR",
 			"A3_Weapons_F_Rifles_TRG20",
 			"A3_Weapons_F_Launchers_Titan",
-			"A3_Weapons_F_beta",
-			"A3_Weapons_F_beta_EBR",
 			"A3_Weapons_F_Machineguns_Zafir",
 			"A3_Weapons_F_Pistols_ACPC2",
 			"A3_Weapons_F_Rifles_Mk20",
 			"A3_Weapons_F_Rifles_Vector",
 			"a3_weapons_f_rifles_SMG_02",
-			"A3_Weapons_F_gamma",
-			"A3_Weapons_F_gamma_Acc",
 			"A3_Weapons_F_Pistols_PDW2000",
-			"A3_Weapons_F_EPA_LongRangeRifles_DMR_01",
-			"A3_Weapons_F_EPC"
+			"A3_Weapons_F_EPA_LongRangeRifles_DMR_01"
 		};
 		version = VERSION;
 		author[] = {"Robalo"};

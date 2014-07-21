@@ -37,7 +37,7 @@ _iter = 0;
 TRACE_2("Sending units from group to search house",_group,_array);
 _building setVariable [QGVAR(searched),(diag_ticktime + 600)];
 
-while {_iter < (count _units) min (floor _indices/2) min 3 min floor ((count _units)/2)} do { // no more than 3, half of team or half number of building positions
+while {_iter < (count _units) min 3 min floor ((count _units)/2)} do { // no more than 3 or half of team
 	sleep 2 + random 3;
 	_unit = _units select _idx;
 	if (_unit != _leader && canStand _unit && vehicle _unit == _unit && _unit call FUNC(isValidUnit)) then { // do not send leaders or wounded soldiers

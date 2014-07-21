@@ -5,12 +5,10 @@ class CfgPatches {
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"CBA_MAIN"};
-		versionDesc = "ASR AI3";
-		versionAct = "";
-		VERSION_CONFIG;
+		requiredAddons[] = {QUOTE(MAIN_ADDON)};
+		version = VERSION;
+		author[] = {"Robalo"};
 	};
 };
 
 #include "CfgEventhandlers.hpp"
-//#include "CfgFunctions.hpp"

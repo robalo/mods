@@ -67,72 +67,13 @@ class CfgWeapons {
 		class ThrowMuzzle: GrenadeLauncher {
 			ASR_AI_DISP_REGULAR;
 		};
-	};
-	class ItemCore;
-	class InventoryMuzzleItem_Base_F;
-
-	//6.5mm rifle
-	class muzzle_snds_H: ItemCore {
-		class ItemInfo: InventoryMuzzleItem_Base_F {
-			modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_close2", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
-			ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
-		};
-	};
-	//5.6mm rifle
-	class muzzle_snds_M: muzzle_snds_H {
-		class ItemInfo: ItemInfo {
-			modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_close2", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
-			ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
-		};
-	};
-	//7.62mm rifle
-	class muzzle_snds_B: muzzle_snds_H {
-		class ItemInfo: ItemInfo {
-  		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
-  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
-		};
-	};
-	//6.5mm LMG
-	class muzzle_snds_H_MG: muzzle_snds_H {
-		class ItemInfo: ItemInfo {
-  		modes[] = {"FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2"};
-  		ASR_AI_MG_MODES(manual,Mode_FullAuto,manual);
-		};
-	};
-	//9mm pistol, SMG
-	class muzzle_snds_L: muzzle_snds_H {
-		class ItemInfo: ItemInfo {
-			modes[] = {"Single", "Burst", "FullAuto"};
-			class Single: Mode_SemiAuto {
-				ASR_AI_ROF_PISTOL_SEMI;
-			};
-			class Burst: Mode_Burst {
-				ASR_AI_ROF_SMG_BURST;
-			};
-			class FullAuto: Mode_FullAuto {
-				ASR_AI_ROF_SMG_FULLAUTO;
-			};
-		};
-	};
-	//.45 pistol, SMG
-	class muzzle_snds_acp: muzzle_snds_H {
-		class ItemInfo: ItemInfo {
-			modes[] = {"Single", "Burst", "FullAuto"};
-			class Single: Mode_SemiAuto {
-				ASR_AI_ROF_PISTOL_SEMI;
-			};
-			class Burst: Mode_Burst {
-				burst = 2;
-				ASR_AI_ROF_SMG_BURST;
-			};
-			class FullAuto: Mode_FullAuto {
-				ASR_AI_ROF_SMG_FULLAUTO;
-			};
-		};
+		class HandGrenadeMuzzle;
+		class MiniGrenadeMuzzle;
 	};
 
 	class Rifle_Base_F: Rifle {};
 	class Rifle_Long_Base_F: Rifle_Base_F {};
+	class UGL_F;
 
 	class EBR_base_F: Rifle_Long_Base_F {
  		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
@@ -158,6 +99,10 @@ class CfgWeapons {
 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_far", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
 		ASR_AI_DISP_REGULAR;
+		class EGLM : UGL_F {};
+		class ASR_EGLM_PRIO : EGLM {
+			ASR_AI_ROF_GL_PRIORITY;
+		};
 	};
 	class arifle_Katiba_C_F: arifle_Katiba_Base_F {
 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_far", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
@@ -259,31 +204,15 @@ class CfgWeapons {
 	};
 
 	class GM6_base_F: Rifle_Long_Base_F {
-		class Single;
-		class far_optic1: Single {
-			ASR_AI_DISP_MARKSMAN;
-		};
-		class medium_optic2: Single {
-			ASR_AI_DISP_SNIPER;
-		};
-		class far_optic2: far_optic1 {
-			ASR_AI_DISP_SNIPER;
-		};
+		modes[] = {"Single", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2", "ASR_AI_Single_far_optics2"};
+		ASR_AI_BIGSNIPER_MODES(Mode_SemiAuto);
 		asr_ai_wtype = ASR_WEAPON_TYPE_SNIPER;
 		asr_ai_hasbipod = 1;
 	};
 
 	class LRR_base_F: Rifle_Long_Base_F {
-		class Single;
-		class far_optic1: Single {
-			ASR_AI_DISP_MARKSMAN;
-		};
-		class medium_optic2: Single {
-			ASR_AI_DISP_SNIPER;
-		};
-		class far_optic2: far_optic1 {
-			ASR_AI_DISP_SNIPER;
-		};
+		modes[] = {"Single", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2", "ASR_AI_Single_far_optics2"};
+		ASR_AI_BIGSNIPER_MODES(Mode_SemiAuto);
 		asr_ai_wtype = ASR_WEAPON_TYPE_SNIPER;
 		asr_ai_hasbipod = 1;
 	};

@@ -4,6 +4,7 @@ PARAMS_2(_grp,_rtype);
 private ["_leader","_enemy","_dest","_weapons","_wc","_weap","_fg"];
 _leader = leader _grp;
 _grp setVariable [QGVAR(reacting),(diag_ticktime + 60 + random 120)];
+//_grp enableAttack false;
 
 sleep (10 + random 20);
 if (count (_grp call CBA_fnc_getAlive) == 0) exitWith {};
@@ -23,7 +24,7 @@ switch (_rtype) do {
 	};
 	case "defend": {
 		_grp setCombatMode "GREEN";
-		_weapons = [getposATL _leader, vehicles, 100, {_x emptypositions "Gunner" > 0 && !(_x isKindOf "Plane")}] call FUNC(getNearest);
+		_weapons = [getposATL _leader, vehicles, 100, {_x emptypositions "Gunner" > 0 && !(_x isKindOf "Plane")}] call FNCMAIN(getNearest);
 		_wc = count _weapons;
 		if (_wc > 0) then {
 			{ //get some units to man the weapons
@@ -34,7 +35,6 @@ switch (_rtype) do {
 						if (_mc < ceil (2 + random 3)) then { // mount up to a few times
 							_x assignasgunner _weap;
 							[_x] ordergetin true;
-							_x setCombatMode "RED";
 							INC(_mc);
 							_weap setVariable [QGVAR(mountcount), _mc];
 						};
@@ -49,7 +49,7 @@ switch (_rtype) do {
 	};
 	case "support": {
 		scopename "support";
-		_fg = [_grp,GVAR(radiorange)] call FUNC(nearFactionGroups); TRACE_2("",_grp,_fg);
+		_fg = [_grp,GVAR(radiorange)] call FNCMAIN(nearFactionGroups); TRACE_2("",_grp,_fg);
 		if (count _fg > 0) then	{
 			{ // find some friendlies in trouble
 				if (({damage _x > 0.1} count units _x) > 1) then {

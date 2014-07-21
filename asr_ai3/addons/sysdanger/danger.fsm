@@ -7,13 +7,13 @@ item2[] = {"Rest",8,218,-740.000000,340.000000,-570.000000,450.000000,0.000000,"
 item3[] = {"Timeout",4,218,-370.000000,60.000000,-260.000000,150.000000,1.000000,"Timeout"};
 item4[] = {"Reacting_on_danger",0,250,-620.000000,-500.000000,-410.000000,-450.000000,0.000000,"Reacting on danger!"};
 item5[] = {"Cause_0_ENEMY_DETECTED",4,218,-1370.000000,-200.000000,-1190.000000,-80.000000,6.000000,"Cause 0" \n "ENEMY" \n "DETECTED/NEAR"};
-item6[] = {"Signal_enemy___Radio",2,4346,-1340.000000,50.000000,-1220.000000,130.000000,0.000000,"Signal enemy" \n "+" \n "Radio report"};
+item6[] = {"Signal_enemy___Radio",2,250,-1340.000000,50.000000,-1220.000000,130.000000,0.000000,"Signal enemy" \n "+" \n "Radio report"};
 item7[] = {"Cause__8_CAN_FIR",4,218,-500.000000,-260.000000,-310.000000,-140.000000,7.000000,"Cause: 8" \n "CAN FIRE"};
 item8[] = {"Stop_to_fire___ASR",2,250,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
 item9[] = {"Check_queue",2,250,-260.000000,240.000000,-90.000000,300.000000,0.000000,"Check queue"};
 item10[] = {"Next__cause",4,218,-260.000000,-280.000000,-120.000000,-190.000000,1.000000,"Next  cause"};
 item11[] = {"Always",8,218,-240.000000,330.000000,-120.000000,410.000000,0.000000,"Always"};
-item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
+item12[] = {"Destroyed___captured",2,4346,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
 item14[] = {"AI__not_in_vehic",4,218,-810.000000,-400.000000,-630.000000,-310.000000,1.000000,"AI " \n "not in vehicle"};
 item15[] = {"Cause_3_4_5_AMMO",4,218,-940.000000,-100.000000,-720.000000,50.000000,4.000000,"Cause 3.4,5" \n "AMMO IMPACT NEAR," \n "OR DEAD TEAMMATE" \n ""};
@@ -57,8 +57,8 @@ link20[] = {17,7};
 link21[] = {17,15};
 link22[] = {17,18};
 link23[] = {18,16};
-globals[] = {10.000000,1,0,1,16777215,640,480,1,234,6316128,1,-1423.421631,83.081993,550.300415,-538.558716,1010,730,1};
-window[] = {2,-1,-1,-1,-1,988,208,1244,208,3,1028};
+globals[] = {10.000000,1,0,1,16777215,640,480,1,234,6316128,1,-1423.421631,83.081993,550.300415,-538.558716,979,730,1};
+window[] = {2,-1,-1,-1,-1,936,156,1192,156,3,997};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -186,6 +186,17 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"//_this globalChat ""Stopping to fire"";" \n
        "_stopUntil = time + 4 + random 4;" \n
        "" \n
+       "/*" \n
+       "_haspriofrag = false;" \n
+       "" \n
+       "//check if we have LOS; if not, give higher prio grenade option" \n
+       "if (lineIntersects [eyepos _this, visiblePositionASL _dangerCausedBy, _this, _dangerCausedBy]) then {" \n
+       "	_this addWeapon ""ASR_Throw_PRIO"";" \n
+       "	_haspriofrag = true;" \n
+       "	_this globalChat ""I HAS FRAGLES !!! MUHAHAHA !!!"";" \n
+       "};" \n
+       "*/" \n
+       "" \n
        "_this setVariable [""asr_ai3_sysdanger_shooting"",true];" \n
        "// soldier stop - set max. speed to 0" \n
        "_this forceSpeed 0;" \n
@@ -260,7 +271,12 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"// continue moving" \n
        "_this forceSpeed -1;" \n
        "_this setVariable [""asr_ai3_sysdanger_shooting"",nil];" \n
-       ""/*%FSM</STATEINIT""">*/;
+       "" \n
+       "/*" \n
+       "if (_haspriofrag) then {" \n
+       "	_this removeWeapon ""ASR_Throw_PRIO"";" \n
+       "};" \n
+       "*/"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
