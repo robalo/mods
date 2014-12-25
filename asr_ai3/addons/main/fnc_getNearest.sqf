@@ -14,7 +14,7 @@ _return = if (count _this > 2) then {[]} else {objNull};
 		scopename "if_distance";
 		if !(call _code) then {breakOut "if_distance"};
 		if (count _this > 2) then {
-			_return set [count _return, _x];
+			_return pushBack _x;
 		} else {
 			_radius = _distance;
 			_return = _x;

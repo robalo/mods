@@ -3,6 +3,7 @@
 LOG(MSG_INIT);
 
 PREP(isUnc);
+PREP(isValidUnit);
 PREP(isMedic);
 PREP(isEngineer);
 PREP(getWeaponType);

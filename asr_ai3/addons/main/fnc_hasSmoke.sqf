@@ -1,6 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-#define __SMOKEMUZZLES ["SmokeShellMuzzle", "SmokeShellYellowMuzzle", "SmokeShellGreenMuzzle", "SmokeShellRedMuzzle", "SmokeShellPurpleMuzzle", "SmokeShellOrangeMuzzle", "SmokeShellBlueMuzzle"]
+#define __SMOKEMUZZLES ["SmokeShellMuzzle","SmokeShellYellowMuzzle","SmokeShellGreenMuzzle","SmokeShellRedMuzzle","SmokeShellPurpleMuzzle","SmokeShellOrangeMuzzle","SmokeShellBlueMuzzle","Rhs_Throw_Smoke","BWA3_DM25Muzzle","BWA3_DM32OrangeMuzzle","BWA3_DM32YellowMuzzle"]
 PARAMS_1(_unit);
 private ["_thismuz","_thismags","_bingo"];
 scopeName "hasmoke_main";
