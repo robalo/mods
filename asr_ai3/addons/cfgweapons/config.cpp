@@ -36,4 +36,5 @@ class CfgPatches {
 
 PRELOAD_ADDONS;
 
+#include "CfgAmmo.hpp"
 #include "CfgWeapons.hpp"

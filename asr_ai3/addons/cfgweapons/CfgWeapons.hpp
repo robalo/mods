@@ -67,8 +67,18 @@ class CfgWeapons {
 		class ThrowMuzzle: GrenadeLauncher {
 			ASR_AI_DISP_REGULAR;
 		};
-		class HandGrenadeMuzzle;
-		class MiniGrenadeMuzzle;
+		class HandGrenadeMuzzle: ThrowMuzzle {
+			minRange = 20;
+			minRangeProbab = 0.8;
+			midRange = 50;
+			midRangeProbab = 0.9;
+		};
+		class MiniGrenadeMuzzle: ThrowMuzzle {
+			minRange = 15;
+			minRangeProbab = 0.8;
+			midRange = 50;
+			midRangeProbab = 0.9;
+		};
 	};
 
 	class Rifle_Base_F: Rifle {};
@@ -81,7 +91,7 @@ class CfgWeapons {
 		ASR_AI_DISP_REGULAR;
 	};
 
-	class DMR_01_base_F : Rifle_Long_Base_F {
+	class DMR_01_base_F: Rifle_Long_Base_F {
  		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
 		ASR_AI_DISP_REGULAR;
@@ -99,10 +109,7 @@ class CfgWeapons {
 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_far", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
 		ASR_AI_DISP_REGULAR;
-		class EGLM : UGL_F {};
-		class ASR_EGLM_PRIO : EGLM {
-			ASR_AI_ROF_GL_PRIORITY;
-		};
+		class EGLM: UGL_F {};
 	};
 	class arifle_Katiba_C_F: arifle_Katiba_Base_F {
 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_far", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
