@@ -27,13 +27,14 @@ class CfgPatches {
 
 PRELOAD_ADDONS;
 
-// lower some skills while maintaining an option for top skilled units (reduce skills for 0 - 0.8, but keep them high for 0.8 - 1).
+// lower some skills while maintaining an option for top skilled units (reduce skills for 0 - 0.8, but keep them very high for 0.8 - 1).
 class CfgAISkill {
-	aimingAccuracy[] = {0, 0, 0.8, 0.7, 1, 1};
-	aimingShake[] = {0, 0, 0.8, 0.7, 1, 1};
-	commanding[] = {0, 0, 0.8, 0.6, 1, 1};
+	aimingAccuracy[] = {0, 0.1, 0.8, 0.7, 1, 1};
+	aimingShake[]    = {0, 0.1, 0.8, 0.7, 1, 1};
+	commanding[]     = {0, 0.1, 0.8, 0.6, 1, 1};
+	spotDistance[]   = {0, 0.1, 0.5, 0.2, 1, 0.4};
+	spotTime[]       = {0, 0.1, 0.8, 0.6, 1, 0.7};
 };
 
 #include "CfgVehicles.hpp"
 #include "CfgEventhandlers.hpp"
-//#include "CfgFunctions.hpp"

@@ -5,7 +5,7 @@ PARAMS_2(_unit,_dangerobj);
 DEFAULT_PARAM(2,_maxdisttocover,100);
 
 scopeName "main";
-private ["_nearobj","_cover","_enemydist","_dangerpos","_coverpos","_debug","_fnc_debug","_fnc_filter"];
+private ["_nearobj","_cover","_enemydist","_dangerpos","_coverpos","_debug","_fnc_debug","_fnc_filter","_bposa","_bbdim","_maxWidth","_maxLength","_maxHeight","_min","_max","_objpos","_nBuilding"];
 
 _debug = (GVAR(debug) > 0);
 
@@ -49,7 +49,6 @@ _cover = [];
 _nearobj = [(nearestObjects [_unit, [], _maxdisttocover]), {_x call _fnc_filter}] call BIS_fnc_conditionalSelect;
 
 {
-	private ["_bbdim","_maxWidth","_maxLength","_maxHeight","_min","_max","_objpos"];
 	_bbdim = _x call bis_fnc_boundingBoxDimensions;
 	_maxWidth = _bbdim select 0;
 	_maxLength = _bbdim select 1;
@@ -65,14 +64,14 @@ _nearobj = [(nearestObjects [_unit, [], _maxdisttocover]), {_x call _fnc_filter}
 			if (isNull _dangerobj) then { // danger source unknown, just get to some cover
 				_coverpos = _objpos findEmptyPosition [1,10];
 				if (count _coverpos > 0) then {
-					_cover set [count _cover, _coverpos];
+					_cover pushBack _coverpos;
 					if (_debug) then {[_unit,_x,"colorred"] call _fnc_debug};
 				}
 			} else { // danger source known, hide behind cover
 				_dangerpos = _unit getHideFrom _dangerobj;
 				_enemydist = _dangerpos distance _objpos;
 				_coverpos = [_dangerpos, (_enemydist + _max + 2), ([_dangerpos, _objpos] call BIS_fnc_dirTo)] call BIS_fnc_relPos;
-				_cover set [count _cover, _coverpos];
+				_cover pushBack _coverpos;
 				if (_debug) then {[_unit,_x,"colorgreen"] call _fnc_debug};
 			};
 			if (count _cover > 0) then {breakTo "main"};
@@ -80,4 +79,16 @@ _nearobj = [(nearestObjects [_unit, [], _maxdisttocover]), {_x call _fnc_filter}
 	};
 } forEach _nearobj;
 
+if (random 1 < GVAR(usebuildings)) then {
+	_nBuilding = nearestBuilding _unit;
+	if ((_unit distance _nBuilding) < _maxdisttocover) then {
+		_bposa = ([_nBuilding] call BIS_fnc_buildingPositions) call BIS_fnc_arrayShuffle;
+		if (count _bposa > 0) then {
+			// pick some building positions and add them to the returned cover array
+			{if (random 1 > 0.2 || _x select 2 > 1.5) then {_cover pushBack _x};} forEach _bposa;
+		};
+	};
+};
+
+TRACE_1("findCover returns",_cover);
 _cover

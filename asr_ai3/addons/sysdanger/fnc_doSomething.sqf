@@ -3,12 +3,29 @@
 #include "script_component.hpp"
 PARAMS_4(_unit,_grp,_dangerCausedBy,_dangerUntil);
 
-if ({isPlayer _x} count (units _grp) > 0) exitWith {}; // not if player in group
+private ["_fne","_cwp"];
+scopeName "main";
+
+_unit doWatch _dangerCausedBy;
+
+//if no target, pick one!
+if (isNull assignedTarget _unit) then {
+	{
+		if ((side _unit) getFriend (_x select 2) < 0.6) then {
+			_fne = _unit findNearestEnemy (_x select 0);
+			_unit doTarget _fne;
+			breakTo "main";
+		};
+	} forEach (_unit nearTargets 1000);
+};
+
+if ({isPlayer _x} count (units _grp) > 0 || !unitReady _unit) exitWith {}; // not if player or unit is busy
 
 if (_grp getVariable [QGVAR(reacting),0] < diag_ticktime) then { // what to do ?
 
-	if (currentWaypoint _grp > 0 && currentWaypoint _grp < count waypoints _grp) then { // going somewhere ?
-		if (GVAR(seekcover) == 1 && isNil QGVAR(mToCover)) then { // check for cover near and divert
+	_cwp = currentWaypoint _grp;
+	if (_cwp > 0 && _cwp < count waypoints _grp) then { // going somewhere ?
+		if (GVAR(seekcover) == 1 && isNil QGVAR(mToCover) && waypointType [_grp,_cwp] != "HOLD") then { // check for cover near and divert
 			[_unit,_dangerCausedBy,_dangerUntil,50] call FUNC(moveToCover);
 		};
 		if (random 1 < GVAR(usebuildings)) then { // use building

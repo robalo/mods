@@ -2,15 +2,17 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 PARAMS_1(_group);
-DEFAULT_PARAM(1,_range,50);
-DEFAULT_PARAM(2,_posdelay,10);
+DEFAULT_PARAM(1,_range,100);
+DEFAULT_PARAM(2,_posdelay,20);
 if !(_group call CBA_fnc_isalive) exitWith {};
 private ["_leader","_array","_nearhouses","_building","_indices","_units","_idx","_iter"];
 _group lockwp true;
 _leader = leader _group;
 _array = [];
 _nearhouses = (getPosATL _leader) nearObjects ["HouseBase", _range];
-TRACE_2("Buildings in 50m range",_group,_nearhouses);
+//_nearhouses = [nearestBuilding getPosATL _leader];
+//_nearhouses = [(getPosATL _leader) nearObjects _range, {_x isKindOf "HouseBase"}] call BIS_fnc_conditionalSelect;
+TRACE_2("Buildings in range",_group,_nearhouses);
 scopeName "main";
 
 { // get near buildings not searched
@@ -35,12 +37,11 @@ _units = _group call CBA_fnc_getAlive;
 _idx = (count _units) - 1;
 _iter = 0;
 TRACE_2("Sending units from group to search house",_group,_array);
-_building setVariable [QGVAR(searched),(diag_ticktime + 600)];
 
 while {_iter < (count _units) min 3 min floor ((count _units)/2)} do { // no more than 3 or half of team
 	sleep 2 + random 3;
 	_unit = _units select _idx;
-	if (_unit != _leader && canStand _unit && vehicle _unit == _unit && _unit call FUNC(isValidUnit)) then { // do not send leaders or wounded soldiers
+	if (/*_unit != _leader && */canStand _unit && vehicle _unit == _unit && _unit call FNCMAIN(isValidUnit)) then { // do not send leaders or wounded soldiers
 		[_unit,_array,_posdelay] spawn {
 			PARAMS_3(_unit,_house,_posdelay);
 			private ["_indices","_timeout","_housepos"];
@@ -49,26 +50,27 @@ while {_iter < (count _units) min 3 min floor ((count _units)/2)} do { // no mor
 			// pick some positions
 			for "_i" from 0 to (_house select 1) do {
 				if (random 1 > 0.4) then {
-					_indices set [count _indices,_i];
+					_indices pushBack _i;
 				};
 			};
 
 			if (count _indices > 0) then {
-				{	if !(_unit call FUNC(isValidUnit)) exitWith {};
+				{	if !(_unit call FNCMAIN(isValidUnit)) exitWith {};
 					_housepos = (_house select 0) buildingPos _x;
+					if (str _housepos == '[0,0,0]') exitWith {};
 					TRACE_2("Try to move unit to house",_unit,_housepos);
-					if (unitReady _unit && str _housepos != '[0,0,0]') then {
-						waitUntil {isNil {_unit getVariable QGVAR(shooting)}}; // stopped shooting
+					waitUntil {isNil {_unit getVariable QGVAR(shooting)}}; // stopped shooting
+					doStop _unit;
+					_unit setUnitPos "Up";
+					_unit doMove _housepos;
+					_timeout = time + 60;
+					waitUntil {unitReady _unit || _unit call FNCMAIN(isUnc) || _timeout < time};
+					if (_unit call FUNC(isUnderRoof)) then {
 						_unit setUnitPos "Up";
-						_unit doMove _housepos;
-						_timeout = time + 60;
-						waitUntil {moveToCompleted _unit || moveToFailed _unit || unitReady _unit || _unit call FNCMAIN(isUnc) || _timeout < time};
-						if (_unit call FUNC(isUnderRoof)) then {
-							_unit setUnitPos "Up";
-						} else {
-							_unit setUnitPos "Auto";
-						};
+					} else {
+						_unit setUnitPos "Auto";
 					};
+					doStop _unit;
 					_posdelay = _posdelay + random (_posdelay * 2);
 					sleep _posdelay;
 					if (_unit ammo (currentWeapon _unit) < 20) then {sleep (_posdelay * 2)}; // snipe more
@@ -86,6 +88,6 @@ while {_iter < (count _units) min 3 min floor ((count _units)/2)} do { // no mor
 	INC(_iter);
 };
 
-waituntil {sleep 3;	_units = _group call CBA_fnc_getAlive; {unitready _x} count _units >= (count _units) - 1};
+waituntil {sleep 3; _units = _group call CBA_fnc_getAlive; {unitready _x} count _units >= (count _units) - 1};
 _group lockwp false;
-_building setVariable [QGVAR(searched),(diag_ticktime + 30 + random 90)];
+_building setVariable [QGVAR(searched),(diag_ticktime + 30 + random 120)];

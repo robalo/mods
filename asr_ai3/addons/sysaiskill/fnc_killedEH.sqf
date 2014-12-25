@@ -14,6 +14,28 @@ if (isNull _grp) exitWith {LOG("Group is null, exiting")};
 _units = _grp call CBA_fnc_getAlive;
 _remaining = count _units;
 
+// exit if none remaining
+if (_remaining == 0) exitWith {LOG("Group is empty, exiting")};
+
+// reduce morale for all remaining units
+{ _x setskill ["courage",(_x skill "courage")-0.05] } forEach _units;
+
+/*
+// check if dead guy dropped a launcher
+ASDG_launcher = "";
+{
+	_ctnr = _x;
+	{
+		if (_x call FNCMAIN(getWeaponType) == "LAUNCHER") then {
+			ASDG_launcher = _x;
+			breakTo "main";
+		};
+	} forEach weaponCargo _ctnr;
+} forEach nearestObjects [_this select 0, ["WeaponHolderSimulated"], 2];
+
+hint ASDG_launcher;
+*/
+
 // if one of them is a player, do nothing
 if ({isPlayer _x} count _units > 0) exitWith {LOG("Group with player, exiting")};
 
@@ -38,7 +60,7 @@ if (_remaining <= GVAR(joinlast) && _grpinitsize > GVAR(joinlast)) then {
 		if (count _units > GVAR(joinlast)) then {breakTo "main"}; // we were reinforced, cancel group merging
 		{	scopeName "forEachAliveDude";
 			_thisunit = _x;
-			if (_thisunit call FUNC(isValidUnit) && !(_thisunit call FNCMAIN(isUnc))) then {
+			if (_thisunit call FNCMAIN(isValidUnit)) then {
 				if (vehicle _thisunit == _thisunit && canStand _thisunit) then { // on foot
 					sleep (20 + random 10);
 					_ngroups = [_grp,200] call FNCMAIN(nearFactionGroups);
@@ -47,7 +69,7 @@ if (_remaining <= GVAR(joinlast) && _grpinitsize > GVAR(joinlast)) then {
 						_ngrp = _x;
 						if (count (units _ngrp) < 12) then {
 							_nleader = leader _ngrp;
-							if (_nleader call FUNC(isValidUnit) && !(_nleader call FNCMAIN(isUnc))) then {
+							if (_nleader call FNCMAIN(isValidUnit)) then {
 								if (!isPlayer _nleader && vehicle _nleader == _nleader && canStand _nleader) then {
 									if (canStand _thisunit) then {
 										TRACE_2("Joins another group",_thisunit,_ngrp);
@@ -66,5 +88,5 @@ if (_remaining <= GVAR(joinlast) && _grpinitsize > GVAR(joinlast)) then {
 		sleep 120;
 	};
 	// no more units, clean up
-	deleteGroup _grp;
+	//deleteGroup _grp; //says here this happens automagically: https://community.bistudio.com/wiki/createGroup
 };

@@ -3,7 +3,7 @@
 PARAMS_2(_grp,_info);
 private ["_leader","_recgroups"];
 _leader = leader _grp;
-if (_leader call FUNC(isValidUnit)) then {
+if (_leader call FNCMAIN(isValidUnit)) then {
 	if (_leader knowsAbout _info > 1) then {
 		if (!(_grp getVariable [QGVAR(sending), false])) then { // not busy talking
 			if (_grp call FNCMAIN(hasRadio)) then { // have radio in group
@@ -13,7 +13,7 @@ if (_leader call FUNC(isValidUnit)) then {
 				TRACE_2("Groups in range of unit",_recgroups,_leader);
 				if (count _recgroups > 0) then {
 					sleep (10 + random 20); // delay sending info
-					if (_leader call FUNC(isValidUnit)) then {
+					if (_leader call FNCMAIN(isValidUnit)) then {
 						{[_leader, _x, _info] call FUNC(sendInfo)} forEach _recgroups; // broadcast; I don't know if they should spend more time
 					};
 				}; // done sending

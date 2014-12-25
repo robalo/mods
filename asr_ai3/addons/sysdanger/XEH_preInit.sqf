@@ -12,16 +12,14 @@ if (GVAR(enabled) == 0) exitWith {
 LOG(MSG_INIT);
 
 ASR_AI_CFGREAD(debug,number,0);
-ASR_AI_CFGREAD(civ,number,0);
 ASR_AI_CFGREAD(radionet,number,1);
 ASR_AI_CFGREAD(radiorange,number,500);
 ASR_AI_CFGREAD(seekcover,number,1);
 ASR_AI_CFGREAD(throwsmoke,number,0.8);
 ASR_AI_CFGREAD(reactions,array,[]);
 if (count GVAR(reactions) < 3) then {GVAR(reactions) = [1,1,1]};
-ASR_AI_CFGREAD(usebuildings,number,0.9);
+ASR_AI_CFGREAD(usebuildings,number,0.7);
 
-PREP(isValidUnit);
 PREP(sendInfo);
 PREP(broadcastInfo);
 PREP(throwSmoke);

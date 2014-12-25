@@ -42,17 +42,30 @@ while {_i < count _sa} do {
 	switch (_st) do {
 		case "aiming": {
 			{	_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				_unit setSkill [_x,_sv]; TRACE_3("",_unit,_x,_sv);
+				if (GVAR(setskills) > 1) then {
+					[-2, {if (local (_this select 0)) then {(_this select 0) setSkill (_this select 1)}}, [_unit,[_x,_sv]]] call CBA_fnc_globalExecute;
+				} else {
+					_unit setSkill [_x,_sv];
+				};
+				TRACE_3("",_unit,_x,_sv);
 			}	forEach ["aimingAccuracy","aimingShake","aimingSpeed"];
 		};
 		case "spotting": {
 			{	_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				_unit setSkill [_x,_sv];
+				if (GVAR(setskills) > 1) then {
+					[-2, {if (local (_this select 0)) then {(_this select 0) setSkill (_this select 1)}}, [_unit,[_x,_sv]]] call CBA_fnc_globalExecute;
+				} else {
+					_unit setSkill [_x,_sv];
+				};
 			}	forEach ["spotDistance","spotTime"];
 		};
 		case "general": {
 			{	_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				_unit setSkill [_x,_sv];
+				if (GVAR(setskills) > 1) then {
+					[-2, {if (local (_this select 0)) then {(_this select 0) setSkill (_this select 1)}}, [_unit,[_x,_sv]]] call CBA_fnc_globalExecute;
+				} else {
+					_unit setSkill [_x,_sv];
+				};
 			}	forEach ["courage","reloadSpeed","commanding","general"];
 		};
 	};

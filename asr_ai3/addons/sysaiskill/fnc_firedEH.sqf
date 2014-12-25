@@ -34,10 +34,10 @@ if ((_this select 4) isKindOf "BulletCore") then {
 				{	if (_weapon == _x select 0) exitWith {_supp = _x select 1} } forEach (weaponsItems _shooter);
 			};
 
-			_audible = [configFile>>"CfgAmmo">>_ammo>>"audiblefire", "number", 12] call CBA_fnc_getConfigEntry;
+			_audible = [configFile>>"CfgAmmo">>_ammo>>"audiblefire", "number", 16] call CBA_fnc_getConfigEntry;
 			if (_supp != "") then {
 				_audiblecoef = [configFile>>"cfgWeapons">>_supp>>"ItemInfo">>"AmmoCoef">>"audibleFire","number",1] call CBA_fnc_getConfigEntry;
-				_sdweap = _audiblecoef < 0.7;
+				_sdweap = _audiblecoef < 1;
 				_audible = _audible*_audiblecoef;
 				_sti = [configFile>>"cfgWeapons">>_supp>>"ItemInfo">>"soundTypeIndex","number",1] call CBA_fnc_getConfigEntry;
 			};
@@ -92,7 +92,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 			// apply userconfig coefficient
 			_range = _range * GVAR(gunshothearing);
 
-			_ammofactor = _audible / 8;
+			_ammofactor = _audible / 16;
 			if (_ammofactor > 1 || _sdweap) then {
 				_range = _range * _ammofactor;
 			};
@@ -147,7 +147,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 					_x reveal [_veh,_k];
 					TRACE_3("unit hears this shooter",_x,_veh,_k);
 				};
-			} forEach (_veh nearEntities [["CAManBase","StaticWeapon"],_detectupto]);
+			} forEach (_veh nearEntities [["SoldierWB","SoldierEB","SoldierGB","StaticWeapon"],_detectupto]);
 
 			sleep 5; if (!isMultiplayer) then {sleep 10};
 
@@ -157,7 +157,14 @@ if ((_this select 4) isKindOf "BulletCore") then {
 } else { // munition other than bullets
 	_this spawn {
 		PARAMS_7(_shooter,_weapon,_muzzle,_mode,_ammo,_magazine,_projectile);
-		private ["_early","_range","_timeout","_exPos","_distance","_lastime","_veh"];
+		private ["_early","_range","_timeout","_exPos","_distance","_lastime","_veh","_go2cover"];
+
+		_go2cover = false;
+		if (!isNil "asr_ai3_sysdanger_enabled" && !isNil "asr_ai3_sysdanger_seekcover") then {
+			if (asr_ai3_sysdanger_enabled == 1 && asr_ai3_sysdanger_seekcover == 1) then {
+				_go2cover = true;
+			};
+		};
 
 		// determine range based on ammo type
 		// for smoke and flares, alert shortly after getting fired, instead of waiting for the projectile to self-destruct // also don't hide from these ones even if they land close
@@ -266,14 +273,12 @@ if ((_this select 4) isKindOf "BulletCore") then {
 				_distance = _exPos distance _x;
 				TRACE_3("Unit hears this explosion",_x,_ammo,_distance);
 				if (_distance < 150 && !_early) then {
-					if (asr_ai3_sysdanger_enabled == 1) then {
-						if (asr_ai3_sysdanger_enabled == 1 && asr_ai3_sysdanger_seekcover == 1 && _x == vehicle _x) then { // for units not in vehicles or static weapons
-							_lastime = _x getVariable [QGVAR(lastMoveToCoverTime),-120];
-							if (time > _lastime + 120) then {
-								if (_x == leader _x || random 5 > 1) then {
-									[_x,objNull,time,100] call asr_ai3_sysdanger_fnc_moveToCover;
-									_x setVariable [QGVAR(lastMoveToCoverTime),time];
-								};
+					if (_go2cover && _x == vehicle _x) then { // for units not in vehicles or static weapons
+						_lastime = _x getVariable [QGVAR(lastMoveToCoverTime),-120];
+						if (time > _lastime + 120) then {
+							if (_x == leader _x || random 5 > 1) then {
+								[_x,objNull,time,100] call asr_ai3_sysdanger_fnc_moveToCover;
+								_x setVariable [QGVAR(lastMoveToCoverTime),time];
 							};
 						};
 					};

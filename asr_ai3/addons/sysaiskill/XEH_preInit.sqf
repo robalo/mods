@@ -13,10 +13,9 @@ LOG(MSG_INIT);
 private ["_sets","_levelor","_i","_thisLevel","_j","_cn","_a","_facts"];
 
 ASR_AI_CFGREAD(debug,number,0); TRACE_1("",GVAR(debug));
-ASR_AI_CFGREAD(hitcoef,number,0.5); TRACE_1("",GVAR(hitcoef));
-ASR_AI_CFGREAD(civ,number,0); TRACE_1("",GVAR(civ));
+ASR_AI_CFGREAD(setskills,number,2); TRACE_1("",GVAR(setskills));
 ASR_AI_CFGREAD(dynsvd,number,1); TRACE_1("",GVAR(dynsvd));
-ASR_AI_CFGREAD(gunshothearing,number,1.1); TRACE_1("",GVAR(gunshothearing));
+ASR_AI_CFGREAD(gunshothearing,number,0.5); TRACE_1("",GVAR(gunshothearing));
 ASR_AI_CFGREAD(joinlast,number,2); TRACE_1("",GVAR(joinlast));
 ASR_AI_CFGREAD(removegimps,number,300); TRACE_1("",GVAR(removegimps));
 
@@ -24,17 +23,17 @@ ASR_AI_CFGREAD(removegimps,number,300); TRACE_1("",GVAR(removegimps));
 _sets = [];
 _levelor = [];
 for "_i" from 0 to (count(GVAR(cfg)>>"sets") - 1) do {
-	PUSH(_sets,[]);
+	_sets pushBack [];
 	_thisLevel = (GVAR(cfg)>>"sets") select _i;
 	for "_j" from 0 to (count(_thisLevel) - 1) do {
 		if (isArray ((_thisLevel) select _j)) then {
 			_cn = configName ((_thisLevel) select _j);
 			_a = [(_thisLevel) select _j, "array", []] call CBA_fnc_getConfigEntry;
 			if (_cn == "units") then { //unit overrides
-				PUSH(_levelor,_a);
+				_levelor pushBack _a;
 			} else { //skill definitions
-				PUSH(_sets select _i,_cn);
-				PUSH(_sets select _i,_a);
+				(_sets select _i) pushBack _cn;
+				(_sets select _i) pushBack _a;
 			};
 		};
 	};
@@ -48,7 +47,7 @@ TRACE_1("",GVAR(levels_units));
 _facts = [];
 for "_i" from 0 to (count(GVAR(cfg)>>"factions") - 1) do {
 	_thisfaction = (GVAR(cfg)>>"factions") select _i;
-	_facts set [count _facts, [configName _thisfaction, ([_thisfaction>>"coef", "number", 1] call CBA_fnc_getConfigEntry)]];
+	_facts pushBack [configName _thisfaction, ([_thisfaction>>"coef", "number", 1] call CBA_fnc_getConfigEntry)];
 };
 if (isNil QGVAR(factions)) then {GVAR(factions) = _facts};
 TRACE_1("",GVAR(factions));

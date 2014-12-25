@@ -15,7 +15,7 @@ _cant = {
 };
 
 sleep _wait;
-if !(_unit call FUNC(isValidUnit)) exitWith {GVAR(smokin) = nil};
+if !(_unit call FNCMAIN(isValidUnit)) exitWith {GVAR(smokin) = nil};
 if (primaryWeapon _unit == "") exitWith {GVAR(smokin) = nil};
 
 // throw it towards closest known enemy

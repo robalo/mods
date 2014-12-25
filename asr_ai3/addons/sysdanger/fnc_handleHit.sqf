@@ -9,7 +9,6 @@ if (isPlayer _unit || isPlayer leader _unit) exitWith {};
 if (isNil QGVAR(smokin) && random 5 < GVAR(throwsmoke) && !isNull _hitman && _unit != _hitman && vehicle _unit == _unit) then {[_unit] spawn FUNC(throwSmoke)};
 
 // move to cover
-// TODO: send unit inside a house if near
 if (GVAR(seekcover) == 1 && isNil QGVAR(mToCover)) then {
 	[_unit,_hitman,time,100] call FUNC(moveToCover);
 };
