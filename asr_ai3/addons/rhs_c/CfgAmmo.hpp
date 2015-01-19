@@ -1,5 +1,5 @@
-#define __AUDIBLE1 32
-#define __AUDIBLE2 48
+#define __AUDIBLE1 16
+#define __AUDIBLE2 32
 
 class CfgAmmo {
 	class BulletBase;
@@ -21,7 +21,6 @@ class CfgAmmo {
 	class rhs_ammo_M136_rocket : RocketBase {
 		audibleFire = __AUDIBLE2; //16;
 		allowAgainstInfantry = 0;
-		irLock = 1; //not on inf
 		airLock = 1; //yes on air
 	};
 	class rhs_B_545x39_Ball: B_556x45_Ball {
@@ -49,8 +48,9 @@ class CfgAmmo {
 	};
 	class rhs_rpg7v2_pg7vl : rhs_rpg26_rocket {
 		audibleFire = __AUDIBLE2; //16;
-		allowAgainstInfantry = 1;
-		irLock = 0; //not on inf?
+	};
+	class rhs_rpg7v2_pg7vr : rhs_rpg7v2_pg7vl {
+		airLock = 0;
 	};
 	class B_9x21_Ball;
 	class rhs_B_9x19_7N21 : B_9x21_Ball {

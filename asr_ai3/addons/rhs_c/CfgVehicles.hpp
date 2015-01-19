@@ -2,6 +2,9 @@
 #define __PREF_TUBE secondaryAmmoCoef = 0.5
 
 class CfgVehicles {
+
+//RU
+
 	class SoldierEB;
 
 	class rhs_infantry_msv_base : SoldierEB {
@@ -87,36 +90,43 @@ class CfgVehicles {
 		__PREF_TUBE;
 	};
 
+//US
 
 	class rhsusf_infantry_army_base : SoldierEB {
 		ASR_AI_SKILL_REG2;
 		ASR_AI_COST_REG;
 		ASR_AI_CAMO_FULL;
 	};
+	class rhsusf_army_ocp_riflemanat : rhsusf_infantry_army_base {
+		__PREF_TUBE;
+	};
 	class rhsusf_army_ocp_grenadier : rhsusf_infantry_army_base {
 		ASR_AI_COST_REG;
 	};
-	class rhsusf_army_ocp_squadleader : rhsusf_army_ocp_grenadier {
+	class rhsusf_army_ocp_squadleader : rhsusf_infantry_army_base {
 		ASR_AI_COST_REG;
 		ASR_AI_SKILL_REG1;
 	};
-	class rhsusf_army_ocp_teamleader : rhsusf_army_ocp_squadleader {
+	class rhsusf_army_ocp_rifleman;
+	class rhsusf_army_ocp_teamleader : rhsusf_army_ocp_rifleman {
 		ASR_AI_SKILL_REG1;
 	};
-	class rhsusf_army_ocp_marksman: rhsusf_infantry_army_base {
+	class rhsusf_army_ocp_aa : rhsusf_army_ocp_riflemanat {
+		__PREF_TUBE;
+	};
+	class rhsusf_army_ocp_marksman : rhsusf_infantry_army_base {
 		ASR_AI_COST_REG;
 		ASR_AI_SKILL_REG1;
 		__PREF_PRIMARY;
 	};
-	class rhsusf_army_ocp_riflemanat : rhsusf_infantry_army_base {
-		__PREF_TUBE;
-	};
 	class rhsusf_army_ocp_helipilot : rhsusf_infantry_army_base {
 		ASR_AI_SKILL_PIL1;
 	};
-	class rhsusf_army_ocp_helicrew : rhsusf_infantry_army_base {
-		ASR_AI_SKILL_PIL1;
+	class rhsusf_army_ocp_sniper : rhsusf_army_ocp_marksman {
+		ASR_AI_SKILL_SNP1;
+		ASR_AI_COST_SPECIAL;
+		sensitivity = 4;
+		minFireTime = 5;
 	};
-
 
 };
