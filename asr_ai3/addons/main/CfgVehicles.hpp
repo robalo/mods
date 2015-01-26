@@ -35,6 +35,7 @@ class CfgVehicles {
 		sensitivity = 2;
 		minFireTime = 10;
 		ASR_AI_CAMO_NONE;
+		accuracy = 0.2;
 	};
 	class SoldierWB: CAManBase {
 		ASR_AI_SKILL_REG2; // default soldier

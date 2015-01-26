@@ -18,7 +18,7 @@ _remaining = count _units;
 if (_remaining == 0) exitWith {LOG("Group is empty, exiting")};
 
 // reduce morale for all remaining units
-{ _x setskill ["courage",(_x skill "courage")-0.05] } forEach _units;
+{ _x setskill ["courage",(_x skill "courage")-0.025] } forEach _units;
 
 /*
 // check if dead guy dropped a launcher

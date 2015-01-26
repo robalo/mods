@@ -1,9 +1,8 @@
-// if no player in group and no waypoints active, experiment with some random reactions
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 PARAMS_4(_unit,_grp,_dangerCausedBy,_dangerUntil);
 
-private ["_fne","_cwp"];
+private ["_fne","_leader","_cwp","_coverRange"];
 scopeName "main";
 
 _unit doWatch _dangerCausedBy;
@@ -16,50 +15,71 @@ if (isNull assignedTarget _unit) then {
 			_unit doTarget _fne;
 			breakTo "main";
 		};
-	} forEach (_unit nearTargets 1000);
+	} forEach (_unit nearTargets 600);
 };
 
-if ( !unitReady _unit || isPlayer leader _grp ) exitWith {}; // not if busy or leader is player 
+_leader = leader _grp;
+if (isPlayer _leader) exitWith {}; // exit if busy or leader is player 
 
-if (_grp getVariable [QGVAR(reacting),0] < diag_ticktime) then { // what to do ?
+_coverRange = 150;
 
-	_cwp = currentWaypoint _grp;
-	if (_cwp > 0 && {_cwp < count waypoints _grp}) then { // going somewhere ?
-		if (GVAR(seekcover) == 1 && {isNil QGVAR(mToCover)} && {waypointType [_grp,_cwp] != "HOLD"}) then { // check for cover near and divert
-			[_unit,_dangerCausedBy,_dangerUntil,50] call FUNC(moveToCover);
-		};
-		if (random 1 < GVAR(usebuildings)) then { // use building
-			[_grp] spawn FUNC(checkHouses);
-		};
-	} else { // do something -- skip if GAIA
-		if (count (_grp getVariable ["GAIA_zone_intend",[]]) == 0) then {
-			switch (round random 3) do {
-				case 0: { // attack
-					if (GVAR(reactions) select 0 == 1) then {
-						[_grp,"attack"] spawn FUNC(reaction);
-					};
-				};
-				case 1: { // defend
-					if (GVAR(reactions) select 1 == 1) then {
-						[_grp,"defend"] spawn FUNC(reaction);
-					};
-				};
-				case 2: { // support
-					if (GVAR(reactions) select 2 == 1) then {
-						[_grp,"support"] spawn FUNC(reaction);
+// check if not already doing something or GAIA has control
+if (GVAR(reactions) > 0 && {_grp getVariable [QGVAR(reacting),-1] < diag_ticktime} && {count (_grp getVariable ["GAIA_zone_intend",[]]) == 0}) then {
+
+	if (currentWaypoint _grp == count waypoints _grp) then { // no active wp, do something
+
+		// mount weapons
+		if (random 1 < GVAR(getinweapons)) then {_grp call FUNC(getInWeapons)};
+
+		//check force balance
+		if (_leader call FUNC(enemyForce) > 0.6) then { // outnumbered
+
+			_grp setVariable [QGVAR(reacting),(diag_ticktime + 600 + random 1200)];
+			_grp spawn {
+				sleep (10 + random 20);
+				if (count (_this call CBA_fnc_getAlive) == 0) exitWith {};
+				_this setCombatMode "GREEN";
+				_this enableAttack false;
+				[_this,150,600] spawn FUNC(checkHouses); // hide inside houses - the purpose of this has changed, need to rework it
+			};
+
+		} else { // go to work
+
+			_grp setVariable [QGVAR(reacting),(diag_ticktime + 120 + random 240)];
+			_grp spawn {
+				sleep (10 + random 20);
+				if (count (_this call CBA_fnc_getAlive) == 0) exitWith {};
+
+				scopename "support";
+				private ["_fg","_dest","_leader","_enemy"];
+				_fg = [_this,GVAR(radiorange)] call FUNC(nearFactionGroups); TRACE_2("friendly groups nearby",_this,_fg);
+				if (count _fg > 0 && {random 1 > 0.6}) then { // support
+					{ // reinforce friendlies in trouble
+						if (({damage _x > 0.1} count units _x) > 1) then {
+							_dest = getPosATL leader _x;
+							[_this, _dest, 30, "MOVE", "COMBAT", "YELLOW", "FULL"] call CBA_fnc_addWaypoint;
+							[_this, _dest, 30, "SAD", "COMBAT", "RED", "NORMAL"] call CBA_fnc_addWaypoint;
+							breakTo "support";
+						};
+					} forEach _fg;
+				} else { // attack
+					_leader = leader _this;
+					_enemy = _leader findNearestEnemy _leader;
+					if (!isNull _enemy) then {
+						_dest = getPosATL _enemy;
+						[_this, _dest, 10, "SAD", "COMBAT", "RED", "NORMAL"] call CBA_fnc_addWaypoint;
 					};
 				};
 			};
-		};
+
+		};//go to work
+
+	} else {
+		// group busy with something, shorten range to check for cover
+		_coverRange = 30;
 	};
 
-} else { // already doing something, do better
+};//react
 
-	if (GVAR(seekcover) == 1 && isNil QGVAR(mToCover)) then { // check for cover near and divert
-		[_unit,_dangerCausedBy,_dangerUntil,50] call FUNC(moveToCover);
-	};
-	if (random 1 < GVAR(usebuildings)) then { // use building
-		[_grp] spawn FUNC(checkHouses);
-	};
-
-};
+// check for cover near and divert
+[_unit,_dangerCausedBy,_dangerUntil,_coverRange] call FUNC(moveToCover);

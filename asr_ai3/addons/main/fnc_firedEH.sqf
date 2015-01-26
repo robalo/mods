@@ -81,11 +81,10 @@ if ((_this select 4) isKindOf "BulletCore") then {
 				LOG("sound range not a number, exiting");
 			};
 
-			if (!_sdweap && _range < 100) then { //JSRS has them at 130, set a fixed range of 1500 instead
-				if (isClass (configFile >> "cfgPatches" >> "DragonFyre_Distance")) then {
-					if ("" != [configFile>>"cfgWeapons">>_weapon>>"DFyre_soundeffect", "text", ""] call CBA_fnc_getConfigEntry || {"" != [configFile>>"cfgWeapons">>_weapon>>"JSRS_soundeffect", "text", ""] call CBA_fnc_getConfigEntry}) then {
-						_range = 1400;
-					};
+			//JSRSFIX
+			if (!_sdweap && {isClass (configFile >> "cfgPatches" >> "DragonFyre_Distance")} && {_range == 50 || _range == 130}) then {
+				if (([configFile>>"cfgWeapons">>_weapon>>"dfyre_soundeffect", "text", ""] call CBA_fnc_getConfigEntry) != "" || {([configFile>>"cfgWeapons">>_weapon>>"jsrs_soundeffect", "text", ""] call CBA_fnc_getConfigEntry) != ""}) then {
+					_range = 1400;
 				};
 			};
 
@@ -157,7 +156,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 } else { // munition other than bullets
 	_this spawn {
 		PARAMS_7(_shooter,_weapon,_muzzle,_mode,_ammo,_magazine,_projectile);
-		private ["_early","_range","_timeout","_exPos","_distance","_lastime","_veh"];
+		private ["_early","_range","_timeout","_exPos","_distance","_veh"];
 
 		// determine range based on ammo type
 		// for smoke and flares, alert shortly after getting fired, instead of waiting for the projectile to self-destruct // also don't hide from these ones even if they land close
@@ -217,7 +216,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 		};
 
 		if (_early) then {
-			_timeout = time + ([configFile>>"CfgAmmo">>_ammo>>"timetolive", "number", 1] call CBA_fnc_getConfigEntry)/4;
+			_timeout = diag_ticktime + ([configFile>>"CfgAmmo">>_ammo>>"timetolive", "number", 1] call CBA_fnc_getConfigEntry)/4;
 		};
 
 		scopeName "main";
@@ -228,7 +227,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 					_exPos = getPosATL _projectile;
 					sleep 1;
 					if (_early) then {
-						if (time > _timeout) then {breakTo "main"};
+						if (diag_ticktime > _timeout) then {breakTo "main"};
 					};
 				};
 			};
@@ -243,7 +242,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 					_exPos = getPosATL _projectile;
 					sleep 0.075;
 					if (_early) then {
-						if (time > _timeout) then {breakTo "main"};
+						if (diag_ticktime > _timeout) then {breakTo "main"};
 					};
 				};
 			};
@@ -264,16 +263,11 @@ if ((_this select 4) isKindOf "BulletCore") then {
 				_distance = _exPos distance _x;
 				TRACE_3("Unit hears this explosion",_x,_ammo,_distance);
 				if (_distance < 150 && !_early) then {
-					if (GVAR(seekcover) == 1 && _x == vehicle _x) then { // for units not in vehicles or static weapons
-						_lastime = _x getVariable [QGVAR(lastMoveToCoverTime),-120];
-						if (time > _lastime + 120) then {
-							if (_x == leader _x || random 5 > 1) then {
-								[_x,objNull,time,100] call FUNC(moveToCover);
-								_x setVariable [QGVAR(lastMoveToCoverTime),time];
-							};
-						};
+					if (_x == leader _x || random 5 > 1) then {[_x,objNull,diag_ticktime,100] call FUNC(moveToCover)};
+					if (behaviour _x == "AWARE") then {
+						waitUntil {unitReady _x};
+						if (alive _x) then {_x setBehaviour "COMBAT"};
 					};
-					if (behaviour _x == "AWARE") then {waitUntil {unitReady _x}; _x setBehaviour "COMBAT"};
 				};
 			};
 		} forEach (_exPos nearEntities [["SoldierWB","SoldierEB","SoldierGB","StaticWeapon"],_range]);

@@ -6,7 +6,6 @@ DEFAULT_PARAM(1,_range,100);
 DEFAULT_PARAM(2,_posdelay,20);
 if !(_group call CBA_fnc_isalive) exitWith {};
 private ["_leader","_array","_nearhouses","_building","_indices","_units","_idx","_iter"];
-_group lockwp true;
 _leader = leader _group;
 _array = [];
 _nearhouses = (getPosATL _leader) nearObjects ["HouseBase", _range];
@@ -26,7 +25,7 @@ scopeName "main";
 	};
 } forEach _nearhouses;
 
-if (count _array != 2) exitWith {_group lockwp false};
+if (count _array != 2) exitWith {};
 _building = _array select 0;
 _indices = _array select 1;
 
@@ -61,17 +60,15 @@ while {_iter < (count _units) min 3 min floor ((count _units)/2)} do { // no mor
 					doStop _unit;
 					_unit setUnitPos "Up";
 					_unit doMove _housepos;
-					_timeout = time + 60;
-					waitUntil {unitReady _unit || {_unit call FUNC(isUnc)} || {_timeout < time}};
-					if (_unit call FUNC(isUnderRoof)) then {
-						_unit setUnitPosWeak "Up";
-					} else {
-						_unit setUnitPosWeak "Auto";
+					_timeout = diag_ticktime + 60;
+					waitUntil {unitReady _unit || {_unit call FUNC(isUnc)} || {_timeout < diag_ticktime}};
+					if (alive _unit) then {
+						if (_unit call FUNC(isUnderRoof)) then {_unit setUnitPosWeak "Up"} else {_unit setUnitPosWeak "Auto"};
+						doStop _unit;
+						_posdelay = _posdelay + random (_posdelay * 2);
+						sleep _posdelay;
+						if (_unit ammo (currentWeapon _unit) < 20) then {sleep (_posdelay * 2)}; // snipe more
 					};
-					doStop _unit;
-					_posdelay = _posdelay + random (_posdelay * 2);
-					sleep _posdelay;
-					if (_unit ammo (currentWeapon _unit) < 20) then {sleep (_posdelay * 2)}; // snipe more
 				} forEach _indices;
   
 				if (alive _unit) then { // regroup
@@ -87,5 +84,4 @@ while {_iter < (count _units) min 3 min floor ((count _units)/2)} do { // no mor
 };
 
 waituntil {sleep 3; _units = _group call CBA_fnc_getAlive; {unitready _x} count _units >= (count _units) - 1};
-_group lockwp false;
 _building setVariable [QGVAR(searched),(diag_ticktime + 30 + random 120)];

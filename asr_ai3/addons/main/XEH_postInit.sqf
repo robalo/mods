@@ -4,7 +4,7 @@ LOG(MSG_INIT);
 
 if (isServer) then {
 	// Server, propagate settings and required functions to clients
-	publicVariable "ASR_AI3_SETTINGS"; publicVariable QUOTE(FUNC(selectLeader)); publicVariable QUOTE(FUNC(setSkill));
+	publicVariable "ASR_AI3_SETTINGS"; /*publicVariable QUOTE(FUNC(selectLeader));*/ publicVariable QUOTE(FUNC(setSkill));
 	if (GVAR(enabled) == 1) then {
 		["itemAdd", [QGVAR(initgs), { {_x call FUNC(groupInit)} forEach allGroups; }, 20]] call BIS_fnc_loop;
 		if (GVAR(packNVG) == 1) then {

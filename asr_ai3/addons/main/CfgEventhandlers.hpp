@@ -32,24 +32,6 @@ class Extended_FiredBIS_EventHandlers {
 	};
 };
 
-class Extended_Hit_EventHandlers {
-	class SoldierWB {
-		class ADDON {
-			serverHit = QUOTE(_this call FUNC(handleHit));
-		};
-	};
-	class SoldierEB {
-		class ADDON {
-			serverHit = QUOTE(_this call FUNC(handleHit));
-		};
-	};
-	class SoldierGB {
-		class ADDON {
-			serverHit = QUOTE(_this call FUNC(handleHit));
-		};
-	};
-};
-
 class Extended_Killed_EventHandlers {
 	class SoldierWB {
 		class ADDON {
@@ -65,6 +47,18 @@ class Extended_Killed_EventHandlers {
 		class ADDON {
 			serverKilled = QUOTE(if (GVAR(enabled) == 1) then {if (GVAR(joinlast) > 0) then {_this spawn FUNC(killedEH)}});
 		};
+	};
+};
+
+class Extended_Hit_EventHandlers {
+	class SoldierWB {
+		ADDON = QUOTE(_this call FUNC(handleHit));
+	};
+	class SoldierEB {
+		ADDON = QUOTE(_this call FUNC(handleHit));
+	};
+	class SoldierGB {
+		ADDON = QUOTE(_this call FUNC(handleHit));
 	};
 };
 

@@ -2,7 +2,7 @@
 #include "script_component.hpp"
 PARAMS_1(_grp);
 if (_grp getVariable [QGVAR(initgroupsize), -1] == -1) then {_grp setVariable [QGVAR(initgroupsize), count units _x]};
-
+/*
 // leader usually stays put a bit more while ordering the team to move around, make use of this "feature"
 if ({isPlayer _x} count (units _grp) > 0) exitWith {};
 private ["_wpntype","_leader"];
@@ -19,3 +19,4 @@ _leader = leader _grp;
 		};
 	};
 } forEach units _grp;
+*/

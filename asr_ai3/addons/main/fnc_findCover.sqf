@@ -5,7 +5,7 @@ PARAMS_2(_unit,_dangerobj);
 DEFAULT_PARAM(2,_maxdisttocover,100);
 
 scopeName "main";
-private ["_cover","_enemydist","_dangerpos","_coverpos","_debug","_fnc_debug","_bposa","_bbdim","_maxWidth","_maxLength","_maxHeight","_min","_max","_objpos","_nBuilding"];
+private ["_cover","_enemydist","_dangerpos","_coverpos","_debug","_fnc_debug","_bposa","_bbdim","_maxWidth","_maxLength","_maxHeight","_min","_max","_objpos","_nBuilding","_isHouse"];
 
 _debug = (GVAR(debug) > 0);
 
@@ -20,6 +20,7 @@ _fnc_debug = {
 };
 
 _cover = [];
+_isHouse = false;
 
 {
 	if (_x call FUNC(canCover)) then {
@@ -48,20 +49,20 @@ _cover = [];
 					_cover pushBack _coverpos;
 					if (_debug) then {[_unit,_x,"colorgreen"] call _fnc_debug};
 				};
-				if (count _cover > 0) then {breakTo "main"};
+				if (count _cover > 0) then {
+					if (_x isKindOf "HouseBase") then {_isHouse = true; _nBuilding = _x};
+					breakTo "main";
+				};
 			};
 		};
 	};
 } forEach (nearestObjects [_unit, [], _maxdisttocover]);
 
-if (random 1 < GVAR(usebuildings)) then {
-	_nBuilding = nearestBuilding _unit;
-	if ((_unit distance _nBuilding) < _maxdisttocover) then {
-		_bposa = ([_nBuilding] call BIS_fnc_buildingPositions) call BIS_fnc_arrayShuffle;
-		if (count _bposa > 0) then {
-			// pick some building positions and add them to the returned cover array
-			{if (_x select 2 > 1.5 || {random 1 > 0.2}) then {_cover pushBack _x}} forEach _bposa;
-		};
+if (_isHouse && {random 1 < GVAR(usebuildings)}) then {
+	_bposa = ([_nBuilding] call BIS_fnc_buildingPositions) call BIS_fnc_arrayShuffle;
+	if (count _bposa > 0) then {
+		// pick some building positions and add them to the returned cover array
+		{if (_x select 2 > 1.5 || {random 1 > 0.2}) then {_cover pushBack _x}} forEach _bposa;
 	};
 };
 

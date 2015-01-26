@@ -12,7 +12,7 @@ if (_leader call FUNC(isValidUnitC)) then {
 				_recgroups = [getposATL _leader, allGroups, GVAR(radiorange), {_x != _grp && {_x call FUNC(hasRadio)} && {side _leader == side _x}}] call FUNC(getNearest);
 				TRACE_2("Groups in range of unit",_recgroups,_leader);
 				if (count _recgroups > 0) then {
-					sleep (10 + random 20); // delay sending info
+					sleep (8 + random 16); // delay sending info
 					if (_leader call FUNC(isValidUnitC)) then {
 						{[_leader, _x, _info] call FUNC(sendInfo)} forEach _recgroups; // broadcast; I don't know if they should spend more time
 					};

@@ -13,7 +13,7 @@ if (_rxleader call FUNC(isValidUnitC)) then {
 #ifndef DEBUG_MODE_FULL
 	if (GVAR(debug) != 0) then {
 #endif
-		diag_log format["%1 | Unit %2 sends %3 knowledge to %4 about %5",time,_sender,_knowledge,_rxleader,_target];
+		diag_log format["%1 | Unit %2 sends %3 knowledge to %4 about %5",diag_ticktime,_sender,_knowledge,_rxleader,_target];
 #ifndef DEBUG_MODE_FULL
 	};
 #endif
