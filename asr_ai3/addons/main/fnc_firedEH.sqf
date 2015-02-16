@@ -8,10 +8,10 @@
 if (isNull (_this select 6)) exitWith {}; //projectile
 
 if ((_this select 4) isKindOf "BulletCore") then {
-	if (GVAR(gunshothearing) > 0 && isNil QGVAR(fired)) then {
+	if (GVAR(gunshothearing) > 0 /*&& {!GVAR(firing)}*/ && {diag_fps > 40}) then {
 		_this spawn {
 			PARAMS_6(_shooter,_weapon,_muzzle,_mode,_ammo,_magazine);
-			GVAR(fired) = true;
+			//GVAR(firing) = true;
 
 			private ["_cfg","_snda","_snd","_range","_k","_sdweap","_sdammo","_distance","_detectupto","_audible","_ammofactor","_burst","_initspeed","_supp","_audiblecoef","_veh","_sti","_sndclass"];
 
@@ -48,7 +48,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 			TRACE_3("CHECK IF SILENCED",_weapon,_sdweap,_sdammo);
 
 			if (_sdweap && _sdammo) exitWith {
-				GVAR(fired) = nil;
+				//GVAR(firing) = false;
 				LOG("silencer and subsonic ammo, exiting");
 			};
 
@@ -56,28 +56,38 @@ if ((_this select 4) isKindOf "BulletCore") then {
 				_cfg = _cfg>>_mode;
 			};
 
-			_sndclass = (getArray(_cfg>>"sounds")) select _sti; //bootcamp patch fix
+			if (!isArray(_cfg>>"sounds")) exitWith {
+				//GVAR(firing) = false;
+				TRACE_1("outdated sound config for weapon, exiting",_weapon);
+			};
+
+			_sndclass = (getArray(_cfg>>"sounds")) select _sti;
+			if (isNil "_sndclass") exitWith {
+				//GVAR(firing) = false;
+				TRACE_1("outdated sound config for weapon, exiting",_weapon);
+			};
+
 			TRACE_1("Sound class",_sndclass);
 
 			_snda = getArray(_cfg>>_sndclass>>"soundbegin");
 			TRACE_1("Sound probab array",_snda);
 			if (count _snda < 2) exitWith {
-				GVAR(fired) = nil;
+				//GVAR(firing) = false;
 				LOG("no sounds defined, exiting");
 			};
 			_snd = getArray(_cfg>>_sndclass>>(_snda select 0));
 			TRACE_1("Sound cfg array",_snd);
 			if (count _snd < 4) exitWith {
-				GVAR(fired) = nil;
+				//GVAR(firing) = false;
 				LOG("bad sound config, exiting");
 			};
 			if (_snd select 0 == "") exitWith {
-				GVAR(fired) = nil;
+				//GVAR(firing) = false;
 				LOG("empty sound, exiting");
 			};
 			_range = _snd select 3;
 			if (typeName _range != "SCALAR") exitWith {
-				GVAR(fired) = nil;
+				//GVAR(firing) = false;
 				LOG("sound range not a number, exiting");
 			};
 
@@ -118,7 +128,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 			};
 */
 			if (_range < 50) exitWith {
-				GVAR(fired) = nil;
+				//GVAR(firing) = false;
 				LOG("short sound range, exiting");
 			};
 
@@ -150,7 +160,7 @@ if ((_this select 4) isKindOf "BulletCore") then {
 
 			sleep 5; if (!isMultiplayer) then {sleep 5};
 
-			GVAR(fired) = nil;
+			//GVAR(firing) = false;
 		};
 	};
 } else { // munition other than bullets

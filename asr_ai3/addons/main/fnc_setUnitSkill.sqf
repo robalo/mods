@@ -45,21 +45,22 @@ while {_i < count _sa} do {
 		case "general": {
 			{
 				_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				[[_unit,[_x,_sv]], QUOTE(FUNC(setSkill)), _unit, false, true] call BIS_fnc_MP;
+				//[[_unit,[_x,_sv]], QUOTE(FUNC(setSkill)), _unit, false, true] call BIS_fnc_MP;
+				[_unit,[_x,_sv]] call FUNC(setSkill);
 			}
 			forEach ["general","courage","reloadSpeed","commanding"];
 		};
 		case "aiming": {
 			{
 				_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				[[_unit,[_x,_sv]], QUOTE(FUNC(setSkill)), _unit, false, true] call BIS_fnc_MP;
+				[_unit,[_x,_sv]] call FUNC(setSkill);
 			}
 			forEach ["aimingAccuracy","aimingShake","aimingSpeed"];
 		};
 		case "spotting": {
 			{
 				_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				[[_unit,[_x,_sv]], QUOTE(FUNC(setSkill)), _unit, false, true] call BIS_fnc_MP;
+				[_unit,[_x,_sv]] call FUNC(setSkill);
 			}
 			forEach ["spotDistance","spotTime"];
 		};
@@ -67,5 +68,4 @@ while {_i < count _sa} do {
 	INC(_i);
 };
 
-sleep 5;
 _unit setVariable [QGVAR(configured),true];

@@ -7,8 +7,8 @@ _wpntype = (primaryWeapon _this) call FUNC(getWeaponType);
 if ((_wpntype == "MG" || _wpntype == "SNIPER") && {count ((getPosATL _this) nearObjects ["HouseBase", 3]) == 0}) then {
 	_this spawn {
 		_this setVariable [QGVAR(shooting), true];
-		_this setUnitPosWeak "Down";
+		_this setUnitPos "Down";
 		waitUntil {isNil {_this getVariable QGVAR(shooting)}}; // wait until the danger fsm resets this
-		_this setUnitPosWeak "Auto";
+		_this setUnitPos "Auto";
 	};
 };

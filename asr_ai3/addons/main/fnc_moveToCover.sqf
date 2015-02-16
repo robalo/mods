@@ -28,8 +28,6 @@ if (!isNil QGVAR(mToCover)) then {
 		_cpa = [_unit,_source,_distance] call FUNC(findCover);
 	};
 	if (count _cpa == 0) then {
-		// throw smoke for no cover
-		if (isNil QGVAR(smokin) && {random 5 < GVAR(throwsmoke)}) then {[_unit] spawn FUNC(throwSmoke)};
 		// try twice farther
 		_cpa = [_unit,_source,(_distance*2)] call FUNC(findCover);
 	} else { // found cover close enough

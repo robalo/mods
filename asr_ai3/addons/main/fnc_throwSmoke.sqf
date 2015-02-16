@@ -15,16 +15,16 @@ _cant = {
 };
 
 sleep _wait;
-if !(_unit call FUNC(isValidUnitC)) exitWith {GVAR(smokin) = nil};
-if (primaryWeapon _unit == "") exitWith {GVAR(smokin) = nil};
+if !(_unit call FUNC(isValidUnitC)) exitWith {GVAR(smokin) = false};
+if (primaryWeapon _unit == "") exitWith {GVAR(smokin) = false};
 
 // throw it towards closest known enemy
 
 _nearestEnemy = _unit findNearestEnemy _unit;
-if (isNull _nearestEnemy) exitWith {GVAR(smokin) = nil};
+if (isNull _nearestEnemy) exitWith {GVAR(smokin) = false};
 
 _hasSmoke = _unit call FUNC(hasSmoke);
-if (count _hasSmoke != 2) exitWith {GVAR(smokin) = nil};
+if (count _hasSmoke != 2) exitWith {GVAR(smokin) = false};
 
 _anim = switch (stance _unit) do {
 	case "STAND": {"AwopPercMstpSgthWrflDnon_Start1"};
@@ -32,9 +32,9 @@ _anim = switch (stance _unit) do {
 	case "PRONE": {"AwopPpneMstpSgthWrflDnon_Start"};
 	default {""};
 };
-if (_anim == "") exitWith {GVAR(smokin) = nil};
+if (_anim == "") exitWith {GVAR(smokin) = false};
 
-if (_unit call _cant) exitWith {GVAR(smokin) = nil};
+if (_unit call _cant) exitWith {GVAR(smokin) = false};
 
 TRACE_4("",_unit,_nearestEnemy,_hasSmoke,_anim);
 _smokemuz = _hasSmoke select 0;
@@ -49,19 +49,19 @@ if (_unit distance _dangerpos > 50) then {
 	_unit selectWeapon _smokemuz;
 	_unit playMoveNow _anim;
 	//_unit fire [_smokemuz,_smokemuz,_smokeshell];
-	_pos = getPosATL _unit;
-	_dir = direction _unit;
-	waitUntil {animationState _unit != _anim};
 	#ifndef DEBUG_MODE_FULL
 	_unit removeMagazine _smokeshell;
 	#endif
+	_pos = getPosATL _unit;
+	_dir = direction _unit;
+	waitUntil {animationState _unit != _anim};
 	if !(_unit call _cant) then {
-		_throwdist = 4 + floor random 11;
+		_throwdist = 7 + floor random 8;
 		_pos = [(_pos select 0) + _throwdist*sin _dir, (_pos select 1) + _throwdist*cos _dir, (_pos select 2) + 1 + random 2];
 	};
 	_unit doWatch objNull;
 	sleep 2; _smoke = _smokeveh createVehicle _pos;
 };
 
-sleep 2;
-GVAR(smokin) = nil;
+sleep 10;
+GVAR(smokin) = false;

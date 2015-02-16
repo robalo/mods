@@ -6,6 +6,16 @@ class Mode_FullAuto;
 #define __OPTIC_DMR opticType = 1
 #define __OPTIC_SNP opticType = 2
 
+#define __AIN_VARIANTS(optic) \
+		asr_ai_variants[] = {"##optic","ASRAIN_##optic"}; \
+	}; \
+	class ASRAIN_##optic : ##optic { \
+		scope = 1;\
+		scopeArsenal = 1; \
+		class ItemInfo : ItemInfo { \
+			__OPTIC_CQB; \
+		}
+
 class asdg_SlotInfo {
 	linkProxy = "defaultProxy";
 };
@@ -15,24 +25,22 @@ class asdg_OpticRail: asdg_SlotInfo {
 };
 class asdg_OpticRail1913: asdg_OpticRail {
 	class compatibleItems {
-		ASR_Optic_ELCAN_AI_N = 1;
-		ASR_Optic_ACOG_AI_N = 1;
-		ASR_Optic_ACOG2_AI_N = 1;
-		ASR_Optic_ACOG3_AI_N = 1;
-		ASR_Optic_LEUPOLDMK4_AI_N = 1;
-		ASR_Optic_LEUPOLDMK42_AI_N = 1;
+		ASRAIN_rhsusf_acc_ELCAN = 1;
+		ASRAIN_rhsusf_acc_ACOG = 1;
+		ASRAIN_rhsusf_acc_ACOG2 = 1;
+		ASRAIN_rhsusf_acc_ACOG3 = 1;
+		ASRAIN_rhsusf_acc_LEUPOLDMK4_2 = 1;
 	};
 };
 class asdg_OpticRail1913_short: asdg_OpticRail1913 {
 	class compatibleItems: compatibleItems {
-		ASR_Optic_LEUPOLDMK4_AI_N = 0;
-		ASR_Optic_LEUPOLDMK42_AI_N = 0;
+		ASRAIN_rhsusf_acc_LEUPOLDMK4_2 = 0;
 	};
 };
 class asdg_OpticSideMount: asdg_OpticRail {
 	class compatibleItems {
-		ASR_Optic_PSO1_AI_N = 1;
-		ASR_Optic_1p29_AI_N = 1;
+		ASRAIN_rhs_acc_pso1m2 = 1;
+		ASRAIN_rhs_acc_1p29 = 1;
 	};
 };
 
@@ -142,11 +150,22 @@ class CfgWeapons {
 		asr_ai_wtype = ASR_WEAPON_TYPE_MG;
 	};
 
-	class srifle_EBR_F;
+	class EBR_base_F;
+
+	class srifle_EBR_F: EBR_base_F {
+		class WeaponSlotsInfo;
+	};
 
 	class rhs_weap_m14ebrri : srifle_EBR_F {
  		modes[] = {"ASR_SemiAuto", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
+		class WeaponSlotsInfo: WeaponSlotsInfo {
+			class asdg_OpticRail_EBR: asdg_OpticRail1913_short {
+				class compatibleItems: compatibleItems {
+					ASRAIN_rhsusf_acc_LEUPOLDMK4 = 1;
+				};
+			};
+		};
 	};
 
 	class rhs_weap_XM2010_Base_F: Rifle_Base_F {

@@ -2,5 +2,7 @@
 #include "script_component.hpp"
 PARAMS_1(_unit);
 
-// show NVG ? yeah, but only if it's dark
-if (!isPlayer _unit && _unit call FUNC(isValidUnit)) then { [_unit,(sunOrMoon < 1)] call FUNC(showHideNVG); _unit call FUNC(replaceOptics); };
+if (!isPlayer _unit && {_unit call FUNC(isValidUnit)}) then {
+	if (GVAR(packNVG) == 1) then {[_unit,(sunOrMoon < 1)] call FUNC(showHideNVG)}; // show NVG ? yeah, but only if it's dark
+	if (GVAR(dayscope) == 1) then {_unit call FUNC(replaceOptics)}; // prevent AI cheating with day scopes at night
+};

@@ -17,10 +17,10 @@ item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
 item14[] = {"AI__not_in_vehic",4,218,-810.000000,-400.000000,-630.000000,-310.000000,1.000000,"AI " \n "not in vehicle"};
 item15[] = {"Cause_3_4_5_AMMO",4,218,-940.000000,-100.000000,-720.000000,50.000000,4.000000,"Cause 3.4,5" \n "AMMO IMPACT NEAR," \n "OR DEAD TEAMMATE" \n ""};
-item16[] = {"Reactions",2,4346,-920.000000,280.000000,-750.000000,360.000000,0.000000,"Reactions"};
+item16[] = {"Reactions",2,250,-920.000000,150.000000,-750.000000,360.000000,0.000000,"Reactions"};
 item17[] = {"set_vars_check_danger",2,250,-840.000000,-270.000000,-620.000000,-190.000000,0.000000,"set vars" \n "check danger cause"};
 item18[] = {"Cause_1_HEARD_SH",4,218,-1190.000000,-100.000000,-990.000000,40.000000,3.000000,"Cause 1" \n "HEARD" \n "SHOOTING"};
-item19[] = {"mod_enabled",4,218,-1250.000000,20.000000,-1150.000000,90.000000,1.000000,"mod enabled"};
+item19[] = {"mod_enabled",4,4314,-1250.000000,20.000000,-1150.000000,90.000000,1.000000,"mod enabled"};
 item20[] = {"Radio_Report",2,250,-1190.000000,180.000000,-1140.000000,350.000000,0.000000,"Radio" \n "Report"};
 item21[] = {"react",8,218,-1090.000000,300.000000,-1000.000000,350.000000,0.000000,"react"};
 version=1;
@@ -64,8 +64,8 @@ link24[] = {18,16};
 link25[] = {19,20};
 link26[] = {20,21};
 link27[] = {21,16};
-globals[] = {10.000000,1,0,1,16777215,640,480,1,238,6316128,1,-1381.939697,35.925030,569.472046,-600.929260,1123,929,1};
-window[] = {2,-1,-1,-1,-1,802,22,1058,22,3,1140};
+globals[] = {10.000000,1,0,1,16777215,640,480,1,239,6316128,1,-1381.939697,35.925030,569.472046,-600.929260,1123,927,1};
+window[] = {2,-1,-1,-1,-1,890,110,1146,110,3,1140};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -290,7 +290,28 @@ class FSM
     class Reactions
     {
       name = "Reactions";
-      init = /*%FSM<STATEINIT""">*/"[_this,_grp,_dangerCausedBy,_dangerUntil] call asr_ai3_main_fnc_doSomething;"/*%FSM</STATEINIT""">*/;
+      init = /*%FSM<STATEINIT""">*/"private [""_fne"",""_coverRange""];" \n
+       "scopeName ""main"";" \n
+       "" \n
+       "if (isNull assignedTarget _this) then { // if no target, pick one!" \n
+       "	{" \n
+       "		if ((side _this) getFriend (_x select 2) < 0.6) then {" \n
+       "			_fne = _this findNearestEnemy (_x select 0);" \n
+       "			_this doTarget _fne;" \n
+       "			breakTo ""main"";" \n
+       "		};" \n
+       "	} forEach (_this nearTargets 500);" \n
+       "};" \n
+       "" \n
+       "if (unitReady _this && {{isPlayer _x} count units _grp == 0}) then {" \n
+       "	// mount weapons" \n
+       "	if (random 1 < asr_ai3_main_getinweapons) then {_grp call asr_ai3_main_fnc_getInWeapons};" \n
+       "" \n
+       "	// check for cover near and divert" \n
+       "	_coverRange = if (currentWaypoint _grp == count waypoints _grp) then {100} else {20};" \n
+       "	[_this,_dangerCausedBy,_dangerUntil,_coverRange] call asr_ai3_main_fnc_moveToCover;" \n
+       "};" \n
+       ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {

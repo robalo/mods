@@ -17,17 +17,16 @@ ASR_AI_SETDEFAULT(enabled,1);
 ASR_AI_SETDEFAULT(radionet,1);
 ASR_AI_SETDEFAULT(radiorange,600);
 ASR_AI_SETDEFAULT(seekcover,1);
-ASR_AI_SETDEFAULT(throwsmoke,0.5);
-ASR_AI_SETDEFAULT(reactions,1);
+ASR_AI_SETDEFAULT(throwsmoke,0.4);
 ASR_AI_SETDEFAULT(usebuildings,0.5);
 ASR_AI_SETDEFAULT(getinweapons,0.5);
 ASR_AI_SETDEFAULT(packNVG,1);
-ASR_AI_SETDEFAULT(dayscope,1);
+ASR_AI_SETDEFAULT(dayscope,0);
 ASR_AI_SETDEFAULT(debug,0);
 
 ASR_AI_SETDEFAULT(setskills,1);
 ASR_AI_SETDEFAULT(dynsvd,1);
-ASR_AI_SETDEFAULT(gunshothearing,1.2);
+ASR_AI_SETDEFAULT(gunshothearing,1.0);
 ASR_AI_SETDEFAULT(joinlast,2);
 ASR_AI_SETDEFAULT(removegimps,300);
 ASR_AI_SETDEFAULT(sets,[]);
@@ -42,13 +41,10 @@ PREP(isValidUnit);
 PREP(isValidUnitC); //conscious and valid
 PREP(groupInit);
 PREP(isMedic);
-PREP(isEngineer);
 PREP(getWeaponType);
-PREP(hasNVG);
 PREP(isNearStuff);
 PREP(getNearest);
 PREP(nearFactionGroups);
-PREP(nearestMedic);
 PREP(hasRadio);
 PREP(hasSmoke);
 PREP(setUnitSkill);
@@ -63,12 +59,8 @@ PREP(throwSmoke);
 PREP(canCover);
 PREP(findCover);
 PREP(moveToCover);
-PREP(enemyForce);
-PREP(isUnderRoof);
-PREP(checkHouses);
 PREP(getInWeapons);
 PREP(handleHit);
-PREP(doSomething);
 PREP(shootingStance);
 PREP(showHideNVG);
 PREP(replaceOptics);
@@ -90,12 +82,6 @@ FUNC(inventoryClosed) = {
 	};
 };
 
-FUNC(selectLeader) = {
-	PARAMS_1(_unit);
-	(group _unit) selectLeader _unit;
-	TRACE_1("Promoted to group leader",_unit);
-};
-
 FUNC(setSkill) = {
 	PARAMS_2(_unit,_skillset);
 	_unit setSkill _skillset;
@@ -104,3 +90,13 @@ FUNC(setSkill) = {
 		diag_log format["%1 | Unit %2 sub-skill %3 set: %4, get: %5, skillFinal: %6",diag_ticktime,_unit,_type,_skillset select 1,_unit skill _type,_unit skillFinal _type];
 	};
 };
+
+FUNC(getAlive) = {
+	private "_return";
+	_return = [];
+	{if (alive _x) then {_return pushBack _x}} foreach (units _this);
+	_return
+};
+
+GVAR(smokin) = false;
+//GVAR(firing) = false;
