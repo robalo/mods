@@ -36,7 +36,8 @@ class CfgPatches {
 			"A3_Characters_F_EPA",
 			"A3_Air_F",
 			"A3_Air_F_Heli_Light_01",
-			"A3_Air_F_Heli_Light_02"
+			"A3_Air_F_Heli_Light_02",
+			"A3_Weapons_F_Mark"
 		};
 		versionDesc = "ASR AI3";
 		versionAct = "";

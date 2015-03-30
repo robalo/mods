@@ -11,9 +11,9 @@ Define how much AI dispersion degrades with lower skill on 3 levels:
  - magnifying sights (usually 3-6X) 		- requiredOpticType = 1;
  - iron sights or low magnifying sights (1-2X)	- default
 */
-#define ASR_AI_DISP_SNIPER aiDispersionCoefX = 10; aiDispersionCoefY = 15
-#define ASR_AI_DISP_MARKSMAN aiDispersionCoefX = 15; aiDispersionCoefY = 20
-#define ASR_AI_DISP_REGULAR aiDispersionCoefX = 20; aiDispersionCoefY = 25
+#define ASR_AI_DISP_SNIPER aiDispersionCoefX = 5; aiDispersionCoefY = 10
+#define ASR_AI_DISP_MARKSMAN aiDispersionCoefX = 10; aiDispersionCoefY = 15
+#define ASR_AI_DISP_REGULAR aiDispersionCoefX = 15; aiDispersionCoefY = 20
 
 /*
 Fire modes
@@ -217,27 +217,6 @@ Fire modes
 		midRange = 2;\
 		midRangeProbab = 0.8;\
 		maxRange = 4;\
-		maxRangeProbab = 0.1
-
-// sniper rifles (hi mag. scopes, medium-high calibre)
-#define ASR_AI_ROF_RIFLE_SNIPER762_SEMI \
-		aiRateOfFire = 7;\
-		aiRateOfFireDistance = 1000;\
-		minRange = 0;\
-		minRangeProbab = 0.4;\
-		midRange = 500;\
-		midRangeProbab = 0.8;\
-		maxRange = 1400;\
-		maxRangeProbab = 0.1
-
-#define ASR_AI_ROF_RIFLE_SNIPER338_SEMI \
-		aiRateOfFire = 8;\
-		aiRateOfFireDistance = 1000;\
-		minRange = 1;\
-		minRangeProbab = 0.4;\
-		midRange = 500;\
-		midRangeProbab = 0.8;\
-		maxRange = 1500;\
 		maxRangeProbab = 0.1
 		
 // light-medium machineguns
@@ -532,6 +511,17 @@ Fire modes
 		}
 
 
+// sniper rifles (hi mag. scopes, medium-high calibre)
+#define ASR_AI_ROF_RIFLE_SNIPER762_SEMI \
+		aiRateOfFire = 7;\
+		aiRateOfFireDistance = 1000;\
+		minRange = 0;\
+		minRangeProbab = 0.4;\
+		midRange = 500;\
+		midRangeProbab = 0.8;\
+		maxRange = 1400;\
+		maxRangeProbab = 0.1
+
 #define ASR_AI_ROF_BIGSNIPER_SEMI \
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 300;\
@@ -539,7 +529,7 @@ Fire modes
 		minRangeProbab = 0.4;\
 		midRange = 150;\
 		midRangeProbab = 0.7;\
-		maxRange = 500;\
+		maxRange = 550;\
 		maxRangeProbab = 0.1
 #define ASR_AI_ROF_BIGSNIPER_MSCOPE_SEMI \
 		aiRateOfFire = 4;\
@@ -590,5 +580,51 @@ Fire modes
 			showToPlayer = 0; \
 			requiredOpticType = 2; \
 			ASR_AI_ROF_BIGSNIPER_HSCOPE_FAR_SEMI; \
+			ASR_AI_DISP_SNIPER; \
+		}
+
+#define ASR_AI_ROF_338SNIPER_SEMI \
+		aiRateOfFire = 3;\
+		aiRateOfFireDistance = 300;\
+		minRange = 1;\
+		minRangeProbab = 0.4;\
+		midRange = 150;\
+		midRangeProbab = 0.7;\
+		maxRange = 550;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_338SNIPER_MSCOPE_SEMI \
+		aiRateOfFire = 4;\
+		aiRateOfFireDistance = 500;\
+		minRange = 150;\
+		minRangeProbab = 0.2;\
+		midRange = 500;\
+		midRangeProbab = 0.7;\
+		maxRange = 1000;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_338SNIPER_HSCOPE_SEMI \
+		aiRateOfFire = 8;\
+		aiRateOfFireDistance = 1000;\
+		minRange = 250;\
+		minRangeProbab = 0.2;\
+		midRange = 750;\
+		midRangeProbab = 0.7;\
+		maxRange = 1500;\
+		maxRangeProbab = 0.1
+
+#define ASR_AI_338SNIPER_MODES(semibase) \
+		class Single: ##semibase { \
+			ASR_AI_ROF_338SNIPER_SEMI; \
+			ASR_AI_DISP_REGULAR; \
+		}; \
+		class ASR_AI_Single_optics1: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 1; \
+			ASR_AI_ROF_338SNIPER_MSCOPE_SEMI; \
+			ASR_AI_DISP_MARKSMAN; \
+		}; \
+		class ASR_AI_Single_optics2: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 2; \
+			ASR_AI_ROF_338SNIPER_HSCOPE_SEMI; \
 			ASR_AI_DISP_SNIPER; \
 		}

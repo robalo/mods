@@ -2,7 +2,7 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 PARAMS_2(_unit,_hitman);
-if (GVAR(enabled) != 1 || isPlayer _unit) exitWith {};
+if (GVAR(enabled) != 1 || {isPlayer _unit} || {_unit == missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]}) exitWith {};
 
 if (local _unit && {_unit call FUNC(isValidUnitC)}) then {
 

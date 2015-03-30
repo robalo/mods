@@ -8,7 +8,7 @@ class CfgPatches {
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
 			"A3_Characters_F","A3_Weapons_F",
-			"rhs_c_troops","rhsusf_c_troops",
+			"rhs_c_troops","rhsusf_c_troops","rhs_cti_insurgents",
 			"rhs_c_weapons","rhsusf_c_weapons"
 		};
 		version = VERSION;

@@ -15,8 +15,8 @@ class CfgAmmo {
 	class rhs_ammo_556x45_Mk262_Ball : B_556x45_Ball {
 		audibleFire = __AUDIBLE1; //5;
 	};
-	class rhsammo_762x51_Ball: BulletBase {
-		audibleFire = __AUDIBLE1; //18;
+	class rhs_ammo_762x51_M80_Ball : BulletBase {
+		audibleFire = __AUDIBLE1; //18
 	};
 	class rhs_ammo_M136_rocket : RocketBase {
 		audibleFire = __AUDIBLE2; //16;
@@ -54,6 +54,9 @@ class CfgAmmo {
 	};
 	class B_9x21_Ball;
 	class rhs_B_9x19_7N21 : B_9x21_Ball {
+		audibleFire = __AUDIBLE1; //5.65;
+	};
+	class rhs_B_9x18_57N181S : B_9x21_Ball {
 		audibleFire = __AUDIBLE1; //5.65;
 	};
 };

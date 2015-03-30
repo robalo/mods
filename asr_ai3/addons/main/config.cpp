@@ -10,26 +10,17 @@ PRELOAD_ADDONS;
 
 #include "CfgEventhandlers.hpp"
 
-class asdg_SlotInfo {
-	linkProxy = "defaultProxy";
-};
-class asdg_OpticRail: asdg_SlotInfo {
-	linkProxy = "\A3\data_f\proxies\weapon_slots\TOP";
-	displayName = "$STR_A3_CowsSlot0";
-};
-class asdg_OpticRail1913: asdg_OpticRail {
-	class compatibleItems {
-		ASR_optic_Arco_AI_N = 1;
-		ASR_optic_Hamr_AI_N = 1;
-		ASR_optic_SOS_AI_N = 1;
-		ASR_optic_MRCO_AI_N = 1;
-		ASR_optic_DMS_AI_N = 1;
-		ASR_optic_LRPS_AI_N = 1;
-	};
-};
-class asdg_OpticRail1913_short: asdg_OpticRail1913 {
-	class compatibleItems: compatibleItems {
-		ASR_optic_DMS_AI_N = 0;
-		ASR_optic_LRPS_AI_N = 0;
+class CfgFunctions {
+	class asr_ai3 {
+		tag = "asr_ai3";
+		class functions	{
+			file = "\x\asr_ai3\addons\main\f";
+			class preinit {
+				preInit = 1; // 1 to call the function upon mission start, before objects are initialized. Passed arguments are ["preInit"]
+			};
+			class postinit {
+				postInit = 1; // 1 to call the function upon mission start, after objects are initialized. Passed arguments are ["postInit"]
+			};
+		};
 	};
 };

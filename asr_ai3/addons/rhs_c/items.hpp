@@ -1,3 +1,17 @@
+#define __OPTIC_CQB opticType = 0
+#define __OPTIC_DMR opticType = 1
+#define __OPTIC_SNP opticType = 2
+
+#define __AIN_VARIANTS(optic) \
+		asr_ai_variants[] = {"##optic","ASRAIN_##optic"}; \
+	}; \
+	class ASRAIN_##optic : ##optic { \
+		scope = 1;\
+		scopeArsenal = 1; \
+		class ItemInfo : ItemInfo { \
+			__OPTIC_CQB; \
+		}
+
 	class ItemCore;
 	class InventoryOpticsItem_Base_F;
 
@@ -95,6 +109,24 @@
 			__OPTIC_DMR;
 		};
 		__AIN_VARIANTS(rhsusf_acc_ACOG3);
+	};
+
+	class rhsusf_acc_ACOG_USMC : rhsusf_acc_sniper_base {
+		class ItemInfo : InventoryOpticsItem_Base_F {
+			__OPTIC_DMR;
+		};
+		__AIN_VARIANTS(rhsusf_acc_ACOG_USMC);
+	};
+	
+	class rhsusf_acc_ACOG2_USMC : rhsusf_acc_ACOG {
+		class ItemInfo : ItemInfo {
+			__OPTIC_DMR;
+		};
+		__AIN_VARIANTS(rhsusf_acc_ACOG2_USMC);
+	};
+	
+	class rhsusf_acc_ACOG3_USMC : rhsusf_acc_ACOG {
+		__AIN_VARIANTS(rhsusf_acc_ACOG3_USMC);
 	};
 
 	class rhsusf_acc_LEUPOLDMK4_2 : rhsusf_acc_sniper_base {

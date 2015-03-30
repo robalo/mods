@@ -8,8 +8,6 @@ _fnc_getskillvalue = {
 	private["_sv","_min","_var"];
 	_min = _this select 0; //min skill
 	_var = _this select 1; //max variance
-	//_sv = if (random 50 < 1) then {_min + _var} else {_min + random _var};
-	//_sv
 	(_min + random _var)
 };
 
@@ -45,10 +43,9 @@ while {_i < count _sa} do {
 		case "general": {
 			{
 				_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				//[[_unit,[_x,_sv]], QUOTE(FUNC(setSkill)), _unit, false, true] call BIS_fnc_MP;
 				[_unit,[_x,_sv]] call FUNC(setSkill);
 			}
-			forEach ["general","courage","reloadSpeed","commanding"];
+			forEach ["courage","reloadSpeed","commanding"];
 		};
 		case "aiming": {
 			{

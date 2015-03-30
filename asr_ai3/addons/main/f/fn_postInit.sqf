@@ -1,5 +1,5 @@
-#define DEBUG_MODE_FULL
-#include "script_component.hpp"
+//#define DEBUG_MODE_FULL
+#include "\x\asr_ai3\addons\main\script_component.hpp"
 LOG(MSG_INIT);
 
 if (isServer) then {
@@ -7,7 +7,7 @@ if (isServer) then {
 	publicVariable "ASR_AI3_SETTINGS"; publicVariable QUOTE(FUNC(setSkill));
 	if (GVAR(enabled) == 1) then {
 		["itemAdd", [QGVAR(initgs), { {_x call FUNC(groupInit)} forEach allGroups; }, 20]] call BIS_fnc_loop;
-		if (GVAR(packNVG) == 1 || GVAR(dayscope) == 1) then {
+		if (GVAR(packNVG) == 1) then {
 			["itemAdd", [QGVAR(gearLoop), {[] spawn {{_x call FUNC(setupGear); sleep 0.2} forEach allUnits}}, 60]] call BIS_fnc_loop;
 		};
 	};
@@ -27,3 +27,6 @@ if (!hasInterface && {GVAR(enabled) == 1 && GVAR(dynsvd) > 0}) then {
 		["itemAdd", [QGVAR(dvdloop), { [] call FUNC(changeVD); }, 120]] call BIS_fnc_loop;
 	};
 };
+
+//make player leader on teamswitch; prevents AI left in place from sending stupid orders
+if (hasInterface && GVAR(onteamswitchleader) > 0) then {[] spawn {waitUntil {time > 1 && {player == player}}; onTeamSwitch {(group player) selectLeader player}}};

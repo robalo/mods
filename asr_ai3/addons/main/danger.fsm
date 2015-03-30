@@ -20,8 +20,8 @@ item15[] = {"Cause_3_4_5_AMMO",4,218,-940.000000,-100.000000,-720.000000,50.0000
 item16[] = {"Reactions",2,250,-920.000000,150.000000,-750.000000,360.000000,0.000000,"Reactions"};
 item17[] = {"set_vars_check_danger",2,250,-840.000000,-270.000000,-620.000000,-190.000000,0.000000,"set vars" \n "check danger cause"};
 item18[] = {"Cause_1_HEARD_SH",4,218,-1190.000000,-100.000000,-990.000000,40.000000,3.000000,"Cause 1" \n "HEARD" \n "SHOOTING"};
-item19[] = {"mod_enabled",4,4314,-1250.000000,20.000000,-1150.000000,90.000000,1.000000,"mod enabled"};
-item20[] = {"Radio_Report",2,250,-1190.000000,180.000000,-1140.000000,350.000000,0.000000,"Radio" \n "Report"};
+item19[] = {"mod_enabled",4,218,-1250.000000,20.000000,-1150.000000,90.000000,1.000000,"mod enabled"};
+item20[] = {"Radio_Report",2,4346,-1190.000000,180.000000,-1140.000000,350.000000,0.000000,"Radio" \n "Report"};
 item21[] = {"react",8,218,-1090.000000,300.000000,-1000.000000,350.000000,0.000000,"react"};
 version=1;
 class LayoutItems
@@ -65,7 +65,7 @@ link25[] = {19,20};
 link26[] = {20,21};
 link27[] = {21,16};
 globals[] = {10.000000,1,0,1,16777215,640,480,1,239,6316128,1,-1381.939697,35.925030,569.472046,-600.929260,1123,927,1};
-window[] = {2,-1,-1,-1,-1,890,110,1146,110,3,1140};
+window[] = {2,-1,-1,-1,-1,1022,242,1278,242,3,1140};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -99,12 +99,13 @@ class FSM
        "comment ""6  DCDeadBody"";" \n
        "comment ""7  DCScream"";" \n
        "comment ""8  DCCanFire"";" \n
+       "comment ""9  DCBulletClose"";" \n
        "*/" \n
        "" \n
        "// Retrieve the highest priority event from the _queue" \n
        "private [""_priors"",""_priorCur""];" \n
        "" \n
-       "_priors = [3, 4, 0, 1, 1, 1, 0, 0, 4];" \n
+       "_priors = [3, 4, 5, 1, 1, 1, 0, 0, 4, 1];" \n
        "" \n
        "if (_dangerCause>0) then {_priorCur = _priors select _dangerCause}" \n
        "else {_priorCur=-1};" \n
@@ -300,7 +301,7 @@ class FSM
        "			_this doTarget _fne;" \n
        "			breakTo ""main"";" \n
        "		};" \n
-       "	} forEach (_this nearTargets 500);" \n
+       "	} forEach (_this nearTargets 300);" \n
        "};" \n
        "" \n
        "if (unitReady _this && {{isPlayer _x} count units _grp == 0}) then {" \n
@@ -375,7 +376,7 @@ class FSM
           priority = 3.000000;
           to="Reactions";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_dangerCause == 1 && {_isleader} && {_asrenabled} && {side _dangerCausedBy != side _this}"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_isleader && {_dangerCause == 1 || _dangerCause == 9} && {_asrenabled} && {side _dangerCausedBy != side _this}"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -396,7 +397,7 @@ class FSM
     class Radio_Report
     {
       name = "Radio_Report";
-      init = /*%FSM<STATEINIT""">*/"if (asr_ai3_main_radionet == 1 && {_grp knowsAbout _dangerCausedBy > 1}) then {" \n
+      init = /*%FSM<STATEINIT""">*/"if (asr_ai3_main_radiorange > 0 && {_grp knowsAbout _dangerCausedBy > 1}) then {" \n
        "	[_grp,_dangerCausedBy] spawn asr_ai3_main_fnc_broadcastInfo;" \n
        "};" \n
        ""/*%FSM</STATEINIT""">*/;

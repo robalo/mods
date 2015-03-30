@@ -16,14 +16,26 @@ class CfgAmmo {
 
 	class B_556x45_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //6;
+		dangerRadiusBulletClose = 12;
+		dangerRadiusHit = 12;
+		suppressionRadiusBulletClose = 6;
+		suppressionRadiusHit = 6;
 	};
 
 	class B_65x39_Caseless : BulletBase {
 		audibleFire = __AUDIBLE1; //8;
+		dangerRadiusBulletClose = 12;
+		dangerRadiusHit = 12;
+		suppressionRadiusBulletClose = 6;
+		suppressionRadiusHit = 6;
 	};
 
 	class B_762x51_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //9;
+		dangerRadiusBulletClose = 12;
+		dangerRadiusHit = 12;
+		suppressionRadiusBulletClose = 6;
+		suppressionRadiusHit = 6;
 	};
 
 	class SubmunitionBullet;
@@ -44,10 +56,18 @@ class CfgAmmo {
 
 	class B_9x21_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //5;
+		dangerRadiusBulletClose = 6;
+		dangerRadiusHit = 6;
+		suppressionRadiusBulletClose = 3;
+		suppressionRadiusHit = 3;
 	};
 
 	class B_408_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //15;
+		dangerRadiusBulletClose = 15;
+		dangerRadiusHit = 15;
+		suppressionRadiusBulletClose = 8;
+		suppressionRadiusHit = 8;
 	};
 
 	class B_127x33_Ball : BulletBase {
@@ -56,10 +76,18 @@ class CfgAmmo {
 
 	class B_127x99_Ball : BulletBase {
 		audibleFire = __AUDIBLE2; //15;
+		dangerRadiusBulletClose = 18;
+		dangerRadiusHit = 18;
+		suppressionRadiusBulletClose = 10;
+		suppressionRadiusHit = 10;
 	};
 
 	class B_127x108_Ball : BulletBase {
 		audibleFire = __AUDIBLE2; //48;
+		dangerRadiusBulletClose = 18;
+		dangerRadiusHit = 18;
+		suppressionRadiusBulletClose = 10;
+		suppressionRadiusHit = 10;
 	};
 	class B_127x108_APDS : B_127x108_Ball {
 		audibleFire = __AUDIBLE2; //15;
@@ -67,6 +95,45 @@ class CfgAmmo {
 
 	class B_45ACP_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //9;
+		dangerRadiusBulletClose = 0; //subsonic ammo
+		dangerRadiusHit = 6;
+		suppressionRadiusBulletClose = 0;
+		suppressionRadiusHit = 3;
+	};
+
+	class B_338_Ball : BulletBase {
+		audibleFire = __AUDIBLE1; //12;
+		dangerRadiusBulletClose = 15;
+		dangerRadiusHit = 15;
+		suppressionRadiusBulletClose = 8;
+		suppressionRadiusHit = 8;
+	};
+	class B_338_NM_Ball : BulletBase {
+		audibleFire = __AUDIBLE1; //12;
+		dangerRadiusBulletClose = 15;
+		dangerRadiusHit = 15;
+		suppressionRadiusBulletClose = 8;
+		suppressionRadiusHit = 8;
+	};
+	class B_127x54_Ball : BulletBase {
+		//audibleFire = 3;
+		dangerRadiusBulletClose = 0; //subsonic
+		dangerRadiusHit = 12;
+		suppressionRadiusBulletClose = 0;
+		suppressionRadiusHit = 6;
+	};
+	class B_93x64_Ball : BulletBase {
+		audibleFire = __AUDIBLE1; //12;
+		dangerRadiusBulletClose = 15;
+		dangerRadiusHit = 15;
+		suppressionRadiusBulletClose = 8;
+		suppressionRadiusHit = 8;
+	};
+
+	class GrenadeHand;
+	class SmokeShell : GrenadeHand {
+		dangerRadiusHit = 50;
+		suppressionRadiusHit = 0;
 	};
 
 	// allow AI to use AT against helis; Players do it, why not AI ?

@@ -1,5 +1,5 @@
 //#define DEBUG_MODE_FULL
-#include "script_component.hpp"
+#include "\x\asr_ai3\addons\main\script_component.hpp"
 LOG(MSG_INIT);
 
 if (isServer) then {
@@ -14,21 +14,20 @@ if (isServer) then {
 };
 
 ASR_AI_SETDEFAULT(enabled,1);
-ASR_AI_SETDEFAULT(radionet,1);
-ASR_AI_SETDEFAULT(radiorange,600);
+ASR_AI_SETDEFAULT(radiorange,700);
 ASR_AI_SETDEFAULT(seekcover,1);
 ASR_AI_SETDEFAULT(throwsmoke,0.4);
 ASR_AI_SETDEFAULT(usebuildings,0.5);
 ASR_AI_SETDEFAULT(getinweapons,0.5);
 ASR_AI_SETDEFAULT(packNVG,1);
-ASR_AI_SETDEFAULT(dayscope,0);
 ASR_AI_SETDEFAULT(debug,0);
 
 ASR_AI_SETDEFAULT(setskills,1);
 ASR_AI_SETDEFAULT(dynsvd,1);
-ASR_AI_SETDEFAULT(gunshothearing,1.0);
+ASR_AI_SETDEFAULT(gunshothearing,0);
 ASR_AI_SETDEFAULT(joinlast,2);
 ASR_AI_SETDEFAULT(removegimps,300);
+ASR_AI_SETDEFAULT(onteamswitchleader,0);
 ASR_AI_SETDEFAULT(sets,[]);
 ASR_AI_SETDEFAULT(levels_units,[]);
 ASR_AI_SETDEFAULT(factions,[]);
@@ -59,11 +58,11 @@ PREP(throwSmoke);
 PREP(canCover);
 PREP(findCover);
 PREP(moveToCover);
+PREP(getInWeaponsEH);
 PREP(getInWeapons);
 PREP(handleHit);
 PREP(shootingStance);
 PREP(showHideNVG);
-PREP(replaceOptics);
 PREP(setupGear);
 
 FUNC(pistolToPrimary) = {
@@ -77,7 +76,6 @@ FUNC(pistolToPrimary) = {
 FUNC(inventoryClosed) = {
 	PARAMS_1(_unit);
 	if (!(isPlayer _unit) && {local _unit} && {_unit call FUNC(isValidUnitC)}) then {
-		_unit call FUNC(replaceOptics);
 		_unit call FUNC(pistolToPrimary);
 	};
 };
@@ -99,4 +97,3 @@ FUNC(getAlive) = {
 };
 
 GVAR(smokin) = false;
-//GVAR(firing) = false;
