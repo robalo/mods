@@ -2,8 +2,9 @@
 #include "script_component.hpp"
 
 PARAMS_1(_unit);
-private["_to","_need","_leaderpos","_search","_loot"];
+private["_to","_need","_leaderpos","_search","_lootchkcnt","_lootchktime","_checkit"];
 if (isNull _unit || !alive _unit) exitWith {};
+if (getText (configFile >> "cfgVehicles" >> (typeOf _unit) >> "genericNames") == "VRMen") exitWith {};
 if (_unit getVariable[QGVAR(inprogress),false]) exitWith {};
 //diag_log format ["%1 | %2 | Rearming starts for this unit.",time,_unit];
 _unit setVariable[QGVAR(inprogress),true];
@@ -27,38 +28,46 @@ _leaderpos = getposATL _unit;
 
 // Look for places
 //diag_log format ["%1 | %2 | Searching for places to loot.",time,_unit];
-_search = nearestObjects [_unit, ["ReammoBox","ReammoBox_F","WeaponHolderSimulated","CAManbase","LandVehicle"], GVAR(radius)];
+_search = nearestObjects [_unit, ["ReammoBox","ReammoBox_F","WeaponHolderSimulated","LandVehicle"], GVAR(radius)];
 
-//diag_log format ["%1 | %2 | Found places to loot: %3",time,_unit,_search];
+{ // process near humans too
+	if (!(isNull _x || isPlayer _x || _x == _unit)) then {
+		if (alive _x) then {
+			if (backpack _x != "" && {(side _x) getFriend (side _unit) > 0.6}) then {
+				_search pushBack (unitBackpack _x); // ammo bear
+			};
+		} else {
+			_search pushBack _x; // dead guy
+		};
+	};
+} forEach nearestObjects [_unit, ["CAManbase"], GVAR(radius)];
+diag_log format ["%1 | %2 | Found places to loot: %3",time,_unit,_search];
 
 {
-	_loot = _x;
-	if (!(isNull _loot || isPlayer _loot || _loot == _unit) && {!(_loot isKindOf "CAManbase" && alive _loot)}) then {
-		// allow checking a few times per interval
-		_lootcheckcnt = _loot getVariable [QGVAR(lootcnt),0];
-		_lootchecktime = _loot getVariable [QGVAR(loottime),0];
-		TRACE_3("",_unit,_lootcheckcnt,_lootchecktime);
-		_checkit = true;
-		if (_lootcheckcnt < 1) then {
-			INC(_lootcheckcnt);
-			_loot setVariable [QGVAR(lootcnt),_lootcheckcnt];
+	// allow checking a few times per interval
+	_lootchkcnt = _x getVariable [QGVAR(lootcnt),0];
+	_lootchktime = _x getVariable [QGVAR(loottime),0];
+	TRACE_3("",_unit,_lootchkcnt,_lootchktime);
+	_checkit = true;
+	if (_lootchkcnt < 1) then {
+		INC(_lootchkcnt);
+		_x setVariable [QGVAR(lootcnt),_lootchkcnt];
+	} else {
+		if (time < _lootchktime + 300) then {
+			_checkit = false;
 		} else {
-			if (time < _lootchecktime + 300) then {
-				_checkit = false;
-			} else {
-				_loot setVariable [QGVAR(loottime),time];
-				_loot setVariable [QGVAR(lootcnt),0];
-			};
+			_x setVariable [QGVAR(loottime),time];
+			_x setVariable [QGVAR(lootcnt),0];
 		};
-		
-		if (_checkit) then {
-			_unit doMove (getPosATL _loot);
-			waitUntil {_unit distance _loot < 6};
-			_unit doWatch _loot;
-			waitUntil {_unit distance _loot < 3};
-			_unit doWatch _loot;
-			_unit action ["REARM",_loot];
-		};
+	};
+	
+	if (_checkit) then {
+		_unit doMove (getPosATL _x);
+		waitUntil {_unit distance _x < 6};
+		_unit doWatch _x;
+		waitUntil {_unit distance _x < 3};
+		_unit doWatch _x;
+		_unit action ["REARM",_x];
 	};
 	if !(_unit call FUNC(isReady)) exitWith {};
 } forEach _search;
