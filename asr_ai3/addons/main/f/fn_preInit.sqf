@@ -27,7 +27,7 @@ ASR_AI_SETDEFAULT(dynsvd,1);
 ASR_AI_SETDEFAULT(gunshothearing,0);
 ASR_AI_SETDEFAULT(joinlast,2);
 ASR_AI_SETDEFAULT(removegimps,300);
-ASR_AI_SETDEFAULT(onteamswitchleader,0);
+ASR_AI_SETDEFAULT(onteamswitch,1);
 ASR_AI_SETDEFAULT(sets,[]);
 ASR_AI_SETDEFAULT(levels_units,[]);
 ASR_AI_SETDEFAULT(factions,[]);
@@ -94,6 +94,19 @@ FUNC(getAlive) = {
 	_return = [];
 	{if (alive _x) then {_return pushBack _x}} foreach (units _this);
 	_return
+};
+
+FUNC(canMountAIGunner) = {
+	if (locked _this == 2) exitWith {false};
+	if (_this emptypositions "Gunner" > 0) exitWith {true};
+	{!alive (_x select 0)} count fullCrew [_this, "gunner"] > 0;
+};
+
+FUNC(onTeamSwitch) = {
+	private "_grp";
+	_grp = group player;
+	_grp selectLeader player;
+	{_x enableFatigue (isPlayer _x)} forEach (units _grp);
 };
 
 GVAR(smokin) = false;

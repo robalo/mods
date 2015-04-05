@@ -3,7 +3,7 @@
 PARAMS_1(_grp);
 private ["_leader","_weapons","_wc","_weap","_mc","_ehid"];
 _leader = leader _grp;
-_weapons = [getposATL _leader, vehicles, 100, {_x emptypositions "Gunner" > 0 && {locked _x != 2} && {!(_x isKindOf "Plane" || _x isKindOf "Tank")}}] call FUNC(getNearest);
+_weapons = [getposATL _leader, vehicles, 100, {!(_x isKindOf "Plane" || _x isKindOf "Tank") && {_x call FUNC(canMountAIGunner)}}] call FUNC(getNearest);
 TRACE_2("empty weapons",_grp,_weapons);
 _wc = count _weapons;
 if (_wc > 0) then {

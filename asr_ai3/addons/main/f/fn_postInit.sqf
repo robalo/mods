@@ -29,4 +29,4 @@ if (!hasInterface && {GVAR(enabled) == 1 && GVAR(dynsvd) > 0}) then {
 };
 
 //make player leader on teamswitch; prevents AI left in place from sending stupid orders
-if (hasInterface && GVAR(onteamswitchleader) > 0) then {[] spawn {waitUntil {time > 1 && {player == player}}; onTeamSwitch {(group player) selectLeader player}}};
+if (hasInterface && GVAR(onteamswitch) > 0) then {[] spawn {waitUntil {time > 1 && {player == player}}; onTeamSwitch {[_from,_to] call FUNC(onTeamSwitch)}}};

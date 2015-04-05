@@ -369,11 +369,15 @@ class CfgWeapons {
 	class MMG_01_base_F : Rifle_Long_Base_F {
 		asr_ai_wtype = ASR_WEAPON_TYPE_MG;
 		ASR_AI_DISP_REGULAR;
+		modes[] = {"manual", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2", "ASR_AI_Burst_far_optic2_MMG"};
+		ASR_AI_MG_MODES(manual,Mode_FullAuto,Mode_SemiAuto);
 	};
 
 	class MMG_02_base_F : Rifle_Long_Base_F {
 		asr_ai_wtype = ASR_WEAPON_TYPE_MG;
 		ASR_AI_DISP_REGULAR;
+		modes[] = {"manual", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2", "ASR_AI_Burst_far_optic2_MMG"};
+		ASR_AI_MG_MODES(manual,Mode_FullAuto,Mode_SemiAuto);
 	};
 
 };
