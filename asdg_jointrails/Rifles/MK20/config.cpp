@@ -8,6 +8,7 @@ class CfgPatches {
 	};
 };
 
+class asdg_MuzzleSlot_556;
 class asdg_OpticRail1913;
 class asdg_FrontSideRail;
 
@@ -21,6 +22,10 @@ class CfgWeapons {
 
 	class arifle_Mk20_F : mk20_base_F {
 		class WeaponSlotsInfo : WeaponSlotsInfo {
+			class MuzzleSlot : asdg_MuzzleSlot_556 {
+				iconPosition[] = {0, 0.38};
+				iconScale = 0.2;
+			};
 			class CowsSlot: asdg_OpticRail1913 {
 				iconPosition[] = {0.45, 0.25};
 				iconScale = 0.2;
@@ -34,6 +39,10 @@ class CfgWeapons {
 
 	class arifle_Mk20C_F : mk20_base_F {
 		class WeaponSlotsInfo : WeaponSlotsInfo {
+			class MuzzleSlot : asdg_MuzzleSlot_556 {
+				iconPosition[] = {0, 0.38};
+				iconScale = 0.2;
+			};
 			class PointerSlot: asdg_FrontSideRail {
 				iconPosition[] = {0.35, 0.35};
 				iconScale = 0.25;
@@ -47,6 +56,10 @@ class CfgWeapons {
 
 	class arifle_Mk20_GL_F : mk20_base_F {
 		class WeaponSlotsInfo : WeaponSlotsInfo {
+			class MuzzleSlot : asdg_MuzzleSlot_556 {
+				iconPosition[] = {0, 0.38};
+				iconScale = 0.2;
+			};
 			class PointerSlot: asdg_FrontSideRail {
 				iconPosition[] = {0.35, 0.35};
 				iconScale = 0.25;

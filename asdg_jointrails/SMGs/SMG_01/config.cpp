@@ -8,7 +8,7 @@ class CfgPatches {
 	};
 };
 
-class asdg_MuzzleSlot_45ACP;
+class asdg_MuzzleSlot_45ACP_SMG;
 class asdg_OpticRail1913;
 
 class CfgWeapons {
@@ -21,7 +21,7 @@ class CfgWeapons {
 
 	class SMG_01_F : SMG_01_Base {
 		class WeaponSlotsInfo : WeaponSlotsInfo {
-			class MuzzleSlot : asdg_MuzzleSlot_45ACP {
+			class MuzzleSlot : asdg_MuzzleSlot_45ACP_SMG {
 				iconPosition[] = {0.1, 0.4};
 				iconScale = 0.2;
 			};

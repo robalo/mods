@@ -52,17 +52,10 @@ class CfgAddons {
 
 class CfgFunctions {
 	class asdg_jointrails {
-		tag = "asdg_jointrails";
+		tag = "asdg";
 		class functions	{
 			file = "\asdg_jointrails\functions";
-			class getCompatibleAttachments {};
-		};
-	};
-	class A3_Bootcamp {
-		class Inventory {
-			class compatibleItems {
-				file = "\asdg_jointrails\functions\fn_compatibleItems_fixed.sqf";
-			};
+			class compatibleItems {};
 		};
 	};
 };
@@ -148,7 +141,8 @@ class asdg_OpticRail1913: asdg_OpticRail { // let's call this the "medium" rail,
 
 class asdg_OpticRail1913_short: asdg_OpticRail1913 {
 	class compatibleItems: compatibleItems {
-		optic_DMS = 0;
+		///optic_DMS = 0;
+		// attachments that fit on medium rail but not on the short rail
 	};
 };
 
@@ -201,13 +195,23 @@ class asdg_MuzzleSlot_93x64: asdg_MuzzleSlot { // for 9.3x64 universal mount sup
 	};
 };
 
-class asdg_MuzzleSlot_9MM: asdg_MuzzleSlot { // for 9x19mm universal mount suppressors
+class asdg_MuzzleSlot_9MM: asdg_MuzzleSlot { // for 9x19mm universal mount pistol suppressors
+	class compatibleItems {
+		muzzle_snds_L = 1;
+	};
+};
+class asdg_MuzzleSlot_9MM_SMG: asdg_MuzzleSlot { // for 9x19mm universal mount SMG suppressors
 	class compatibleItems {
 		muzzle_snds_L = 1;
 	};
 };
 
-class asdg_MuzzleSlot_45ACP: asdg_MuzzleSlot { // for .45ACP universal mount suppressors
+class asdg_MuzzleSlot_45ACP: asdg_MuzzleSlot { // for .45ACP universal mount pistol suppressors
+	class compatibleItems {
+		muzzle_snds_acp = 1;
+	};
+};
+class asdg_MuzzleSlot_45ACP_SMG: asdg_MuzzleSlot { // for .45ACP universal mount SMG suppressors
 	class compatibleItems {
 		muzzle_snds_acp = 1;
 	};

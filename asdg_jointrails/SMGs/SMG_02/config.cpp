@@ -8,7 +8,7 @@ class CfgPatches {
 	};
 };
 
-class asdg_MuzzleSlot_9MM;
+class asdg_MuzzleSlot_9MM_SMG;
 class asdg_OpticRail1913;
 class asdg_FrontSideRail;
 
@@ -22,7 +22,7 @@ class CfgWeapons {
 
 	class SMG_02_F : SMG_02_base_F {
 		class WeaponSlotsInfo : WeaponSlotsInfo {
-			class MuzzleSlot : asdg_MuzzleSlot_9MM {
+			class MuzzleSlot : asdg_MuzzleSlot_9MM_SMG {
 				iconPosition[] = {0.08, 0.4};
 				iconScale = 0.2;
 			};

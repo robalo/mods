@@ -32,6 +32,7 @@ class CfgWeapons {
 					optic_KHS_hex = 0;
 					optic_KHS_old = 0;
 					optic_KHS_tan = 0;
+					optic_DMS = 0;
 					optic_LRPS = 0;
 					optic_SOS = 0;
 					optic_tws = 0;
