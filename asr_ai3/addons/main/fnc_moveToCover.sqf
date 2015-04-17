@@ -36,6 +36,7 @@ if (!isNil QGVAR(mToCover)) then {
 };
 
 if (!isNil QGVAR(mToCover) && {count _cpa > 0}) then {
+
 	[_unit,_cpa,_until] spawn  {
 		PARAMS_3(_unit,_cpa,_until);
 		private ["_grp","_speed","_cover"];
@@ -55,7 +56,6 @@ if (!isNil QGVAR(mToCover) && {count _cpa > 0}) then {
 				_grp lockwp false;
 				{[_x] joinSilent _grp} forEach (units _grp);
 				_grp setSpeedMode _speed;
-				_grp setVariable [QGVAR(lastMoveToCoverTime),diag_ticktime,false];
 			};
 			{
 				if (_x != _unit && {alive _x && unitReady _x}) then { // process subordinates
@@ -71,6 +71,10 @@ if (!isNil QGVAR(mToCover) && {count _cpa > 0}) then {
 			} forEach (units _grp);
 		};
 	};
+
 };
+
+//found cover or not, don't bother trying to find again for 4 minutes, so we save the time of last try
+_grp setVariable [QGVAR(lastMoveToCoverTime),diag_ticktime,false];
 
 GVAR(mToCover) = nil;

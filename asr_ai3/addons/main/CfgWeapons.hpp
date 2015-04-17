@@ -343,26 +343,22 @@ class CfgWeapons {
 	};
 
 	class DMR_03_base_F : Rifle_Long_Base_F {
- 		modes[] = {"ASR_SemiAuto", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+ 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
-		asr_ai_wtype = ASR_WEAPON_TYPE_SNIPER;
 		ASR_AI_DISP_REGULAR;
 	};
 
 	class DMR_04_base_F : Rifle_Long_Base_F {
-		asr_ai_wtype = ASR_WEAPON_TYPE_SNIPER;
 		ASR_AI_DISP_REGULAR;
 	};
 
 	class DMR_05_base_F : Rifle_Long_Base_F {
-		asr_ai_wtype = ASR_WEAPON_TYPE_SNIPER;
 		ASR_AI_DISP_REGULAR;
 	};
 
 	class DMR_06_base_F : Rifle_Long_Base_F {
- 		modes[] = {"ASR_SemiAuto", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+ 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
-		asr_ai_wtype = ASR_WEAPON_TYPE_SNIPER;
 		ASR_AI_DISP_REGULAR;
 	};
 

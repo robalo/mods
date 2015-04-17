@@ -64,6 +64,7 @@ PREP(handleHit);
 PREP(shootingStance);
 PREP(showHideNVG);
 PREP(setupGear);
+PREP(reactDanger);
 
 FUNC(pistolToPrimary) = {
 	PARAMS_1(_unit);
