@@ -1,5 +1,5 @@
 //#define DEBUG_MODE_FULL
-#include "script_component.hpp"
+#include "\x\asr_ai3\addons\rearm\script_component.hpp"
 LOG(MSG_INIT);
 
 GVAR(radius) = 40;

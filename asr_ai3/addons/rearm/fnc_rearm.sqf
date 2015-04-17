@@ -28,20 +28,20 @@ _leaderpos = getposATL _unit;
 
 // Look for places
 //diag_log format ["%1 | %2 | Searching for places to loot.",time,_unit];
-_search = nearestObjects [_unit, ["ReammoBox","ReammoBox_F","WeaponHolderSimulated","LandVehicle"], GVAR(radius)];
+_search = [];
 
-{ // process near humans too
+{ // process near humans
 	if (!(isNull _x || isPlayer _x || _x == _unit)) then {
-		if (alive _x) then {
-			if (backpack _x != "" && {(side _x) getFriend (side _unit) > 0.6}) then {
-				_search pushBack (unitBackpack _x); // ammo bear
-			};
-		} else {
-			_search pushBack _x; // dead guy
+		if (!alive _x || {!(backpack _x == "" || {(side _x) getFriend (side _unit) < 0.6})}) then { //not alive or (neither enemy nor without pack)
+			_search pushBack _x;
 		};
 	};
 } forEach nearestObjects [_unit, ["CAManbase"], GVAR(radius)];
-diag_log format ["%1 | %2 | Found places to loot: %3",time,_unit,_search];
+
+// other containers
+_search append nearestObjects [_unit, ["ReammoBox","ReammoBox_F","WeaponHolderSimulated","LandVehicle"], GVAR(radius)];
+
+//diag_log format ["%1 | %2 | Found places to loot: %3",time,_unit,_search];
 
 {
 	// allow checking a few times per interval
@@ -62,12 +62,11 @@ diag_log format ["%1 | %2 | Found places to loot: %3",time,_unit,_search];
 	};
 	
 	if (_checkit) then {
+		_unit doWatch _x;
 		_unit doMove (getPosATL _x);
-		waitUntil {_unit distance _x < 6};
+		waitUntil {_unit distance _x < 4};
 		_unit doWatch _x;
-		waitUntil {_unit distance _x < 3};
-		_unit doWatch _x;
-		_unit action ["REARM",_x];
+		if (alive _x && {_x isKindOf "CAManbase"}) then {_unit action ["REARM",unitBackpack _x]} else {_unit action ["REARM",_x]};
 	};
 	if !(_unit call FUNC(isReady)) exitWith {};
 } forEach _search;
