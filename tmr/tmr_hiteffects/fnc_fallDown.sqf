@@ -81,9 +81,10 @@ if (!_isFalling) then {
 			// Fall back to sitting position (pistol/rifle only)
 
 			_possibleAnims = _knl_fallAnims select _wepType;
-			_anim = _possibleAnims call BIS_fnc_selectRandom;
-
-			_unit switchMove _anim;	
+			if (count _possibleAnims > 0) then {
+				_anim = _possibleAnims call BIS_fnc_selectRandom;
+				_unit switchMove _anim;
+			};
 		};
 
 		// Clear falling after 2 seconds and ensure that AI gets back to prone.
