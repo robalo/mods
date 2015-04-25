@@ -15,7 +15,7 @@ class Extended_InitPost_EventHandlers {
 		};
 	};
 };
-
+/*
 class Extended_FiredBIS_EventHandlers {
 	class AllVehicles {
 		class ADDON {
@@ -23,7 +23,7 @@ class Extended_FiredBIS_EventHandlers {
 		};
 	};
 };
-
+*/
 class Extended_Killed_EventHandlers {
 	class SoldierWB {
 		class ADDON {

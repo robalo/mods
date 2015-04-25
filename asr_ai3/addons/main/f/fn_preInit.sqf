@@ -24,7 +24,7 @@ ASR_AI_SETDEFAULT(debug,0);
 
 ASR_AI_SETDEFAULT(setskills,1);
 ASR_AI_SETDEFAULT(dynsvd,1);
-ASR_AI_SETDEFAULT(gunshothearing,0);
+ASR_AI_SETDEFAULT(rearm,40);
 ASR_AI_SETDEFAULT(joinlast,2);
 ASR_AI_SETDEFAULT(removegimps,300);
 ASR_AI_SETDEFAULT(onteamswitch,1);
@@ -111,3 +111,14 @@ FUNC(onTeamSwitch) = {
 };
 
 GVAR(smokin) = false;
+
+GVAR(needmax) = [ // The level of supplies the unit will try to maintain
+	3, // mags for primary weapon
+	1  // fak
+];
+
+PREP(isReady);
+PREP(getCompatMags);
+PREP(countItems);
+PREP(inventoryCheck);
+PREP(rearm);

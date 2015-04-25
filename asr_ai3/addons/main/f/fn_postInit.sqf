@@ -10,6 +10,44 @@ if (isServer) then {
 		if (GVAR(packNVG) == 1) then {
 			["itemAdd", [QGVAR(gearLoop), {[] spawn {{_x call FUNC(setupGear); sleep 0.2} forEach allUnits}}, 60]] call BIS_fnc_loop;
 		};
+		if (GVAR(rearm) > 0) then {
+			[] spawn {
+				private ["_fh","_i","_thisgroup","_units","_c","_u","_d","_from","_to"];
+				_fh = true;
+				sleep 10;
+
+				while {true} do {
+					{ // cycle all groups
+						_thisgroup = _x;
+						_units = units _thisgroup;
+						if ({isPlayer _x} count _units == 0) then {
+							_c = count _units;
+							if (_c == 1) then {
+								_u = _units select 0;
+								if (_u call FUNC(isReady)) then {_u spawn FUNC(rearm)};
+							} else {
+								_d = ceil(_c/2 - 1);
+								if (_fh) then { // first half
+									_from = 0;
+									_to = _d;
+								}	else { // second half
+									_from = _d + 1;
+									_to = _c - 1;
+								};
+								for "_i" from _from to _to do {
+									_u = _units select _i;
+									if (_u call FUNC(isReady)) then {_u spawn FUNC(rearm)};
+									sleep 0.1;
+								};
+							};
+						};
+						sleep 1;
+					} forEach allGroups;
+					_fh = !_fh;
+					sleep 20;
+				};
+			};
+		};
 	};
 } else {
 	// Wait for the server to push our settings and run them

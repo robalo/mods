@@ -189,6 +189,10 @@ class CfgVehicles {
 		ASR_AI_SKILL_REG1;
 		ASR_AI_COST_REG;
 	};
+	class B_Sharpshooter_F : B_Soldier_base_F {
+		ASR_AI_SKILL_REG1;
+		ASR_AI_COST_REG;
+	};
 
 // pilot
 	class B_Helipilot_F: B_Soldier_04_f {
@@ -248,6 +252,10 @@ class CfgVehicles {
 		ASR_AI_COST_SPECIAL;
 		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
+	};
+	class B_ghillie_base_F : B_Soldier_sniper_base_F {
+		ASR_AI_COST_SPECIAL;
+		sensitivity = 4;
 	};
 
 // officer
@@ -309,6 +317,11 @@ class CfgVehicles {
 		ASR_AI_CAMO_FULL;
 	};
 	class B_CTRG_soldier_AR_A_F : B_Soldier_base_F {
+		ASR_AI_SKILL_SOF2;
+		ASR_AI_COST_SPECIAL;
+		minFireTime = 5;
+	};
+	class B_CTRG_Sharphooter_F : B_Soldier_base_F {
 		ASR_AI_SKILL_SOF2;
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
@@ -497,6 +510,14 @@ class CfgVehicles {
 		ASR_AI_SKILL_REG1;
 		ASR_AI_COST_REG;
 	};
+	class O_Sharpshooter_F : O_Soldier_base_F {
+		ASR_AI_SKILL_REG1;
+		ASR_AI_COST_REG;
+	};
+	class O_Urban_Sharpshooter_F : O_Soldier_Urban_base {
+		ASR_AI_SKILL_REG1;
+		ASR_AI_COST_REG;
+	};
 
 // pilot
 	class O_helipilot_F: O_Soldier_02_F {
@@ -549,6 +570,10 @@ class CfgVehicles {
 		ASR_AI_COST_SPECIAL;
 		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
+	};
+	class O_ghillie_base_F : O_Soldier_sniper_base_F {
+		ASR_AI_COST_SPECIAL;
+		sensitivity = 4;
 	};
 
 // officer
@@ -746,6 +771,10 @@ class CfgVehicles {
 		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
 	};
+	class I_ghillie_base_F : I_Soldier_sniper_base_F {
+		ASR_AI_COST_SPECIAL;
+		sensitivity = 4;
+	};
 
 // diver
 	class I_Soldier_diver_base_F: I_Soldier_base_F {
@@ -836,6 +865,10 @@ class CfgVehicles {
 
 // dm
 	class I_G_Soldier_M_F : I_G_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+	};
+	class I_G_Sharpshooter_F : I_G_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
 		ASR_AI_COST_LESS;
 	};

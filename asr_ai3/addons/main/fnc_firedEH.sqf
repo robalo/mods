@@ -81,7 +81,7 @@ _this spawn {
 		if (group _x != group _shooter && !isPlayer _x && !isPlayer (leader _x)) then {
 			sleep (0.5 + random 1);
 			if (behaviour _x == "SAFE") then {_x setBehaviour "AWARE"};
-			if (random 3 > 1) then {_x lookAt _exPos; _x doWatch _exPos};
+			//if (random 3 > 1) then {_x lookAt _exPos; _x doWatch _exPos};
 			_distance = _exPos distance _x;
 			TRACE_3("Unit hears this explosion",_x,_ammo,_distance);
 			if (_distance < 150 && !_early) then {

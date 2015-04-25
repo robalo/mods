@@ -5,8 +5,8 @@ PARAMS_3(_unit,_dangerCausedBy,_dangerUntil);
 private ["_fne","_coverRange","_grp"];
 scopeName "main";
 
-/* //is this still needed ?
-if (isNull assignedTarget _unit) then { // if no target, pick one!
+// if no target, pick one!
+if (isNull assignedTarget _unit) then {
 	{
 		if ((side _unit) getFriend (_x select 2) < 0.6) then {
 			_fne = _unit findNearestEnemy (_x select 0);
@@ -15,7 +15,6 @@ if (isNull assignedTarget _unit) then { // if no target, pick one!
 		};
 	} forEach (_unit nearTargets 300);
 };
-*/
 
 _grp = group _unit;
 

@@ -34,6 +34,7 @@ class CfgPatches {
 			"A3_Characters_F_OPFOR",
 			"A3_Characters_F_INDEP",
 			"A3_Characters_F_EPA",
+			"A3_Characters_F_Mark",
 			"A3_Air_F",
 			"A3_Air_F_Heli_Light_01",
 			"A3_Air_F_Heli_Light_02",

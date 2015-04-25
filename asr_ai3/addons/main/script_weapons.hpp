@@ -65,7 +65,7 @@ Fire modes
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 250;\
 		aiRateOfFireDispersion = 2;\
-		minRange = 20;\
+		minRange = 30;\
 		minRangeProbab = 0.7;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
@@ -85,7 +85,7 @@ Fire modes
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 450;\
 		aiRateOfFireDispersion = 3;\
-		minRange = 20;\
+		minRange = 30;\
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.6;\
@@ -95,7 +95,7 @@ Fire modes
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 500;\
 		aiRateOfFireDispersion = 4;\
-		minRange = 20;\
+		minRange = 30;\
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.6;\
@@ -105,11 +105,11 @@ Fire modes
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
 		aiRateOfFireDispersion = 2;\
-		minRange = 6;\
+		minRange = 8;\
 		minRangeProbab = 0.8;\
-		midRange = 12;\
+		midRange = 16;\
 		midRangeProbab = 0.7;\
-		maxRange = 24;\
+		maxRange = 32;\
 		maxRangeProbab = 0.1
 #define ASR_AI_ROF_RIFLE_SMALL_FULLAUTO \
 		aiRateOfFire = 0.2;\
@@ -117,9 +117,9 @@ Fire modes
 		aiRateOfFireDispersion = 1;\
 		minRange = 0;\
 		minRangeProbab = 0.9;\
-		midRange = 3;\
+		midRange = 4;\
 		midRangeProbab = 0.8;\
-		maxRange = 6;\
+		maxRange = 8;\
 		maxRangeProbab = 0.3
 #define ASR_AI_ROF_RIFLE_SMALL_FAR_BURST \
 		aiRateOfFire = 5;\
@@ -138,7 +138,7 @@ Fire modes
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 250;\
 		aiRateOfFireDispersion = 2;\
-		minRange = 20;\
+		minRange = 30;\
 		minRangeProbab = 0.7;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
@@ -158,7 +158,7 @@ Fire modes
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 450;\
 		aiRateOfFireDispersion = 3;\
-		minRange = 20;\
+		minRange = 30;\
 		minRangeProbab = 0.8;\
 		midRange = 200;\
 		midRangeProbab = 0.6;\
@@ -181,7 +181,7 @@ Fire modes
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 300;\
 		aiRateOfFireDispersion = 2;\
-		minRange = 15;\
+		minRange = 20;\
 		minRangeProbab = 0.8;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
@@ -201,7 +201,7 @@ Fire modes
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 500;\
 		aiRateOfFireDispersion = 3;\
-		minRange = 15;\
+		minRange = 20;\
 		minRangeProbab = 0.9;\
 		midRange = 300;\
 		midRangeProbab = 0.8;\
@@ -211,7 +211,7 @@ Fire modes
 		aiRateOfFire = 8;\
 		aiRateOfFireDistance = 1200;\
 		aiRateOfFireDispersion = 4;\
-		minRange = 15;\
+		minRange = 20;\
 		minRangeProbab = 0.7;\
 		midRange = 500;\
 		midRangeProbab = 0.8;\
@@ -221,11 +221,11 @@ Fire modes
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
 		aiRateOfFireDispersion = 2;\
-		minRange = 4;\
+		minRange = 6;\
 		minRangeProbab = 0.8;\
-		midRange = 8;\
+		midRange = 12;\
 		midRangeProbab = 0.7;\
-		maxRange = 16;\
+		maxRange = 24;\
 		maxRangeProbab = 0.1
 #define ASR_AI_ROF_RIFLE_MEDIUM_FULLAUTO \
 		aiRateOfFire = 0.2;\
@@ -233,9 +233,9 @@ Fire modes
 		aiRateOfFireDispersion = 1;\
 		minRange = 0;\
 		minRangeProbab = 0.9;\
-		midRange = 2;\
+		midRange = 3;\
 		midRangeProbab = 0.8;\
-		maxRange = 4;\
+		maxRange = 6;\
 		maxRangeProbab = 0.1
 		
 // light-medium machineguns
