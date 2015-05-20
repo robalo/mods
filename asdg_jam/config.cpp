@@ -99,7 +99,7 @@ class CfgMagazines {
 		initSpeed = 960.12;
 		tracersEvery = 0;
 		lastRoundsTracer = 3;
-		magazineGroup[] = {"asdg_jam_mg_556x45_stanag"};
+		magazineGroup[] += {"asdg_jam_mg_556x45_stanag"};
 		author = "ASDG JAM";
 	};
 	class asdg_M_30Rnd_556x45_M856A1_Stanag : asdg_M_30Rnd_556x45_M855A1_Stanag { // 56gr M856A1 Tracer 20 Inch Barrel
@@ -117,7 +117,7 @@ class CfgMagazines {
 		initSpeed = 955.2432;
 		tracersEvery = 0;
 		lastRoundsTracer = 0;
-		magazineGroup[] = {"asdg_jam_mg_556x45_stanag"};
+		magazineGroup[] += {"asdg_jam_mg_556x45_stanag"};
 		author = "ASDG JAM";
 	};
 	class asdg_M_30Rnd_556x45_Mk262_Stanag : 30Rnd_556x45_Stanag { // 77gr Mk262 Mod 1 SPR 20 Inch Barrel
@@ -127,7 +127,7 @@ class CfgMagazines {
 		initSpeed = 868.68;
 		tracersEvery = 0;
 		lastRoundsTracer = 0;
-		magazineGroup[] = {"asdg_jam_mg_556x45_stanag"};
+		magazineGroup[] += {"asdg_jam_mg_556x45_stanag"};
 		author = "ASDG JAM";
 	};
 
@@ -137,8 +137,8 @@ class CfgWeapons {
 
 	class Rifle_Base_F;
 	class mk20_base_F : Rifle_Base_F {
-		magazines[] += {"asdg_jam_mg_556x45_stanag"}; //fail
-		//magazines[] += {ASDG_JAM_MAGAZINES_556x45_STANAG};
+		//magazines[] += {"asdg_jam_mg_556x45_stanag"}; // fail :/
+		magazines[] += {ASDG_JAM_MAGAZINES_556x45_STANAG};
 	};
 
 	class SDAR_base_F : Rifle_Base_F {
