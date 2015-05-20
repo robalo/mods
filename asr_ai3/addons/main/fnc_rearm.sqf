@@ -74,7 +74,7 @@ if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Places to loot: 
 	_unit doWatch objNull;
 	if (_unit == leader _group) then {_unit doMove _pos} else {[_unit] joinSilent _group};
 	sleep 7; //finish reloading anim
-	_unit call FNCMAIN(pistolToPrimary);
+	_unit call FUNC(pistolToPrimary);
 };
 
 _unit setVariable[QGVAR(inprogress),false];

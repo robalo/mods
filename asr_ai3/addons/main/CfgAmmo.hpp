@@ -1,7 +1,6 @@
-#define __AUDIBLE1 12
-#define __AUDIBLE2 18
+#define __AUDIBLE1 16
+#define __AUDIBLE2 24
 #define __RANGE_HIT_FAR 1000
-#define __RANGE_HIT_CLOSE 500
 #define __RANGE_HIT_SMALL 5
 #define __RANGE_CRACKS 100
 
@@ -150,25 +149,25 @@ class CfgAmmo {
 	};
 
 	class B_19mm_HE : BulletBase {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class B_30mm_HE : B_19mm_HE {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class B_30mm_MP : B_30mm_HE {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class B_20mm : BulletBase {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class B_25mm : BulletBase {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class B_30mm_AP : BulletBase {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class B_35mm_AA : BulletBase {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class GrenadeHand : Grenade {
 		dangerRadiusHit = __RANGE_HIT_FAR;
@@ -196,7 +195,7 @@ class CfgAmmo {
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class G_20mm_HE : G_40mm_HE {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 
 	class B_45ACP_Ball : BulletBase {
@@ -209,7 +208,7 @@ class CfgAmmo {
 		dangerRadiusHit = 2;
 	};
 	class Gatling_30mm_HE_Plane_CAS_01_F : BulletBase {
-		dangerRadiusHit = __RANGE_HIT_CLOSE;
+		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 
 	class B_338_Ball : BulletBase {

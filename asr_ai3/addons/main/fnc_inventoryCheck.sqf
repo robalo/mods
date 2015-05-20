@@ -17,7 +17,7 @@ if !(_unit canAdd "FirstAidKit") exitWith {false}; //not even space for a FAK
 _w = primaryWeapon _unit;
 if (_w != "" && {[magazines _unit, _w call FUNC(getCompatMags)] call FUNC(countItems) < GVAR(needmax) select __m_primary_1}) exitWith {true};
 
-if (_unit call FNCMAIN(isMedic)) then {
+if (_unit call FUNC(isMedic)) then {
 	GVAR(needmax) set [__m_fakit, (GVAR(needmax) select __m_fakit) + 3];
 };
 

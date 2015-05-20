@@ -115,7 +115,6 @@ class CfgVehicles {
 		ASR_AI_CAMO_FULL;
 		headgearProbability = 100;
 		allowedHeadgear[] = {"H_Bandanna_gry", "H_Bandanna_khk_hs", "H_Bandanna_khk", "H_Bandanna_sgg", "H_Watchcap_blk", "H_Watchcap_cbr", "H_Watchcap_camo", "H_Watchcap_khk", "H_Booniehat_dgtl", "H_Booniehat_oli", "H_Cap_blk", "H_Cap_oli", "H_Cap_oli_hs", "H_Cap_blk_Raven", "H_MilCap_dgtl", "H_Booniehat_dgtl", "H_Cap_blk_Raven"};
-		allowedFacewear[] = {"G_Lowprofile","G_Shades_Black", "G_Shades_Blue", "G_Shades_Green", "G_Shades_Red", "G_Sport_Blackred", "G_Bandanna_oli", "", ""};
 	};
 	
 	class asdg_I_recon : asdg_I_Soldier_recon_base {

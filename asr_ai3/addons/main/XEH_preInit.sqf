@@ -1,5 +1,5 @@
 //#define DEBUG_MODE_FULL
-#include "\x\asr_ai3\addons\main\script_component.hpp"
+#include "script_component.hpp"
 LOG(MSG_INIT);
 
 if (isServer) then {

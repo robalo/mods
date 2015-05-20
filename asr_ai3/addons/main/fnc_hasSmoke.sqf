@@ -1,6 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-#define __SMOKEMUZZLES ["SmokeShellMuzzle","SmokeShellYellowMuzzle","SmokeShellGreenMuzzle","SmokeShellRedMuzzle","SmokeShellPurpleMuzzle","SmokeShellOrangeMuzzle","SmokeShellBlueMuzzle","Rhs_Throw_Smoke","BWA3_DM25Muzzle","BWA3_DM32OrangeMuzzle","BWA3_DM32YellowMuzzle"]
+#define __SMOKEMUZZLES ["SmokeShellMuzzle","SmokeShellYellowMuzzle","SmokeShellGreenMuzzle","SmokeShellRedMuzzle","SmokeShellPurpleMuzzle","SmokeShellOrangeMuzzle","SmokeShellBlueMuzzle","Rhsusf_Throw_Smoke_white","Rhsusf_Throw_Smoke_green","Rhsusf_Throw_Smoke_red","Rhsusf_Throw_Smoke_yellow","Rhsusf_Throw_Smoke_purple","BWA3_DM25Muzzle","BWA3_DM32OrangeMuzzle","BWA3_DM32YellowMuzzle"]
 PARAMS_1(_unit);
 private ["_thismuz","_thismags","_bingo"];
 scopeName "hasmoke_main";

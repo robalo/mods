@@ -1,5 +1,5 @@
 //#define DEBUG_MODE_FULL
-#include "\x\asr_ai3\addons\main\script_component.hpp"
+#include "script_component.hpp"
 LOG(MSG_INIT);
 
 if (isServer) then {
@@ -20,7 +20,7 @@ if (isServer) then {
 					{ // cycle all groups
 						_thisgroup = _x;
 						_units = units _thisgroup;
-						if ({isPlayer _x} count _units == 0) then {
+						if (side _thisgroup != civilian && {{isPlayer _x} count _units == 0}) then {
 							_c = count _units;
 							if (_c == 1) then {
 								_u = _units select 0;
