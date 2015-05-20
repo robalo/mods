@@ -14,8 +14,15 @@ class CfgPatches {
 	class asdg_jointrails {
 		units[] = {};
 		weapons[] = {};
-		requiredVersion = 1.43;
-		requiredAddons[] = {"A3_Functions_F_Bootcamp","A3_Weapons_F","A3_Weapons_F_Mark"};
+		requiredVersion = 1.44;
+		requiredAddons[] = {"A3_Weapons_F","A3_Weapons_F_Mark"};
+		author[] = {"Robalo"};
+	};
+	class asdg_jointmuzzles {
+		units[] = {};
+		weapons[] = {};
+		requiredVersion = 1.44;
+		requiredAddons[] = {"A3_Weapons_F","A3_Weapons_F_Mark"};
 		author[] = {"Robalo"};
 	};
 };
@@ -175,8 +182,8 @@ class asdg_MuzzleSlot_556: asdg_MuzzleSlot { // for 5.56x45 universal mount supp
 
 class asdg_MuzzleSlot_762MG: asdg_MuzzleSlot { // for 7.62, 6.5 and 5.56 universal mount MG suppressors
 	class compatibleItems {
-		//muzzle_snds_H_MG = 1;
-		//muzzle_snds_H_SW = 1;
+		muzzle_snds_H_MG = 1;
+		muzzle_snds_H_SW = 1;
 	};
 };
 

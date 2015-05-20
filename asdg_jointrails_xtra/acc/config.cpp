@@ -44,11 +44,13 @@ class CfgWeapons {
 		};
 	};
 	class muzzle_snds_H_MG: muzzle_snds_H { // 7.62 MG, can also be used on 6.5 and 5.56 MGs
+		displayName = "$STR_ASDG_cfgweapons_muzzle_snds_h_mg";
 		class ItemInfo: ItemInfo {
 			__SUPP_COEF;
 		};
 	};
 	class muzzle_snds_H_SW : muzzle_snds_H_MG {
+		displayName = "$STR_ASDG_cfgweapons_muzzle_snds_h_mg";
 		class ItemInfo: ItemInfo {
 			__SUPP_COEF;
 		};

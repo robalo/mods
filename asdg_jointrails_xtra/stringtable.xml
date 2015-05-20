@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project name="Arma3">
+  <Package name="ASDG">
+    <Container name="Equipment">
+        <Key ID="STR_ASDG_cfgweapons_muzzle_snds_h_mg">
+          <Original>Sound Suppressor MG</Original>
+          <English>Sound Suppressor MG</English>
+          <Czech>Tlumič hluku MG</Czech>
+          <French>Silencieux pour MG</French>
+          <German>Schalldämpfer MG</German>
+          <Italian>Silenziatore MG</Italian>
+          <Polish>Tłumik MG</Polish>
+          <Portuguese>Metralhadora silenciador</Portuguese>
+          <Russian>Глушитель для пулемета</Russian>
+          <Spanish>Silenciador MG</Spanish>
+        </Key>
+      </Container>
+  </Package>
+</Project>
