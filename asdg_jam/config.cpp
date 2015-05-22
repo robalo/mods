@@ -39,6 +39,15 @@ HOW TO:
 
 	// NOTE: the above coefficients were calculated relative to 30Rnd_556x45_Stanag (initspeed = 920) but they will be applied to all types of magazines/bullets
 
+	class EBR_base_F : Rifle_Long_Base_F {
+		initspeed = -0.95535;		// Mk14 Mod 0: 815 m/s
+	};
+
+- use available macros
+
+	#include "\x\asdg\addons\jam\script_macros.hpp"
+
+
 */
 
 #include "script_macros.hpp"
@@ -87,6 +96,29 @@ class CfgAmmo {
 		deflecting = 16;
 	};
 
+	class B_762x51_Ball;
+	class asdg_B_762x51_M80A1 : B_762x51_Ball { // 147gr M80A1 EPR (24 inch barrel) -- Spartan0536
+		hit = 10.03887521;
+		typicalSpeed = 938.784;
+		airFriction = -0.00083981;
+		caliber = 1.075;
+		deflecting = 21;
+	};
+	class asdg_B_762x51_Mk316 : B_762x51_Ball { // 175gr Mk316 Mod 0 Special Ball Long Range (24 inch barrel) -- Spartan0536
+		hit = 15.15387711;
+		typicalSpeed = 804.672;
+		airFriction = -0.00077031;
+		caliber = 0.449;
+		deflecting = 18;
+	};
+	class asdg_B_762x51_LFMJBTSUB : B_762x51_Ball { // 200gr Lapua Full Metal Jacket Boat Tail SUBSONIC (24 inch barrel) -- Spartan0536
+		hit = 5.795839451;
+		typicalSpeed = 359.664;
+		airFriction = -0.00057641;
+		caliber = 0.649;
+		deflecting = 15;
+	};
+
 };
 
 class CfgMagazines {
@@ -131,22 +163,61 @@ class CfgMagazines {
 		author = "ASDG JAM";
 	};
 
+	class 20Rnd_762x51_Mag;
+	class asdg_M_30Rnd_556x45_M80A1_M14 : 20Rnd_762x51_Mag { // 147gr M80A1 EPR (24 inch barrel)
+		displayName = "7.62mm 20Rnd M80A1 M14 Mag";
+		displaynameshort = "M80A1";
+		ammo = "asdg_B_762x51_M80A1";
+		initSpeed = 938.784;
+		tracersEvery = 0;
+		lastRoundsTracer = 0;
+		magazineGroup[] += {"asdg_jam_mg_762x51_m14"};
+		author = "ASDG JAM";
+	};
+	class asdg_M_30Rnd_556x45_Mk316_M14 : 20Rnd_762x51_Mag { // 175gr Mk316 Mod 0 Special Ball Long Range (24 inch barrel)
+		displayName = "7.62mm 20Rnd Mk316 M14 Mag";
+		displaynameshort = "Mk316";
+		ammo = "asdg_B_762x51_Mk316";
+		initSpeed = 804.672;
+		tracersEvery = 0;
+		lastRoundsTracer = 0;
+		magazineGroup[] += {"asdg_jam_mg_762x51_m14"};
+		author = "ASDG JAM";
+	};
+	class asdg_M_30Rnd_556x45_LFMJBTSUB_M14 : 20Rnd_762x51_Mag { // 175gr Mk316 Mod 0 Special Ball Long Range (24 inch barrel)
+		displayName = "7.62mm 20Rnd Subsonic M14 Mag";
+		displaynameshort = "BTSub";
+		ammo = "asdg_B_762x51_LFMJBTSUB";
+		initSpeed = 359.664;
+		tracersEvery = 0;
+		lastRoundsTracer = 0;
+		magazineGroup[] += {"asdg_jam_mg_762x51_m14"};
+		author = "ASDG JAM";
+	};
+
 };
 
 class CfgWeapons {
 
 	class Rifle_Base_F;
+	class Rifle_Long_Base_F;
+
 	class mk20_base_F : Rifle_Base_F {
 		//magazines[] += {"asdg_jam_mg_556x45_stanag"}; // fail :/
 		magazines[] += {ASDG_JAM_MAGAZINES_556x45_STANAG};
 	};
-
 	class SDAR_base_F : Rifle_Base_F {
 		magazines[] += {ASDG_JAM_MAGAZINES_556x45_STANAG};
 	};
-
 	class Tavor_base_F : Rifle_Base_F {
 		magazines[] += {ASDG_JAM_MAGAZINES_556x45_STANAG};
+	};
+
+	class EBR_base_F : Rifle_Long_Base_F {
+		magazines[] += {ASDG_JAM_MAGAZINES_762x51_M14};
+	};
+	class DMR_06_base_F : Rifle_Long_Base_F {
+		magazines[] += {ASDG_JAM_MAGAZINES_762x51_M14};
 	};
 
 };
