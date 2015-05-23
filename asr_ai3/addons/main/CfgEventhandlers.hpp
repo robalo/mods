@@ -27,15 +27,15 @@ class Extended_InitPost_EventHandlers {
 		};
 	};
 };
-/*
+
 class Extended_FiredBIS_EventHandlers {
 	class AllVehicles {
 		class ADDON {
-			serverFiredBIS = QUOTE(if (GVAR(enabled) == 1) then {_this call FUNC(firedEH)});
+			serverFiredBIS = QUOTE(if (GVAR(enabled) == 1 && GVAR(gunshothearing) > 0) then {_this call FUNC(firedEH)});
 		};
 	};
 };
-*/
+
 class Extended_Killed_EventHandlers {
 	class SoldierWB {
 		class ADDON {

@@ -1,5 +1,6 @@
-#define __AUDIBLE1 16
-#define __AUDIBLE2 24
+#define __AUDIBLE0 1
+#define __AUDIBLE1 8
+#define __AUDIBLE2 16
 #define __RANGE_HIT_FAR 1000
 #define __RANGE_HIT_SMALL 5
 #define __RANGE_CRACKS 100
@@ -32,7 +33,7 @@ class CfgAmmo {
 		suppressionRadiusHit = 8;
 	};
 	class rhs_ammo_45ACP_MHP : BulletBase {
-		audibleFire = __AUDIBLE1; //9;
+		audibleFire = __AUDIBLE0; //9;
 		dangerRadiusBulletClose = 1; //subsonic
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;

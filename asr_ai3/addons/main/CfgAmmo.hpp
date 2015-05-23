@@ -1,5 +1,6 @@
-#define __AUDIBLE1 16
-#define __AUDIBLE2 24
+#define __AUDIBLE0 1
+#define __AUDIBLE1 8
+#define __AUDIBLE2 16
 #define __RANGE_HIT_FAR 1000
 #define __RANGE_HIT_SMALL 5
 #define __RANGE_CRACKS 100
@@ -77,6 +78,7 @@ class CfgAmmo {
 	};
 
 	class B_556x45_dual : B_556x45_Ball {
+		audibleFire = __AUDIBLE0; //4;
 		dangerRadiusBulletClose = 0;
 	};
 
@@ -199,7 +201,7 @@ class CfgAmmo {
 	};
 
 	class B_45ACP_Ball : BulletBase {
-		audibleFire = __AUDIBLE1; //9;
+		audibleFire = __AUDIBLE0; //9;
 		dangerRadiusBulletClose = 1; //subsonic ammo, no crack (usually)
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
@@ -222,7 +224,7 @@ class CfgAmmo {
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 	};
 	class B_127x54_Ball : BulletBase {
-		//audibleFire = 3;
+		audibleFire = __AUDIBLE0; //3;
 		dangerRadiusBulletClose = 1; //subsonic, no crack
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;

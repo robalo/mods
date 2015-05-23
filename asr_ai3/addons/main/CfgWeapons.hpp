@@ -284,6 +284,7 @@ class CfgWeapons {
 #define __SUPP_COEF \
 			class AmmoCoef { \
 				visibleFire = 0.2; \
+				audibleFire = 0.3; \
 			}
 
 	class InventoryMuzzleItem_Base_F;
