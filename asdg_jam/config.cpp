@@ -117,6 +117,9 @@ class CfgAmmo {
 		airFriction = -0.00057641;
 		caliber = 0.649;
 		deflecting = 15;
+		audibleFire = 1;
+		dangerRadiusBulletClose = 1;
+		suppressionRadiusBulletClose = 1;
 	};
 
 };
