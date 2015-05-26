@@ -1,6 +1,5 @@
 // help the AI hear weapons fired
 //#define DEBUG_MODE_FULL
-#define LOUDRANGE 1400
 #include "script_component.hpp"
 PARAMS_7(_shooter,_weapon,_muzzle,_mode,_ammo,_magazine,_projectile);
 
@@ -51,7 +50,7 @@ if (_sdweap && _sdammo) exitWith {
 };
 
 // apply userconfig coefficient
-_range = LOUDRANGE * GVAR(gunshothearing);
+_range = GVAR(loudrange);
 
 _ammofactor = _audible / 8;
 if (_ammofactor > 1 || _sdweap) then {_range = _range * _ammofactor};
