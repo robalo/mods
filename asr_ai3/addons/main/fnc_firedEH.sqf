@@ -2,10 +2,12 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 PARAMS_7(_shooter,_weapon,_muzzle,_mode,_ammo,_magazine,_projectile);
+#define _MAXREVEAL_ 1.7
 
-if (diag_fps < 45 || {isNull _projectile} || {!(_ammo isKindOf "BulletCore")}) exitWith {};
+//limit
+if (diag_fps < 42 || {isNull _projectile} || {!(_ammo isKindOf "BulletCore")}) exitWith {};
 
-private ["_cfg","_range","_k","_sdweap","_sdammo","_distance","_detectupto","_audible","_ammofactor","_initspeed","_supp","_audiblecoef","_veh","_firelight","_weaponinitspeed"];
+private ["_cfg","_range","_k","_sdweap","_sdammo","_distance","_detectupto","_audible","_ammofactor","_initspeed","_supp","_audiblecoef","_veh","_weaponinitspeed"];
 
 // get muzzle config
 if (_muzzle == _weapon) then {
@@ -15,24 +17,25 @@ if (_muzzle == _weapon) then {
 };
 
 _veh = vehicle _shooter;
+
+//check weapon and ammo properties
 _sdweap = false;
 _sdammo = false;
 
-_audible = [configFile>>"CfgAmmo">>_ammo>>"audiblefire", "number", 8] call CBA_fnc_getConfigEntry;
+_audible = getNumber (configFile>>"CfgAmmo">>_ammo>>"audiblefire");
 _supp = "";
 if (_veh == _shooter) then {
 	{ if (_weapon == _x select 0) exitWith {_supp = _x select 1} } forEach (weaponsItems _shooter);
 };
 if (_supp != "") then {
-	_audiblecoef = [configFile>>"cfgWeapons">>_supp>>"ItemInfo">>"AmmoCoef">>"audibleFire","number",1] call CBA_fnc_getConfigEntry;
+	_audiblecoef = getNumber (configFile>>"cfgWeapons">>_supp>>"ItemInfo">>"AmmoCoef">>"audibleFire");
 	_sdweap = _audiblecoef < 1;
 	_audible = _audible*_audiblecoef;
 };
-_firelight = [configFile>>"cfgWeapons">>_weapon>>"fireLightIntensity", "number", 0.2] call CBA_fnc_getConfigEntry;
-_sdweap = _sdweap || _firelight < 0.1;
+_sdweap = _sdweap || {getNumber (_cfg>>"fireLightIntensity") < 0.1};
 
-_initspeed = [configFile>>"CfgMagazines">>_magazine>>"initSpeed", "number", 0] call CBA_fnc_getConfigEntry;
-_weaponinitspeed = [configFile>>"cfgWeapons">>_weapon>>"initSpeed", "number", 0] call CBA_fnc_getConfigEntry;
+_initspeed = getnumber (configFile>>"CfgMagazines">>_magazine>>"initSpeed");
+_weaponinitspeed = [_cfg>>"initSpeed", "number", 0] call CBA_fnc_getConfigEntry;
 switch (true) do {
 	case (_weaponinitspeed > 0): {
 		_initspeed = _weaponinitspeed;
@@ -49,30 +52,25 @@ if (_sdweap && _sdammo) exitWith {
 	if (GVAR(debug) == 1 && {isPlayer gunner _veh || isPlayer driver _veh}) then {hintSilent "ASR DEBUG: supressed weapon with subsonic ammo"};
 };
 
-// apply userconfig coefficient
-_range = GVAR(loudrange);
-
-_ammofactor = _audible / 8;
+//check range
+_range = GVAR(loudrange); // calculated with userconfig coefficient in preinit
+_ammofactor = _audible / 12;
 if (_ammofactor > 1 || _sdweap) then {_range = _range * _ammofactor};
-
 if (_range < 100) exitWith {LOG("short sound range, exiting")};
+//reduce in forests/houses/rain/wind
+if ([_veh,"(forest + houses + rain + windy)",2] call FUNC(isNearStuff)) then {_detectupto = ceil (_detectupto * 0.75)};
 
-_detectupto = _range / 1.5; // maximum distance for which calculated knowledge is at least 0.5
+// maximum distance for which calculated knowledge is at least 1
+_detectupto = ceil (_range * (1 - (1/_MAXREVEAL_)));
 
+//debug
 if (isPlayer gunner _veh || isPlayer driver _veh) then {
-	// for players, reduce the range they're heard from when in forests or houses, to balance against AI's super see-through-things vision
-	if ([_veh,"(forest + houses)",4] call FUNC(isNearStuff)) then {_detectupto = _detectupto * 0.5};
-	if (GVAR(debug) == 1) then {hintSilent format["ASR DEBUG: gunshot hearing aid: minimum reveal of 0.5 at max range of %1 meters", _detectupto]};
+	if (GVAR(debug) == 1) then {hintSilent format["ASR DEBUG: gunshot hearing aids up to %1 meters", _detectupto]};
 };
 
+//alert
 {
-	if (group _x != group _shooter) then {
-		_distance = _veh distance _x;
-		// gain knowledge based on weapon sound and range
-		_k = 1.5 * (1 - _distance/_range);
-		// when in forest, not so accurate
-		if ([_x,"(forest + houses)",4] call FUNC(isNearStuff)) then {_k = _k * 0.5};
-		_x reveal [_veh,_k];
-		TRACE_3("unit hears this shooter",_x,_veh,_k);
-	};
+
+	if (group _x != group _shooter) then {	[_x,_veh,_MAXREVEAL_,_range] call FUNC(reveal) };
+
 } forEach (_veh nearEntities [["SoldierWB","SoldierEB","SoldierGB","StaticWeapon"],_detectupto]);

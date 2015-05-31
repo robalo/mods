@@ -1,5 +1,5 @@
 #define __AUDIBLE0 1
-#define __AUDIBLE1 8
+#define __AUDIBLE1 12
 #define __AUDIBLE2 16
 #define __RANGE_HIT_FAR 1000
 #define __RANGE_HIT_SMALL 5

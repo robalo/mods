@@ -17,17 +17,18 @@ class CfgVehicles {
 		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
 		ASR_AI_SKILL_INS2; // default insurgent
 		//sensitivity = 3.0;
-		sensitivityEar = 0.75;
-		audible = 0.03;
+		//sensitivityEar = 0.5;
+		audible = 0.02; //0.05
 		//lyingLimitSpeedHiding = 0.8;
 		//crouchProbabilityHiding = 0.8;
 		//lyingLimitSpeedCombat = 1.8;
-		//crouchProbabilityCombat = 0.4;
+		crouchProbabilityCombat = 0.6; //0.4
 		//crouchProbabilityEngage = 0.75;
 		//lyingLimitSpeedStealth = 2;
 		minFireTime = 7;
-		ASR_AI_CROUCH_MORE;
 		ASR_AI_CAMO_HALF;
+		spotableDarkNightLightsOff = 0.0015; //0.003
+		spotableNightLightsOff = 0.0175; //0.035
 	};
 	class Civilian: CAManBase {
 		ASR_AI_SKILL_CIV1; // default civilian

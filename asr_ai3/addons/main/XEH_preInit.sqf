@@ -36,7 +36,7 @@ if (count GVAR(sets) < 10) then {GVAR(sets) = [["aiming",[1,0],"spotting",[1,0],
 if (count GVAR(levels_units) < 10) then {GVAR(levels_units) = [[],[],[],[],[],[],[],[],[],[],[]]};
 
 ASR_AI_SETDEFAULT(gunshothearing,1);
-GVAR(loudrange) = 1000 * GVAR(gunshothearing);
+GVAR(loudrange) = 1500 * GVAR(gunshothearing);
 
 PREP(isUnc);
 PREP(isValidUnit);
@@ -68,6 +68,7 @@ PREP(shootingStance);
 PREP(showHideNVG);
 PREP(setupGear);
 PREP(reactDanger);
+PREP(reveal);
 
 FUNC(pistolToPrimary) = {
 	PARAMS_1(_unit);
