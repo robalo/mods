@@ -16,7 +16,6 @@ if (isServer) then {
 ASR_AI_SETDEFAULT(enabled,1);
 ASR_AI_SETDEFAULT(radiorange,700);
 ASR_AI_SETDEFAULT(seekcover,1);
-ASR_AI_SETDEFAULT(throwsmoke,0.4);
 ASR_AI_SETDEFAULT(usebuildings,0.5);
 ASR_AI_SETDEFAULT(getinweapons,0.5);
 ASR_AI_SETDEFAULT(packNVG,1);
@@ -48,7 +47,6 @@ PREP(isNearStuff);
 PREP(getNearest);
 PREP(nearFactionGroups);
 PREP(hasRadio);
-PREP(hasSmoke);
 PREP(setUnitSkill);
 PREP(modUnitSkill);
 PREP(changeVD);
@@ -57,7 +55,6 @@ PREP(killedEH);
 PREP(removeGimp);
 PREP(sendInfo);
 PREP(broadcastInfo);
-PREP(throwSmoke);
 PREP(canCover);
 PREP(findCover);
 PREP(moveToCover);
@@ -69,6 +66,7 @@ PREP(showHideNVG);
 PREP(setupGear);
 PREP(reactDanger);
 PREP(reveal);
+PREP(isUnderRoof);
 
 FUNC(pistolToPrimary) = {
 	PARAMS_1(_unit);
@@ -111,10 +109,10 @@ FUNC(onTeamSwitch) = {
 	private "_grp";
 	_grp = group player;
 	_grp selectLeader player;
-	{_x enableFatigue (isPlayer _x)} forEach (units _grp);
+    if (GVAR(disableAIPGfatigue) == 1) then {
+        {_x enableFatigue (isPlayer _x)} forEach (units _grp);
+    };
 };
-
-GVAR(smokin) = false;
 
 GVAR(needmax) = [ // The level of supplies the unit will try to maintain
 	3, // mags for primary weapon

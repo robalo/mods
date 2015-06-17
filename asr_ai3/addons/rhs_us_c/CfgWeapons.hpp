@@ -89,14 +89,39 @@ class CfgWeapons {
 		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
 	};
 
-	class LMG_Mk200_F;
-	
-	class rhs_M249_base : LMG_Mk200_F {
+	class rhs_weap_saw_base : Rifle_Base_F {
 		modes[] = {"FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2"};
 		ASR_AI_MG_MODES(FullAuto,Mode_FullAuto,Mode_SemiAuto);
+		ASR_AI_DISP_REGULAR;
+		asr_ai_wtype = ASR_WEAPON_TYPE_MG;
+	};
+	class rhs_weap_lmg_minimipara : rhs_weap_saw_base {
+		ASR_AI_MG_MODES(FullAuto,Mode_FullAuto,Mode_SemiAuto);
+		ASR_AI_DISP_REGULAR;
+	};
+	class rhs_weap_lmg_minimi_railed : rhs_weap_lmg_minimipara {};
+
+	class rhs_weap_m249_pip_S : rhs_weap_lmg_minimi_railed {
+		ASR_AI_MG_MODES(FullAuto,FullAuto,Mode_SemiAuto);
+	};
+	class rhs_weap_m249_pip_S_para : rhs_weap_lmg_minimi_railed {
+		ASR_AI_MG_MODES(FullAuto,FullAuto,Mode_SemiAuto);
+	};
+	class rhs_weap_m249_pip_S_vfg : rhs_weap_lmg_minimi_railed {
+		ASR_AI_MG_MODES(FullAuto,FullAuto,Mode_SemiAuto);
+	};
+	class rhs_weap_m249_pip_L : rhs_weap_lmg_minimi_railed {
+		ASR_AI_MG_MODES(FullAuto,FullAuto,Mode_SemiAuto);
+	};
+	class rhs_weap_m249_pip_L_para : rhs_weap_lmg_minimi_railed {
+		ASR_AI_MG_MODES(FullAuto,FullAuto,Mode_SemiAuto);
+	};
+	class rhs_weap_m249_pip_L_vfg : rhs_weap_lmg_minimi_railed {
+		ASR_AI_MG_MODES(FullAuto,FullAuto,Mode_SemiAuto);
 	};
 
-	class weap_m240_base : rhs_M249_base {
+	class rhs_weap_M249_base;
+	class rhs_weap_m240_base : rhs_weap_M249_base {
 		modes[] = {"manual", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2"};
 		ASR_AI_MG_MODES(manual,Mode_FullAuto,manual);
 		ASR_AI_DISP_REGULAR;

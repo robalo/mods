@@ -5,6 +5,18 @@
 #define __RANGE_HIT_SMALL 5
 #define __RANGE_CRACKS 100
 
+#define AIAmmoUsageNone 0
+#define AIAmmoUsageLight 1
+#define AIAmmoUsageMarking 2
+#define AIAmmoUsageConcealment 4
+#define AIAmmoUsageCountermeasures 8
+#define AIAmmoUsageMine 16
+#define AIAmmoUsageUnderwater 32
+#define AIAmmoUsageOffensiveInf 64
+#define AIAmmoUsageOffensiveVeh 128
+#define AIAmmoUsageOffensiveAir 256
+#define AIAmmoUsageOffensiveArmour 512
+
 class CfgAmmo {
 	class Default;
 	class MissileCore : Default {
@@ -238,6 +250,28 @@ class CfgAmmo {
 	// allow AI to use AT against helis; Players do it, why not AI ?
 	class R_PG32V_F: RocketBase {
 		airlock = 1;
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;
+	};
+	class R_TBG32V_F : R_PG32V_F {
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir;
+	};
+
+	class M_PG_AT : MissileBase {
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
+	};
+
+	class M_NLAW_AT_F : MissileBase {
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
+	};
+
+    class M_Titan_AT;
+	class M_Titan_AP : M_Titan_AT {
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh;
+	};
+
+    class FlareBase;
+	class F_40mm_White : FlareBase {
+		aiAmmoUsageFlags = AIAmmoUsageLight;
 	};
 
 };

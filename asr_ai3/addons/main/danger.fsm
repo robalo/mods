@@ -6,7 +6,7 @@ item1[] = {"End",1,250,-150.000000,440.000000,-60.000000,490.000000,0.000000,"En
 item2[] = {"Rest",8,218,-700.000000,400.000000,-530.000000,510.000000,0.000000,"Rest"};
 item3[] = {"Timeout",4,218,-370.000000,60.000000,-260.000000,150.000000,1.000000,"Timeout"};
 item4[] = {"Reacting_on_danger",0,250,-620.000000,-500.000000,-410.000000,-450.000000,0.000000,"Reacting on danger!"};
-item5[] = {"Cause_0_ENEMY_DETECTED",4,218,-1370.000000,-200.000000,-1190.000000,-80.000000,6.000000,"Cause 0" \n "ENEMY" \n "DETECTED/NEAR"};
+item5[] = {"Cause_0_3_ENEMY",4,218,-1370.000000,-200.000000,-1190.000000,-80.000000,6.000000,"Cause 0,3" \n "ENEMY" \n "DETECTED/NEAR"};
 item6[] = {"Signal_enemy",2,250,-1360.000000,410.000000,-1200.000000,490.000000,0.000000,"Signal enemy"};
 item7[] = {"Cause__8_CAN_FIR",4,218,-500.000000,-260.000000,-310.000000,-140.000000,7.000000,"Cause: 8" \n "CAN FIRE"};
 item8[] = {"Stop_to_fire___ASR",2,250,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
@@ -16,12 +16,12 @@ item11[] = {"Always",8,218,-240.000000,330.000000,-120.000000,410.000000,0.00000
 item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
 item14[] = {"AI__not_in_vehic",4,218,-810.000000,-400.000000,-630.000000,-310.000000,1.000000,"AI " \n "not in vehicle"};
-item15[] = {"Cause_3_4_5_AMMO",4,218,-940.000000,-100.000000,-720.000000,50.000000,4.000000,"Cause 3.4,5" \n "AMMO IMPACT NEAR," \n "OR DEAD TEAMMATE" \n ""};
+item15[] = {"Cause_4_5_AMMO_IMPACT",4,218,-940.000000,-100.000000,-720.000000,50.000000,4.000000,"Cause 4,5" \n "AMMO IMPACT NEAR," \n "OR DEAD TEAMMATE" \n ""};
 item16[] = {"Reactions",2,250,-920.000000,150.000000,-760.000000,240.000000,0.000000,"Reactions"};
 item17[] = {"set_vars_check_danger",2,250,-840.000000,-270.000000,-620.000000,-190.000000,0.000000,"set vars" \n "check danger cause"};
-item18[] = {"Cause_1_HEARD_SH",4,218,-1190.000000,-100.000000,-990.000000,40.000000,3.000000,"Cause 1" \n "HEARD" \n "SHOOTING"};
-item19[] = {"mod_enabled",4,218,-1250.000000,20.000000,-1150.000000,90.000000,1.000000,"mod enabled"};
-item20[] = {"Radio_Report",2,4346,-1190.000000,180.000000,-1140.000000,350.000000,0.000000,"Radio" \n "Report"};
+item18[] = {"Cause_1_9_HEARD",4,218,-1190.000000,-100.000000,-990.000000,40.000000,3.000000,"Cause 1,9" \n "HEARD" \n "SHOOTING"};
+item19[] = {"mod_enabled",4,4314,-1250.000000,20.000000,-1150.000000,90.000000,1.000000,"mod enabled"};
+item20[] = {"Radio_Report",2,250,-1190.000000,180.000000,-1140.000000,350.000000,0.000000,"Radio" \n "Report"};
 item21[] = {"react",8,218,-1090.000000,300.000000,-1000.000000,350.000000,0.000000,"react"};
 version=1;
 class LayoutItems
@@ -64,8 +64,8 @@ link24[] = {18,16};
 link25[] = {19,20};
 link26[] = {20,21};
 link27[] = {21,16};
-globals[] = {10.000000,1,0,1,16777215,640,480,1,239,6316128,1,-1381.939697,35.925030,569.472046,-600.929260,1123,927,1};
-window[] = {2,-1,-1,-1,-1,824,44,1080,44,3,1140};
+globals[] = {10.000000,1,0,1,16777215,640,480,1,239,6316128,1,-1381.939697,35.925030,569.472046,-600.929260,1122,921,1};
+window[] = {2,-1,-1,-1,-1,980,200,1236,200,3,1140};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -171,7 +171,7 @@ class FSM
           priority = 1.000000;
           to="Radio_Report";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_asrenabled"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_asrenabled && _isleader"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -330,8 +330,8 @@ class FSM
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
-        /*%FSM<LINK "Cause_0_ENEMY_DETECTED">*/
-        class Cause_0_ENEMY_DETECTED
+        /*%FSM<LINK "Cause_0_3_ENEMY">*/
+        class Cause_0_3_ENEMY
         {
           priority = 6.000000;
           to="Signal_enemy";
@@ -340,8 +340,8 @@ class FSM
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
-        /*%FSM<LINK "Cause_3_4_5_AMMO">*/
-        class Cause_3_4_5_AMMO
+        /*%FSM<LINK "Cause_4_5_AMMO_IMPACT">*/
+        class Cause_4_5_AMMO_IMPACT
         {
           priority = 4.000000;
           to="Reactions";
@@ -350,8 +350,8 @@ class FSM
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
-        /*%FSM<LINK "Cause_1_HEARD_SH">*/
-        class Cause_1_HEARD_SH
+        /*%FSM<LINK "Cause_1_9_HEARD">*/
+        class Cause_1_9_HEARD
         {
           priority = 3.000000;
           to="Reactions";

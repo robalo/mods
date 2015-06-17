@@ -14,7 +14,6 @@ class CfgVehicles {
 
 	class Man;
 	class CAManBase: Man {
-		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
 		ASR_AI_SKILL_INS2; // default insurgent
 		//sensitivity = 3.0;
 		//sensitivityEar = 0.5;
@@ -22,7 +21,7 @@ class CfgVehicles {
 		//lyingLimitSpeedHiding = 0.8;
 		//crouchProbabilityHiding = 0.8;
 		//lyingLimitSpeedCombat = 1.8;
-		crouchProbabilityCombat = 0.6; //0.4
+		crouchProbabilityCombat = 0.65; //0.4
 		//crouchProbabilityEngage = 0.75;
 		//lyingLimitSpeedStealth = 2;
 		minFireTime = 7;
@@ -39,16 +38,19 @@ class CfgVehicles {
 		accuracy = 0.2;
 	};
 	class SoldierWB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
 		ASR_AI_SKILL_REG2; // default soldier
 		ASR_AI_COST_REG;
 		ASR_AI_CAMO_FULL;
 	};
 	class SoldierEB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
 		ASR_AI_SKILL_REG2;
 		ASR_AI_COST_REG;
 		ASR_AI_CAMO_FULL;
 	};
 	class SoldierGB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
 		ASR_AI_SKILL_REG2;
 		ASR_AI_COST_REG;
 		ASR_AI_CAMO_FULL;

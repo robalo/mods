@@ -4,22 +4,21 @@ PARAMS_4(_unit,_source,_until,_distance);
 
 #define __DELAY_ 60
 
-if (!isNil QGVAR(mToCover)) exitWith {};
 if (GVAR(seekcover) < 1) exitWith {};
 if (vehicle _unit != _unit) exitWith {};
 
-private "_grp";
+private ["_grp","_mToCover","_cpa","_savedcpa"];
 _grp = group _unit;
 if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has HOLD wp",_grp)};
 
-if (diag_ticktime < (_grp getVariable [QGVAR(lastMoveToCoverTime),-240]) + 240) exitWith {TRACE_1("too soon to move to cover again",_grp)};
+if (diag_ticktime < (_grp getVariable [QGVAR(lastMoveToCoverTime),-120]) + 120) exitWith {TRACE_1("too soon to move to cover again",_grp)};
 
-if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {!([_unit,"(forest + trees + houses)",7] call FUNC(isNearStuff))}) then {GVAR(mToCover) = true};
+_mToCover = false;
+if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {!([_unit,"(forest + trees + houses)",5] call FUNC(isNearStuff))}) then {_mToCover = true};
 
-private ["_cpa","_savedcpa"];
 _cpa = [];
 
-if (!isNil QGVAR(mToCover)) then {
+if (_mToCover) then {
 	_savedcpa = (group _unit) getVariable QGVAR(nearcover);
 	if (!isNil "_savedcpa") then {
 		{ if (_x distance _unit < _distance) then {_cpa pushBack _x} } forEach _savedcpa;
@@ -31,11 +30,11 @@ if (!isNil QGVAR(mToCover)) then {
 		// try twice farther
 		_cpa = [_unit,_source,(_distance*2)] call FUNC(findCover);
 	} else { // found cover close enough
-		if (_unit distance (_cpa select 0) < 10) then {GVAR(mToCover) = nil}; // let engine do this
+		if (_unit distance (_cpa select 0) < 10) then {_mToCover = false}; // let engine do this
 	};
 };
 
-if (!isNil QGVAR(mToCover) && {count _cpa > 0}) then {
+if (_mToCover && {count _cpa > 0}) then {
 
 	[_unit,_cpa,_until] spawn  {
 		PARAMS_3(_unit,_cpa,_until);
@@ -58,7 +57,7 @@ if (!isNil QGVAR(mToCover) && {count _cpa > 0}) then {
 				_grp setSpeedMode _speed;
 			};
 			{
-				if (_x != _unit && {alive _x && unitReady _x}) then { // process subordinates
+				if (_x != _unit && {unitReady _x} && {!(_x getVariable [QGVAR(housing),false])} && {_x call FUNC(isValidUnitC)}) then { // process subordinates
 					if (count _cpa > 0) then { // we have building positions available as cover
 						_cover = [_cpa] call BIS_fnc_arrayShift;
 						TRACE_3("Choose cover in house",_x,_cover,_cpa);
@@ -67,14 +66,12 @@ if (!isNil QGVAR(mToCover) && {count _cpa > 0}) then {
 						_x doFollow (leader _x);
 					};
 				};
-				sleep 0.152;
+				sleep 0.42;
 			} forEach (units _grp);
 		};
 	};
 
 };
 
-//found cover or not, don't bother trying to find again for 4 minutes, so we save the time of last try
+//found cover or not, don't bother trying to find again for 2 minutes, so we save the time of last try
 _grp setVariable [QGVAR(lastMoveToCoverTime),diag_ticktime,false];
-
-GVAR(mToCover) = nil;

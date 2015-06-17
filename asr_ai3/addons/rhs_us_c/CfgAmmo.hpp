@@ -5,6 +5,18 @@
 #define __RANGE_HIT_SMALL 5
 #define __RANGE_CRACKS 100
 
+#define AIAmmoUsageNone 0
+#define AIAmmoUsageLight 1
+#define AIAmmoUsageMarking 2
+#define AIAmmoUsageConcealment 4
+#define AIAmmoUsageCountermeasures 8
+#define AIAmmoUsageMine 16
+#define AIAmmoUsageUnderwater 32
+#define AIAmmoUsageOffensiveInf 64
+#define AIAmmoUsageOffensiveVeh 128
+#define AIAmmoUsageOffensiveAir 256
+#define AIAmmoUsageOffensiveArmour 512
+
 class CfgAmmo {
 	class BulletBase;
 
@@ -14,6 +26,13 @@ class CfgAmmo {
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 6;
 		suppressionRadiusHit = 8;
+	};
+	class rhsusf_M33_Ball_M107 : BulletBase {
+		audibleFire = __AUDIBLE2;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+		suppressionRadiusBulletClose = 8;
+		suppressionRadiusHit = 12;
 	};
 	class B_556x45_Ball;
 	class rhs_ammo_556x45_M855A1_Ball : B_556x45_Ball {

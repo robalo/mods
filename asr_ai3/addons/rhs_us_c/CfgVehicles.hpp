@@ -12,26 +12,45 @@ class CfgVehicles {
 		ASR_AI_AMMOCOEF_STANDARD;
 	};
 	class rhsusf_army_ocp_rifleman;
+	class rhsusf_army_ocp_riflemanl : rhsusf_army_ocp_rifleman {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
 	class rhsusf_army_ocp_riflemanat : rhsusf_army_ocp_rifleman {
 		ASR_AI_AMMOCOEF_AT;
+		ASR_AI_COST_REG;
 	};
 	class rhsusf_army_ocp_aa : rhsusf_army_ocp_riflemanat {
 		ASR_AI_AMMOCOEF_AT;
+		ASR_AI_COST_REG;
+		ASR_AI_CAMO_FULL;
+	};
+	class rhsusf_army_ocp_autorifleman : rhsusf_infantry_army_base {
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_army_ocp_autoriflemana : rhsusf_army_ocp_rifleman {
+		ASR_AI_COST_REG;
+		ASR_AI_CAMO_FULL;
+	};
+	class rhsusf_army_ocp_machinegunnera : rhsusf_army_ocp_rifleman {
+		ASR_AI_COST_REG;
+		ASR_AI_CAMO_FULL;
 	};
 	class rhsusf_army_ocp_grenadier : rhsusf_infantry_army_base {
 		ASR_AI_COST_REG;
 	};
 	class rhsusf_army_ocp_officer : rhsusf_infantry_army_base {
 		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
 	};
 	class rhsusf_army_ocp_squadleader : rhsusf_infantry_army_base {
 		ASR_AI_SKILL_REG1;
-
 		ASR_AI_COST_REG;
+		ASR_AI_CAMO_FULL;
 	};
 	class rhsusf_army_ocp_teamleader : rhsusf_infantry_army_base {
 		ASR_AI_SKILL_REG1;
-
+		ASR_AI_CAMO_FULL;
 		ASR_AI_COST_REG;
 	};
 	class rhsusf_army_ocp_marksman : rhsusf_infantry_army_base {
@@ -42,49 +61,87 @@ class CfgVehicles {
 	};
 	class rhsusf_army_ocp_sniper : rhsusf_army_ocp_marksman {
 		ASR_AI_SKILL_SNP1;
-
 		ASR_AI_COST_SPECIAL;
 		ASR_AI_AMMOCOEF_SNIPER;
-
+		ASR_AI_CAMO_FULL;
 		sensitivity = 4;
 		minFireTime = 5;
 	};
 	class rhsusf_army_ocp_jfo : rhsusf_infantry_army_base {
 		ASR_AI_SKILL_REG1;
-
 		ASR_AI_COST_SPECIAL;
 	};
 	class rhsusf_army_ocp_fso : rhsusf_army_ocp_jfo {
 		ASR_AI_SKILL_REG1;
-
 		ASR_AI_COST_SPECIAL;
+	};
+	class rhsusf_army_ocp_javelin : rhsusf_army_ocp_riflemanat {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_army_ocp_engineer : rhsusf_army_ocp_rifleman {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_army_ocp_explosives : rhsusf_army_ocp_rifleman {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
 	};
 	class rhsusf_army_ocp_helipilot : rhsusf_infantry_army_base {
 		ASR_AI_SKILL_PIL1;
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
 	};
+	class rhsusf_army_ocp_crewman : rhsusf_infantry_army_base {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_army_ocp_helicrew : rhsusf_army_ocp_helipilot {
+		ASR_AI_COST_REG;
+	};
+
 
 //US MC
 
 	class rhsusf_infantry_usmc_base;
 	class rhsusf_usmc_marpat_wd_rifleman;
+	class rhsusf_usmc_marpat_wd_rifleman_light : rhsusf_usmc_marpat_wd_rifleman {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
 	class rhsusf_usmc_marpat_wd_riflemanat : rhsusf_usmc_marpat_wd_rifleman {
+		ASR_AI_COST_REG;
 		ASR_AI_AMMOCOEF_AT;
 	};
-	class rhsusf_usmc_marpat_wd_stinger : rhsusf_usmc_marpat_wd_riflemanat {
-		ASR_AI_AMMOCOEF_AT;
+	class rhsusf_usmc_marpat_wd_grenadier : rhsusf_usmc_marpat_wd_rifleman {
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_usmc_marpat_wd_autorifleman : rhsusf_infantry_usmc_base {
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_usmc_marpat_wd_autorifleman_m249 : rhsusf_usmc_marpat_wd_autorifleman {
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_usmc_marpat_wd_autorifleman_m249_ass : rhsusf_usmc_marpat_wd_rifleman {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_usmc_marpat_wd_machinegunner_ass : rhsusf_usmc_marpat_wd_rifleman {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
 	};
 	class rhsusf_usmc_marpat_wd_officer : rhsusf_usmc_marpat_wd_rifleman {
-
+		ASR_AI_COST_REG;
 		ASR_AI_CAMO_FULL;
 	};
 	class rhsusf_usmc_marpat_wd_squadleader : rhsusf_usmc_marpat_wd_rifleman {
 		ASR_AI_SKILL_REG1;
-
+		ASR_AI_CAMO_FULL;
 		ASR_AI_COST_REG;
 	};
 	class rhsusf_usmc_marpat_wd_teamleader : rhsusf_infantry_usmc_base {
 		ASR_AI_SKILL_REG1;
-
+		ASR_AI_CAMO_FULL;
 		ASR_AI_COST_REG;
 	};
 	class rhsusf_usmc_marpat_wd_fso : rhsusf_usmc_marpat_wd_rifleman {
@@ -94,33 +151,58 @@ class CfgVehicles {
 	};
 	class rhsusf_usmc_marpat_wd_jfo : rhsusf_usmc_marpat_wd_rifleman {
 		ASR_AI_SKILL_REG1;
-
 		ASR_AI_COST_SPECIAL;
+	};
+	class rhsusf_usmc_marpat_wd_javelin : rhsusf_usmc_marpat_wd_riflemanat {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_usmc_marpat_wd_stinger : rhsusf_usmc_marpat_wd_riflemanat {
+		ASR_AI_AMMOCOEF_AT;
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_usmc_marpat_wd_engineer : rhsusf_usmc_marpat_wd_rifleman {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
+	class rhsusf_usmc_marpat_wd_explosives : rhsusf_usmc_marpat_wd_rifleman {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
 	};
 	class rhsusf_usmc_marpat_wd_marksman : rhsusf_usmc_marpat_wd_rifleman {
 		ASR_AI_SKILL_REG1;
-
 		ASR_AI_COST_REG;
 		ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class rhsusf_usmc_marpat_wd_spotter : rhsusf_usmc_marpat_wd_marksman {
 		ASR_AI_SKILL_SOF2;
-
 		ASR_AI_COST_SPECIAL;
+		ASR_AI_CAMO_FULL;
 		ASR_AI_AMMOCOEF_STANDARD;
 		sensitivity = 4;
 	};
 	class rhsusf_usmc_marpat_wd_sniper : rhsusf_usmc_marpat_wd_marksman {
 		ASR_AI_SKILL_SNP1;
-
 		ASR_AI_COST_SPECIAL;
+		ASR_AI_CAMO_FULL;
 		ASR_AI_AMMOCOEF_SNIPER;
 		sensitivity = 4;
 		minFireTime = 5;
 	};
+	class rhsusf_usmc_marpat_wd_crewman : rhsusf_infantry_usmc_base {
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
+	};
 	class rhsusf_usmc_marpat_wd_helipilot : rhsusf_infantry_usmc_base {
 		ASR_AI_SKILL_PIL1;
+		ASR_AI_CAMO_FULL;
+		ASR_AI_COST_REG;
 	};
+	class rhsusf_usmc_marpat_wd_helicrew : rhsusf_usmc_marpat_wd_helipilot {
+		ASR_AI_COST_REG;
+	};
+
 
 //USMC FR
 
