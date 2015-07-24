@@ -194,9 +194,7 @@ class CfgVehicles {
 		respawnMagazines[] = {"20Rnd_762x51_Mag", "20Rnd_762x51_Mag", "20Rnd_762x51_Mag", "20Rnd_762x51_Mag", "20Rnd_762x51_Mag", "20Rnd_762x51_Mag", "20Rnd_762x51_Mag", "20Rnd_762x51_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		linkedItems[] = {"V_Chestrig_oli", "H_Shemag_olive_hs", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
 		respawnLinkedItems[] = {"V_Chestrig_oli", "H_Shemag_olive_hs", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
-		primaryAmmoCoef = 0.2;
-		secondaryAmmoCoef = 0.05;
-		handgunAmmoCoef = 0.1;
+		ASR_AI_AMMOCOEF_SNIPER;
 	};
 	
 	class asdg_I_recon_MG : asdg_I_Soldier_recon_base {
