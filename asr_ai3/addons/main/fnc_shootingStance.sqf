@@ -6,9 +6,12 @@ if (_this getVariable [QGVAR(shooting), false]) exitWith {}; // already shooting
 _wpntype = (primaryWeapon _this) call FUNC(getWeaponType);
 if ((_wpntype == "MG" || _wpntype == "SNIPER") && {count ((getPosATL _this) nearObjects ["HouseBase", 3]) == 0}) then {
 	_this spawn {
-		_this setVariable [QGVAR(shooting), true];
-		_this setUnitPos "Down";
-		waitUntil {isNil {_this getVariable QGVAR(shooting)}}; // wait until the danger fsm resets this
-		_this setUnitPos "Auto";
+        PARAMS_1(_unit);
+        private "_t";
+        _t = diag_ticktime;
+		_unit setVariable [QGVAR(shooting), true];
+		_unit setUnitPos "Down";
+		waitUntil {isNil {_unit getVariable QGVAR(shooting)} || {diag_ticktime > _t + 30}}; // wait until the danger fsm resets this or 30s passed
+		_unit setUnitPos "Auto";
 	};
 };

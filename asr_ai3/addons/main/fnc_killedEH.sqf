@@ -20,22 +20,6 @@ if (_remaining == 0) exitWith {LOG("Group is empty, exiting")};
 // reduce morale for all remaining units
 { _x setskill ["courage",(_x skill "courage")-0.025] } forEach _units;
 
-/*
-// check if dead guy dropped a launcher
-ASDG_launcher = "";
-{
-	_ctnr = _x;
-	{
-		if (_x call FUNC(getWeaponType) == "LAUNCHER") then {
-			ASDG_launcher = _x;
-			breakTo "main";
-		};
-	} forEach weaponCargo _ctnr;
-} forEach nearestObjects [_this select 0, ["WeaponHolderSimulated"], 2];
-
-hint ASDG_launcher;
-*/
-
 // if one of them is a player, do nothing
 if ({isPlayer _x} count _units > 0) exitWith {LOG("Group with player, exiting")};
 

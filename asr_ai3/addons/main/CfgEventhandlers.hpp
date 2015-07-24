@@ -1,30 +1,25 @@
 class Extended_PreInit_EventHandlers {
-	class ADDON {
-		init = QUOTE(call COMPILE_FILE(XEH_preInit));
-	};
+	ADDON = QUOTE(call COMPILE_FILE(XEH_preInit));
 };
 
 class Extended_PostInit_EventHandlers {
-	class ADDON {
-		init = QUOTE(call COMPILE_FILE(XEH_postInit));
-		clientInit = QUOTE(call COMPILE_FILE(XEH_postClientInit));
-	};
+	ADDON = QUOTE(call COMPILE_FILE(XEH_postInit));
 };
 
 class Extended_InitPost_EventHandlers {
 	class SoldierWB {
 		class ADDON {
-			serverInit = QUOTE(_this call FUNC(modUnitSkill));
+			serverInit = QUOTE(_this call FUNC(addUnitToQueue));
 		};
 	};
 	class SoldierEB {
 		class ADDON {
-			serverInit = QUOTE(_this call FUNC(modUnitSkill));
+			serverInit = QUOTE(_this call FUNC(addUnitToQueue));
 		};
 	};
 	class SoldierGB {
 		class ADDON {
-			serverInit = QUOTE(_this call FUNC(modUnitSkill));
+			serverInit = QUOTE(_this call FUNC(addUnitToQueue));
 		};
 	};
 };
@@ -57,13 +52,19 @@ class Extended_Killed_EventHandlers {
 
 class Extended_Hit_EventHandlers {
 	class SoldierWB {
-		ADDON = QUOTE(_this call FUNC(handleHit));
+		class ADDON {
+			serverHit = QUOTE(if (GVAR(enabled) == 1) then {_this call FUNC(handleHit)});
+		};
 	};
 	class SoldierEB {
-		ADDON = QUOTE(_this call FUNC(handleHit));
+		class ADDON {
+			serverHit = QUOTE(if (GVAR(enabled) == 1) then {_this call FUNC(handleHit)});
+		};
 	};
 	class SoldierGB {
-		ADDON = QUOTE(_this call FUNC(handleHit));
+		class ADDON {
+			serverHit = QUOTE(if (GVAR(enabled) == 1) then {_this call FUNC(handleHit)});
+		};
 	};
 };
 

@@ -1,17 +1,19 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_4(_unit,_source,_until,_distance);
+PARAMS_3(_unit,_source,_distance);
 
 #define __DELAY_ 60
 
 if (GVAR(seekcover) < 1) exitWith {};
 if (vehicle _unit != _unit) exitWith {};
 
-private ["_grp","_mToCover","_cpa","_savedcpa"];
+private ["_time","_grp","_mToCover","_cpa","_savedcpa"];
+
+_time = diag_ticktime;
 _grp = group _unit;
 if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has HOLD wp",_grp)};
 
-if (diag_ticktime < (_grp getVariable [QGVAR(lastMoveToCoverTime),-120]) + 120) exitWith {TRACE_1("too soon to move to cover again",_grp)};
+if (_time < (_grp getVariable [QGVAR(lastMoveToCoverTime),-120]) + 120) exitWith {TRACE_1("too soon to move to cover again",_grp)};
 
 _mToCover = false;
 if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {!([_unit,"(forest + trees + houses)",5] call FUNC(isNearStuff))}) then {_mToCover = true};
@@ -36,7 +38,7 @@ if (_mToCover) then {
 
 if (_mToCover && {count _cpa > 0}) then {
 
-	[_unit,_cpa,_until] spawn  {
+	[_unit,_cpa,_time] spawn  {
 		PARAMS_3(_unit,_cpa,_until);
 		private ["_grp","_speed","_cover"];
 		_cover = [_cpa] call BIS_fnc_arrayShift; // get first cover pos out of array

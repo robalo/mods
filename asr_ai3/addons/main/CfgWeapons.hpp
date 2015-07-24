@@ -354,6 +354,7 @@ class CfgWeapons {
 	};
 
 	class DMR_05_base_F : Rifle_Long_Base_F {
+		asr_ai_wtype = ASR_WEAPON_TYPE_SNIPER;
 		ASR_AI_DISP_REGULAR;
 	};
 

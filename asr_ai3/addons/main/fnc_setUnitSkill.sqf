@@ -64,5 +64,3 @@ while {_i < count _sa} do {
 	};
 	INC(_i);
 };
-
-_unit setVariable [QGVAR(configured),true];
