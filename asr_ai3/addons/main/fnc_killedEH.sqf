@@ -21,7 +21,7 @@ if (_remaining == 0) exitWith {LOG("Group is empty, exiting")};
 { _x setskill ["courage",(_x skill "courage")-0.025] } forEach _units;
 
 // if one of them is a player, do nothing
-if ({isPlayer _x} count _units > 0) exitWith {LOG("Group with player, exiting")};
+if (_grp call FUNC(hasPlayer)) exitWith {LOG("Group with player, exiting")};
 
 // get initial group size
 _grpinitsize = _grp getVariable [QGVAR(initgroupsize),-1];

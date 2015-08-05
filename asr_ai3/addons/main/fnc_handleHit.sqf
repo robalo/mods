@@ -8,11 +8,11 @@ if (!(isPlayer _unit) && {_unit call FUNC(isValidUnitC)} && {_unit != missionNam
     _unit limitSpeed 1; //km/h
 	[_unit,_hitman,10] call FUNC(moveToCover);
 
-	if ({isPlayer _x} count units (group _unit) == 0) then {
+	if !([group _unit] call FUNC(hasPlayer)) then {
 		if (_unit != _hitman) then {
 			if ((behaviour _unit) in ["SAFE","AWARE"]) then {_unit setBehaviour "COMBAT"};
 		};
-		if (GVAR(removegimps) > 0 && {{isPlayer _x} count (units _unit) == 0}) then {
+		if (GVAR(removegimps) > 0) then {
             // if the unit can't walk, separate from the group after some time
             if (!canStand _unit && {isNil {_unit getVariable "asr_nolegs"}} && {vehicle _unit == _unit} && {count ((group _unit) call FUNC(getAlive)) > 1} && {!(_unit call FUNC(isMedic))}) then {
                 _unit setVariable ["asr_nolegs", time]; // since when ?

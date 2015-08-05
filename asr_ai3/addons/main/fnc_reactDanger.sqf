@@ -6,7 +6,7 @@ private ["_coverRange","_grp","_bpos","_dude"];
 _grp = group _unit;
 _time = time;
 
-if (unitReady _unit && {{isPlayer _x} count units _grp == 0} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 30}) then {
+if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 30}) then {
         
     _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
 
