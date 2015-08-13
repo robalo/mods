@@ -2,14 +2,23 @@
 #include "script_component.hpp"
 PARAMS_1(_unit);
 
-private["_nt","_w"];
+private["_fa","_nt","_w"];
 
 #define __m_primary_1 0
 #define __m_fakit 1
 
+// check for first aid kit types (ACE3 medical compatible)
+_fa = [];
+if (isNil "ace_medical_fnc_itemCheck") then {
+    _fa append ["FirstAidKit"];
+} else {
+    _fa append ["ACE_fieldDressing","ACE_packingBandage"];
+};
+
+// need types array
 _nt = [
 	[],
-	["FirstAidKit"]
+	_fa
 ];
 
 if !(_unit canAdd "FirstAidKit") exitWith {false}; //not even space for a FAK
