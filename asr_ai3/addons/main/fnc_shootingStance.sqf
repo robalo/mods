@@ -8,10 +8,10 @@ if ((_wpntype == "MG" || _wpntype == "SNIPER") && {count ((getPosATL _this) near
 	_this spawn {
         PARAMS_1(_unit);
         private "_t";
-        _t = diag_ticktime;
+        _t = time;
 		_unit setVariable [QGVAR(shooting), true];
 		_unit setUnitPos "Down";
-		waitUntil {isNil {_unit getVariable QGVAR(shooting)} || {diag_ticktime > _t + 30}}; // wait until the danger fsm resets this or 30s passed
+		waitUntil {isNil {_unit getVariable QGVAR(shooting)} || {time > _t + 30}}; // wait until the danger fsm resets this or 30s passed
 		_unit setUnitPos "Auto";
 	};
 };

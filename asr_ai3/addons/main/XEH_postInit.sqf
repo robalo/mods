@@ -18,7 +18,7 @@ if (isServer) then {
 					{ // cycle all groups
 						_thisgroup = _x;
 						_units = units _thisgroup;
-						if (side _thisgroup != civilian && {{isPlayer _x} count _units == 0}) then {
+						if (side _thisgroup != civilian && {!(_thisgroup call FUNC(hasPlayer))}) then {
 							_c = count _units;
 							if (_c == 1) then {
 								_u = _units select 0;

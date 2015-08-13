@@ -4,9 +4,9 @@ PARAMS_2(_unit,_dangerCausedBy);
 private ["_coverRange","_grp","_bpos","_dude"];
 
 _grp = group _unit;
-_time = diag_ticktime;
+_time = time;
 
-if (unitReady _unit && {{isPlayer _x} count units _grp == 0} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 30}) then {
+if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 30}) then {
         
     _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
 
@@ -59,12 +59,12 @@ if (unitReady _unit && {{isPlayer _x} count units _grp == 0} && {_time > (_unit 
 				private "_timeout";
                 _dude setVariable [QGVAR(housing),true,false];
                 TRACE_1("House search duty",_dude);
-				while {count _bpos > 0 && {diag_ticktime < _dangerUntil} && {_dude call FUNC(isValidUnitC)}} do {
+				while {count _bpos > 0 && {time < _dangerUntil} && {_dude call FUNC(isValidUnitC)}} do {
 					waitUntil {isNil {_dude getVariable QGVAR(shooting)}}; // stopped shooting
 					doStop _dude;
 					_dude doMove (([_bpos] call BIS_fnc_arrayShift) select 1);
-					_timeout = diag_ticktime + 60;
-					waitUntil {unitReady _dude || {_timeout < diag_ticktime}};
+					_timeout = time + 60;
+					waitUntil {unitReady _dude || {_timeout < time}};
 					if (_dude call FUNC(isUnderRoof)) then {_dude setUnitPosWeak "Up"} else {_dude setUnitPosWeak "Auto"};
 					doStop _dude;
 					sleep (5 + random 20);

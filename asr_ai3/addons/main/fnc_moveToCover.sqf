@@ -9,7 +9,7 @@ if (vehicle _unit != _unit) exitWith {};
 
 private ["_time","_grp","_mToCover","_cpa","_savedcpa"];
 
-_time = diag_ticktime;
+_time = time;
 _grp = group _unit;
 if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has HOLD wp",_grp)};
 
@@ -53,7 +53,7 @@ if (_mToCover && {count _cpa > 0}) then {
 			_grp setSpeedMode "FULL";
 			[_unit,_grp,_until,_speed,_cover] spawn {
 				PARAMS_5(_unit,_grp,_until,_speed,_cover);
-				waitUntil {!alive _unit || {diag_ticktime > _until + __DELAY_} || {_unit distance _cover < 1}};
+				waitUntil {!alive _unit || {time > _until + __DELAY_} || {_unit distance _cover < 1}};
 				_grp lockwp false;
 				{[_x] joinSilent _grp} forEach (units _grp);
 				_grp setSpeedMode _speed;
@@ -76,4 +76,4 @@ if (_mToCover && {count _cpa > 0}) then {
 };
 
 //found cover or not, don't bother trying to find again for 2 minutes, so we save the time of last try
-_grp setVariable [QGVAR(lastMoveToCoverTime),diag_ticktime,false];
+_grp setVariable [QGVAR(lastMoveToCoverTime),time,false];

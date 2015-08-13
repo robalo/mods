@@ -21,6 +21,7 @@ ASR_AI_SETDEFAULT(getinweapons,0.5);
 ASR_AI_SETDEFAULT(packNVG,1);
 ASR_AI_SETDEFAULT(disableAIPGfatigue,1);
 ASR_AI_SETDEFAULT(onteamswitch,1);
+ASR_AI_SETDEFAULT(copymystance,1);
 ASR_AI_SETDEFAULT(debug,0);
 
 ASR_AI_SETDEFAULT(setskills,1);
@@ -55,6 +56,7 @@ PREP(isNearStuff);
 PREP(getNearest);
 PREP(nearFactionGroups);
 PREP(hasRadio);
+PREP(hasPlayer);
 PREP(setUnitSkill);
 PREP(addUnitToQueue);
 PREP(configureUnit);

@@ -17,7 +17,7 @@ class CfgVehicles {
 		ASR_AI_SKILL_INS2; // default insurgent
 		//sensitivity = 3.0;
 		//sensitivityEar = 0.5;
-		audible = 0.015; //0.05
+		audible = 0.01; //0.05
 		//lyingLimitSpeedHiding = 0.8;
 		//crouchProbabilityHiding = 0.8;
 		//lyingLimitSpeedCombat = 1.8;
@@ -27,7 +27,7 @@ class CfgVehicles {
 		minFireTime = 7;
 		ASR_AI_CAMO_HALF;
 		spotableDarkNightLightsOff = 0.001;  //0.003
-		spotableNightLightsOff = 0.011;       //0.035
+		spotableNightLightsOff = 0.01;       //0.035
 	};
 	class Civilian: CAManBase {
 		ASR_AI_SKILL_CIV1; // default civilian
