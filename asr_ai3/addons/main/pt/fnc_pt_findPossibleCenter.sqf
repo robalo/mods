@@ -2,15 +2,16 @@
 
 //I need a point such that the object's model is in between it and the unit's position.
 //bounding center is not necessarily correct.
-//to this end, we will try 40 line intersections
+//to this end, we will use line intersections inorder to find such a position
 
 _coverObj = _this select 0;
 _unit = _this select 1;
-//if it doesn't matter the height, shortcut
 _result = [];
 _height = 0;
 _unitCenter = ((getPosASL _unit) vectorAdd [0,0,1.2]); 
         format ["find center attempting: %1",  _coverObj] call BIS_fnc_log;
+
+//if it doesn't matter the height, attempt shortcut
 if(count _this == 2) then {
     _height = 0.4;
     _boundingCenter = ATLToASL (_coverObj modelToWorld [0,0,0]);
@@ -77,19 +78,20 @@ _breakout = 0;
 _unitCenter = ((getPosASL _unit) vectorAdd [0,0,_height]);    
 format ["findCenter:unit: %1", _unit] call BIS_fnc_log;
 
+//\ change so that it sweeps from the middle out
 for "_x" from 0 to 80 do {
  
     format ["findCenter:loop: %1", _x] call BIS_fnc_log;
     if(_breakout == 1) exitWith{};
     _checkAngle = _bottomAngle + (_angleDiff * _x / 80);
-    //move checkPos to an angle _x/40th the way from bottom angle to top angle
+    //move checkPos to an angle _x/80th the way from bottom angle to top angle
     
     _checkPos =  ([_unitCenter, _farthestCheckDistance,  _bottomAngle + (_angleDiff * _x / 80)] call BIS_fnc_relPos);
     
     drawLine3D [ASLToATL  _checkPos, (ASLToATL _unitCenter),[0,0,1,1]];
     if(_coverObj in lineIntersectsWith [ _checkPos, _unitCenter]) then {
         if(_firstCheckAngle == 6000) then {
-        //drawLine3D [ASLToATL  _checkPos, (ASLToATL _unitCenter),[0,1,0,1]];
+            //drawLine3D [ASLToATL  _checkPos, (ASLToATL _unitCenter),[0,1,0,1]];
             _firstCheckAngle = _checkAngle;
             _lastCheckAngle = _checkAngle;
         }else {
@@ -109,6 +111,9 @@ if(_firstCheckAngle != 6000) then {
     //return the average from the first and last intersections we recorded
     _result = [((getPosASL _unit) vectorAdd [0,0,_height]), _farthestCheckDistance,  (_lastCheckAngle + _firstCheckAngle) / 2] call BIS_fnc_relPos;
 };
-drawLine3D [ASLToATL  _result, (ASLToATL _unitCenter),[0,1,0,1]];
+// drawLine3D [ASLToATL  _result, (ASLToATL _unitCenter),[0,1,0,1]];
 format ["findCenter: ends  with: %1, %2", _result, lineIntersectsWith [ _result, _unitCenter]] call BIS_fnc_log;
+
+//now try to find the highest point on the model which satisfies our inital condition
+// with a max of 1.7m (head height)
 _result;

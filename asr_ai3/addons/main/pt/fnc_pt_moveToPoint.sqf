@@ -32,6 +32,7 @@ format ["outStruct: done moving %1", _unitPos] call BIS_fnc_log;
 if(_unit call _isUnderRoof) then {
     _unit setUnitPos "AUTO";
 } else {
+//\check ATL vs ASL
     _pos = [(ASLToATL _cover ) select 2] call _heightToPos;
     _unit setUnitPos _pos;
 };

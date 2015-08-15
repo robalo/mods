@@ -15,7 +15,7 @@ _visible = true;
 format ["checking vis between %1, and %2, found %3", _dangerPos, _unitPos, _objs] call BIS_fnc_log;
 {
     format ["checking vis of %1", _x] call BIS_fnc_log;
-    if( boundingCenter _x select 1 > 0.20
+    if( boundingCenter _x select 1 > GVAR(MIN_HEIGHT_OBJ_TO_CONSIDER)
             && _x != _unit && _x != _dangerCausedBy) then {
         _visible = false;
     }

@@ -2,13 +2,12 @@
 _unit = _this select 0;
 
 //check what time we're supposed to reset
-_timeSleep = (_unit getVariable ["DT", 0]) - diag_ticktime;
+_timeSleep = (_unit getVariable [QGVAR(DT), 0]) - diag_ticktime;
 _timeSleep = _timeSleep * 2;
 if(_timeSleep == 0) exitWith {
     
 };
 _timeSleep = _timeSleep + diag_ticktime;
-format ["resetPos comparing %1, %2", _timeSleep, diag_ticktime] call BIS_fnc_log;
 //not yet time, sleep until then
 if(diag_ticktime < _timeSleep) then {
     [_unit, _timeSleep] spawn {

@@ -1,26 +1,37 @@
 
 _unit = _this select 0;
-_dangerPos = _this select 1;
 
 //check what time we're supposed to attack
-_timesleep = (_unit getVariable ["AT", 0]) + diag_ticktime;
+//this variable may change between recursive calls
+_attackTime = (_unit getVariable [QGVAR(AT), 0])
+
+if(_attackTime == 0) exitWith {
+
+}
+
+
+//this variable may change between recursive calls
+_dangerPos = _unit getVariable ["ATTACKER_POS"];
+
 //not yet time, sleep until then
-if(diag_ticktime < _timesleep) then {
-    [_unit, _dangerPos, _timesleep] spawn {
+if(diag_ticktime < _attackTime) then {
+    [_unit, _attackTime] spawn {
         _unit = _this select 0;
-        _dangerPos = _this select 1;
-        _timesleep = _this select 2;
+        _attackTime = _this select 1;
         _attack = compile preprocessFile "fnc_pt_reactDanger_attack.sqf";
-        sleep _timesleep - diag_ticktime;
+        sleep (_attackTime - diag_ticktime);
         //then restart
-        [_unit, _dangerPos] call _attack;
+        [_unit] call _attack;
     };
 }else {
+    //\ may cause AI to get spammed with attack wps
+    //\ consider marking them & removing them if a new one is added
+
     //attack no longer pending, allow attack to be called again
     _unit  setVariable ["ATK_PEND",0,false];
-    //is the one who caused the danger within Attack Distance (AD)?
+    //is the location of the one who caused the danger (at danger time) within Attack Distance (AD)?
     _distance = _unit distance _dangerPos;
-    _AD = _unit getVariable ["AD", 0];
+    _AD = _unit getVariable [QGVAR(AD), 0];
     if(_distance < _AD) then {
         //ATTACK!
 		//add in a waypoint
