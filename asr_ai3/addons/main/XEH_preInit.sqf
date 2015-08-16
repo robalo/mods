@@ -32,6 +32,54 @@ ASR_AI_SETDEFAULT(sets,[]);
 ASR_AI_SETDEFAULT(levels_units,[]);
 ASR_AI_SETDEFAULT(factions,[]);
 
+
+//how well the AI must know about a danger source in order for it to take cover relative to it
+//instead of taking cover in general
+ASR_AI_SETDEFAULT(AI_KNOWLEDGE_THRESHOLD, 2)
+//how far we're allowed to get to cover
+ASR_AI_SETDEFAULT(MAX_DIST_TO_COVER, 50)
+//an object must be at least this tall to be considered for cover
+ASR_AI_SETDEFAULT(MIN_HEIGHT_OBJ_TO_CONSIDER, 0.2)
+ASR_AI_SETDEFAULT(CHANCE_USE_BUILDING_POS, 0.2)
+
+
+//time until we're allowed to react to danger again
+ASR_AI_SETDEFAULT(DT_OUTSIDE, 3)
+ASR_AI_SETDEFAULT(DT_IN_STRUCT_AM_VIS_CHANGE_POS, 3);
+ASR_AI_SETDEFAULT(DT_IN_STRUCT_HIT, 3)
+ASR_AI_SETDEFAULT(DT_IN_STRUCT_NOT_HIT, 3);
+ASR_AI_SETDEFAULT(DT_IN_STRUCT_UNKNOWN_ENEMY, 3);
+ASR_AI_SETDEFAULT(DT_IN_STRUCT_AM_VIS_MOVE, 3);
+
+
+//time until counter attack
+ASR_AI_SETDEFAULT(AT_OUTSIDE, 45);
+ASR_AI_SETDEFAULT(AT_IN_STRUCT_AM_VIS_CHANGE_POS, 45);
+ASR_AI_SETDEFAULT(AT_IN_STRUCT_HIT, 45);
+ASR_AI_SETDEFAULT(AT_IN_STRUCT_NOT_HIT, 45);
+ASR_AI_SETDEFAULT(AT_IN_STRUCT_AM_VIS_MOVE, 45);
+
+
+//counter attack max disatance
+ASR_AI_SETDEFAULT(AD_OUTSIDE, 250);
+ASR_AI_SETDEFAULT(AD_IN_STRUCT_AM_VIS_CHANGE_POS, 50);
+ASR_AI_SETDEFAULT(AD_IN_STRUCT_HIT, 50);
+ASR_AI_SETDEFAULT(AD_IN_STRUCT_NOT_HIT, 50);
+ASR_AI_SETDEFAULT(AD_IN_STRUCT_AM_VIS_MOVE, 50);
+
+//time to reset unit pos
+ASR_AI_SETDEFAULT(RT_OUTSIDE, 10);
+ASR_AI_SETDEFAULT(RT_IN_STRUCT_HIT, 10);
+ASR_AI_SETDEFAULT(RT_IN_STRUCT_CHANGE_POS, 10);
+ASR_AI_SETDEFAULT(RT_IN_STRUCT_AM_VIS_MOVE, 10);
+ASR_AI_SETDEFAULT(RT_IN_STRUCT_UNKNOWN_ENEMY, 10);
+
+
+
+
+
+
+
 if (count GVAR(sets) < 10) then {GVAR(sets) = [["aiming",[1,0],"spotting",[1,0],"general",[1,0]],["aiming",[0.4,0.1],"spotting",[0.4,0.2],"general",[0.8,0.2]],["aiming",[0.35,0.1],"spotting",[0.35,0.2],"general",[0.75,0.2]],["aiming",[0.3,0.1],"spotting",[0.3,0.2],"general",[0.7,0.2]],["aiming",[0.25,0.1],"spotting",[0.25,0.2],"general",[0.65,0.2]],["aiming",[0.2,0.1],"spotting",[0.2,0.2],"general",[0.6,0.2]],["aiming",[0.15,0.1],"spotting",[0.15,0.2],"general",[0.55,0.2]],["aiming",[0.1,0.1],"spotting",[0.1,0.2],"general",[0.5,0.2]],["aiming",[0.25,0.1],"spotting",[0.5,0.2],"general",[0.7,0.2]],["aiming",[0.2,0.1],"spotting",[0.4,0.2],"general",[0.6,0.2]],["aiming",[0.6,0.4],"spotting",[0.8,0.2],"general",[0.8,0.2]]]};
 if (count GVAR(levels_units) < 10) then {GVAR(levels_units) = [[],[],[],[],[],[],[],[],[],[],[]]};
 
@@ -85,3 +133,20 @@ PREP(getCompatMags);
 PREP(countItems);
 PREP(inventoryCheck);
 PREP(rearm);
+
+PREP(pt_reactDanger_attack)
+PREP(pt_checkVis)
+PREP(pt_downPos)
+PREP(pt_findPossibleCenter)
+PREP(pt_getCoverPos)
+PREP(pt_getCoverPosUnknownEnemy)
+PREP(pt_getUnitsThatNeedCover)
+PREP(pt_goToNextBuildingPos)
+PREP(pt_heightToPos)
+PREP(pt_isCoverValid)
+PREP(pt_moveToPoint)
+PREP(pt_reactDanger_attack)
+PREP(pt_reactDanger_inStruct)
+PREP(pt_reactDanger_inStruct_amVis)
+PREP(pt_reactDanger_outStruct)
+PREP(pt_reset_pos)

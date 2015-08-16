@@ -1,5 +1,4 @@
 
-_coverValid = compile preprocessFile "fnc_pt_isCoverValid.sqf";
 
 _unit = _this select 0;
 _dangerCausedBy = _this select 1;
@@ -14,7 +13,7 @@ _unitThatNeedCover = [];
         if(_coverObj == _x) then {
             _unitThatNeedCover pushBack _unit;
         }else {
-            if(![_x, _dangerCausedBy, _coverObj] call _coverValid) then {
+            if(![_x, _dangerCausedBy, _coverObj] call FUNC(pt_coverValid)) then {
                 _unitThatNeedCover pushBack _unit;
             };
         };

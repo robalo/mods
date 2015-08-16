@@ -1,16 +1,14 @@
 
 //find closest position to coverObj which does not touch cover obj, then back up 0.4m and return that position.
-
-rp_fnc_findCenter = compile preprocessFile "fnc_pt_findPossibleCenter.sqf";
 _unit = _this select 0;
 _coverObj = _this select 1;
 
-format ["getCoverPosforUnknown enemy: unit %1, coverObj %2", _unit, _coverObj] call BIS_fnc_log;
+//format ["getCoverPosforUnknown enemy: unit %1, coverObj %2", _unit, _coverObj] call BIS_fnc_log;
 _boundingCenter = (boundingCenter _coverObj);
 
             
             
-_coverPos = [_coverObj, _unit] call rp_fnc_findCenter;
+_coverPos = [_coverObj, _unit] call FUNC(pt_findPossibleCenter);
 if(count _coverPos == 0) exitWith {
     //unable to find obj model starting point, give up.
     [];

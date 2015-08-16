@@ -16,7 +16,7 @@ _coverPos = [_coverObj, _unit] call rp_fnc_findCenter;
 
 //_coverPos is ASL
 if(count _coverPos == 0) then {
-    format ["%1 rejected, unable to find center", _coverObj]  call BIS_fnc_log;
+    //format ["%1 rejected, unable to find center", _coverObj]  call BIS_fnc_log;
 };
 if(count _coverPos == 0) exitWith {
 };
@@ -25,12 +25,9 @@ if(count _coverPos == 0) exitWith {
 _dangerToCoverDir =[_dangerUnit, _coverPos] call BIS_fnc_dirTo;
 _unitToCoverDir = [_unit, _coverPos] call BIS_fnc_dirTo;
 
-   drawLine3D [ ASLToATL _coverPos, (ASLToATL _unitCenter),[0,0,1,1]];
-
 //unit = pt A
 //dangerousUnit = pt B;
 //cover = pt C
-//drawLine3D [  _coverPos vectorAdd [0,0,0.4], (ASLToATL _unitCenter) vectorAdd [0,0,0],[0,1,0,1]];
 _angleACB = _dangerToCoverDir - _unitToCoverDir;
 //normalize them
 if(_angleACB > 180) then {
@@ -58,7 +55,7 @@ while{_resolution > 0.25} do {
     _resolution = _resolution / 2;
 };
 if(_foundResult == 0) then {
-    format ["%1 rejected, unable to find cover pt during sweep", _coverObj]  call BIS_fnc_log;
+    //format ["%1 rejected, unable to find cover pt during sweep", _coverObj]  call BIS_fnc_log;
 };
 if(_foundResult == 0) exitWith {};
 

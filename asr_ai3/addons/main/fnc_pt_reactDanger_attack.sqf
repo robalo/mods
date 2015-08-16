@@ -18,10 +18,9 @@ if(diag_ticktime < _attackTime) then {
     [_unit, _attackTime] spawn {
         _unit = _this select 0;
         _attackTime = _this select 1;
-        _attack = compile preprocessFile "fnc_pt_reactDanger_attack.sqf";
         sleep (_attackTime - diag_ticktime);
         //then restart
-        [_unit] call _attack;
+        [_unit] call FUNC(pt_reactDanger_attack);
     };
 }else {
     //\ may cause AI to get spammed with attack wps

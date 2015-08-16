@@ -1,6 +1,3 @@
-_moveToPoint = compile preprocessFile "fnc_pt_moveToPoint.sqf";
-
-
 //move to another building pos, at random
 
 _unit = _this select 0;
@@ -18,5 +15,5 @@ _hidingPos = [];
 } forEach _objs;
 
 if(count _hidingPos > 0) then {
-    [_unit, _hidingPos] call _moveToPoint;
+    [_unit, _hidingPos] call FUNC(pt_moveToPoint);
 };

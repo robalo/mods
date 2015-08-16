@@ -9,7 +9,7 @@ _unit = _this select 1;
 _result = [];
 _height = 0;
 _unitCenter = ((getPosASL _unit) vectorAdd [0,0,1.2]); 
-        format ["find center attempting: %1",  _coverObj] call BIS_fnc_log;
+        //format ["find center attempting: %1",  _coverObj] call BIS_fnc_log;
 
 //if it doesn't matter the height, attempt shortcut
 if(count _this == 2) then {
@@ -17,9 +17,9 @@ if(count _this == 2) then {
     _boundingCenter = ATLToASL (_coverObj modelToWorld [0,0,0]);
     for "_x" from 0 to 3 do {
         _b = [_boundingCenter select 0, _boundingCenter select 1, (getPosASL _coverObj select 2) + _x * 0.4];
-        format ["find center attempting shortcut: %1",  _b] call BIS_fnc_log;
+        //format ["find center attempting shortcut: %1",  _b] call BIS_fnc_log;
         if(_coverObj in (lineIntersectsWith [_b, _unitCenter])) then {
-            format ["find center shortcut: %1",  _b] call BIS_fnc_log;
+            //format ["find center shortcut: %1",  _b] call BIS_fnc_log;
             _result = _b;
         };
     };
@@ -76,28 +76,23 @@ _firstCheckAngle = 6000;
 _lastCheckAngle = 6000;
 _breakout = 0;
 _unitCenter = ((getPosASL _unit) vectorAdd [0,0,_height]);    
-format ["findCenter:unit: %1", _unit] call BIS_fnc_log;
+//format ["findCenter:unit: %1", _unit] call BIS_fnc_log;
 
 //\ change so that it sweeps from the middle out
 for "_x" from 0 to 80 do {
  
-    format ["findCenter:loop: %1", _x] call BIS_fnc_log;
+    //format ["findCenter:loop: %1", _x] call BIS_fnc_log;
     if(_breakout == 1) exitWith{};
     _checkAngle = _bottomAngle + (_angleDiff * _x / 80);
     //move checkPos to an angle _x/80th the way from bottom angle to top angle
-    
     _checkPos =  ([_unitCenter, _farthestCheckDistance,  _bottomAngle + (_angleDiff * _x / 80)] call BIS_fnc_relPos);
-    
-    drawLine3D [ASLToATL  _checkPos, (ASLToATL _unitCenter),[0,0,1,1]];
     if(_coverObj in lineIntersectsWith [ _checkPos, _unitCenter]) then {
         if(_firstCheckAngle == 6000) then {
-            //drawLine3D [ASLToATL  _checkPos, (ASLToATL _unitCenter),[0,1,0,1]];
             _firstCheckAngle = _checkAngle;
             _lastCheckAngle = _checkAngle;
         }else {
             //this will be overwritten several times
             _lastCheckAngle = _checkAngle;
-            //drawLine3D [ASLToATL  _checkPos, (ASLToATL _unitCenter),[1,0,0,1]];
         };
     }else {
         if(_lastCheckAngle != 6000) then {
@@ -111,8 +106,7 @@ if(_firstCheckAngle != 6000) then {
     //return the average from the first and last intersections we recorded
     _result = [((getPosASL _unit) vectorAdd [0,0,_height]), _farthestCheckDistance,  (_lastCheckAngle + _firstCheckAngle) / 2] call BIS_fnc_relPos;
 };
-// drawLine3D [ASLToATL  _result, (ASLToATL _unitCenter),[0,1,0,1]];
-format ["findCenter: ends  with: %1, %2", _result, lineIntersectsWith [ _result, _unitCenter]] call BIS_fnc_log;
+//format ["findCenter: ends  with: %1, %2", _result, lineIntersectsWith [ _result, _unitCenter]] call BIS_fnc_log;
 
 //now try to find the highest point on the model which satisfies our inital condition
 // with a max of 1.7m (head height)

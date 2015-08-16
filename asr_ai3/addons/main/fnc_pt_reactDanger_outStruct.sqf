@@ -2,18 +2,13 @@
 _unit = _this select 0;
 _dangerCausedBy = _this select 1;
 _dangerCause = _this select 2;
-_getUnitsThatNeedCover = compile preprocessFile "fnc_pt_getUnitsThatNeedCover.sqf";
-_pt_getCoverPos = compile preprocessFile "fnc_pt_getCoverPos.sqf";
-_pt_getCoverPosUnknownEnemy = compile preprocessFile "fnc_pt_getCoverPosUnknownEnemy.sqf";
-_isUnc = compile preprocessFile "fnc_isUnc.sqf";
-_moveToPoint = compile preprocessFile "fnc_pt_moveToPoint.sqf";
 if(_unit != leader _unit) exitWith {
     [];
 };
 _unitsThatNeedCover = [];
 //\change to config
 if(_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD)) then {
-    _unitsThatNeedCover = [_unit, _dangerCausedBy] call _getUnitsThatNeedCover;
+    _unitsThatNeedCover = [_unit, _dangerCausedBy] call FUNC(pt_getUnitsThatNeedCover);
 }else {
     _unitsThatNeedCover = [];
     {
@@ -25,7 +20,7 @@ if(_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD)) then {
     
 };
 
-format ["outStruct: units that need cover %1", _unitsThatNeedCover] call BIS_fnc_log;
+//format ["outStruct: units that need cover %1", _unitsThatNeedCover] call BIS_fnc_log;
 //now find a piece of cover for each of these units
 
 _deniedCover = [];
@@ -37,7 +32,7 @@ _deniedCover = [];
     };
 } forEach units _unit;
 
-format ["outStruct: denied pieces of cover: %1", _deniedCover] call BIS_fnc_log;
+//format ["outStruct: denied pieces of cover: %1", _deniedCover] call BIS_fnc_log;
 _activeCover = [];
 _maxdisttocover = GVAR(MAX_DIST_TO_COVER);
 {
@@ -49,9 +44,9 @@ _maxdisttocover = GVAR(MAX_DIST_TO_COVER);
         
         if(_x isKindOf "HouseBase") then {
         
-            format ["outStruct: found house: %1, %2", _x, [_x] call BIS_fnc_buildingPositions] call BIS_fnc_log;
+            //format ["outStruct: found house: %1, %2", _x, [_x] call BIS_fnc_buildingPositions] call BIS_fnc_log;
             {   
-                format ["outStruct: running house: %1", _x] call BIS_fnc_log; 
+                //format ["outStruct: running house: %1", _x] call BIS_fnc_log;
                 if(random 1 > GVAR(CHANCE_USE_BUILDING_POS) && (count _activeCover < count _unitsThatNeedCover)) then {
                     _activeCover pushBack _x;
                 };
@@ -60,12 +55,12 @@ _maxdisttocover = GVAR(MAX_DIST_TO_COVER);
         
             _coverPos =[];
             if(_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD)) then {
-                _coverPos = [_unit, _dangerCausedBy, _x] call _pt_getCoverPos;
+                _coverPos = [_unit, _dangerCausedBy, _x] call FUNC(pt_getCoverPos);
             } else {
-                _coverPos = [_unit, _x] call _pt_getCoverPosUnknownEnemy;
+                _coverPos = [_unit, _x] call FUNC(pt_getCoverPosUnknownEnemy);
             };
             
-            format ["outStruct: finished processing: %1, %2", _x, _coverPos] call BIS_fnc_log;
+            //format ["outStruct: finished processing: %1, %2", _x, _coverPos] call BIS_fnc_log;
             if(count _coverPos > 0) then {
                 _activeCover pushBack _coverPos;
             };
@@ -77,7 +72,7 @@ _grp lockwp true;
 
 
 {
-    [_unitsThatNeedCover select _forEachIndex, _x] spawn _moveToPoint;
+    [_unitsThatNeedCover select _forEachIndex, _x] spawn FUNC(pt_moveToPoint);
 } forEach _activeCover;
 
 _unit  setVariable [QGVAR(DT),diag_ticktime + GVAR(DT_OUTSIDE),false];
