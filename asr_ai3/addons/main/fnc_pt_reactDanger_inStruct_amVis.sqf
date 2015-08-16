@@ -27,7 +27,7 @@ _foundResult = "";
 
 if(_checkMiddle) then {
     //format ["inStruct amVis checking middle"] call BIS_fnc_log;
-    if(!([_unit, _dangerCausedBy, CROUCH_HEIGHT] call FUNC(pt_checkVis)) then {
+    if(!([_unit, _dangerCausedBy, 1.2] call FUNC(pt_checkVis)) then {
         //format ["inStruct amVis middle found"] call BIS_fnc_log;
         _foundResult = "MIDDLE";
     };
@@ -35,7 +35,7 @@ if(_checkMiddle) then {
 
 if(_foundResult == "" && _checkDown) then {
     //format ["inStruct amVis checking down"] call BIS_fnc_log;
-    if(!([_unit, _dangerCausedBy, PRONE_HEIGHT] call FUNC(pt_checkVis))) then {
+    if(!([_unit, _dangerCausedBy, 0.4] call FUNC(pt_checkVis))) then {
         _foundResult = "DOWN";
         //format ["inStruct amVis down found"] call BIS_fnc_log;
     };
