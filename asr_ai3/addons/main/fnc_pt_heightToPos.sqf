@@ -1,3 +1,6 @@
+
+#include "script_component.hpp"
+private ["_height"];
 //accepts posATL
 _height = _this select 0;
 

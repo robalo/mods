@@ -1,3 +1,8 @@
+
+#include "script_component.hpp"
+
+
+private ["_coverObj", "_unit", "_result", "_height", "_unitCenter", "_boundingCenter"];
 //Ok, this is wacky as fuck.
 
 //I need a point such that the object's model is in between it and the unit's position.
@@ -30,7 +35,9 @@ if(count _this == 2) then {
 if(count _result != 0) exitWith {
     _result;
 };
-
+private ["_boundBox", "_corner1Pos", "_corner2Pos", "_corner3Pos", "_corner4Pos"];
+private ["_corner1Dist", "_corner2Dist", "_corner3Dist", "_corner4Dist", "_cornerArray"];
+private ["_topCorner", "_bottomCorner", "_topAngleTemp", "_bottomAngleTemp"];
 
 //get the bound center
 //get the 4 corners of the bounding box
@@ -59,6 +66,7 @@ _bottomCorner = _cornerArray select 2 select 1;
 _topAngleTemp = [_unit, _topCorner] call BIS_fnc_dirTo;
 _bottomAngleTemp = [_unit, _bottomCorner] call BIS_fnc_dirTo;
 
+private ["_topAngle", "_bottomAngle", "_angleDiff", "_farthestCheckDistance", "_firstCheckAngle", "_lastCheckAngle", "_breakout", "_unitCenter"];
 _topAngle = _topAngleTemp max _bottomAngleTemp;
 _bottomAngle = _topAngleTemp min _bottomAngleTemp;
 _angleDiff = _topAngle - _bottomAngle;
@@ -85,6 +93,7 @@ for "_x" from 0 to 80 do {
     if(_breakout == 1) exitWith{};
     _checkAngle = _bottomAngle + (_angleDiff * _x / 80);
     //move checkPos to an angle _x/80th the way from bottom angle to top angle
+    private["_checkPos"];
     _checkPos =  ([_unitCenter, _farthestCheckDistance,  _bottomAngle + (_angleDiff * _x / 80)] call BIS_fnc_relPos);
     if(_coverObj in lineIntersectsWith [ _checkPos, _unitCenter]) then {
         if(_firstCheckAngle == 6000) then {

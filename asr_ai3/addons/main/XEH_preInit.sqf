@@ -53,7 +53,7 @@ ASR_AI_SETDEFAULT(DT_IN_STRUCT_AM_VIS_MOVE, 3);
 
 
 //time until counter attack
-ASR_AI_SETDEFAULT(AT_OUTSIDE, 45);
+ASR_AI_SETDEFAULT(AT_OUTSIDE, 90);
 ASR_AI_SETDEFAULT(AT_IN_STRUCT_AM_VIS_CHANGE_POS, 45);
 ASR_AI_SETDEFAULT(AT_IN_STRUCT_HIT, 45);
 ASR_AI_SETDEFAULT(AT_IN_STRUCT_NOT_HIT, 45);
@@ -73,6 +73,10 @@ ASR_AI_SETDEFAULT(RT_IN_STRUCT_HIT, 10);
 ASR_AI_SETDEFAULT(RT_IN_STRUCT_CHANGE_POS, 10);
 ASR_AI_SETDEFAULT(RT_IN_STRUCT_AM_VIS_MOVE, 10);
 ASR_AI_SETDEFAULT(RT_IN_STRUCT_UNKNOWN_ENEMY, 10);
+
+
+//angle that a new danger source must be at for us to not ignore its DETECTION only.
+ASR_AI_SETDEFAULT(ALLOWABLE_ANGLE_FOR_IGNORE, 30);
 
 
 
@@ -134,19 +138,19 @@ PREP(countItems);
 PREP(inventoryCheck);
 PREP(rearm);
 
-PREP(pt_reactDanger_attack)
-PREP(pt_checkVis)
-PREP(pt_downPos)
-PREP(pt_findPossibleCenter)
-PREP(pt_getCoverPos)
-PREP(pt_getCoverPosUnknownEnemy)
-PREP(pt_getUnitsThatNeedCover)
-PREP(pt_goToNextBuildingPos)
-PREP(pt_heightToPos)
-PREP(pt_isCoverValid)
-PREP(pt_moveToPoint)
-PREP(pt_reactDanger_attack)
-PREP(pt_reactDanger_inStruct)
-PREP(pt_reactDanger_inStruct_amVis)
-PREP(pt_reactDanger_outStruct)
-PREP(pt_reset_pos)
+PREP(pt_checkVis);
+PREP(pt_downPos);
+PREP(pt_findPossibleCenter);
+PREP(pt_getCoverPos);
+PREP(pt_getCoverPosUnknownEnemy);
+PREP(pt_getUnitsThatNeedCover);
+PREP(pt_goToNextBuildingPos);
+PREP(pt_heightToPos);
+PREP(pt_isCoverValid);
+PREP(pt_moveToPoint);
+PREP(pt_reactDanger_attack);
+PREP(pt_reactDanger_inStruct);
+PREP(pt_reactDanger_inStruct_amVis);
+PREP(pt_reactDanger_outStruct);
+PREP(pt_reactDanger);
+PREP(pt_reset_pos);

@@ -1,4 +1,6 @@
 
+#include "script_component.hpp"
+private ["_unit", "_coverObj", "_boundingCenter", "_coverPos", "_height", "_resolution", "_dirFromUnitToCover"];
 //find closest position to coverObj which does not touch cover obj, then back up 0.4m and return that position.
 _unit = _this select 0;
 _coverObj = _this select 1;
@@ -32,4 +34,5 @@ while {_resolution > 0.25} do {
 };
 
 _coverPos = [_coverPos, -0.8, _dirFromUnitToCover] call BIS_fnc_relPos;
+_coverPos = ASLToAtl _coverPos;
 _coverPos;

@@ -1,5 +1,6 @@
 
-
+#include "script_component.hpp"
+private ["_unit", "_dangerCausedBy", "_unitThatNeedCover", "_coverObj"];
 _unit = _this select 0;
 _dangerCausedBy = _this select 1;
 //for each unit in this unit's group, see if their saved piece of cover blocks vision from the enemy

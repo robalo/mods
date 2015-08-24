@@ -1,4 +1,6 @@
 
+#include "script_component.hpp"
+private ["_unit", "_dangerCausedBy", "_coverObj", "_dangerCenter", "_unitEye", "_unitKneel", "_unitProne", "_doesCover"];
 _unit = _this select 0;
 _dangerCausedBy = _this select 1;
 _coverObj = _this select 2;

@@ -1,3 +1,6 @@
+
+#include "script_component.hpp"
+private ["_unit", "_testPos", "_objs", "_hidingPos"];
 //move to another building pos, at random
 
 _unit = _this select 0;
@@ -16,4 +19,10 @@ _hidingPos = [];
 
 if(count _hidingPos > 0) then {
     [_unit, _hidingPos] call FUNC(pt_moveToPoint);
+    
+    //add reset for unitPos so that they will not get stuck down
+    if(_unit getVariable [QGVAR(POS_RESET_PEND), 0] == 0) then {
+        _unit  setVariable [QGVAR(POS_RESET_PEND),1,false];
+        [_unit] call FUNC(pt_reset_Pos);
+    };
 };
