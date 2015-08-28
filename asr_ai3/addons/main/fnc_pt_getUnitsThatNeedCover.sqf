@@ -14,8 +14,11 @@ _unitThatNeedCover = [];
         if(_coverObj == _x) then {
             _unitThatNeedCover pushBack _unit;
         }else {
-            if(![_x, _dangerCausedBy, _coverObj] call FUNC(pt_coverValid)) then {
+            if(!([_x, _dangerCausedBy, _coverObj] call FUNC(pt_isCoverValid))) then {
                 _unitThatNeedCover pushBack _unit;
+                _unit setVariable [QGVAR(savedCover),nil,false];
+            }else {
+                //format ["outStruct: %1 doesn't need cover, old cover good", _x] call BIS_fnc_log;
             };
         };
     }

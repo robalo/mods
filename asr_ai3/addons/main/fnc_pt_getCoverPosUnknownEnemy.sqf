@@ -11,6 +11,10 @@ _boundingCenter = (boundingCenter _coverObj);
             
             
 _coverPos = [_coverObj, _unit] call FUNC(pt_findPossibleCenter);
+
+if(count _coverPos == 0) then {
+    //format ["%1 rejected from unknown enemy, unable to find center", _coverObj]  call BIS_fnc_log;
+};
 if(count _coverPos == 0) exitWith {
     //unable to find obj model starting point, give up.
     [];

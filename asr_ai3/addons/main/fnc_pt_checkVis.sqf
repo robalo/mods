@@ -16,8 +16,14 @@ _visible = true;
 
 //format ["checking vis between %1, and %2, found %3", _dangerPos, _unitPos, _objs] call BIS_fnc_log;
 {
+    
+    _bbr = boundingBoxReal _x;
+    _p1 = _bbr select 0;
+    _p2 = _bbr select 1;
+    _maxHeight = abs ((_p2 select 2) - (_p1 select 2));
+
     //format ["checking vis of %1", _x] call BIS_fnc_log;
-    if( boundingCenter _x select 1 > GVAR(MIN_HEIGHT_OBJ_TO_CONSIDER)
+    if(_maxHeight > GVAR(MIN_HEIGHT_OBJ_TO_CONSIDER)
             && _x != _unit && _x != _dangerCausedBy) then {
         _visible = false;
     }

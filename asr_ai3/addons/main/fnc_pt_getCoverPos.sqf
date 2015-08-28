@@ -6,26 +6,27 @@ _dangerUnit = _this select 1;
 _coverObj = _this select 2;
 
 
-if(_unit isKindOf "CAManBase") exitWith {[]};
-if(_dangerUnit == _coverObj) exitWith {[]};
+if(_coverObj isKindOf "CAManBase") exitWith {[]};
 _dangerCenter = eyePos _dangerUnit;
 
-_unitCenter = eyePos _unit;
+_unitCenter = _unit modelToWorld [0,0,0];
+_unitCenter = ATLToASL _unitCenter;
+//format ["unit center:%1", _unitCenter]  call BIS_fnc_log;
 
 
 // step 1, find a starting point such that the objs model is between the unit and the starting point at prone height]
-_coverPos = [_coverObj, _unit] call FUNC(pt_findPossibleCenter);
+_originalCoverPos = [_coverObj, _dangerUnit] call FUNC(pt_findPossibleCenter);
 
-//_coverPos is ASL
-if(count _coverPos == 0) then {
-    //format ["%1 rejected, unable to find center", _coverObj]  call BIS_fnc_log;
-};
-if(count _coverPos == 0) exitWith {
+if(count _originalCoverPos == 0) exitWith {
+    //format ["%1 rejected, unable to find center", _originalCoverPos]  call BIS_fnc_log;
+    [];
 };
 
+_coverPos = _originalCoverPos;
+_originalCoverPos = ASLToATL _originalCoverPos;
 //now we sweep angles using the dangerousUnit as a focal point, coverPos as our starting point and unit as our ending point
 _dangerToCoverDir =[_dangerUnit, _coverPos] call BIS_fnc_dirTo;
-_unitToCoverDir = [_unit, _coverPos] call BIS_fnc_dirTo;
+_unitToCoverDir = [_unitCenter, _coverPos] call BIS_fnc_dirTo;
 private ["_angleACB", "_currentDistance", "_resolution", "_foundResult"];
 
 //unit = pt A
@@ -38,7 +39,7 @@ if(_angleACB > 180) then {
     _angleACB = _dangerToCoverDir - _unitToCoverDir;
 };
 
-_currentDistance = (getPosASL _unit distance _coverPos);
+_currentDistance = (_unitCenter distance _coverPos);
 
 _resolution = _currentDistance / 2;
 _foundResult = 0;
@@ -46,21 +47,34 @@ while{_resolution > 0.25} do {
     //sweep from cover pos to unit until we get a point that is inside the model and _resolution is < 0.25
     if(_coverObj in (lineIntersectsWith [_dangerCenter, _coverPos])) then {
         //sweep towards unit pos
-		_coverPos = ATLToASL( [_unit, _currentDistance - _resolution,  _unitToCoverDir] call BIS_fnc_relPos);
+		_coverPos = [_unitCenter, _currentDistance - _resolution,  _unitToCoverDir] call BIS_fnc_relPos;
         _foundResult = 1;
     }else {
         //sweep towards cover center
-		_coverPos = ATLToASL ([_unit, _currentDistance + _resolution,  _unitToCoverDir] call BIS_fnc_relPos);
+		_coverPos = [_unitCenter, _currentDistance + _resolution,  _unitToCoverDir] call BIS_fnc_relPos;
     };
-    _coverPos = _coverPos vectorAdd [0,0,1 min (boundingCenter _coverObj select 1)];
+    _coverPos = _coverPos vectorAdd [0,0,_originalCoverPos select 2];
     
-    _currentDistance = (getPosASL _unit distance _coverPos);
+    /*
+    if(isNil "unitPts") then {
+        unitPts = [];
+        addMissionEventHandler ["Draw3D", {
+        {
+            drawLine3D [_x select 0, _x select 1, [1,0,0,1]];
+        } forEach unitPts;
+        
+        }];
+    };
+    unitPts pushBack [ASLToATL _coverPos, ASLToATL _unitCenter];
+    */
+    //format ["%1 scanned at height %2", _coverObj, _coverPos select 2]  call BIS_fnc_log;
+    _currentDistance = (_unitCenter distance _coverPos);
     _resolution = _resolution / 2;
 };
 if(_foundResult == 0) then {
-    //format ["%1 rejected, unable to find cover pt during sweep", _coverObj]  call BIS_fnc_log;
+    //format ["%1 rejected, unable to find cover pt during sweep at height %2", _coverObj, _coverPos select 2]  call BIS_fnc_log;
 };
-if(_foundResult == 0) exitWith {};
+if(_foundResult == 0) exitWith {[]};
 
 _dangerToCoverDir = [_dangerUnit, _coverPos] call BIS_fnc_dirTo;
 //now we effectively have the heading from the danger to the final cover pos.
@@ -92,7 +106,20 @@ if(_coverObj in lineIntersectsWith [ _coverPos, _originDetect]) then {
 };
 
 
+    
+    //format ["returning cover pos %1",_coverPos]  call BIS_fnc_log;
 //move 0.6m away from the cover, because the unit is not a point object
  _coverPos = [_coverPos, 0.6,  _dangerToCoverDir] call BIS_fnc_relPos;
- _coverPos = ASLToATL _coverPos;
+ /*
+    if(isNil "coverPts") then {
+        coverPts = [];
+        addMissionEventHandler ["Draw3D", {
+        {
+            drawLine3D [_x, _x vectorAdd [0,0,10], [0,1,0,1]];
+        } forEach coverPts;
+        
+        }];
+    };
+    coverPts pushBack ASLToATL _coverPos;
+ */
  _coverPos;

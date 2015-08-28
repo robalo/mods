@@ -49,7 +49,7 @@ if(_foundResult != "") then {
     //format ["inStruct amVis unit pos to %1", _foundResult] call BIS_fnc_log;
     _unit setUnitPos _foundResult;
     _unit  setVariable [QGVAR(DT),time + GVAR(DT_IN_STRUCT_CHANGE_POS),false];
-    _unit  setVariable [QGVAR(RT),time + GVAR(RT_IN_STRUCT_CHANGE_POS),false];
+    _unit  setVariable [QGVAR(RT),GVAR(RT_IN_STRUCT_CHANGE_POS),false];
     if(_unit == leader _unit) then {
         _unit  setVariable [QGVAR(AT),time + GVAR(AT_IN_STRUCT_CHANGE_POS),false];
         _unit  setVariable [QGVAR(AD),GVAR(AD_IN_STRUCT_CHANGE_POS),false];
@@ -64,7 +64,7 @@ if(_foundResult != "") then {
     //format ["inStruct amVis unit pos next building pos", _foundResult] call BIS_fnc_log;
     [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_goToNextBuildingPos);
     _unit  setVariable [QGVAR(DT),time + GVAR(DT_IN_STRUCT_AM_VIS_MOVE),false];
-    _unit  setVariable [QGVAR(RT),time + GVAR(RT_IN_STRUCT_AM_VIS_MOVE),false];
+    _unit  setVariable [QGVAR(RT),GVAR(RT_IN_STRUCT_AM_VIS_MOVE),false];
 
         if(_unit == leader _unit) then {
             _unit  setVariable [QGVAR(AT),time + GVAR(AT_IN_STRUCT_AM_VIS_MOVE),false];

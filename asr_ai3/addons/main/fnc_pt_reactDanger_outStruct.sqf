@@ -1,6 +1,6 @@
 
 #include "script_component.hpp"
-private ["_unit", "_dangerCause", "_dangerCausedBy", "_unitsThatNeedCover", "_deniedCover", "_coverObj", "_activeCover"];
+private ["_unit", "_dangerCause", "_dangerCausedBy", "_unitsThatNeedCover", "_deniedCover", "_coverObj", "_activeCover", "_bbr", "_p1", "_p2", "_maxHeight"];
 
 _unit = _this select 0;
 _dangerCausedBy = _this select 1;
@@ -17,6 +17,8 @@ if(_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD)) then {
     {
         if(unitReady _x) then {
             _unitsThatNeedCover pushBack _x;
+        }else {
+            format ["outStruct: %1 doesn't need cover, not ready", _x] call BIS_fnc_log;
         }
     } forEach units _unit;
     
@@ -42,15 +44,21 @@ _activeCover = [];
     if(count _activeCover >= count _unitsThatNeedCover) then {
         breakOut "loop";
     };
-    if(boundingCenter _x select 1 > GVAR(MIN_HEIGHT_OBJ_TO_CONSIDER)) then {
-        
+    
+    _bbr = boundingBoxReal _x;
+    _p1 = _bbr select 0;
+    _p2 = _bbr select 1;
+    _maxHeight = abs ((_p2 select 2) - (_p1 select 2));
+    
+    if(_maxHeight > GVAR(MIN_HEIGHT_OBJ_TO_CONSIDER)) then {
+        _building = _x;
         if(_x isKindOf "HouseBase") then {
         
             //format ["outStruct: found house: %1, %2", _x, [_x] call BIS_fnc_buildingPositions] call BIS_fnc_log;
             {   
                 //format ["outStruct: running house: %1", _x] call BIS_fnc_log;
                 if(random 1 > GVAR(CHANCE_USE_BUILDING_POS) && (count _activeCover < count _unitsThatNeedCover)) then {
-                    _activeCover pushBack _x;
+                    _activeCover pushBack [_x, _building];
                 };
             } forEach ([_x] call BIS_fnc_buildingPositions);
         }else {
@@ -65,21 +73,26 @@ _activeCover = [];
             if(count _coverPos > 0) then {
                 //format ["outStruct: adding cover behind: %1", _x] call BIS_fnc_log;
 
-                _activeCover pushBack _coverPos;
+                _activeCover pushBack [_coverPos, _x];
+            }else {
+                //format ["outStruct: rejecting cover: %1", _x] call BIS_fnc_log;
             };
         };
+    }else {
+        //format ["outStruct: cover too short: %1, %2", _x, _maxHeight] call BIS_fnc_log;
     };
 } forEach (nearestObjects [_unit, [], GVAR(MAX_DIST_TO_COVER)]);
 
-_grp lockwp true;
-
 
 {
-    [_unitsThatNeedCover select _forEachIndex, _x] spawn FUNC(pt_moveToPoint);
+    _forEachUnit = _unitsThatNeedCover select _forEachIndex;
+    _forEachUnit setVariable [QGVAR(savedCover),_x select 1,false];
+    
+    [_forEachUnit, _x select 0, _dangerCausedBy] spawn FUNC(pt_moveToPoint);
 } forEach _activeCover;
 
 _unit  setVariable [QGVAR(DT),time + GVAR(DT_OUTSIDE),false];
-_unit  setVariable [QGVAR(RT),time + GVAR(RT_OUTSIDE),false];
+_unit  setVariable [QGVAR(RT),GVAR(RT_OUTSIDE),false];
 if(_unit == leader _unit) then {
     _unit  setVariable [QGVAR(AT),time + GVAR(AT_OUTSIDE),false];
     _unit  setVariable [QGVAR(AD),GVAR(AD_OUTSIDE),false];

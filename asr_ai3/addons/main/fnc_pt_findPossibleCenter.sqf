@@ -33,6 +33,18 @@ if(count _this == 2) then {
 };
 
 if(count _result != 0) exitWith {
+
+    if(isNil "centerPts") then {
+        centerPts = [];
+        addMissionEventHandler ["Draw3D", {
+        {
+            drawLine3D [_x, _x vectorAdd [0,0,10], [0,0,1,1]];
+        } forEach centerPts;
+        
+        }];
+    };
+    centerPts pushBack ASLToATL _result;
+
     _result;
 };
 private ["_boundBox", "_corner1Pos", "_corner2Pos", "_corner3Pos", "_corner4Pos"];
@@ -115,8 +127,21 @@ if(_firstCheckAngle != 6000) then {
     //return the average from the first and last intersections we recorded
     _result = [((getPosASL _unit) vectorAdd [0,0,_height]), _farthestCheckDistance,  (_lastCheckAngle + _firstCheckAngle) / 2] call BIS_fnc_relPos;
 };
-//format ["findCenter: ends  with: %1, %2", _result, lineIntersectsWith [ _result, _unitCenter]] call BIS_fnc_log;
 
-//now try to find the highest point on the model which satisfies our inital condition
-// with a max of 1.7m (head height)
+/*
+if(count _result > 0) then {
+    //format ["findCenter: ends  with: %1, %2, %3", _result, ASLToATL _result, lineIntersectsWith [ _result, _unitCenter]] call BIS_fnc_log;
+
+    if(isNil "centerPts") then {
+        centerPts = [];
+        addMissionEventHandler ["Draw3D", {
+        {
+            drawLine3D [_x, _x vectorAdd [0,0,10], [0,0,1,1]];
+        } forEach centerPts;
+        
+        }];
+    };
+    centerPts pushBack ASLToATL _result;
+};
+*/
 _result;

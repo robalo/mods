@@ -4,6 +4,7 @@ private ["_unit", "_testPos", "_objs", "_hidingPos"];
 //move to another building pos, at random
 
 _unit = _this select 0;
+_dangerUnit = _this select 1;
 _testPos = getPosASL _unit;
 _objs = lineIntersectsWith[_testPos vectorAdd [0,0,10], _testPos vectorAdd[0,0,-10]];
 _hidingPos = [];
@@ -18,11 +19,11 @@ _hidingPos = [];
 } forEach _objs;
 
 if(count _hidingPos > 0) then {
-    [_unit, _hidingPos] call FUNC(pt_moveToPoint);
+    [_unit, _hidingPos, _dangerUnit] call FUNC(pt_moveToPoint);
     
     //add reset for unitPos so that they will not get stuck down
     if(_unit getVariable [QGVAR(POS_RESET_PEND), 0] == 0) then {
         _unit  setVariable [QGVAR(POS_RESET_PEND),1,false];
-        [_unit] call FUNC(pt_reset_Pos);
+        [_unit, time] call FUNC(pt_reset_Pos);
     };
 };

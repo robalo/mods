@@ -19,7 +19,7 @@ if(_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD)) then {
             //format ["inStruct was hit"] call BIS_fnc_log;
             [_unit, true] call FUNC(pt_downPos);
             _unit  setVariable [QGVAR(DT),time + GVAR(DT_IN_STRUCT_HIT),false];
-            _unit  setVariable [QGVAR(RT),time + GVAR(RT_IN_STRUCT_HIT),false];
+            _unit  setVariable [QGVAR(RT),GVAR(RT_IN_STRUCT_HIT),false];
 
             if(_unit == leader _unit) then {
                 _unit  setVariable [QGVAR(AT),time + GVAR(AT_IN_STRUCT_HIT),false];
@@ -42,7 +42,7 @@ if(_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD)) then {
         };
         
         _unit  setVariable [QGVAR(DT),time + GVAR(DT_IN_STRUCT_UNKNOWN_ENEMY),false];
-        _unit  setVariable [QGVAR(RT),time + GVAR(RT_IN_STRUCT_UNKNOWN_ENEMY),false];
+        _unit  setVariable [QGVAR(RT),GVAR(RT_IN_STRUCT_UNKNOWN_ENEMY),false];
         if(_unit == leader _unit) then {
             _unit  setVariable [QGVAR(AD),0,false];
             _unit  setVariable [QGVAR(AT),0,false];

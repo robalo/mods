@@ -13,11 +13,20 @@ _dangerCausedBy = _this select 1;
 _dangerCause = _this select 2;
 _grp = group _unit;
         //format ["react danger, reacting on %1, against %2, because %3", _unit, _dangerCausedBy, _dangerCause] call BIS_fnc_log;
-        //format ["danger, was ready %1, time %2 vs time %3", unitReady _unit, _time, _unit getVariable [QGVAR(DT),0]] call BIS_fnc_log;
-if (unitReady _unit && {!isPlayer _unit} && {time > (_unit getVariable [QGVAR(DT),0])}) then {
-
+ //format ["danger, was ready %1, time %2 vs time %3", unitReady _unit, time, _unit getVariable [QGVAR(DT),0]] call BIS_fnc_log;
+ 
+ 
+if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && unitReady _unit && {!isPlayer _unit} && {time > (_unit getVariable [QGVAR(DT),0])}) then {
+    
+    _unit setVariable [QGVAR(PT_SLEEP), 1, false];
     //sleep half a second to let the AI find its attacker before making decisions
     sleep 0.5;
+    
+    _unit setVariable [QGVAR(PT_SLEEP), 0, false];
+    
+    if(_unit == leader _unit  && (_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD))) then {
+        _unit  setVariable [QGVAR(ATTACKER_POS),(getPosASL _dangerCausedBy),false];
+    };
     
     //This is wacky
     //so every 5 seconds or so react danger will be called with either enemy detected or enemy near.
@@ -39,10 +48,11 @@ if (unitReady _unit && {!isPlayer _unit} && {time > (_unit getVariable [QGVAR(DT
         
     };
     
-    _unit setVariable [QGVAR(DANGER_DIR),_dir,false];
     
     if(_exit) exitWith {
     };
+    
+    _unit setVariable [QGVAR(DANGER_DIR),_dir,false];
     
     if(_unit call FUNC(isUnderRoof)) then {
         //format ["inStruct"] call BIS_fnc_log;
@@ -54,7 +64,6 @@ if (unitReady _unit && {!isPlayer _unit} && {time > (_unit getVariable [QGVAR(DT
 
     if(_unit == leader _unit && _unit getVariable [QGVAR(ATK_PEND), 0] == 0 && (_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD))) then {
         _unit  setVariable [QGVAR(ATK_PEND),1,false];
-        _unit  setVariable [QGVAR(ATTACKER_POS),(getPosATL _dangerCausedBy),false];
         //format ["attackCalled"] call BIS_fnc_log;
         [_unit, getPosATL _dangerCausedBy] call FUNC(pt_reactDanger_attack);
     };
