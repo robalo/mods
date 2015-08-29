@@ -330,7 +330,9 @@ class FSM
                         init = /*%FSM<STATEINIT""">*/"_asrenabled = asr_ai3_main_enabled == 1;" \n
                          "_grp = group _this;" \n
                          "_isleader = leader _grp == _this;" \n
-                         "_inf = vehicle _this == _this;"/*%FSM</STATEINIT""">*/;
+                         "_inf = vehicle _this == _this;" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {

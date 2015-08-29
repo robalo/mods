@@ -33,7 +33,7 @@ if(count _this == 2) then {
 };
 
 if(count _result != 0) exitWith {
-
+/*
     if(isNil "centerPts") then {
         centerPts = [];
         addMissionEventHandler ["Draw3D", {
@@ -44,7 +44,7 @@ if(count _result != 0) exitWith {
         }];
     };
     centerPts pushBack ASLToATL _result;
-
+*/
     _result;
 };
 private ["_boundBox", "_corner1Pos", "_corner2Pos", "_corner3Pos", "_corner4Pos"];
