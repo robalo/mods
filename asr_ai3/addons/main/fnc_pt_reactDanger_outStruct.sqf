@@ -10,19 +10,10 @@ if(_unit != leader _unit) exitWith {
 };
 _unitsThatNeedCover = [];
 
-if(_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD)) then {
+if((_unit targetKnowledge _dangerCausedBy select 5) < 6) then {
     _unitsThatNeedCover = [_unit, _dangerCausedBy] call FUNC(pt_getUnitsThatNeedCover);
 }else {
-    _unitsThatNeedCover = [];
-    {
-        if(unitReady _x) then {
-            _unitsThatNeedCover pushBack _x;
-        }else {
-            format ["outStruct: %1 doesn't need cover, not ready", _x] call BIS_fnc_log;
-        }
-    } forEach units _unit;
-    
-    
+    _unitsThatNeedCover = units _unit;
 };
 
 //format ["outStruct: units that need cover %1", _unitsThatNeedCover] call BIS_fnc_log;
@@ -64,7 +55,7 @@ _activeCover = [];
         }else {
             private ["_coverPos"];
             
-            if(_unit knowsAbout _dangerCausedBy > GVAR(AI_KNOWLEDGE_THRESHOLD)) then {
+            if((_unit targetKnowledge _dangerCausedBy select 5) < 6) then {
                 _coverPos = [_unit, _dangerCausedBy, _x] call FUNC(pt_getCoverPos);
             } else {
                 _coverPos = [_unit, _x] call FUNC(pt_getCoverPosUnknownEnemy);

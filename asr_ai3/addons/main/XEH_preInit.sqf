@@ -32,10 +32,6 @@ ASR_AI_SETDEFAULT(sets,[]);
 ASR_AI_SETDEFAULT(levels_units,[]);
 ASR_AI_SETDEFAULT(factions,[]);
 
-
-//how well the AI must know about a danger source in order for it to take cover relative to it
-//instead of taking cover in general
-ASR_AI_SETDEFAULT(AI_KNOWLEDGE_THRESHOLD, 2)
 //how far we're allowed to get to cover
 ASR_AI_SETDEFAULT(MAX_DIST_TO_COVER, 50)
 //an object must be at least this tall to be considered for cover
@@ -145,7 +141,6 @@ PREP(pt_getCoverPos);
 PREP(pt_getCoverPosUnknownEnemy);
 PREP(pt_getUnitsThatNeedCover);
 PREP(pt_goToNextBuildingPos);
-PREP(pt_heightToPos);
 PREP(pt_isCoverValid);
 PREP(pt_moveToPoint);
 PREP(pt_reactDanger_attack);
@@ -154,3 +149,4 @@ PREP(pt_reactDanger_inStruct_amVis);
 PREP(pt_reactDanger_outStruct);
 PREP(pt_reactDanger);
 PREP(pt_reset_pos);
+PREP(pt_calculatePos);

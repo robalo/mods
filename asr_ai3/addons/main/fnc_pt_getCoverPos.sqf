@@ -11,7 +11,6 @@ _dangerCenter = eyePos _dangerUnit;
 
 _unitCenter = _unit modelToWorld [0,0,0];
 _unitCenter = ATLToASL _unitCenter;
-//format ["unit center:%1", _unitCenter]  call BIS_fnc_log;
 
 
 // step 1, find a starting point such that the objs model is between the unit and the starting point at prone height]
@@ -65,16 +64,15 @@ while{_resolution > 0.25} do {
         
         }];
     };
-    unitPts pushBack [ASLToATL _coverPos, ASLToATL _unitCenter];
-    */
-    //format ["%1 scanned at height %2", _coverObj, _coverPos select 2]  call BIS_fnc_log;
+    unitPts pushBack [ASLToATL _coverPos, ASLToATL _unitCenter];*/
+    
     _currentDistance = (_unitCenter distance _coverPos);
     _resolution = _resolution / 2;
 };
-if(_foundResult == 0) then {
-    //format ["%1 rejected, unable to find cover pt during sweep at height %2", _coverObj, _coverPos select 2]  call BIS_fnc_log;
+if(_foundResult == 0) exitWith {
+    // format ["%1 rejected, unable to find cover pt during sweep at height %2", _coverObj, _coverPos select 2]  call BIS_fnc_log;
+    [];
 };
-if(_foundResult == 0) exitWith {[]};
 
 _dangerToCoverDir = [_dangerUnit, _coverPos] call BIS_fnc_dirTo;
 //now we effectively have the heading from the danger to the final cover pos.
@@ -107,10 +105,9 @@ if(_coverObj in lineIntersectsWith [ _coverPos, _originDetect]) then {
 
 
     
-    //format ["returning cover pos %1",_coverPos]  call BIS_fnc_log;
+ format ["returning cover pos %1",_coverPos]  call BIS_fnc_log;
 //move 0.6m away from the cover, because the unit is not a point object
  _coverPos = [_coverPos, 0.6,  _dangerToCoverDir] call BIS_fnc_relPos;
- /*
     if(isNil "coverPts") then {
         coverPts = [];
         addMissionEventHandler ["Draw3D", {
@@ -121,5 +118,4 @@ if(_coverObj in lineIntersectsWith [ _coverPos, _originDetect]) then {
         }];
     };
     coverPts pushBack ASLToATL _coverPos;
- */
  _coverPos;

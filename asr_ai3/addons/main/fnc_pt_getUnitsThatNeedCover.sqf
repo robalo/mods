@@ -18,7 +18,7 @@ _unitThatNeedCover = [];
                 _unitThatNeedCover pushBack _unit;
                 _unit setVariable [QGVAR(savedCover),nil,false];
             }else {
-                //format ["outStruct: %1 doesn't need cover, old cover good", _x] call BIS_fnc_log;
+                format ["outStruct: %1 doesn't need cover, old cover good", _x] call BIS_fnc_log;
             };
         };
     }

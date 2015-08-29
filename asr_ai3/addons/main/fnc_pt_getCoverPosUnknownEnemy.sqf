@@ -12,10 +12,9 @@ _boundingCenter = (boundingCenter _coverObj);
             
 _coverPos = [_coverObj, _unit] call FUNC(pt_findPossibleCenter);
 
-if(count _coverPos == 0) then {
-    //format ["%1 rejected from unknown enemy, unable to find center", _coverObj]  call BIS_fnc_log;
-};
 if(count _coverPos == 0) exitWith {
+
+    //format ["%1 rejected from unknown enemy, unable to find center", _coverObj]  call BIS_fnc_log;
     //unable to find obj model starting point, give up.
     [];
 };
@@ -38,5 +37,17 @@ while {_resolution > 0.25} do {
 };
 
 _coverPos = [_coverPos, -0.8, _dirFromUnitToCover] call BIS_fnc_relPos;
-_coverPos = ASLToAtl _coverPos;
+
+/*
+    if(isNil "unknownPoints") then {
+        unknownPoints = [];
+        addMissionEventHandler ["Draw3D", {
+        {
+            drawLine3D [_x, _x vectorAdd [0,0,10], [1,0,0,1]];
+        } forEach unknownPoints;
+        
+        }];
+    };
+    unknownPoints pushBack ASLToATL _coverPos;
+*/
 _coverPos;

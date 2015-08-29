@@ -3,23 +3,19 @@
 
 private ["_unit", "_attackTime", "_dangerPos", "_distance", "_wp", "_inBuilding"];
 _unit = _this select 0;
-
 //check what time we're supposed to attack
 //this variable may change between recursive calls
 _attackTime = (_unit getVariable [QGVAR(AT), 0]);
 
-if(_attackTime == 0) exitWith {
-
-};
-
-
-
+//format ["attack, time:%1", _attackTime] call BIS_fnc_log;
+if(_attackTime == 0) exitWith {};
 //not yet time, sleep until then
 if(time < _attackTime) then {
     [_unit, _attackTime] spawn {
-        private ["_unit", "_attackTime"];
+        //private ["_unit", "_attackTime"];
         _unit = _this select 0;
         _attackTime = _this select 1;
+        //format ["attack, sleeping for :%1", (_attackTime - time)] call BIS_fnc_log;
         sleep (_attackTime - time);
         //then restart
         [_unit] call FUNC(pt_reactDanger_attack);
@@ -28,7 +24,6 @@ if(time < _attackTime) then {
 
     //attack no longer pending, allow attack to be called again
     _unit  setVariable [QGVAR(ATK_PEND),0,false];
-    
     //this variable may have change between recursive calls
     _dangerPos = _unit getVariable  [QGVAR(ATTACKER_POS), 0];
     //find a suitable location to attack
@@ -60,5 +55,9 @@ if(time < _attackTime) then {
             _wp setWaypointType "SAD";
             _wp setWaypointName "PT_ASR_AI_SAD";
         };
+        //ATTACK!
+        //format ["attack, attacking"] call BIS_fnc_log;
+    }else {
+        //format ["attack, not attacking, enemy at dist: %1. Max: %2",(_unit distance _dangerPos), (_unit getVariable [QGVAR(AD), 0])] call BIS_fnc_log;
     };
 };
