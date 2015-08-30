@@ -1,9 +1,7 @@
 
 #include "script_component.hpp"
 private ["_unit"];
-_unit = _this select 0;
-_force = _this select 1;
-//format ["down pos was at  %1", unitPos _unit] call BIS_fnc_log;
+PARAMS_2(_unit, _force);
 if(unitPos _unit == "MIDDLE" && _force) then {
     _unit setUnitPos "DOWN";
 };
@@ -14,6 +12,3 @@ if(unitPos _unit == "UP") then {
 if(unitPos _unit == "AUTO") then {
     _unit setUnitPos "MIDDLE";
 };
-
-
-//format ["down pos went to at  %1", unitPos _unit] call BIS_fnc_log;

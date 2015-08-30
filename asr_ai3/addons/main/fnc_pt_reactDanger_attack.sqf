@@ -7,15 +7,12 @@ _unit = _this select 0;
 //this variable may change between recursive calls
 _attackTime = (_unit getVariable [QGVAR(AT), 0]);
 
-//format ["attack, time:%1", _attackTime] call BIS_fnc_log;
 if(_attackTime == 0) exitWith {};
 //not yet time, sleep until then
 if(time < _attackTime) then {
     [_unit, _attackTime] spawn {
-        //private ["_unit", "_attackTime"];
-        _unit = _this select 0;
-        _attackTime = _this select 1;
-        //format ["attack, sleeping for :%1", (_attackTime - time)] call BIS_fnc_log;
+        private ["_unit", "_attackTime"];
+        PARAMS_2(_unit, _attackTime);
         sleep (_attackTime - time);
         //then restart
         [_unit] call FUNC(pt_reactDanger_attack);
@@ -35,6 +32,7 @@ if(time < _attackTime) then {
     } forEach lineIntersectsWith [_dangerPos, _dangerPos vectorAdd [0,0,10]];
 
 
+    //ensure the attack WP doesn't end up someplace the AI can't get to
     if(_inBuilding) then {
         _dangerPos = [_dangerPos] call FUNC(pt_getClosestBuildingPos);
         if(_dangerPos select 0 == 0) then {
@@ -44,7 +42,7 @@ if(time < _attackTime) then {
         _dangerPos = _dangerPos findEmptyPosition [0, 20, "CAManBase"];
     };
     //is the attack location within Attack Distance (AD)?
-    if((_unit distance _dangerPos) < (_unit getVariable [QGVAR(AD), 0])) then {
+    if((_unit distance2D _dangerPos) < (_unit getVariable [QGVAR(AD), 0])) then {
         _group = group _unit;
         if(waypointName [_group, currentWaypoint _group] == "PT_ASR_AI_SAD") then {
             //repoint current SAD waypoint to new target
@@ -55,9 +53,7 @@ if(time < _attackTime) then {
             _wp setWaypointType "SAD";
             _wp setWaypointName "PT_ASR_AI_SAD";
         };
-        //ATTACK!
-        //format ["attack, attacking"] call BIS_fnc_log;
     }else {
-        //format ["attack, not attacking, enemy at dist: %1. Max: %2",(_unit distance _dangerPos), (_unit getVariable [QGVAR(AD), 0])] call BIS_fnc_log;
+        TRACE_3("not attacking, enemy at dist 1, max dist 2", (_unit distance2D _dangerPos), (_unit getVariable [QGVAR(AD), 0]));
     };
 };

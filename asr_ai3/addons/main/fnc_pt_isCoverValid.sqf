@@ -1,9 +1,7 @@
 
 #include "script_component.hpp"
 private ["_unit", "_dangerCausedBy", "_coverObj", "_dangerCenter", "_unitEye", "_unitKneel", "_unitProne", "_doesCover"];
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
-_coverObj = _this select 2;
+PARAMS_3(_unit, _dangerCausedBy, _coverObj);
 //check to see if cover obj does block sight from the danger obj
 
 _dangerCenter = eyePos _dangerCausedBy;

@@ -1,10 +1,8 @@
 
 #include "script_component.hpp"
 private ["_unit", "_dangerCause", "_dangerCausedBy", "_unitsThatNeedCover", "_deniedCover", "_coverObj", "_activeCover", "_bbr", "_p1", "_p2", "_maxHeight"];
+PARAMS_3(_unit, _dangerCausedBy, _dangerCause);
 
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
-_dangerCause = _this select 2;
 if(_unit != leader _unit) exitWith {
     [];
 };
@@ -16,8 +14,6 @@ if((_unit targetKnowledge _dangerCausedBy select 5) < 6) then {
     _unitsThatNeedCover = units _unit;
 };
 
-//format ["outStruct: units that need cover %1", _unitsThatNeedCover] call BIS_fnc_log;
-//now find a piece of cover for each of these units
 
 _deniedCover = [];
 {
@@ -28,7 +24,6 @@ _deniedCover = [];
     };
 } forEach units _unit;
 
-//format ["outStruct: denied pieces of cover: %1", _deniedCover] call BIS_fnc_log;
 _activeCover = [];
 {
     scopeName "loop";
@@ -44,10 +39,7 @@ _activeCover = [];
     if(_maxHeight > GVAR(MIN_HEIGHT_OBJ_TO_CONSIDER)) then {
         _building = _x;
         if(_x isKindOf "HouseBase") then {
-        
-            //format ["outStruct: found house: %1, %2", _x, [_x] call BIS_fnc_buildingPositions] call BIS_fnc_log;
-            {   
-                //format ["outStruct: running house: %1", _x] call BIS_fnc_log;
+            {
                 if(random 1 > GVAR(CHANCE_USE_BUILDING_POS) && (count _activeCover < count _unitsThatNeedCover)) then {
                     _activeCover pushBack [_x, _building];
                 };
@@ -62,15 +54,9 @@ _activeCover = [];
             };
             
             if(count _coverPos > 0) then {
-                //format ["outStruct: adding cover behind: %1", _x] call BIS_fnc_log;
-
                 _activeCover pushBack [_coverPos, _x];
-            }else {
-                //format ["outStruct: rejecting cover: %1", _x] call BIS_fnc_log;
             };
         };
-    }else {
-        //format ["outStruct: cover too short: %1, %2", _x, _maxHeight] call BIS_fnc_log;
     };
 } forEach (nearestObjects [_unit, [], GVAR(MAX_DIST_TO_COVER)]);
 

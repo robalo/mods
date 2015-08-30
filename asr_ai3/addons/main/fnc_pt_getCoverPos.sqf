@@ -1,10 +1,7 @@
 
 #include "script_component.hpp"
 private ["_unit", "_dangerUnit", "_coverObj", "_dangerCenter", "_unitCenter", "_coverPos", "_dangerToCoverDir", "_unitToCoverDir"];
-_unit = _this select 0;
-_dangerUnit = _this select 1;
-_coverObj = _this select 2;
-
+PARAMS_3(_unit, _dangerUnit, _coverObj);
 
 if(_coverObj isKindOf "CAManBase") exitWith {[]};
 _dangerCenter = eyePos _dangerUnit;
@@ -17,7 +14,7 @@ _unitCenter = ATLToASL _unitCenter;
 _originalCoverPos = [_coverObj, _dangerUnit] call FUNC(pt_findPossibleCenter);
 
 if(count _originalCoverPos == 0) exitWith {
-    //format ["%1 rejected, unable to find center", _originalCoverPos]  call BIS_fnc_log;
+    TRACE_2("cover rejected, unable to find center", _originalCoverPos);
     [];
 };
 
@@ -53,24 +50,26 @@ while{_resolution > 0.25} do {
 		_coverPos = [_unitCenter, _currentDistance + _resolution,  _unitToCoverDir] call BIS_fnc_relPos;
     };
     _coverPos = _coverPos vectorAdd [0,0,_originalCoverPos select 2];
-    
-    /*
-    if(isNil "unitPts") then {
-        unitPts = [];
-        addMissionEventHandler ["Draw3D", {
-        {
-            drawLine3D [_x select 0, _x select 1, [1,0,0,1]];
-        } forEach unitPts;
-        
-        }];
+
+    if(GVAR(debug) > 0) then {
+
+        if(isNil "unitPts") then {
+            unitPts = [];
+            addMissionEventHandler ["Draw3D", {
+            {
+                drawLine3D [_x select 0, _x select 1, [1,0,0,1]];
+            } forEach unitPts;
+
+            }];
+        };
+        unitPts pushBack [ASLToATL _coverPos, ASLToATL _unitCenter];
     };
-    unitPts pushBack [ASLToATL _coverPos, ASLToATL _unitCenter];*/
     
     _currentDistance = (_unitCenter distance _coverPos);
     _resolution = _resolution / 2;
 };
 if(_foundResult == 0) exitWith {
-    // format ["%1 rejected, unable to find cover pt during sweep at height %2", _coverObj, _coverPos select 2]  call BIS_fnc_log;
+    TRACE_2("Cover rejected during sweep", _coverObj)
     [];
 };
 
@@ -104,18 +103,19 @@ if(_coverObj in lineIntersectsWith [ _coverPos, _originDetect]) then {
 };
 
 
-    
- format ["returning cover pos %1",_coverPos]  call BIS_fnc_log;
+
 //move 0.6m away from the cover, because the unit is not a point object
  _coverPos = [_coverPos, 0.6,  _dangerToCoverDir] call BIS_fnc_relPos;
+ if(GVAR(debug) > 0) then {
     if(isNil "coverPts") then {
         coverPts = [];
         addMissionEventHandler ["Draw3D", {
         {
             drawLine3D [_x, _x vectorAdd [0,0,10], [0,1,0,1]];
         } forEach coverPts;
-        
+
         }];
     };
     coverPts pushBack ASLToATL _coverPos;
+ };
  _coverPos;

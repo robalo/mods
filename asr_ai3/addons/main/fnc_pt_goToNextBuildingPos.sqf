@@ -2,9 +2,7 @@
 #include "script_component.hpp"
 private ["_unit", "_testPos", "_objs", "_hidingPos"];
 //move to another building pos, at random
-
-_unit = _this select 0;
-_dangerUnit = _this select 1;
+PARAMS_2(_unit, _dangerUnit);
 _testPos = getPosASL _unit;
 _objs = lineIntersectsWith[_testPos vectorAdd [0,0,10], _testPos vectorAdd[0,0,-10]];
 _hidingPos = [];

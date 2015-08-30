@@ -1,8 +1,7 @@
 
 #include "script_component.hpp"
 private ["_unit", "_dangerCausedBy", "_unitThatNeedCover", "_coverObj"];
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
+PARAMS_2(_unit, _dangerCausedBy);
 //for each unit in this unit's group, see if their saved piece of cover blocks vision from the enemy
 _unitThatNeedCover = [];
 
@@ -18,7 +17,7 @@ _unitThatNeedCover = [];
                 _unitThatNeedCover pushBack _unit;
                 _unit setVariable [QGVAR(savedCover),nil,false];
             }else {
-                format ["outStruct: %1 doesn't need cover, old cover good", _x] call BIS_fnc_log;
+                TRACE_2("outStruct: doesn't need cover, old cover good", _x);
             };
         };
     }
