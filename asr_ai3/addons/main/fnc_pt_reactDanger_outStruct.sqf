@@ -1,8 +1,10 @@
 
 #include "script_component.hpp"
 private ["_unit", "_dangerCause", "_dangerCausedBy", "_unitsThatNeedCover", "_deniedCover", "_coverObj", "_activeCover", "_bbr", "_p1", "_p2", "_maxHeight"];
-PARAMS_3(_unit, _dangerCausedBy, _dangerCause);
 
+_unit = _this select 0;
+_dangerCausedBy = _this select 1;
+_dangerCause = _this select 2;
 if(_unit != leader _unit) exitWith {
     [];
 };

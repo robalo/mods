@@ -1,7 +1,9 @@
-
 #include "script_component.hpp"
 private ["_unit", "_cover", "_unitPos", "_currentDist", "_coverPos", "_pos"];
-PARAMS_3(_unit, _cover, _dangerUnit);
+//accepts cover as position ATL
+_unit = _this select 0;
+_cover = _this select 1;
+_dangerUnit = _this select 2;
 
 if(GVAR(debug)) then {
 

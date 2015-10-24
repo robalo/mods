@@ -1,7 +1,8 @@
 
 #include "script_component.hpp"
 private ["_unit", "_timeSleep"];
-PARAMS_2(_unit, _originalCallTime);
+_unit = _this select 0;
+_originalCallTime = _this select 1;
 
 //check what time we're supposed to reset
 _timeSleep = (_unit getVariable [QGVAR(RT), 0]);

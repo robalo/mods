@@ -1,7 +1,7 @@
-
 #include "script_component.hpp"
 private ["_unit", "_dangerCausedBy", "_unitPos", "_height", "_dangerPos", "_objs", "_visible"];
-PARAMS_2(_unit, _dangerCausedBy);
+_unit = _this select 0;
+_dangerCausedBy = _this select 1;
 _unitPos = eyePos _unit;
 
 if(count _this > 2) then {

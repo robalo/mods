@@ -1,7 +1,8 @@
-
 #include "script_component.hpp"
 private ["_unit", "_dangerCause", "_dangerCausedBy", "_checkDown", "_checkMiddle", "_foundResult"];
-PARAMS_3(_unit, _dangerCausedBy, _dangerCause);
+_unit = _this select 0;
+_dangerCausedBy = _this select 1;
+_dangerCause = _this select 2;
 //I am in a structure, and I know who the enemy is and I am visible to the enemy.
 
 _checkMiddle = false;

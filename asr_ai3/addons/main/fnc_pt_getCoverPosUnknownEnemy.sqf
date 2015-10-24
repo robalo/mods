@@ -2,8 +2,9 @@
 
 #include "script_component.hpp"
 private ["_unit", "_coverObj", "_coverPos", "_height", "_resolution", "_dirFromUnitToCover"];
-//find closest position to coverObj which does not touch cover obj, then back up and return that position.
-PARAMS_2(_unit, _coverObj);
+//find closest position to coverObj which does not touch cover obj, then back up 0.4m and return that position.
+_unit = _this select 0;
+_coverObj = _this select 1;
 
 _coverPos = [_coverObj, _unit] call FUNC(pt_findPossibleCenter);
 

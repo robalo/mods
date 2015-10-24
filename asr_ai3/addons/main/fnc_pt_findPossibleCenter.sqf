@@ -1,4 +1,3 @@
-
 #include "script_component.hpp"
 
 
@@ -8,7 +7,9 @@ private ["_coverObj", "_unit", "_result", "_height", "_unitCenter", "_boundingCe
 //I need a point such that the object's model is in between it and the unit's position.
 //bounding center is not necessarily correct.
 //to this end, we will use line intersections inorder to find such a position
-PARAMS_2(_coverObj, _unit);
+
+_coverObj = _this select 0;
+_unit = _this select 1;
 _result = [];
 _height = 0;
 _unitCenter = ((getPosASL _unit) vectorAdd [0,0,1.2]); 

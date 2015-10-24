@@ -1,7 +1,9 @@
-
 #include "script_component.hpp"
 private ["_unit", "_dangerUnit", "_coverObj", "_dangerCenter", "_unitCenter", "_coverPos", "_dangerToCoverDir", "_unitToCoverDir"];
-PARAMS_3(_unit, _dangerUnit, _coverObj);
+_unit = _this select 0;
+_dangerUnit = _this select 1;
+_coverObj = _this select 2;
+
 
 if(_coverObj isKindOf "CAManBase") exitWith {[]};
 _dangerCenter = eyePos _dangerUnit;

@@ -1,4 +1,3 @@
-
 #include "script_component.hpp"
 
 private ["_unit", "_attackTime", "_dangerPos", "_distance", "_wp", "_inBuilding"];
@@ -11,8 +10,8 @@ if(_attackTime == 0) exitWith {};
 //not yet time, sleep until then
 if(time < _attackTime) then {
     [_unit, _attackTime] spawn {
-        private ["_unit", "_attackTime"];
-        PARAMS_2(_unit, _attackTime);
+        _unit = _this select 0;
+        _attackTime = _this select 1;
         sleep (_attackTime - time);
         //then restart
         [_unit] call FUNC(pt_reactDanger_attack);
