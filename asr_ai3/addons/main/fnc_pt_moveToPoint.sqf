@@ -1,22 +1,28 @@
+//#define DEBUG_MODE_FULL
+
 #include "script_component.hpp"
 private ["_unit", "_cover", "_unitPos", "_currentDist", "_coverPos", "_pos"];
-//accepts cover as position ATL
+//accepts cover as position ASL
 _unit = _this select 0;
 _cover = _this select 1;
 _dangerUnit = _this select 2;
 
-if(GVAR(debug)) then {
+TRACE_1("debugMode: ", GVAR(debug));
+if(GVAR(debug) == 1) then {
 
     if(isNil "movePts") then {
-        coverPts = [];
+        movePts = [];
+        unitMovePts = [];
         addMissionEventHandler ["Draw3D", {
         {
             drawLine3D [_x, _x vectorAdd [0,0,10], [0,1,0,1]];
+            drawLine3D [getPosATL (unitMovePts select _forEachIndex), _x, [0,1,1,1]];
         } forEach movePts;
 
         }];
     };
     movePts pushBack ASLToATL _cover;
+    unitMovePts pushBack _unit;
 };
 
 
@@ -33,7 +39,10 @@ while{_currentDist > 1.25 && ! (_unit call FUNC(isUnc)) && !(unitReady _unit)} d
     
 };
 
-TRACE_2("done moving", _unit);
+TRACE_1("done moving", _unit);
+
+doStop _unit;
+
 
 if(_unit call FUNC(isUnderRoof)) then {
     _unit setUnitPos "AUTO";

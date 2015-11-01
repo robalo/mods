@@ -28,31 +28,41 @@ if(time < _attackTime) then {
         if(_x  isKindOf "HouseBase") then {
             _inBuilding = true;
         };
-    } forEach lineIntersectsWith [_dangerPos, _dangerPos vectorAdd [0,0,10]];
+    } forEach lineIntersectsWith [_dangerPos vectorAdd [0,0,-10], _dangerPos vectorAdd [0,0,10]];
 
 
     //ensure the attack WP doesn't end up someplace the AI can't get to
+    _attackPos = [];
     if(_inBuilding) then {
-        _dangerPos = [_dangerPos] call FUNC(pt_getClosestBuildingPos);
-        if(_dangerPos select 0 == 0) then {
-            _dangerPos = _dangerPos findEmptyPosition [0, 20, "CAManBase"];
+        _attackPos = [_dangerPos] call FUNC(pt_getClosestBuildingPos);
+        if(count _attackPos == 0) then {
+            _attackPos = _dangerPos findEmptyPosition [0, 20, "CAManBase"];
         };
     } else {
-        _dangerPos = _dangerPos findEmptyPosition [0, 20, "CAManBase"];
+        _attackPos = _dangerPos findEmptyPosition [0, 20, "CAManBase"];
     };
+    
+    if(count _attackPos == 0) then {
+        _attackPos = _dangerPos findEmptyPosition [0, 50, "CAManBase"];
+    };
+    
+    if(count _attackPos == 0) exitWith {
+        
+    };
+    
     //is the attack location within Attack Distance (AD)?
-    if((_unit distance2D _dangerPos) < (_unit getVariable [QGVAR(AD), 0])) then {
+    if((_unit distance2D _attackPos) < (_unit getVariable [QGVAR(AD), 0])) then {
         _group = group _unit;
         if(waypointName [_group, currentWaypoint _group] == "PT_ASR_AI_SAD") then {
             //repoint current SAD waypoint to new target
-            [_group, currentWaypoint _group] setWaypointPosition [_dangerPos, 0];
+            [_group, currentWaypoint _group] setWaypointPosition [_attackPos, 0];
         }else {
             //add in a waypoint
-            _wp = _group addWaypoint [_dangerPos, 0, currentWaypoint _group];
+            _wp = _group addWaypoint [_attackPos, 0, currentWaypoint _group];
             _wp setWaypointType "SAD";
             _wp setWaypointName "PT_ASR_AI_SAD";
         };
     }else {
-        TRACE_3("not attacking, enemy at dist 1, max dist 2", (_unit distance2D _dangerPos), (_unit getVariable [QGVAR(AD), 0]));
+        TRACE_3("not attacking, enemy at dist 1, max dist 2", (_unit distance2D _attackPos), (_unit getVariable [QGVAR(AD), 0]));
     };
 };

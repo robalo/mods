@@ -1,7 +1,7 @@
 
 #include "script_component.hpp"
-private ["_unit"];
-PARAMS_2(_unit, _force);
+_unit = _this select 0;
+_force = _this select 1;
 if(unitPos _unit == "MIDDLE" && _force) then {
     _unit setUnitPos "DOWN";
 };

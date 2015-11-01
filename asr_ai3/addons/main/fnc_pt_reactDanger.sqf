@@ -1,5 +1,6 @@
-
+//#define DEBUG_MODE_FULL
 #include "script_component.hpp"
+asr_ai3_main_debug = 1;
 private ["_unit", "_dangerCause", "_dangerCausedBy"];
 _unit = _this select 0;
 _dangerCausedBy = _this select 1;

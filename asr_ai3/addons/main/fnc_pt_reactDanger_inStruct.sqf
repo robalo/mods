@@ -1,8 +1,8 @@
 
 #include "script_component.hpp"
-
-private ["_unit", "_dangerCause", "_dangerCausedBy"];
-PARAMS_3(_unit, _dangerCausedBy, _dangerCause);
+_unit = _this select 0;
+_dangerCausedBy = _this select 1;
+_dangerCause = _this select 2;
 
 
 if(((_unit targetKnowledge _dangerCausedBy select 5) < 6)) then {

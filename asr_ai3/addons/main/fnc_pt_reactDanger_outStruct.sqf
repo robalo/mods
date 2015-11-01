@@ -1,4 +1,4 @@
-
+//#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 private ["_unit", "_dangerCause", "_dangerCausedBy", "_unitsThatNeedCover", "_deniedCover", "_coverObj", "_activeCover", "_bbr", "_p1", "_p2", "_maxHeight"];
 
@@ -11,9 +11,12 @@ if(_unit != leader _unit) exitWith {
 _unitsThatNeedCover = [];
 
 if((_unit targetKnowledge _dangerCausedBy select 5) < 6) then {
+    
     _unitsThatNeedCover = [_unit, _dangerCausedBy] call FUNC(pt_getUnitsThatNeedCover);
+    TRACE_1("AI knew of danger: need new cover ", _unitsThatNeedCover);
 }else {
     _unitsThatNeedCover = units _unit;
+    TRACE_1("AI did not know of danger: need  cover ", _unitsThatNeedCover);
 };
 
 
@@ -62,16 +65,16 @@ _activeCover = [];
     };
 } forEach (nearestObjects [_unit, [], GVAR(MAX_DIST_TO_COVER)]);
 
-
+TRACE_2("found ", _activeCover, _unitsThatNeedCover);
 {
     _forEachUnit = _unitsThatNeedCover select _forEachIndex;
     _forEachUnit setVariable [QGVAR(savedCover),_x select 1,false];
-    
+        
+    _forEachUnit  setVariable [QGVAR(DT),time + GVAR(DT_OUTSIDE),false];
+    _forEachUnit  setVariable [QGVAR(RT),GVAR(RT_OUTSIDE),false];
     [_forEachUnit, _x select 0, _dangerCausedBy] spawn FUNC(pt_moveToPoint);
 } forEach _activeCover;
 
-_unit  setVariable [QGVAR(DT),time + GVAR(DT_OUTSIDE),false];
-_unit  setVariable [QGVAR(RT),GVAR(RT_OUTSIDE),false];
 if(_unit == leader _unit) then {
     _unit  setVariable [QGVAR(AT),time + GVAR(AT_OUTSIDE),false];
     _unit  setVariable [QGVAR(AD),GVAR(AD_OUTSIDE),false];
