@@ -7,7 +7,6 @@ _unit = _this select 0;
 _cover = _this select 1;
 _dangerUnit = _this select 2;
 
-TRACE_1("debugMode: ", GVAR(debug));
 if(GVAR(debug) == 1) then {
 
     if(isNil "movePts") then {
@@ -16,7 +15,6 @@ if(GVAR(debug) == 1) then {
         addMissionEventHandler ["Draw3D", {
         {
             drawLine3D [_x, _x vectorAdd [0,0,10], [0,1,0,1]];
-            drawLine3D [getPosATL (unitMovePts select _forEachIndex), _x, [0,1,1,1]];
         } forEach movePts;
 
         }];
@@ -24,7 +22,7 @@ if(GVAR(debug) == 1) then {
     movePts pushBack ASLToATL _cover;
     unitMovePts pushBack _unit;
 };
-
+[_unit, "moving"] call FUNC(pt_setStatusText);
 
 _unit doMove ASLToATL _cover;
 _unitPos = getPosASL _unit;
@@ -39,20 +37,7 @@ while{_currentDist > 1.25 && ! (_unit call FUNC(isUnc)) && !(unitReady _unit)} d
     
 };
 
+_unit doMove ASLToATL getPosATL _unit;
 TRACE_1("done moving", _unit);
 
-doStop _unit;
-
-
-if(_unit call FUNC(isUnderRoof)) then {
-    _unit setUnitPos "AUTO";
-} else {
-    _pos = [_unit, _dangerUnit] call FUNC(pt_calculatePos);
-    _unit setUnitPos _pos;
-    
-    //add reset for unitPos so that they will not get stuck down
-    if(_unit getVariable [QGVAR(POS_RESET_PEND), 0] == 0) then {
-        _unit  setVariable [QGVAR(POS_RESET_PEND),1,false];
-        [_unit, time] call FUNC(pt_reset_Pos);
-    };
-};
+[_unit, "stopped"] call FUNC(pt_setStatusText);

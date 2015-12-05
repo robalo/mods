@@ -53,6 +53,8 @@ if(time < _attackTime) then {
     //is the attack location within Attack Distance (AD)?
     if((_unit distance2D _attackPos) < (_unit getVariable [QGVAR(AD), 0])) then {
         _group = group _unit;
+        
+        [_unit, "attacking"] call FUNC(pt_setStatusText);
         if(waypointName [_group, currentWaypoint _group] == "PT_ASR_AI_SAD") then {
             //repoint current SAD waypoint to new target
             [_group, currentWaypoint _group] setWaypointPosition [_attackPos, 0];
@@ -64,5 +66,15 @@ if(time < _attackTime) then {
         };
     }else {
         TRACE_3("not attacking, enemy at dist 1, max dist 2", (_unit distance2D _attackPos), (_unit getVariable [QGVAR(AD), 0]));
+        [_unit, "not attacking"] call FUNC(pt_setStatusText);
     };
+    
+    _group = group _unit;
+    {   
+        if(_x != leader _group) then {
+            _x doFollow leader _group; 
+        }else {
+            _x doMove getPosATL _x; 
+        };
+    } forEach units group _unit;
 };

@@ -24,6 +24,6 @@ if(time < (_originalCallTime + _timeSleep)) then {
     TRACE_1("resetting: ", _unit);
     _unit setUnitPos "AUTO";
     _unit setVariable [QGVAR(POS_RESET_PEND),0,false];
+    _unit doMove getPosATL _unit;
+    [_unit, "resetting pos"] call FUNC(pt_setStatusText);
 };
-
-_unit doMove getPosATL _unit;

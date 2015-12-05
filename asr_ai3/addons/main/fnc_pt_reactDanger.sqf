@@ -1,6 +1,5 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-asr_ai3_main_debug = 1;
 private ["_unit", "_dangerCause", "_dangerCausedBy"];
 _unit = _this select 0;
 _dangerCausedBy = _this select 1;
@@ -17,14 +16,13 @@ _grp = group _unit;
  
  
 if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (_unit getVariable [QGVAR(DT),0])}) then {
-    
+
     _unit setVariable [QGVAR(PT_SLEEP), 1, false];
     //sleep half a second to let the AI find its attacker before making decisions
     sleep 0.5;
     
     _unit setVariable [QGVAR(PT_SLEEP), 0, false];
-    //if the AI knows where we are within 6m (AIs usually know where you are within 5m, or they don't know where in which case it returns 1000m)
-    if(_unit == leader _unit  && ((_unit targetKnowledge _dangerCausedBy select 5) < 6)) then {
+    if(_unit == leader _unit) then {
         _unit  setVariable [QGVAR(ATTACKER_POS),(getPosASL _dangerCausedBy),false];
     };
     
@@ -50,7 +48,7 @@ if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (
     
     if(_exit) exitWith {
     };
-    
+
     _unit setVariable [QGVAR(DANGER_DIR),_dir,false];
     
     
@@ -59,13 +57,16 @@ if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (
         [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_reactDanger_inStruct);
     } else {
         //format ["outStruct"] call BIS_fnc_log;
-        [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_reactDanger_outStruct);
+        if(_dangerCausedBy distance _unit > GVAR(NO_COVER_FOR_DANGER_WITHIN)) then {
+            [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_reactDanger_outStruct);
+        };
     };
 
-    if(_unit == leader _unit && _unit getVariable [QGVAR(ATK_PEND), 0] == 0 && ((_unit targetKnowledge _dangerCausedBy select 5) < 6)) then {
-        _unit  setVariable [QGVAR(ATK_PEND),1,false];
-        //format ["attackCalled"] call BIS_fnc_log;
-        [_unit, getPosATL _dangerCausedBy] call FUNC(pt_reactDanger_attack);
+    if(_unit == leader _unit && _unit getVariable [QGVAR(ATK_PEND), 0] == 0 && (((_unit targetKnowledge _dangerCausedBy select 5) < 6 ) || (_unit distance _dangetCausedBy > GVAR(AUTO_ATTACK_WITHIN)))) then {
+        //format ["unit knowledge: %1 at distance: %2", (_unit targetKnowledge _dangerCausedBy select 5), _unit distance _dangerCausedBy] call BIS_fnc_log;
+            _unit  setVariable [QGVAR(ATK_PEND),1,false];
+            //format ["attackCalled"] call BIS_fnc_log;
+            [_unit, getPosATL _dangerCausedBy] call FUNC(pt_reactDanger_attack);
     };
     
     
@@ -91,6 +92,8 @@ if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (
                         _mc = _weap getVariable [QGVAR(mountcount), 0];
                         if (_mc < ceil (2 + random 4)) then { // mount up to a few times
                             doStop _x;
+                            
+                            [_unit, "mounting"] call FUNC(pt_setStatusText);
                             _x assignAsGunner _weap;
                             [_x] orderGetIn true;
                             INC(_mc);

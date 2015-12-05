@@ -46,7 +46,7 @@ _activeCover = [];
         if(_x isKindOf "HouseBase") then {
             {
                 if(random 1 > GVAR(CHANCE_USE_BUILDING_POS) && (count _activeCover < count _unitsThatNeedCover)) then {
-                    _activeCover pushBack [_x, _building];
+                    _activeCover pushBack [ATLToASL _x, _building];
                 };
             } forEach ([_x] call BIS_fnc_buildingPositions);
         }else {
@@ -71,7 +71,6 @@ TRACE_2("found ", _activeCover, _unitsThatNeedCover);
     _forEachUnit setVariable [QGVAR(savedCover),_x select 1,false];
         
     _forEachUnit  setVariable [QGVAR(DT),time + GVAR(DT_OUTSIDE),false];
-    _forEachUnit  setVariable [QGVAR(RT),GVAR(RT_OUTSIDE),false];
     [_forEachUnit, _x select 0, _dangerCausedBy] spawn FUNC(pt_moveToPoint);
 } forEach _activeCover;
 

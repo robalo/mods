@@ -4,9 +4,7 @@
 PARAMS_2(_unit,_hitman);
 
 if (!(isPlayer _unit) && {_unit call FUNC(isValidUnitC)} && {_unit != missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]}) then {
-	// move to cover
-    _unit limitSpeed 1; //km/h
-	[_unit,_hitman,10] call FUNC(moveToCover);
+
 
 	if !([group _unit] call FUNC(hasPlayer)) then {
 		if (_unit != _hitman) then {

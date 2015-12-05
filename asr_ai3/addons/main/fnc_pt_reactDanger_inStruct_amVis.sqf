@@ -40,6 +40,7 @@ if((_foundResult == "") && _checkDown) then {
 //else go to another the next position in the building
 if(_foundResult != "") then {
 
+    [_unit, "ducking from known"] call FUNC(pt_setStatusText);
     _unit setUnitPos _foundResult;
     _unit  setVariable [QGVAR(DT),time + GVAR(DT_IN_STRUCT_CHANGE_POS),false];
     _unit  setVariable [QGVAR(RT),GVAR(RT_IN_STRUCT_CHANGE_POS),false];
@@ -47,7 +48,7 @@ if(_foundResult != "") then {
         _unit  setVariable [QGVAR(AT),time + GVAR(AT_IN_STRUCT_CHANGE_POS),false];
         _unit  setVariable [QGVAR(AD),GVAR(AD_IN_STRUCT_CHANGE_POS),false];
     };
-    
+
     //add reset for unitPos so that they will not get stuck down
     if(_unit getVariable [QGVAR(POS_RESET_PEND), 0] == 0) then {
         _unit  setVariable [QGVAR(POS_RESET_PEND),1,false];
