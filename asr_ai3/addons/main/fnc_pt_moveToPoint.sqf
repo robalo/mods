@@ -37,7 +37,7 @@ while{_currentDist > 1.25 && ! (_unit call FUNC(isUnc)) && !(unitReady _unit)} d
     
 };
 
-_unit doMove ASLToATL getPosATL _unit;
+_unit doFollow leader _unit;
 TRACE_1("done moving", _unit);
 
 [_unit, "stopped"] call FUNC(pt_setStatusText);

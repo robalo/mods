@@ -11,8 +11,9 @@ _unit = _this select 0;
 _dangerCausedBy = _this select 1;
 _dangerCause = _this select 2;
 _grp = group _unit;
-        //format ["react danger, reacting on %1, against %2, because %3", _unit, _dangerCausedBy, _dangerCause] call BIS_fnc_log;
+//format ["react danger, reacting on %1, against %2, because %3, and knows %4, at distance %5", _unit, _dangerCausedBy, _dangerCause, (_unit targetKnowledge _dangerCausedBy select 5), _unit distance _dangerCausedBy ] call BIS_fnc_log;
 //format ["danger, was asleep %1, was ready %2 and time time %3", _unit getVariable[QGVAR(PT_SLEEP), 0], unitReady _unit, time > (_unit getVariable [QGVAR(DT),0])] call BIS_fnc_log;
+ 
  
  
 if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (_unit getVariable [QGVAR(DT),0])}) then {
@@ -22,53 +23,61 @@ if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (
     sleep 0.5;
     
     _unit setVariable [QGVAR(PT_SLEEP), 0, false];
+    
+    
+    
     if(_unit == leader _unit) then {
-        _unit  setVariable [QGVAR(ATTACKER_POS),(getPosASL _dangerCausedBy),false];
+        _unit  setVariable [QGVAR(ATTACKER_POS),(getPosATL _dangerCausedBy),false];
     };
-    
-    //This is wacky
-    //so every 5 seconds or so react danger will be called with either enemy detected or enemy near.
-    //in order to prevent overcalling we will save the direction that the enemy last came from and stop processing if it is too close to the 
-    //dir this time
-    _exit = false;
-    _oldDir = _unit getVariable  [QGVAR(DANGER_DIR), 361];
-    _dir = [_unit, _dangerCausedBy] call BIS_fnc_dirTo;
-    if(_oldDir != 361 && (_dangerCause == 0 || _dangerCause == 3)) then {
-        _dirDist = (abs (_dir - _oldDir)) % 360;
-        if(_dirDist > 180) then {
-            _dirDist = 360 - _dirDist;
-        };
-        
-        if(_dirDist < GVAR(ALLOWABLE_ANGLE_FOR_IGNORE)) then {
-            _exit = true;
-        };
-        
-    };
-    
-    
-    if(_exit) exitWith {
-    };
+    //CT is when we're allowed to consider cover again
+    if(_dangerCause in GVAR(DC_NEED_COVER) && (time > (_unit getVariable [QGVAR(CT),0]))) then {
+        //format ["react danger, %1 reconsidering cover", _unit] call BIS_fnc_log;
 
-    _unit setVariable [QGVAR(DANGER_DIR),_dir,false];
-    
-    
-    if(_unit call FUNC(isUnderRoof)) then {
-        //format ["inStruct"] call BIS_fnc_log;
-        [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_reactDanger_inStruct);
-    } else {
-        //format ["outStruct"] call BIS_fnc_log;
-        if(_dangerCausedBy distance _unit > GVAR(NO_COVER_FOR_DANGER_WITHIN)) then {
-            [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_reactDanger_outStruct);
+        if(_unit call FUNC(isUnderRoof)) then {
+            //format ["inStruct"] call BIS_fnc_log;
+            [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_reactDanger_inStruct);
+        } else {
+            //format ["outStruct"] call BIS_fnc_log;
+            if(_dangerCausedBy distance _unit > GVAR(NO_COVER_FOR_DANGER_WITHIN)) then {
+                [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_reactDanger_outStruct);
+            };
         };
+    
     };
-
-    if(_unit == leader _unit && _unit getVariable [QGVAR(ATK_PEND), 0] == 0 && (((_unit targetKnowledge _dangerCausedBy select 5) < 6 ) || (_unit distance _dangetCausedBy > GVAR(AUTO_ATTACK_WITHIN)))) then {
-        //format ["unit knowledge: %1 at distance: %2", (_unit targetKnowledge _dangerCausedBy select 5), _unit distance _dangerCausedBy] call BIS_fnc_log;
+    
+    
+    if(_dangerCause in GVAR(DC_ATTACK)) then {
+        
+        _unitIsLeader = _unit == leader _unit;
+        _unitPendingAttack = _unit getVariable [QGVAR(ATK_PEND), 0] == 0;
+        _unitKnowledge = ((_unit targetKnowledge _dangerCausedBy select 5) < 6 );
+        _unitDistance = ((_unit distance _dangerCausedBy) < GVAR(AUTO_ATTACK_WITHIN));
+        _unitKnowledgeOrDistance = (_unitKnowledge || _unitDistance);
+        _unitLeaderAndPending = _unitIsLeader && _unitPendingAttack;
+        
+        if(_unitLeaderAndPending && _unitKnowledgeOrDistance) then {
+            if(_unit getVariable [QGVAR(AT), 0] == 0) then {
+                
+                //format ["react danger, %1 attacking but didn't know much", _unit] call BIS_fnc_log;
+                _unit setVariable [QGVAR(AT), GVAR(DEFAULT_ATTACK_TIME), false];
+                if(_unit call FUNC(isUnderRoof)) then {
+                    //format ["and is indoors", _unit] call BIS_fnc_log;
+                    _unit setVariable [QGVAR(AD), GVAR(DEFAULT_ATTACK_DISTANCE_INDOORS), false];
+                }else {
+                    //format ["and is outdoors", _unit] call BIS_fnc_log;
+                    _unit setVariable [QGVAR(AD), GVAR(DEFAULT_ATTACK_DISTANCE_OUTDOORS), false];
+                };
+            };
+            
+            //format ["react danger, %1 will be attacking", _unit] call BIS_fnc_log;
+            //format ["unit knowledge: %1 at distance: %2", (_unit targetKnowledge _dangerCausedBy select 5), _unit distance _dangerCausedBy] call BIS_fnc_log;
             _unit  setVariable [QGVAR(ATK_PEND),1,false];
             //format ["attackCalled"] call BIS_fnc_log;
             [_unit, getPosATL _dangerCausedBy] call FUNC(pt_reactDanger_attack);
+        };
     };
-    
+
+  
     
     if(_unit == leader _unit) then {
     

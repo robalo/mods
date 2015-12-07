@@ -9,7 +9,7 @@ if(_unit != leader _unit) exitWith {
     [];
 };
 _unitsThatNeedCover = [];
-
+_unit setVariable [QGVAR(CT), time + GVAR(RESELECT_COVER_TIME), false];
 if((_unit targetKnowledge _dangerCausedBy select 5) < 6) then {
     
     _unitsThatNeedCover = [_unit, _dangerCausedBy] call FUNC(pt_getUnitsThatNeedCover);

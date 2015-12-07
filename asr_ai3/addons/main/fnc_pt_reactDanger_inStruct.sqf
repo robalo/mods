@@ -10,7 +10,6 @@ if(_dangerCause == 2) then {
     [_unit, "ducking"] call FUNC(pt_setStatusText);
     [_unit, true] call FUNC(pt_downPos);
     _unit  setVariable [QGVAR(DT),time + GVAR(DT_IN_STRUCT_HIT),false];
-    _unit  setVariable [QGVAR(RT),GVAR(RT_IN_STRUCT_HIT),false];
 
     if(_unit == leader _unit) then {
         _unit  setVariable [QGVAR(AT),time + GVAR(AT_IN_STRUCT_HIT),false];
