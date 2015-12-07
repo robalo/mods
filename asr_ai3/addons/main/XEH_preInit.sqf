@@ -32,6 +32,47 @@ ASR_AI_SETDEFAULT(sets,[]);
 ASR_AI_SETDEFAULT(levels_units,[]);
 ASR_AI_SETDEFAULT(factions,[]);
 
+//how far we're allowed to get to cover
+ASR_AI_SETDEFAULT(MAX_DIST_TO_COVER, 50)
+ASR_AI_SETDEFAULT(AUTO_ATTACK_WITHIN, 50)
+//an object must be at least this tall to be considered for cover
+ASR_AI_SETDEFAULT(MIN_HEIGHT_OBJ_TO_CONSIDER, 0.2)
+ASR_AI_SETDEFAULT(CHANCE_USE_BUILDING_POS, 0.2)
+
+
+//time until we're allowed to react to danger again
+ASR_AI_SETDEFAULT(DT_OUTSIDE, 3);
+ASR_AI_SETDEFAULT(DT_IN_STRUCT_HIT, 3)
+ASR_AI_SETDEFAULT(DT_IN_STRUCT_NOT_HIT, 3);
+
+//how often the AI is allowed to re-evaluate its cover while outside
+ASR_AI_SETDEFAULT(RESELECT_COVER_TIME, 30);
+ASR_AI_SETDEFAULT(NO_COVER_FOR_DANGER_WITHIN, 100);
+//time until counter attack
+ASR_AI_SETDEFAULT(DEFAULT_ATTACK_TIME, 45);
+ASR_AI_SETDEFAULT(AT_OUTSIDE, 90);
+ASR_AI_SETDEFAULT(AT_IN_STRUCT_HIT, 45);
+ASR_AI_SETDEFAULT(AT_IN_STRUCT_NOT_HIT, 45);
+
+
+//These trigger if unit is not told to go to cover
+ASR_AI_SETDEFAULT(DEFAULT_ATTACK_DISTANCE_INDOORS, 50);
+ASR_AI_SETDEFAULT(DEFAULT_ATTACK_DISTANCE_OUTDOORS, 250);
+
+//counter attack max disatance
+ASR_AI_SETDEFAULT(AD_OUTSIDE, 250);
+ASR_AI_SETDEFAULT(AD_IN_STRUCT_HIT, 50);
+ASR_AI_SETDEFAULT(AD_IN_STRUCT_NOT_HIT, 50);
+
+
+
+ASR_AI_SETDEFAULT(DEBUG_NAME, "pooter");
+
+GVAR(DC_NEED_COVER) = [2,4,9];
+GVAR(DC_ATTACK) =[2,3,4,6,9];
+
+
+
 if (count GVAR(sets) < 10) then {GVAR(sets) = [["aiming",[1,0],"spotting",[1,0],"general",[1,0]],["aiming",[0.4,0.1],"spotting",[0.4,0.2],"general",[0.8,0.2]],["aiming",[0.35,0.1],"spotting",[0.35,0.2],"general",[0.75,0.2]],["aiming",[0.3,0.1],"spotting",[0.3,0.2],"general",[0.7,0.2]],["aiming",[0.25,0.1],"spotting",[0.25,0.2],"general",[0.65,0.2]],["aiming",[0.2,0.1],"spotting",[0.2,0.2],"general",[0.6,0.2]],["aiming",[0.15,0.1],"spotting",[0.15,0.2],"general",[0.55,0.2]],["aiming",[0.1,0.1],"spotting",[0.1,0.2],"general",[0.5,0.2]],["aiming",[0.25,0.1],"spotting",[0.5,0.2],"general",[0.7,0.2]],["aiming",[0.2,0.1],"spotting",[0.4,0.2],"general",[0.6,0.2]],["aiming",[0.6,0.4],"spotting",[0.8,0.2],"general",[0.8,0.2]]]};
 if (count GVAR(levels_units) < 10) then {GVAR(levels_units) = [[],[],[],[],[],[],[],[],[],[],[]]};
 
@@ -85,3 +126,22 @@ PREP(getCompatMags);
 PREP(countItems);
 PREP(inventoryCheck);
 PREP(rearm);
+
+PREP(pt_checkVis);
+PREP(pt_downPos);
+PREP(pt_findPossibleCenter);
+PREP(pt_getCoverPos);
+PREP(pt_getCoverPosUnknownEnemy);
+PREP(pt_getClosestBuildingPos);
+PREP(pt_getUnitsThatNeedCover);
+PREP(pt_goToNextBuildingPos);
+PREP(pt_isCoverValid);
+PREP(pt_moveToPoint);
+PREP(pt_reactDanger_attack);
+PREP(pt_reactDanger_inStruct);
+PREP(pt_reactDanger_inStruct_amVis);
+PREP(pt_reactDanger_outStruct);
+PREP(pt_reactDanger);
+PREP(pt_reset_pos);
+PREP(pt_calculatePos);
+PREP(pt_setStatusText);
