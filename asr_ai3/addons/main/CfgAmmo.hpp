@@ -1,6 +1,5 @@
 #define __AUDIBLE0 1
 #define __AUDIBLE1 12
-#define __AUDIBLE2 16
 #define __RANGE_HIT_FAR 1000
 #define __RANGE_HIT_SMALL 5
 #define __RANGE_CRACKS 100
@@ -144,22 +143,22 @@ class CfgAmmo {
 	};
 
 	class B_127x33_Ball : BulletBase {
-		audibleFire = __AUDIBLE2; //12;
+		audibleFire = __AUDIBLE1; //12;
 	};
 
 	class B_127x99_Ball : BulletBase {
-		audibleFire = __AUDIBLE2; //15;
+		audibleFire = __AUDIBLE1; //15;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 	};
 
 	class B_127x108_Ball : BulletBase {
-		audibleFire = __AUDIBLE2; //48;
+		audibleFire = __AUDIBLE1; //15;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 	};
 	class B_127x108_APDS : B_127x108_Ball {
-		audibleFire = __AUDIBLE2; //15;
+		audibleFire = __AUDIBLE1; //15;
 	};
 
 	class B_19mm_HE : BulletBase {

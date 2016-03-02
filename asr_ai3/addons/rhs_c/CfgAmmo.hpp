@@ -20,7 +20,7 @@ class CfgAmmo {
 	};
 	class rhs_ammo_M136_rocket : RocketBase {
 		audibleFire = __AUDIBLE2; //16;
-		allowAgainstInfantry = 0;
+		//allowAgainstInfantry = 0;
 		airLock = 1; //yes on air
 	};
 	class rhs_B_545x39_Ball: B_556x45_Ball {

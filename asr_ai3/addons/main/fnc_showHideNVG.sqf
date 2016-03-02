@@ -1,6 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_2(_unit,_show);
+params ["_unit", "_show"];
 
 private ["_nvg","_eyew"];
 _nvg = "";

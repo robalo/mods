@@ -18,7 +18,7 @@ _remaining = count _units;
 if (_remaining == 0) exitWith {LOG("Group is empty, exiting")};
 
 // reduce morale for all remaining units
-{ _x setskill ["courage",(_x skill "courage")-0.025] } forEach _units;
+{ _x setskill ["courage",(_x skill "courage")-0.05] } forEach _units;
 
 // if one of them is a player, do nothing
 if (_grp call FUNC(hasPlayer)) exitWith {LOG("Group with player, exiting")};

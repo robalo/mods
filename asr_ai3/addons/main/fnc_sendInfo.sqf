@@ -1,6 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_3(_sender,_rxgrp,_target);
+params ["_sender", "_rxgrp", "_target"];
 if (isNull _sender || isNull _rxgrp || isNull _target) exitWith {LOG("Error: at least one parameter was null")};
 private ["_knowledge","_rxleader"];
 _knowledge = _sender knowsAbout _target;

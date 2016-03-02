@@ -1,8 +1,8 @@
 // sets random skill depending on unit's class
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
+params ["_unit"];
 private["_t","_sc","_sa","_i","_st","_sv","_fc","_fnc_getskillvalue"];
-PARAMS_1(_unit);
 
 _fnc_getskillvalue = {
 	private["_sv","_min","_var"];

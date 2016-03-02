@@ -255,7 +255,13 @@ class CfgWeapons {
 			ASR_AI_DISP_SNIPER;
 		};
 	};
-	class cannon_105mm: cannon_120mm {
+	class cannon_125mm : CannonCore {
+		class player;
+		class close: player {
+			ASR_AI_DISP_SNIPER;
+		};
+	};
+	class cannon_105mm: CannonCore {
 		class player;
 		class close: player {
 			ASR_AI_DISP_SNIPER;

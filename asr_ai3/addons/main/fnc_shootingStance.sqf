@@ -6,7 +6,7 @@ if (_this getVariable [QGVAR(shooting), false]) exitWith {}; // already shooting
 _wpntype = (primaryWeapon _this) call FUNC(getWeaponType);
 if ((_wpntype == "MG" || _wpntype == "SNIPER") && {count ((getPosATL _this) nearObjects ["HouseBase", 3]) == 0}) then {
 	_this spawn {
-        PARAMS_1(_unit);
+        params ["_unit"];
         private "_t";
         _t = time;
 		_unit setVariable [QGVAR(shooting), true];

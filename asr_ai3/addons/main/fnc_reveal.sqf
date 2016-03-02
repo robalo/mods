@@ -1,7 +1,7 @@
 //rx gain knowledge about tx based on audible range, distance and environment
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_4(_rx,_tx,_k,_r);
+params ["_rx", "_tx", "_k", "_r"];
 _k = _k * (1 - ((_tx distance _rx)/_r));
 // when in forest/houses/rain/wind/night, not so accurate
 if ([_rx,"(forest + houses)",2] call FUNC(isNearStuff)) then {_k = _k * 0.75};

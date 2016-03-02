@@ -1,7 +1,7 @@
 //hit EH: remove gimps; switch to combat; go to cover
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_2(_unit,_hitman);
+params ["_unit", "_hitman"];
 
 if (!(isPlayer _unit) && {_unit call FUNC(isValidUnitC)} && {_unit != missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]}) then {
 	// move to cover

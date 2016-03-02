@@ -6,7 +6,7 @@ if (isServer) then {
 	// Server, propagate settings and required functions to clients
 	publicVariable "ASR_AI3_SETTINGS";
 	if (GVAR(enabled) == 1) then {
-        ["itemAdd", [QGVAR(cfgLoop), {while {count GVAR(configQueue) > 0} do {(GVAR(configQueue) deleteAt 0) call FUNC(configureUnit)}}, 20]] call BIS_fnc_loop;
+        ["itemAdd", [QGVAR(cfgLoop), {call FUNC(configLoop);}, 10]] call BIS_fnc_loop;
 
 		if (GVAR(rearm) > 0) then {
 			[] spawn {
@@ -63,7 +63,5 @@ if (hasInterface) then {
         waitUntil {time > 5 && player == player};
         //make player leader on teamswitch; prevents AI left in place from sending stupid orders
         if (GVAR(onteamswitch) > 0) then {onTeamSwitch {[_from,_to] call FUNC(onTeamSwitch)}};
-        //Disables fatigue for AI units in player's group so they are able to keep up
-        if (GVAR(disableAIPGfatigue) > 0) then {{_x enableFatigue (isPlayer _x)} forEach (units group player)};
     }
 };

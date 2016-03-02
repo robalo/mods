@@ -1,13 +1,12 @@
+// return array with all compatible mags for a weapon's main muzzle
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-
-// return array with all compatible mags for a weapon's main muzzle
-PARAMS_1(_w);
+params ["_w"];
 private["_mags","_compat","_find"];
 _compat = [];
 
 _find = {
-	PARAMS_2(_needle,_haystack);
+	params ["_needle", "_haystack"];
 	({_needle == _x} count _haystack) > 0
 };
 

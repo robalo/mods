@@ -1,8 +1,8 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-
-PARAMS_1(_unit);
+params ["_unit"];
 private["_to","_need","_leaderpos","_search","_lootchkcnt","_lootchktime","_checkit"];
+
 if (_unit getVariable[QGVAR(inprogress),false]) exitWith {};
 if (isPlayer _unit || {getText (configFile >> "cfgVehicles" >> (typeOf _unit) >> "genericNames") == "VRMen"}) exitWith {};
 
@@ -68,7 +68,7 @@ if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Places to loot: 
 } forEach _search;
 
 [_unit,_leaderpos] spawn {
-	PARAMS_2(_unit,_pos);
+	params ["_unit", "_pos"];
 	private ["_group"];
 	_group = group _unit;
 	_unit doWatch objNull;

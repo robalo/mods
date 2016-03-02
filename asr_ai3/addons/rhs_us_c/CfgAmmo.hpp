@@ -1,6 +1,5 @@
 #define __AUDIBLE0 1
 #define __AUDIBLE1 12
-#define __AUDIBLE2 16
 #define __RANGE_HIT_FAR 1000
 #define __RANGE_HIT_SMALL 5
 #define __RANGE_CRACKS 100
@@ -28,7 +27,7 @@ class CfgAmmo {
 		suppressionRadiusHit = 8;
 	};
 	class rhsusf_M33_Ball_M107 : BulletBase {
-		audibleFire = __AUDIBLE2;
+		audibleFire = __AUDIBLE1;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 8;
@@ -57,11 +56,21 @@ class CfgAmmo {
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
 	};
+	class rhs_ammo_9x19_FMJ : BulletBase {
+		audibleFire = __AUDIBLE1; //3;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+	};
+	class rhs_ammo_9x19_JHP : BulletBase {
+		audibleFire = __AUDIBLE1; //3;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+	};
 
 	class RocketBase;
 	class rhs_ammo_M136_rocket : RocketBase {
-		audibleFire = __AUDIBLE2; //16;
-		allowAgainstInfantry = 0;
+		audibleFire = __AUDIBLE1; //16;
+		//allowAgainstInfantry = 0;
 		airLock = 1; //yes on air
 	};
 };

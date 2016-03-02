@@ -1,7 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_1(_unit);
-
+params ["_unit"];
 private["_fa","_nt","_w"];
 
 #define __m_primary_1 0
