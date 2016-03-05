@@ -1,6 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_1(_unit);
+params ["_unit"];
 
 if (!isNull _unit && {alive _unit} && {!(_unit getVariable ["asr_ai_exclude", false])}) then {
 
@@ -11,23 +11,9 @@ if (!isNull _unit && {alive _unit} && {!(_unit getVariable ["asr_ai_exclude", fa
     };
 
     if (GVAR(setskills) > 0) then {_unit call FUNC(setUnitSkill)};
-	if (GVAR(packNVG) == 1) then {_unit call FUNC(setupGear)};
 
-    if (GVAR(copymystance) == 1 && {isPlayer leader _unit}) then {
-        _unit spawn {
-            private ["_lead"];
-            while {alive _this} do {
-                _lead = leader _this;
-                if (isPlayer _lead && !isPlayer _this) then {
-                    switch (stance _lead) do {
-                        case "CROUCH": {_this setUnitPosWeak "MIDDLE"};
-                        case "PRONE": {_this setUnitPosWeak "DOWN"};
-                        default {_this setUnitPosWeak "AUTO"};
-                    };
-                };
-                sleep 2;
-            };
-        };
+    if (isPlayer leader _unit) then {
+        if (GVAR(disableAIPGfatigue) > 0) then {_unit enableFatigue (isPlayer _unit)};
     };
 
     _unit setVariable [QGVAR(configured),true];

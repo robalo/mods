@@ -1,14 +1,14 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_2(_unit,_dangerCausedBy);
+params ["_unit", "_dangerCausedBy"];
 private ["_coverRange","_grp","_bpos","_dude"];
 
 _grp = group _unit;
 _time = time;
 
-if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 30}) then {
+if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 20}) then {
         
-    _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
+    _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than thrice per minute / unit
 
 	// mount weapons
 	if (random 1 < GVAR(getinweapons)) then {
@@ -19,7 +19,7 @@ if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVari
         _wc = count _weapons;
         if (_wc > 0) then {
             { //get some units to man the weapons
-                if (_wc > 0 && {_x != _leader} && {random 1 < 0.8}) then {
+                if (_wc > 0 && {_x != _leader} && {getSuppression _x < 0.4} && {random 1 < 0.8}) then {
                     DEC(_wc);
                     _weap = _weapons select _wc;
                     _ehid = _weap getVariable [QGVAR(getInWeaponsEH), -1];
@@ -28,7 +28,7 @@ if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVari
                         _weap setVariable [QGVAR(getInWeaponsEH), _ehid];
                     };
                     _mc = _weap getVariable [QGVAR(mountcount), 0];
-                    if (_mc < ceil (2 + random 4)) then { // mount up to a few times
+                    if (_mc < ceil (2 + random 5)) then { // mount up to a few times
                         doStop _x;
                         _x assignAsGunner _weap;
                         [_x] orderGetIn true;
@@ -45,7 +45,7 @@ if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVari
 		_dude = _unit;
 		//pick another dude if possible
 		{if (_x != _unit) exitWith {_dude = _x}} forEach units _grp;
-                if (_dude getVariable [QGVAR(housing),false]) exitWith {};
+        if (_dude getVariable [QGVAR(housing),false]) exitWith {};
 		_bpos = [];
 		{
 			{
@@ -55,16 +55,15 @@ if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVari
 		if (count _bpos > 0) then {
 			_bpos sort false; //prefer higher positions
 			[_dude,(_time + 300),_bpos] spawn {
-				PARAMS_3(_dude,_dangerUntil,_bpos);
+				params ["_dude", "_dangerUntil", "_bpos"];
 				private "_timeout";
                 _dude setVariable [QGVAR(housing),true,false];
                 TRACE_1("House search duty",_dude);
 				while {count _bpos > 0 && {time < _dangerUntil} && {_dude call FUNC(isValidUnitC)}} do {
-					waitUntil {isNil {_dude getVariable QGVAR(shooting)}}; // stopped shooting
+					waitUntil {isNil {_dude getVariable QGVAR(shooting)} && {getSuppression _dude < 0.4}}; //stopped shooting and not suppressed
 					doStop _dude;
 					_dude doMove (([_bpos] call BIS_fnc_arrayShift) select 1);
-					_timeout = time + 60;
-					waitUntil {unitReady _dude || {_timeout < time}};
+					waitUntil {unitReady _dude}; //reached pos
 					if (_dude call FUNC(isUnderRoof)) then {_dude setUnitPosWeak "Up"} else {_dude setUnitPosWeak "Auto"};
 					doStop _dude;
 					sleep (5 + random 20);

@@ -1,21 +1,8 @@
 class CfgVehicles {
 
-	class AllVehicles;
-	class Air : AllVehicles {
-		sensitivity = 6;
-	};
-	class Helicopter_Base_H;
-	class Heli_Light_01_base_F : Helicopter_Base_H {
-		sensitivity = 6;
-	};
-	class Heli_Light_02_base_F : Helicopter_Base_H {
-		sensitivity = 6;
-	};
-
 	class Man;
 	class CAManBase: Man {
 		ASR_AI_SKILL_INS2; // default insurgent
-		//sensitivity = 3.0;
 		//sensitivityEar = 0.5;
 		audible = 0.01; //0.05
 		//lyingLimitSpeedHiding = 0.8;
@@ -32,7 +19,6 @@ class CfgVehicles {
 	class Civilian: CAManBase {
 		ASR_AI_SKILL_CIV1; // default civilian
 		ASR_AI_COST_LESS;
-		sensitivity = 2;
 		minFireTime = 10;
 		ASR_AI_CAMO_NONE;
 		accuracy = 0.2;
@@ -241,24 +227,20 @@ class CfgVehicles {
 	class B_Soldier_sniper_base_F: B_Soldier_base_F {
 		ASR_AI_SKILL_SNP1;
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		minFireTime = 5;
 		ASR_AI_CAMO_GHIL;
 	};
 	class B_spotter_F: B_Soldier_sniper_base_F {
 		ASR_AI_SKILL_SOF2;
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
 	};
 	class B_sniper_F: B_Soldier_sniper_base_F {
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
 	};
 	class B_ghillie_base_F : B_Soldier_sniper_base_F {
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 	};
 
 // officer
@@ -559,24 +541,20 @@ class CfgVehicles {
 	class O_Soldier_sniper_base_F: O_Soldier_base_F {
 		ASR_AI_SKILL_SNP1;
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		minFireTime = 5;
 		ASR_AI_CAMO_GHIL;
 	};
 	class O_spotter_F: O_Soldier_sniper_base_F {
 		ASR_AI_SKILL_SOF2;
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
 	};
 	class O_sniper_F: O_Soldier_sniper_base_F {
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
 	};
 	class O_ghillie_base_F : O_Soldier_sniper_base_F {
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 	};
 
 // officer
@@ -760,23 +738,19 @@ class CfgVehicles {
 	class I_Soldier_sniper_base_F: I_Soldier_base_F {
 		ASR_AI_SKILL_SNP1;
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		minFireTime = 5;
 		ASR_AI_CAMO_GHIL;
 	};
 	class I_Spotter_F: I_Soldier_sniper_base_F {
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
 	};
 	class I_Sniper_F: I_Soldier_sniper_base_F {
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 		ASR_AI_CAMO_GHIL;
 	};
 	class I_ghillie_base_F : I_Soldier_sniper_base_F {
 		ASR_AI_COST_SPECIAL;
-		sensitivity = 4;
 	};
 
 // diver
