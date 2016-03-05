@@ -1,8 +1,7 @@
 // returns array with 1 cover position near unit
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_2(_unit,_dangerobj);
-DEFAULT_PARAM(2,_maxdisttocover,100);
+params ["_unit", "_dangerobj", ["_maxdisttocover", 100]];
 
 scopeName "main";
 private ["_cover","_enemydist","_dangerpos","_coverpos","_debug","_fnc_debug","_bposa","_bbdim","_maxWidth","_maxLength","_maxHeight","_min","_max","_objpos","_nBuilding","_isHouse"];

@@ -1,6 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_2(_grp,_info);
+params ["_grp", "_info"];
 private ["_leader","_recgroups"];
 _leader = leader _grp;
 // if leader valid and not already sending and has radio

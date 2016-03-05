@@ -1,7 +1,7 @@
 // help the AI hear weapons fired
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_7(_shooter,_weapon,_muzzle,_mode,_ammo,_magazine,_projectile);
+params ["_shooter", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
 #define _MAXREVEAL_ 1.7
 
 //limit

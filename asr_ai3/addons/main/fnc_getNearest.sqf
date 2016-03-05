@@ -1,10 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-
-PARAMS_2(_position,_array);
-
-DEFAULT_PARAM(2,_radius,10^5);
-DEFAULT_PARAM(3,_code,{true});
+params ["_position", "_array", ["_radius", 10^5], ["_code", {true}]];
 
 private "_return";
 _return = if (count _this > 2) then {[]} else {objNull};

@@ -33,7 +33,7 @@ PRELOAD_ADDONS;
 class Extended_InitPost_EventHandlers {
 	class asdg_I_Soldier_recon_base {
 		class ADDON {
-			serverInit = "(_this select 0) execVM ""\A3\Characters_F_Bootcamp\Data\Scripts\randomize_gue1.sqf""";
+			init = "if (local (_this select 0)) then {[(_this select 0), [], []] call BIS_fnc_unitHeadgear;};";
 		};
 	};
 };
@@ -107,7 +107,6 @@ class CfgVehicles {
 		textPlural = "$STR_A3_nameSound_veh_infantry_SF_p";
 		nameSound = "veh_infantry_SF_s";
 		vehicleClass = "MenRecon";
-		sensitivity = 3.5;
 		detectSkill = 30;
 		ASR_AI_SKILL_SOF2;
 		ASR_AI_COST_SPECIAL;

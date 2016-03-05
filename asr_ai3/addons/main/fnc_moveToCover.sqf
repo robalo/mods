@@ -1,6 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_3(_unit,_source,_distance);
+params ["_unit", "_source", "_distance"];
 
 #define __DELAY_ 60
 
@@ -39,7 +39,7 @@ if (_mToCover) then {
 if (_mToCover && {count _cpa > 0}) then {
 
 	[_unit,_cpa,_time] spawn  {
-		PARAMS_3(_unit,_cpa,_until);
+		params ["_unit", "_cpa", "_until"];
 		private ["_grp","_speed","_cover"];
 		_cover = [_cpa] call BIS_fnc_arrayShift; // get first cover pos out of array
 		TRACE_2("Choose cover",_cover,_cpa);
@@ -52,7 +52,7 @@ if (_mToCover && {count _cpa > 0}) then {
 			{ if (_x != _unit) then {_x doFollow _unit} } forEach (units _grp);
 			_grp setSpeedMode "FULL";
 			[_unit,_grp,_until,_speed,_cover] spawn {
-				PARAMS_5(_unit,_grp,_until,_speed,_cover);
+				params ["_unit", "_grp", "_until", "_speed", "_cover"];
 				waitUntil {!alive _unit || {time > _until + __DELAY_} || {_unit distance _cover < 1}};
 				_grp lockwp false;
 				{[_x] joinSilent _grp} forEach (units _grp);

@@ -1,6 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-PARAMS_2(_unit,_skillset);
+params ["_unit", "_skillset"];
 _unit setSkill _skillset;
 if (GVAR(debug) > 0) then {
 	private "_type"; _type = _skillset select 0;
