@@ -59,13 +59,13 @@ if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (
             if(_unit getVariable [QGVAR(AT), 0] == 0) then {
                 
                 //format ["react danger, %1 attacking but didn't know much", _unit] call BIS_fnc_log;
-                _unit setVariable [QGVAR(AT), GVAR(DEFAULT_ATTACK_TIME), false];
+                _unit setVariable [QGVAR(AT), GVAR(AT_OUTSIDE), false];
                 if(_unit call FUNC(isUnderRoof)) then {
                     //format ["and is indoors", _unit] call BIS_fnc_log;
-                    _unit setVariable [QGVAR(AD), GVAR(DEFAULT_ATTACK_DISTANCE_INDOORS), false];
+                    _unit setVariable [QGVAR(AD), GVAR(AD_INSIDE), false];
                 }else {
                     //format ["and is outdoors", _unit] call BIS_fnc_log;
-                    _unit setVariable [QGVAR(AD), GVAR(DEFAULT_ATTACK_DISTANCE_OUTDOORS), false];
+                    _unit setVariable [QGVAR(AD), GVAR(AD_OUTSIDE), false];
                 };
             };
             
