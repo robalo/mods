@@ -4,7 +4,6 @@
 _unit = _this select 0;
 _text = _this select 1;
 
-
 if(isNil QGVAR(DEBUG_FUNC) && GVAR(DEBUG_NAME) != "") then {
     GVAR(DEBUG_FUNC) = {
         _unit = _this select 0;

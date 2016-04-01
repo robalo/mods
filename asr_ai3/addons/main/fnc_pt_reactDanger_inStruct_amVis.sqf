@@ -42,17 +42,17 @@ if(_foundResult != "") then {
 
     [_unit, "ducking from known"] call FUNC(pt_setStatusText);
     _unit setUnitPos _foundResult;
-    _unit  setVariable [QGVAR(DT),time + GVAR(DT_IN_STRUCT_CHANGE_POS),false];
+    _unit  setVariable [QGVAR(DT),time + GVAR(DT_INSIDE),false];
     if(_unit == leader _unit) then {
-        _unit  setVariable [QGVAR(AT),time + GVAR(AT_IN_STRUCT_CHANGE_POS),false];
-        _unit  setVariable [QGVAR(AD),GVAR(AD_IN_STRUCT_CHANGE_POS),false];
+        _unit  setVariable [QGVAR(AT),time + GVAR(AT_INSIDE),false];
+        _unit  setVariable [QGVAR(AD),GVAR(AD_INSIDE),false];
     };
 }else {
     [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_goToNextBuildingPos);
-    _unit  setVariable [QGVAR(DT),time + GVAR(DT_IN_STRUCT_AM_VIS_MOVE),false];
+    _unit  setVariable [QGVAR(DT),time + GVAR(DT_INSIDE),false];
 
         if(_unit == leader _unit) then {
-            _unit  setVariable [QGVAR(AT),time + GVAR(AT_IN_STRUCT_AM_VIS_MOVE),false];
-            _unit  setVariable [QGVAR(AD),GVAR(AD_IN_STRUCT_AM_VIS_MOVE),false];
+            _unit  setVariable [QGVAR(AT),time + GVAR(AT_INSIDE),false];
+            _unit  setVariable [QGVAR(AD),GVAR(AD_INSIDE),false];
         };
 };
