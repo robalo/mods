@@ -1,4 +1,5 @@
 //lower level = better skills
+#define ASR_AI_SKILL_UAV1 asr_ai_level = 0
 #define ASR_AI_SKILL_SOF1 asr_ai_level = 1
 #define ASR_AI_SKILL_SOF2 asr_ai_level = 2
 #define ASR_AI_SKILL_REG1 asr_ai_level = 3

@@ -2,6 +2,7 @@ class CfgPatches {
 	class ADDON {
 		units[] = {};
 		weapons[] = {};
+        ammo[] = {};
 		requiredVersion = REQUIRED_VERSION;
 		requiredAddons[] = {
 			"CBA_MAIN",
@@ -43,6 +44,7 @@ class CfgPatches {
 		versionDesc = "ASR AI3";
 		versionAct = "";
 		VERSION_CONFIG;
-		author[] = {"Robalo"};
+        author = "Robalo";
+		authors[] = {"Robalo"};
 	};
 };

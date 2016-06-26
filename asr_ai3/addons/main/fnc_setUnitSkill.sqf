@@ -1,4 +1,4 @@
-// sets random skill depending on unit's class
+//sets random skill depending on unit's class
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit"];
@@ -18,7 +18,7 @@ TRACE_2("config",_unit,_sc);
 // also check for override setting
 _i = 0;
 {
-	if (_t in _x) exitWith {
+	if (_t in _x || {{if (_t isKindOf _x) exitWith {true}; false} forEach _x}) exitWith {
 		_sc = _i;
 		TRACE_2("override",_unit,_i);
 	};
