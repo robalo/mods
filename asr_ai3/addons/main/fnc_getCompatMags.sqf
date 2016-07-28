@@ -2,8 +2,8 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_w"];
-private["_mags","_compat","_find"];
-_compat = [];
+private _compat = [];
+private["_mags","_find"];
 
 _find = {
 	params ["_needle", "_haystack"];
@@ -17,9 +17,7 @@ _find = {
 		_mags = getArray(configFile >> "CfgWeapons" >> _w >> _x >> "magazines");
 	};
 	{ // for each magazine type, check slot size
-		if (getNumber(configFile >> "CfgMagazines" >> _x >> "type") > 128) then {
-			if !([_x,_compat] call _find) then {_compat pushBack _x};
-		};
+		if (getNumber(configFile >> "CfgMagazines" >> _x >> "type") > 128) then {_compat pushBackUnique _x};
 	} forEach _mags;
 } forEach getArray(configFile >> "CfgWeapons" >> _w >> "muzzles");
 

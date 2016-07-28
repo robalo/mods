@@ -1,39 +1,13 @@
 class CfgVehicles {
-/*
-    class All {
-        camouflage = 2;
-        sensitivity = 2.5;
-        sensitivityEar = 0.0075;
-        minFireTime = 20;
-        cost = 100;
-    };
-*/
     class Man;
-/*
-        crouchProbabilityCombat = 0.4;
-        cost = 100000;
-        primaryAmmoCoef = 0.4;
-        secondaryAmmoCoef = 0.2;
-        handgunAmmoCoef = 0.1;
-        camouflage = 2;
-        sensitivityEar = 0.125;
-        sensitivity = 1.75;
-        minFireTime = 5;
-*/
 	class CAManBase: Man {
 		ASR_AI_SKILL_INS2; // default insurgent
-		//sensitivityEar = 0.125;
-		//audible = 0.01; //0.05 //disabled since vanilla sensear was lowered, may need re-tweak
-		//lyingLimitSpeedHiding = 0.8;
-		//crouchProbabilityHiding = 0.8;
-		//lyingLimitSpeedCombat = 1.8;
-		crouchProbabilityCombat = 0.65; //0.4
-		//crouchProbabilityEngage = 0.75;
-		//lyingLimitSpeedStealth = 2;
+		audible = 0.03; //0.05
+		crouchProbabilityCombat = 0.70; //0.4
 		minFireTime = 7;
 		ASR_AI_CAMO_HALF;
-		//spotableDarkNightLightsOff = 0.001;  //0.003 //disabled for APEX
-		//spotableNightLightsOff = 0.01;       //0.035 //disabled for APEX
+		spotableDarkNightLightsOff = 0.002;  //0.003
+		spotableNightLightsOff = 0.02;       //0.035
 	};
 
 // CIV
@@ -312,39 +286,82 @@ class CfgVehicles {
 	class B_recon_JTAC_F: B_Soldier_recon_base {
 		ASR_AI_COST_SPECIAL;
 	};
-	class B_Story_SF_Captain_F : B_Soldier_base_F {
+	class B_Story_SF_Captain_F : B_Soldier_02_f {
 		ASR_AI_SKILL_SOF1;
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
 	};
 	class B_CTRG_soldier_GL_LAT_F : B_Soldier_base_F {
-		ASR_AI_SKILL_SOF2;
+		ASR_AI_SKILL_SOF1;
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
 	};
-	class B_CTRG_soldier_engineer_exp_F : B_Soldier_base_F {
-		ASR_AI_SKILL_SOF2;
+	class B_CTRG_soldier_engineer_exp_F : B_Soldier_02_f {
+		ASR_AI_SKILL_SOF1;
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
 	};
-	class B_CTRG_soldier_M_medic_F : B_Soldier_base_F {
-		ASR_AI_SKILL_SOF2;
+	class B_CTRG_soldier_M_medic_F : B_Soldier_03_f {
+		ASR_AI_SKILL_SOF1;
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
 		ASR_AI_CAMO_FULL;
 	};
-	class B_CTRG_soldier_AR_A_F : B_Soldier_base_F {
-		ASR_AI_SKILL_SOF2;
+	class B_CTRG_soldier_AR_A_F : B_Soldier_03_f {
+		ASR_AI_SKILL_SOF1;
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
 	};
 	class B_CTRG_Sharphooter_F : B_Soldier_base_F {
-		ASR_AI_SKILL_SOF2;
+		ASR_AI_SKILL_SOF1;
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
 	};
 
 	class B_G_Soldier_F;
+
+    class B_CTRG_Soldier_base_F : B_Soldier_base_F {
+		ASR_AI_SKILL_SOF1;
+		ASR_AI_COST_SPECIAL;
+		minFireTime = 5;
+    };
+    class B_CTRG_Soldier_F;
+    class B_CTRG_Soldier_TL_tna_F : B_CTRG_Soldier_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class B_CTRG_Soldier_Exp_tna_F : B_CTRG_Soldier_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class B_CTRG_Soldier_Medic_tna_F : B_CTRG_Soldier_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class B_CTRG_Soldier_M_tna_F : B_CTRG_Soldier_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class B_CTRG_Soldier_tna_F : B_CTRG_Soldier_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class B_CTRG_Soldier_LAT_tna_F : B_CTRG_Soldier_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class B_CTRG_Soldier_AR_tna_F : B_CTRG_Soldier_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class B_CTRG_Soldier_JTAC_tna_F : B_CTRG_Soldier_F {
+		ASR_AI_COST_SPECIAL;
+    };
+
+// gendarme
+
+    class B_Soldier_F;
+    class B_GEN_Soldier_base_F : B_Soldier_F {
+		ASR_AI_CAMO_NONE;
+    };
+    class B_GEN_Commander_F : B_GEN_Soldier_base_F {
+		ASR_AI_SKILL_REG1;
+		ASR_AI_COST_SPECIAL;
+    };
+
 
 // GUERRILLA
 
@@ -420,6 +437,98 @@ class CfgVehicles {
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
 	};
+
+// Syndikat
+
+    class I_C_Soldier_base_F : I_G_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_HALF;
+    };
+    class I_C_Soldier_Para_1_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+    };
+    class I_C_Soldier_Para_2_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_FULL;
+    };
+    class I_C_Soldier_Para_3_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_FULL;
+    };
+    class I_C_Soldier_Para_4_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+    };
+    class I_C_Soldier_Para_5_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+        ASR_AI_AMMOCOEF_AT;
+    };
+    class I_C_Soldier_Para_6_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+    };
+    class I_C_Soldier_Para_7_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+    };
+    class I_C_Soldier_Para_8_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_FULL;
+    };
+    class I_C_Soldier_Bandit_1_F : I_C_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_HALF;
+    };
+    class I_C_Soldier_Bandit_2_F : I_C_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_HALF;
+        ASR_AI_AMMOCOEF_AT;
+    };
+    class I_C_Soldier_Bandit_3_F : I_C_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_NONE;
+    };
+    class I_C_Soldier_Bandit_4_F : I_C_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_NONE;
+    };
+    class I_C_Soldier_Bandit_5_F : I_C_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_NONE;
+    };
+    class I_C_Soldier_Bandit_6_F : I_C_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_NONE;
+    };
+    class I_C_Soldier_Bandit_7_F : I_C_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_HALF;
+    };
+    class I_C_Soldier_Bandit_8_F : I_C_Soldier_base_F {
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_NONE;
+    };
+    class I_C_Soldier_Camo_F : I_C_Soldier_base_F {
+		ASR_AI_SKILL_INS1;
+		ASR_AI_COST_REG;
+		ASR_AI_CAMO_FULL;
+    };
+    class I_C_Pilot_F : I_C_Soldier_base_F {
+        ASR_AI_SKILL_PIL2;
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_NONE;
+    };
+    class I_C_Helipilot_F : I_C_Soldier_base_F {
+        ASR_AI_SKILL_PIL2;
+		ASR_AI_COST_LESS;
+		ASR_AI_CAMO_HALF;
+    };
+
 
  // GREENFOR
  // basic
@@ -879,6 +988,36 @@ class CfgVehicles {
 	class O_recon_TL_F: O_Soldier_recon_base {
 		ASR_AI_COST_SPECIAL;
 	};
+
+    class O_V_Soldier_Viper_F : O_Soldier_base_F {
+		ASR_AI_SKILL_SOF1;
+		ASR_AI_COST_SPECIAL;
+		minFireTime = 5;
+    };
+    class O_V_Soldier_base_F : O_Soldier_base_F {
+		ASR_AI_SKILL_SOF1;
+		ASR_AI_COST_SPECIAL;
+		minFireTime = 5;
+		ASR_AI_CAMO_FULL;
+    };
+    class O_V_Soldier_TL_hex_F : O_V_Soldier_base_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class O_V_Soldier_Exp_hex_F : O_V_Soldier_base_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class O_V_Soldier_Medic_hex_F : O_V_Soldier_base_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class O_V_Soldier_M_hex_F : O_V_Soldier_base_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class O_V_Soldier_LAT_hex_F : O_V_Soldier_base_F {
+		ASR_AI_COST_SPECIAL;
+    };
+    class O_V_Soldier_JTAC_hex_F : O_V_Soldier_base_F {
+		ASR_AI_COST_SPECIAL;
+    };
 
 // UAV
 

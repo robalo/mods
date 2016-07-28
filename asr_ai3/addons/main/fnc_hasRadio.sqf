@@ -1,12 +1,10 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-private ["_typename","_hasradio"];
-_typename = toLower(typename _this);
+private _typename = toLower(typename _this);
 
-_hasradio = {
+private _hasradio = {
 	if (isNull _this) exitWith {false};
-	private "_has";
-	_has = false;
+	private _has = false;
 	{	if (getText(configFile >> "CfgWeapons" >> _x >> "simulation") == "ItemRadio") exitWith {_has = true};
 	} forEach (assignedItems _this);
 	_has

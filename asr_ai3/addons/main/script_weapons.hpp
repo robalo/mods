@@ -5,6 +5,19 @@
 #define ASR_WEAPON_TYPE_MG 5
 #define ASR_WEAPON_TYPE_AR 6
 
+#define ASR_SUPP_COEFF \
+			class AmmoCoef { \
+				visibleFire = 0.2; \
+				audibleFire = 0.1; \
+			}
+
+#define ASR_SUPP_INH_COEFF \
+			class AmmoCoef : AmmoCoef { \
+				visibleFire = 0.2; \
+				audibleFire = 0.1; \
+			}
+
+
 /*
 Define how much AI dispersion degrades with lower skill on 3 levels:
  - hi-mag scopes (> 8X) 			- requiredOpticType = 2;

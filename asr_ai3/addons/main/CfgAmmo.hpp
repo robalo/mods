@@ -1,8 +1,8 @@
 #define __AUDIBLE0 1
-#define __AUDIBLE1 12
-#define __RANGE_HIT_FAR 1000
+#define __AUDIBLE1 40
+#define __RANGE_HIT_FAR 800
 #define __RANGE_HIT_SMALL 5
-#define __RANGE_CRACKS 100
+#define __RANGE_CRACKS 80
 
 #define AIAmmoUsageNone 0
 #define AIAmmoUsageLight 1
@@ -327,6 +327,32 @@ class CfgAmmo {
 //        airLock = 1;
 	};
 
+    class B_580x42_Ball_F : BulletBase {
+		audibleFire = __AUDIBLE1;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+        suppressionRadiusBulletClose = 6;
+        suppressionRadiusHit = 8;
+    };
+    class B_50BW_Ball_F : BulletBase {
+		audibleFire = __AUDIBLE1; //15;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+        airLock = 1;
+    };
+    class B_762x39_Ball_F : BulletBase {
+		audibleFire = __AUDIBLE1;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+        airLock = 1;
+    };
+    class B_545x39_Ball_F : BulletBase {
+		audibleFire = __AUDIBLE1;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+    };
+
+
 	// allow AI to use AT against helis; Players do it, why not AI ?
 
 	class M_PG_AT : MissileBase {
@@ -351,6 +377,11 @@ class CfgAmmo {
 	class M_Titan_AP : M_Titan_AT {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh;
 	};
+
+    class R_PG7_F : RocketBase {
+        airLock = 1;
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;
+    };
 
     class FlareBase;
 	class F_40mm_White : FlareBase {

@@ -4,24 +4,22 @@ params ["_unit", "_source", "_distance"];
 
 #define __DELAY_ 60
 
-if (GVAR(seekcover) < 1) exitWith {};
+if (!GVAR(seekcover)) exitWith {};
 if (vehicle _unit != _unit) exitWith {};
 
-private ["_time","_grp","_mToCover","_cpa","_savedcpa"];
-
-_time = time;
-_grp = group _unit;
+private _time = time;
+private _grp = group _unit;
 if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has HOLD wp",_grp)};
 
 if (_time < (_grp getVariable [QGVAR(lastMoveToCoverTime),-120]) + 120) exitWith {TRACE_1("too soon to move to cover again",_grp)};
 
-_mToCover = false;
+private _mToCover = false;
 if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {!([_unit,"(forest + trees + houses)",5] call FUNC(isNearStuff))}) then {_mToCover = true};
 
-_cpa = [];
+private _cpa = [];
 
 if (_mToCover) then {
-	_savedcpa = (group _unit) getVariable QGVAR(nearcover);
+	private _savedcpa = (group _unit) getVariable QGVAR(nearcover);
 	if (!isNil "_savedcpa") then {
 		{ if (_x distance _unit < _distance) then {_cpa pushBack _x} } forEach _savedcpa;
 	};

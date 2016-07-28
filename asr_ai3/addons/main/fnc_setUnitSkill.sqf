@@ -2,17 +2,15 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit"];
-private["_t","_sc","_sa","_i","_st","_sv","_fc","_fnc_getskillvalue"];
+private["_i","_st","_sv","_fc","_fnc_getskillvalue"];
 
 _fnc_getskillvalue = {
-	private["_sv","_min","_var"];
-	_min = _this select 0; //min skill
-	_var = _this select 1; //max variance
+    params ["_min", "_var"]; //min skill, max variance
 	(_min + random _var)
 };
 
-_t = typeOf _unit;
-_sc = [configfile>>"cfgvehicles">>_t>>"asr_ai_level", "number", 6] call CBA_fnc_getConfigEntry;
+private _t = typeOf _unit;
+private _sc = [configfile>>"cfgvehicles">>_t>>"asr_ai_level", "number", 6] call CBA_fnc_getConfigEntry;
 TRACE_2("config",_unit,_sc);
 
 // also check for override setting
@@ -26,7 +24,7 @@ _i = 0;
 }
 forEach GVAR(levels_units);
 
-_sa = GVAR(sets) select _sc; // get skill array for this unit
+private _sa = GVAR(sets) select _sc; // get skill array for this unit
 if (count _sa == 0) exitWith {}; // do not run if empty
 if (isNull _unit) exitWith {};
 

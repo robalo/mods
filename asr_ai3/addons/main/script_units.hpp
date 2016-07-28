@@ -16,9 +16,9 @@
 #define ASR_AI_COST_REG cost = 300000
 #define ASR_AI_COST_SPECIAL cost = 450000
 
-#define ASR_AI_CAMO_NONE camouflage = 2.6
-#define ASR_AI_CAMO_HALF camouflage = 1.6
-#define ASR_AI_CAMO_FULL camouflage = 1.0
+#define ASR_AI_CAMO_NONE camouflage = 2.0
+#define ASR_AI_CAMO_HALF camouflage = 1.2
+#define ASR_AI_CAMO_FULL camouflage = 0.8
 #define ASR_AI_CAMO_GHIL camouflage = 0.6
 #define ASR_AI_CAMO_BUSH camouflage = 0.4
 

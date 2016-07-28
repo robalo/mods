@@ -1,29 +1,28 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit"];
-private["_to","_need","_leaderpos","_search","_lootchkcnt","_lootchktime","_checkit"];
 
 if (_unit getVariable[QGVAR(inprogress),false]) exitWith {};
 if (isPlayer _unit || {getText (configFile >> "cfgVehicles" >> (typeOf _unit) >> "genericNames") == "VRMen"}) exitWith {};
 
-if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Start.",time,_unit]};
+if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Start.",time,_unit]};
 _unit setVariable[QGVAR(inprogress),true];
 
 // So what do I need ?
-_need = _unit call FUNC(inventoryCheck);
-if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Inventory check done for this unit.",time,_unit]};
+private _need = _unit call FUNC(inventoryCheck);
+if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Inventory check done for this unit.",time,_unit]};
 TRACE_2("NEED",_unit,_need);
 
 if (!_need) exitWith {
-	if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Nothing needed. End.",time,_unit]};
+	if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Nothing needed. End.",time,_unit]};
 	_unit setVariable[QGVAR(inprogress),false];
 };
 
-_leaderpos = getposATL _unit;
+private _leaderpos = getposATL _unit;
 
 // Look for places
-if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Searching.",time,_unit]};
-_search = [];
+if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Searching.",time,_unit]};
+private _search = [];
 
 { // process near humans
 	if (!(isNull _x || isPlayer _x || _x == _unit)) then {
@@ -36,15 +35,15 @@ _search = [];
 // other containers
 _search append nearestObjects [_unit, ["ReammoBox","ReammoBox_F","WeaponHolderSimulated","LandVehicle"], GVAR(rearm)];
 
-if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Places to loot: %3",time,_unit,_search]};
+if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places to loot: %3",time,_unit,_search]};
 
 {
 	scopeName "searching";
 	// allow checking a few times per interval
-	_lootchkcnt = _x getVariable [QGVAR(lootcnt),0];
-	_lootchktime = _x getVariable [QGVAR(loottime),0];
+	private _lootchkcnt = _x getVariable [QGVAR(lootcnt),0];
+	private _lootchktime = _x getVariable [QGVAR(loottime),0];
 	TRACE_3("",_unit,_lootchkcnt,_lootchktime);
-	_checkit = true;
+	private _checkit = true;
 	if (_lootchkcnt < 1) then {
 		INC(_lootchkcnt);
 		_x setVariable [QGVAR(lootcnt),_lootchkcnt];
@@ -78,4 +77,4 @@ if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Places to loot: 
 };
 
 _unit setVariable[QGVAR(inprogress),false];
-if (GVAR(debug) == 1) then {diag_log format ["%1 | %2 | [REARM] Done.",time,_unit]};
+if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Done.",time,_unit]};

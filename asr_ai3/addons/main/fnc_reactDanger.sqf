@@ -1,10 +1,9 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit", "_dangerCausedBy"];
-private ["_coverRange","_grp","_bpos","_dude"];
 
-_grp = group _unit;
-_time = time;
+private _grp = group _unit;
+private _time = time;
 
 if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 20}) then {
         
@@ -42,11 +41,11 @@ if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVari
 
 	// search buildings
 	if (!isNull _dangerCausedBy && {random 1 < GVAR(usebuildings)}) then {
-		_dude = _unit;
+		private _dude = _unit;
 		//pick another dude if possible
 		{if (_x != _unit) exitWith {_dude = _x}} forEach units _grp;
         if (_dude getVariable [QGVAR(housing),false]) exitWith {};
-		_bpos = [];
+		private _bpos = [];
 		{
 			{
 				if (random 1 > 0.2) then {_bpos pushBack [_x select 2, _x]}; //pick some; get height and pos
@@ -78,7 +77,7 @@ if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVari
 	};
 
 	// check for cover near and divert
-	_coverRange = if (currentWaypoint _grp == count waypoints _grp) then {100} else {20};
+	private _coverRange = if (currentWaypoint _grp == count waypoints _grp) then {100} else {20};
 	[_unit,_dangerCausedBy,_coverRange] call FUNC(moveToCover);
 
 };
