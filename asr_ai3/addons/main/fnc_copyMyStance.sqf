@@ -7,9 +7,8 @@ if (GVAR(copymystance) == 0) then {
     GVAR(copymystance) = 1;
     {
         _x spawn {
-            private "_leader";
             while {alive _this && GVAR(copymystance) == 1} do {
-                _leader = leader _this;
+                private _leader = leader _this;
                 if (isPlayer _leader && !isPlayer _this) then {
                     switch (stance _leader) do {
                         case "CROUCH": {_this setUnitPos "MIDDLE"};

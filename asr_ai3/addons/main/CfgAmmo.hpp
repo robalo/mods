@@ -1,8 +1,8 @@
 #define __AUDIBLE0 1
-#define __AUDIBLE1 12
-#define __RANGE_HIT_FAR 1000
+#define __AUDIBLE1 40
+#define __RANGE_HIT_FAR 800
 #define __RANGE_HIT_SMALL 5
-#define __RANGE_CRACKS 100
+#define __RANGE_CRACKS 80
 
 #define AIAmmoUsageNone 0
 #define AIAmmoUsageLight 1
@@ -17,63 +17,104 @@
 #define AIAmmoUsageOffensiveArmour 512
 
 class CfgAmmo {
-	class Default;
+    class Default {
+/*
+        airLock = 0;
+        visibleFire = 0;
+        audibleFire = 0;
+        suppressionRadiusBulletClose = -1;
+        suppressionRadiusHit = -1;
+        dangerRadiusBulletClose = -1;
+        dangerRadiusHit = -1;
+*/
+    };
 	class MissileCore : Default {
+//        audibleFire = 32;
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class BombCore : Default {
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class RocketCore : Default {
+//        audibleFire = 32;
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class BulletCore : Default {
+        audibleFire = __AUDIBLE1;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 	};
 	class ShotgunCore : Default {
+        audibleFire = __AUDIBLE1;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 	};
 	class ShellCore : Default {
+        audibleFire = __AUDIBLE1;
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class SubmunitionCore : Default {
+        audibleFire = __AUDIBLE1;
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class ShotDeployCore : Default {
+        audibleFire = __AUDIBLE1;
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class GrenadeCore : Default {
+//        visibleFire = 2;
+//        audibleFire = 0.25;
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class TimeBombCore : Default {
+//        visibleFire = 0;
+//        audibleFire = 0;
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class FlareCore : GrenadeCore {
 		dangerRadiusHit = 2;
 	};
 	class SmokeShellCore : GrenadeCore {
+//        visibleFire = 2;
+//        audibleFire = 0.25;
 		dangerRadiusHit = 2;
 	};
 	class FakeAmmo : BulletCore {
+        audibleFire = __AUDIBLE1;
 		dangerRadiusBulletClose = -1;
 	};
 	class BulletBase : BulletCore {
 		audibleFire = __AUDIBLE1; //12;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+//        dangerRadiusHit = -1;
+//        suppressionRadiusBulletClose = 2;
+//        suppressionRadiusHit = 4;
+//        aiAmmoUsageFlags = "AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir";
 	};
 	class ShellBase : ShellCore {
+        audibleFire = __AUDIBLE1;
 		dangerRadiusHit = __RANGE_HIT_FAR;
+//        suppressionRadiusHit = 30;
+//        aiAmmoUsageFlags = "AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir";
 	};
-	class MissileBase;
-
+    class MissileBase : MissileCore {
+		dangerRadiusHit = __RANGE_HIT_FAR;
+//        suppressionRadiusHit = 30;
+    };
 	class Grenade : Default {
+//        visibleFire = 2;
+//        audibleFire = 0.25;
 		cost = 5; //give'em as if they were free
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 	class RocketBase : RocketCore {
 		dangerRadiusHit = __RANGE_HIT_FAR;
+//        suppressionRadiusHit = 30;
 	};
+    class GrenadeBase : GrenadeCore {};
 	class ShotgunBase : ShotgunCore {
 		dangerRadiusBulletClose = __RANGE_CRACKS;
+//        dangerRadiusHit = 8;
+//        suppressionRadiusBulletClose = 2;
+//        suppressionRadiusHit = 4;
 	};
 	class FuelExplosion : Default {
 		dangerRadiusHit = __RANGE_HIT_FAR;
@@ -86,17 +127,29 @@ class CfgAmmo {
 		audibleFire = __AUDIBLE1; //6;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 6;
+//        suppressionRadiusHit = 8;
 	};
 
 	class B_556x45_dual : B_556x45_Ball {
 		audibleFire = __AUDIBLE0; //4;
 		dangerRadiusBulletClose = 0;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+		suppressionRadiusBulletClose = 1;
+//        suppressionRadiusHit = 4;
+//        aiAmmoUsageFlags = "AIAmmoUsageOffensiveInf + AIAmmoUsageUnderwater";
 	};
+    class B_56x15_dual : BulletBase {
+		audibleFire = __AUDIBLE0; //4;
+    };
 
 	class B_65x39_Caseless : BulletBase {
 		audibleFire = __AUDIBLE1; //8;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 6;
+//        suppressionRadiusHit = 8;
+//        airLock = 1;
 	};
 
 	class SubmunitionBullet;
@@ -107,12 +160,16 @@ class CfgAmmo {
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 6;
 		suppressionRadiusHit = 8;
+//        airLock = 1;
 	};
 
 	class B_762x51_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //9;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 6;
+//        suppressionRadiusHit = 8;
+//        airLock = 1;
 	};
 
 	class B_762x51_Minigun_Tracer_Red : SubmunitionBullet {
@@ -121,6 +178,7 @@ class CfgAmmo {
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 6;
 		suppressionRadiusHit = 8;
+//        airLock = 1;
 	};
 
 	class B_12Gauge_Slug : BulletBase {
@@ -134,31 +192,42 @@ class CfgAmmo {
 		audibleFire = __AUDIBLE1; //5;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 2;
+//        suppressionRadiusHit = 4;
 	};
 
 	class B_408_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //15;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        airLock = 1;
 	};
 
 	class B_127x33_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //12;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 2;
+//        suppressionRadiusHit = 4;
+//        airLock = 1;
 	};
 
 	class B_127x99_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //15;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 8;
+//        suppressionRadiusHit = 12;
+//        airLock = 1;
 	};
 
 	class B_127x108_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //15;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
-	};
-	class B_127x108_APDS : B_127x108_Ball {
-		audibleFire = __AUDIBLE1; //15;
+//        suppressionRadiusBulletClose = 8;
+//        suppressionRadiusHit = 12;
+//        airLock = 1;
 	};
 
 	class B_19mm_HE : BulletBase {
@@ -184,6 +253,8 @@ class CfgAmmo {
 	};
 	class GrenadeHand : Grenade {
 		dangerRadiusHit = __RANGE_HIT_FAR;
+//        visibleFire = 0.5;
+//        audibleFire = 0.05;
 	};
 	class mini_Grenade : GrenadeHand {
 		dangerRadiusHit = __RANGE_HIT_FAR;
@@ -194,6 +265,7 @@ class CfgAmmo {
 	class SmokeShell : GrenadeHand {
 		dangerRadiusHit = 2;
 	};
+
 	class Sh_120mm_HE : ShellBase {
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
@@ -203,11 +275,8 @@ class CfgAmmo {
 	class Sh_155mm_AMOS : ShellBase {
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
-	class GrenadeBase;
+
 	class G_40mm_HE : GrenadeBase {
-		dangerRadiusHit = __RANGE_HIT_FAR;
-	};
-	class G_20mm_HE : G_40mm_HE {
 		dangerRadiusHit = __RANGE_HIT_FAR;
 	};
 
@@ -216,6 +285,7 @@ class CfgAmmo {
 		dangerRadiusBulletClose = 1; //subsonic ammo, no crack (usually)
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
+//        suppressionRadiusHit = 4;
 	};
 	class IRStrobeBase : GrenadeCore {
 		dangerRadiusHit = 2;
@@ -228,25 +298,73 @@ class CfgAmmo {
 		audibleFire = __AUDIBLE1; //12;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 8;
+//        suppressionRadiusHit = 10;
+//        airLock = 1;
 	};
 	class B_338_NM_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //12;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 8;
+//        suppressionRadiusHit = 10;
+//        airLock = 1;
 	};
 	class B_127x54_Ball : BulletBase {
 		audibleFire = __AUDIBLE0; //3;
 		dangerRadiusBulletClose = 1; //subsonic, no crack
 		dangerRadiusHit = __RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
+//        suppressionRadiusHit = 10;
+        airLock = 0;
 	};
 	class B_93x64_Ball : BulletBase {
 		audibleFire = __AUDIBLE1; //12;
 		dangerRadiusBulletClose = __RANGE_CRACKS;
 		dangerRadiusHit = __RANGE_HIT_SMALL;
+//        suppressionRadiusBulletClose = 8;
+//        suppressionRadiusHit = 10;
+//        airLock = 1;
 	};
 
+    class B_580x42_Ball_F : BulletBase {
+		audibleFire = __AUDIBLE1;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+        suppressionRadiusBulletClose = 6;
+        suppressionRadiusHit = 8;
+    };
+    class B_50BW_Ball_F : BulletBase {
+		audibleFire = __AUDIBLE1; //15;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+        airLock = 1;
+    };
+    class B_762x39_Ball_F : BulletBase {
+		audibleFire = __AUDIBLE1;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+        airLock = 1;
+    };
+    class B_545x39_Ball_F : BulletBase {
+		audibleFire = __AUDIBLE1;
+		dangerRadiusBulletClose = __RANGE_CRACKS;
+		dangerRadiusHit = __RANGE_HIT_SMALL;
+    };
+
+
 	// allow AI to use AT against helis; Players do it, why not AI ?
+
+	class M_PG_AT : MissileBase {
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
+	};
+	class M_NLAW_AT_F : MissileBase {
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
+	};
+    class M_Scalpel_AT : MissileBase {
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
+    };
+
 	class R_PG32V_F: RocketBase {
 		airlock = 1;
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;
@@ -255,18 +373,15 @@ class CfgAmmo {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir;
 	};
 
-	class M_PG_AT : MissileBase {
-		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
-	};
-
-	class M_NLAW_AT_F : MissileBase {
-		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
-	};
-
     class M_Titan_AT;
 	class M_Titan_AP : M_Titan_AT {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh;
 	};
+
+    class R_PG7_F : RocketBase {
+        airLock = 1;
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;
+    };
 
     class FlareBase;
 	class F_40mm_White : FlareBase {
