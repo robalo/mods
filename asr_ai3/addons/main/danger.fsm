@@ -9,9 +9,9 @@ item4[] = {"Reacting_on_danger",0,250,-640.000000,-520.000000,-430.000000,-470.0
 item5[] = {"Cause_0_3_5_ENEMY",4,218,-1280.000000,-180.000000,-1040.000000,-60.000000,4.000000,"Cause 0,3,5" \n "ENEMY" \n "DETECTED/NEAR" \n "OR" \n " DEAD TEAMMATE"};
 item6[] = {"Signal_enemy",2,250,-1330.000000,420.000000,-1170.000000,500.000000,0.000000,"Signal enemy"};
 item7[] = {"Cause__8_CAN_FIR",4,218,-520.000000,-260.000000,-310.000000,-120.000000,6.000000,"Cause: 8" \n "CAN FIRE"};
-item8[] = {"Stop_to_fire___ASR",2,4346,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
+item8[] = {"Stop_to_fire___ASR",2,250,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
 item9[] = {"Check_queue",2,250,-260.000000,280.000000,-90.000000,340.000000,0.000000,"Check queue"};
-item10[] = {"Next__cause",4,218,-270.000000,-390.000000,-130.000000,-300.000000,1.000000,"Next  cause"};
+item10[] = {"Next__cause",4,4314,-270.000000,-390.000000,-130.000000,-300.000000,1.000000,"Next  cause"};
 item11[] = {"Always",8,218,-240.000000,380.000000,-120.000000,460.000000,0.000000,"Always"};
 item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
@@ -62,7 +62,7 @@ link23[] = {18,19};
 link24[] = {19,20};
 link25[] = {20,15};
 globals[] = {0.000000,0,0,0,0,640,480,1,239,6316128,1,-1381.939697,35.925030,780.962952,-778.435486,1122,1234,1};
-window[] = {2,-1,-1,-1,-1,838,44,1080,58,3,1140};
+window[] = {2,-1,-1,-1,-1,896,88,1124,116,3,1140};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -170,7 +170,7 @@ class FSM
                                         priority = 2.000000;
                                         to="Radio_Report";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"_asrenabled"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_isleader"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -194,17 +194,17 @@ class FSM
                         name = "Stop_to_fire___ASR";
                         itemno = 8;
                         init = /*%FSM<STATEINIT""">*/"//_this globalChat ""Stopping to fire"";" \n
-                         "_stopUntil = time + 4 + random 4;" \n
+                         "_stopUntil = time + 3 + random 3;" \n
                          "" \n
                          "if (_inf) then {" \n
-                         "" \n
-                         "" \n
-                         "	if (_asrenabled) then {_this call asr_ai3_main_fnc_shootingStance};" \n
+                         "	// soldier stop - set max. speed to 0" \n
+                         "	_this forceSpeed 0;" \n
                          "" \n
                          "	// shoot moar bullets" \n
-                         "	if (_this ammo (currentWeapon _this) > 100) then {" \n
+                         "	if (_this ammo (currentWeapon _this) > 40) then {" \n
                          "		_stopUntil = _stopUntil + 4;" \n
                          "		_this suppressFor 1;" \n
+                         "		//_this doSuppressiveFire _dangerCausedBy;//" \n
                          "	}" \n
                          "};" \n
                          ""/*%FSM</STATEINIT""">*/;
@@ -277,8 +277,7 @@ class FSM
                         itemno = 12;
                         init = /*%FSM<STATEINIT""">*/"if (_inf) then {" \n
                          "	// continue moving" \n
-                         "" \n
-                         "	if (_asrenabled) then { _this setVariable [""asr_ai3_main_shooting"",nil] };" \n
+                         "	_this forceSpeed -1;" \n
                          "};" \n
                          ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -327,8 +326,7 @@ class FSM
                 {
                         name = "set_vars_check_danger";
                         itemno = 16;
-                        init = /*%FSM<STATEINIT""">*/"_asrenabled = asr_ai3_main_enabled == 1;" \n
-                         "_grp = group _this;" \n
+                        init = /*%FSM<STATEINIT""">*/"_grp = group _this;" \n
                          "_isleader = leader _grp == _this;" \n
                          "_inf = vehicle _this == _this;" \n
                          "" \n
@@ -365,7 +363,7 @@ class FSM
                                         priority = 2.000000;
                                         to="Reactions";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"(_asrenabled)  && (_dangerCause == 4 || _dangerCause == 2 ||  ((_dangerCause == 1 || _dangerCause == 9)  && side _dangerCausedBy != side _this))"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(_dangerCause == 4 || _dangerCause == 2 ||  ((_dangerCause == 1 || _dangerCause == 9)  && side _dangerCausedBy != side _this))"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/

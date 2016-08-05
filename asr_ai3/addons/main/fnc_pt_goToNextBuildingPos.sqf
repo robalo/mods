@@ -1,13 +1,12 @@
 
 #include "script_component.hpp"
-private ["_unit", "_testPos", "_objs", "_hidingPos"];
 //move to another building pos, at random
 
-_unit = _this select 0;
-_dangerUnit = _this select 1;
-_testPos = getPosASL _unit;
-_objs = lineIntersectsWith[_testPos vectorAdd [0,0,10], _testPos vectorAdd[0,0,-10]];
-_hidingPos = [];
+private _unit = _this select 0;
+private _dangerUnit = _this select 1;
+private _testPos = getPosASL _unit;
+private _objs = lineIntersectsWith[_testPos vectorAdd [0,0,10], _testPos vectorAdd[0,0,-10]];
+private _hidingPos = [];
 {
     if(_x isKindOf "HouseBase") then {
         {   

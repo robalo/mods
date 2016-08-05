@@ -1,14 +1,13 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-private ["_unit", "_dangerCause", "_dangerCausedBy", "_unitsThatNeedCover", "_deniedCover", "_coverObj", "_activeCover", "_bbr", "_p1", "_p2", "_maxHeight"];
 
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
-_dangerCause = _this select 2;
+private _unit = _this select 0;
+private _dangerCausedBy = _this select 1;
+private _dangerCause = _this select 2;
 if(_unit != leader _unit) exitWith {
     [];
 };
-_unitsThatNeedCover = [];
+private _unitsThatNeedCover = [];
 _unit setVariable [QGVAR(CT), time + GVAR(RESELECT_COVER_TIME), false];
 if((_unit targetKnowledge _dangerCausedBy select 5) < 6) then {
     
@@ -20,26 +19,26 @@ if((_unit targetKnowledge _dangerCausedBy select 5) < 6) then {
 };
 
 
-_deniedCover = [];
+private _deniedCover = [];
 {
     //just use _x as a default so we know that it is blank
-    _coverObj = _x getVariable [QGVAR(savedCover), _x];
+    private _coverObj = _x getVariable [QGVAR(savedCover), _x];
     if(_coverObj != _x) then {
         _deniedCover pushBack _coverObj;
     };
 } forEach units _unit;
 
-_activeCover = [];
+private _activeCover = [];
 {
     scopeName "loop";
     if(count _activeCover >= count _unitsThatNeedCover) then {
         breakOut "loop";
     };
     
-    _bbr = boundingBoxReal _x;
-    _p1 = _bbr select 0;
-    _p2 = _bbr select 1;
-    _maxHeight = abs ((_p2 select 2) - (_p1 select 2));
+    private _bbr = boundingBoxReal _x;
+    private _p1 = _bbr select 0;
+    private _p2 = _bbr select 1;
+    private _maxHeight = abs ((_p2 select 2) - (_p1 select 2));
     
     if(_maxHeight > GVAR(MIN_HEIGHT_OBJ_TO_CONSIDER)) then {
         _building = _x;

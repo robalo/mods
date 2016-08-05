@@ -1,11 +1,10 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-private ["_unit", "_timeSleep"];
-_unit = _this select 0;
-_originalCallTime = _this select 1;
+private _unit = _this select 0;
+private _originalCallTime = _this select 1;
 
 //check what time we're supposed to reset
-_timeSleep = (_unit getVariable [QGVAR(RT), 0]);
+private _timeSleep = (_unit getVariable [QGVAR(RT), 0]);
 _unit setVariable [QGVAR(RT), -1, false];
 
 if(_timeSleep == 0) exitWith {

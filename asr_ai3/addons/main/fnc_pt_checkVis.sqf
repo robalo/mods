@@ -1,17 +1,17 @@
 #include "script_component.hpp"
 private ["_unit", "_dangerCausedBy", "_unitPos", "_height", "_dangerPos", "_objs", "_visible"];
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
-_unitPos = eyePos _unit;
+private _unit = _this select 0;
+private _dangerCausedBy = _this select 1;
+private _unitPos = eyePos _unit;
 
 if(count _this > 2) then {
-    _height =  _this select 2;
+    private _height =  _this select 2;
     _unitPos = [_unitPos select 0, _unitPos select 1, (((getPosASL _unit) select 2) + _height)];
 };
-_dangerPos = eyePos _dangerCausedBy;
-_objs =  lineIntersectsWith [ _dangerPos, _unitPos];
+private _dangerPos = eyePos _dangerCausedBy;
+private _objs =  lineIntersectsWith [ _dangerPos, _unitPos];
 
-_visible = true;
+private _visible = true;
 {
     
     _bbr = boundingBoxReal _x;

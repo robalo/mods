@@ -1,6 +1,6 @@
-_testPos = _this select 0;
-_objs = lineIntersectsWith[_testPos vectorAdd [0,0,10], _testPos vectorAdd[0,0,-10]];
-_closestPos = [];
+private _testPos = _this select 0;
+private _objs = lineIntersectsWith[_testPos vectorAdd [0,0,10], _testPos vectorAdd[0,0,-10]];
+private _closestPos = [];
 {
     if(_x isKindOf "HouseBase") then {
         {   

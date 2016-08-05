@@ -1,8 +1,8 @@
 
 #include "script_component.hpp"
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
-_dangerCause = _this select 2;
+private _unit = _this select 0;
+private _dangerCausedBy = _this select 1;
+private _dangerCause = _this select 2;
 
 
 if(_dangerCause == 2) then {

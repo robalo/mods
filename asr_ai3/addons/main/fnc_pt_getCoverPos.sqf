@@ -1,46 +1,44 @@
 #include "script_component.hpp"
-private ["_unit", "_dangerUnit", "_coverObj", "_dangerCenter", "_unitCenter", "_coverPos", "_dangerToCoverDir", "_unitToCoverDir"];
-_unit = _this select 0;
-_dangerUnit = _this select 1;
-_coverObj = _this select 2;
+private _unit = _this select 0;
+private _dangerUnit = _this select 1;
+private _coverObj = _this select 2;
 
 
 if(_coverObj isKindOf "CAManBase") exitWith {[]};
-_dangerCenter = eyePos _dangerUnit;
+private _dangerCenter = eyePos _dangerUnit;
 
-_unitCenter = _unit modelToWorld [0,0,0];
+private _unitCenter = _unit modelToWorld [0,0,0];
 _unitCenter = ATLToASL _unitCenter;
 
 
 // step 1, find a starting point such that the objs model is between the unit and the starting point at prone height]
-_originalCoverPos = [_coverObj, _dangerUnit] call FUNC(pt_findPossibleCenter);
+private _originalCoverPos = [_coverObj, _dangerUnit] call FUNC(pt_findPossibleCenter);
 
 if(count _originalCoverPos == 0) exitWith {
     TRACE_2("cover rejected, unable to find center", _originalCoverPos);
     [];
 };
 
-_coverPos = _originalCoverPos;
+private _coverPos = _originalCoverPos;
 _originalCoverPos = ASLToATL _originalCoverPos;
 //now we sweep angles using the dangerousUnit as a focal point, coverPos as our starting point and unit as our ending point
-_dangerToCoverDir =[_dangerUnit, _coverPos] call BIS_fnc_dirTo;
-_unitToCoverDir = [_unitCenter, _coverPos] call BIS_fnc_dirTo;
-private ["_angleACB", "_currentDistance", "_resolution", "_foundResult"];
+private _dangerToCoverDir =[_dangerUnit, _coverPos] call BIS_fnc_dirTo;
+private _unitToCoverDir = [_unitCenter, _coverPos] call BIS_fnc_dirTo;
 
 //unit = pt A
 //dangerousUnit = pt B;
 //cover = pt C
-_angleACB = _dangerToCoverDir - _unitToCoverDir;
+private _angleACB = _dangerToCoverDir - _unitToCoverDir;
 //normalize them
 if(_angleACB > 180) then {
     _dangerToCoverDir = _dangerToCoverDir - 360;
     _angleACB = _dangerToCoverDir - _unitToCoverDir;
 };
 
-_currentDistance = (_unitCenter distance _coverPos);
+private _currentDistance = (_unitCenter distance _coverPos);
 
-_resolution = _currentDistance / 2;
-_foundResult = 0;
+private _resolution = _currentDistance / 2;
+private _foundResult = 0;
 while{_resolution > 0.25} do {
     //sweep from cover pos to unit until we get a point that is inside the model and _resolution is < 0.25
     if(_coverObj in (lineIntersectsWith [_dangerCenter, _coverPos])) then {
@@ -53,7 +51,7 @@ while{_resolution > 0.25} do {
     };
     _coverPos = _coverPos vectorAdd [0,0,_originalCoverPos select 2];
 
-    if(GVAR(debug) > 0) then {
+    if(GVAR(debug)) then {
 
         if(isNil "unitPts") then {
             unitPts = [];
@@ -79,9 +77,8 @@ _dangerToCoverDir = [_dangerUnit, _coverPos] call BIS_fnc_dirTo;
 //now we effectively have the heading from the danger to the final cover pos.
 //we now need to find a position such that the model is between the danger and the position
 
-private ["_originDetect"];
 //get a pos 15m past the cover pos, then work backwards
-_originDetect = [_coverPos, 15,  _dangerToCoverDir] call BIS_fnc_relPos;
+private _originDetect = [_coverPos, 15,  _dangerToCoverDir] call BIS_fnc_relPos;
 
    
 _resolution = (_originDetect distance _coverPos) / 2;
@@ -108,7 +105,7 @@ if(_coverObj in lineIntersectsWith [ _coverPos, _originDetect]) then {
 
 //move 0.6m away from the cover, because the unit is not a point object
  _coverPos = [_coverPos, 0.6,  _dangerToCoverDir] call BIS_fnc_relPos;
- if(GVAR(debug) > 0) then {
+ if(GVAR(debug)) then {
     if(isNil "coverPts") then {
         coverPts = [];
         addMissionEventHandler ["Draw3D", {

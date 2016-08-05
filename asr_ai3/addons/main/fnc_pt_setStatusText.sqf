@@ -1,8 +1,8 @@
 
 #include "script_component.hpp"
 
-_unit = _this select 0;
-_text = _this select 1;
+private _unit = _this select 0;
+private _text = _this select 1;
 
 if(isNil QGVAR(DEBUG_FUNC) && GVAR(DEBUG_NAME) != "") then {
     GVAR(DEBUG_FUNC) = {
@@ -25,7 +25,7 @@ if(isNil QGVAR(DEBUG_FUNC) && GVAR(DEBUG_NAME) != "") then {
 
             }];
         };
-        _foundUnit = -1;
+        private _foundUnit = -1;
         {
             if(_x == _unit) then {
                 _foundUnit = _forEachIndex;

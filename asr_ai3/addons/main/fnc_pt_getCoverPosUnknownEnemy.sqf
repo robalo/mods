@@ -1,12 +1,11 @@
 //#define DEBUG_MODE_FULL
 
 #include "script_component.hpp"
-private ["_unit", "_coverObj", "_coverPos", "_height", "_resolution", "_dirFromUnitToCover"];
 //find closest position to coverObj which does not touch cover obj, then back up 0.4m and return that position.
-_unit = _this select 0;
-_coverObj = _this select 1;
+private _unit = _this select 0;
+private _coverObj = _this select 1;
 
-_coverPos = [_coverObj, _unit] call FUNC(pt_findPossibleCenter);
+private _coverPos = [_coverObj, _unit] call FUNC(pt_findPossibleCenter);
 
 //unable to find obj model starting point, give up.
 if(count _coverPos == 0) exitWith {
@@ -14,9 +13,9 @@ if(count _coverPos == 0) exitWith {
     [];
 };
 
-_height = _coverPos select 2;
-_resolution = (_coverPos distance (getPosASL _unit)) / 2;
-_dirFromUnitToCover = [_unit, _coverPos] call BIS_fnc_dirTo;
+private _height = _coverPos select 2;
+private _resolution = (_coverPos distance (getPosASL _unit)) / 2;
+private _dirFromUnitToCover = [_unit, _coverPos] call BIS_fnc_dirTo;
 //step 2, find the point closest to the unit which is outside the model (to within a precision of at least 0.25m)
 while {_resolution > 0.25} do {
 
@@ -31,7 +30,7 @@ while {_resolution > 0.25} do {
 };
 
 _coverPos = [_coverPos, -0.8, _dirFromUnitToCover] call BIS_fnc_relPos;
-if(GVAR(debug) > 0) then {
+if(GVAR(debug)) then {
     if(isNil "unknownPoints") then {
         unknownPoints = [];
         addMissionEventHandler ["Draw3D", {

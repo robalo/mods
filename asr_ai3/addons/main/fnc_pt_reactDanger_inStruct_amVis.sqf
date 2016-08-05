@@ -1,12 +1,11 @@
 #include "script_component.hpp"
-private ["_unit", "_dangerCause", "_dangerCausedBy", "_checkDown", "_checkMiddle", "_foundResult"];
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
-_dangerCause = _this select 2;
+private _unit = _this select 0;
+private _dangerCausedBy = _this select 1;
+private _dangerCause = _this select 2;
 //I am in a structure, and I know who the enemy is and I am visible to the enemy.
 
-_checkMiddle = false;
-_checkDown = false;
+private _checkMiddle = false;
+private _checkDown = false;
 
 if(unitPos _unit == "AUTO") then {
     _checkMiddle = true;
@@ -22,7 +21,7 @@ if(unitPos _unit == "MIDDLE") then {
     _checkDown = true;
 };
 
-_foundResult = "";
+private _foundResult = "";
 
 if(_checkMiddle) then {
     if(!([_unit, _dangerCausedBy, 1.2] call FUNC(pt_checkVis))) then {

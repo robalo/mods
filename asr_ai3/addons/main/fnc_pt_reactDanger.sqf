@@ -1,16 +1,14 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-private ["_unit", "_dangerCause", "_dangerCausedBy"];
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
-_dangerCause = _this select 2;
+private _unit = _this select 0;
+private _dangerCausedBy = _this select 1;
+private _dangerCause = _this select 2;
 [_unit, _dangerCausedBy, _dangerCause] spawn {
 
-private ["_unit", "_dangerCause", "_dangerCausedBy", "_grp", "_exit", "_dir", "_oldDir", "_dirDist"];
-_unit = _this select 0;
-_dangerCausedBy = _this select 1;
-_dangerCause = _this select 2;
-_grp = group _unit;
+private _unit = _this select 0;
+private _dangerCausedBy = _this select 1;
+private _dangerCause = _this select 2;
+private _grp = group _unit;
 //format ["react danger, reacting on %1, against %2, because %3, and knows %4, at distance %5", _unit, _dangerCausedBy, _dangerCause, (_unit targetKnowledge _dangerCausedBy select 5), _unit distance _dangerCausedBy ] call BIS_fnc_log;
 //format ["danger, was asleep %1, was ready %2 and time time %3", _unit getVariable[QGVAR(PT_SLEEP), 0], unitReady _unit, time > (_unit getVariable [QGVAR(DT),0])] call BIS_fnc_log;
  

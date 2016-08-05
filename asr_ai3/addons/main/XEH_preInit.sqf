@@ -18,33 +18,9 @@ ASR_AI_SETDEFAULT(sets,[]);
 ASR_AI_SETDEFAULT(levels_units,[]);
 ASR_AI_SETDEFAULT(factions,[]);
 
-//how far we're allowed to get to cover
-ASR_AI_SETDEFAULT(MAX_DIST_TO_COVER, 50);
-ASR_AI_SETDEFAULT(AUTO_ATTACK_WITHIN, 50);
-//an object must be at least this tall to be considered for cover
-ASR_AI_SETDEFAULT(MIN_HEIGHT_OBJ_TO_CONSIDER, 0.2);
-ASR_AI_SETDEFAULT(CHANCE_USE_BUILDING_POS, 0.2);
 
 
-//time until we're allowed to react to danger again
-ASR_AI_SETDEFAULT(DT_OUTSIDE, 3);
-ASR_AI_SETDEFAULT(DT_INSIDE, 3);
-
-//how often the AI is allowed to re-evaluate its cover while outside
-ASR_AI_SETDEFAULT(RESELECT_COVER_TIME, 30);
-ASR_AI_SETDEFAULT(NO_COVER_FOR_DANGER_WITHIN, 100);
-//time until counter attack
-ASR_AI_SETDEFAULT(AT_OUTSIDE, 15);
-ASR_AI_SETDEFAULT(AT_INSIDE, 15);
-
-
-//counter attack max disatance
-ASR_AI_SETDEFAULT(AD_OUTSIDE, 250);
-ASR_AI_SETDEFAULT(AD_INSIDE, 50);
-
-
-
-ASR_AI_SETDEFAULT(DEBUG_NAME, "");
+ASR_AI_SETDEFAULT(DEBUG_NAME, "Pooter");
 
 GVAR(DC_NEED_COVER) = [2,4,9];
 GVAR(DC_ATTACK) =[2,3,4,6,9];
