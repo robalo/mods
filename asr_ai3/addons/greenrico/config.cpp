@@ -24,19 +24,12 @@ class CfgPatches {
 		requiredVersion = REQUIRED_VERSION;
 		requiredAddons[] = {"A3_Characters_F","A3_Weapons_F","A3_Weapons_F_Mark"};
 		version = VERSION;
-		author[] = {"Robalo"};
+        author = "Robalo";
+		authors[] = {"Robalo"};
 	};
 };
 
 PRELOAD_ADDONS;
-
-class Extended_InitPost_EventHandlers {
-	class asdg_I_Soldier_recon_base {
-		class ADDON {
-			init = "if (local (_this select 0)) then {[(_this select 0), [], []] call BIS_fnc_unitHeadgear;};";
-		};
-	};
-};
 
 class CfgWeapons {
 
@@ -93,7 +86,10 @@ class CfgVehicles {
 		};
 	};
 
-	class I_Soldier_base_F;
+    class SoldierGB;
+    class I_Soldier_base_F : SoldierGB {
+        class EventHandlers;
+    };
 
 	class asdg_I_Soldier_recon_base : I_Soldier_base_F {
 		scope = private;
@@ -114,6 +110,11 @@ class CfgVehicles {
 		ASR_AI_CAMO_FULL;
 		headgearProbability = 100;
 		allowedHeadgear[] = {"H_Bandanna_gry", "H_Bandanna_khk_hs", "H_Bandanna_khk", "H_Bandanna_sgg", "H_Watchcap_blk", "H_Watchcap_cbr", "H_Watchcap_camo", "H_Watchcap_khk", "H_Booniehat_dgtl", "H_Booniehat_oli", "H_Cap_blk", "H_Cap_oli", "H_Cap_oli_hs", "H_Cap_blk_Raven", "H_MilCap_dgtl", "H_Booniehat_dgtl", "H_Cap_blk_Raven"};
+        class EventHandlers: EventHandlers {
+            class ADDON {
+                init = "if (local (_this select 0)) then {[(_this select 0), [], []] call BIS_fnc_unitHeadgear;};";
+            };
+        };
 	};
 	
 	class asdg_I_recon : asdg_I_Soldier_recon_base {
