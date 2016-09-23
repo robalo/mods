@@ -20,9 +20,9 @@
 class CfgPatches {
 	class ADDON {
 		units[] = {"asdg_I_AssaultPack_dgtl_AR","asdg_I_Soldier_MG","asdg_I_recon","asdg_I_recon_exp","asdg_I_recon_medic","asdg_I_recon_TL","asdg_I_recon_M","asdg_I_recon_MG"};
-		weapons[] = {"asdg_LMG_Mk200_ARCO_LP_BI","asdg_DMR_06_DMS_BI"};
+		weapons[] = {"asdg_LMG_03_F_ARCO_LP","asdg_DMR_06_DMS_BI"};
 		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"A3_Characters_F","A3_Weapons_F","A3_Weapons_F_Mark"};
+		requiredAddons[] = {"A3_Characters_F","A3_Weapons_F","A3_Weapons_F_Mark","A3_Weapons_F_Exp"};
 		version = VERSION;
         author = "Robalo";
 		authors[] = {"Robalo"};
@@ -33,21 +33,17 @@ PRELOAD_ADDONS;
 
 class CfgWeapons {
 
-	class LMG_Mk200_F;
+	class LMG_03_F;
 
-	class asdg_LMG_Mk200_ARCO_LP_BI : LMG_Mk200_F {
+	class asdg_LMG_03_F_ARCO_LP : LMG_03_F {
 		class LinkedItems {
 			class LinkedItemsOptic {
 				slot = "CowsSlot";
-				item = "optic_Arco";
+				item = "optic_Arco_blk_F";
 			};
 			class LinkedItemsAcc {
 				slot = "PointerSlot";
 				item = "acc_pointer_IR";
-			};
-			class LinkedItemsUnder {
-				slot = "UnderBarrelSlot";
-				item = "bipod_03_F_blk";
 			};
 		};
 	};
@@ -76,11 +72,11 @@ class CfgVehicles {
 		scope = protected;
 		class TransportMagazines {
 			class _xx_200Rnd_65x39_cased_Box {
-				magazine = "200Rnd_65x39_cased_Box";
+				magazine = "200Rnd_556x45_Box_F";
 				count = 1;
 			};
 			class _xx_200Rnd_65x39_cased_Box_Tracer {
-				magazine = "200Rnd_65x39_cased_Box_Tracer";
+				magazine = "200Rnd_556x45_Box_Tracer_F";
 				count = 1;
 			};
 		};
@@ -201,10 +197,10 @@ class CfgVehicles {
 		scope = public;
 		displayName = "Recon (Support)";
 		uniformClass = "U_I_CombatUniform_tshirt";
-		weapons[] = {"asdg_LMG_Mk200_ARCO_LP_BI", "hgun_ACPC2_F", "Throw", "Put"};
-		respawnWeapons[] = {"asdg_LMG_Mk200_ARCO_LP_BI", "hgun_ACPC2_F", "Throw", "Put"};
-		magazines[] = {"200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
-		respawnMagazines[] = {"200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
+		weapons[] = {"asdg_LMG_03_F_ARCO_LP", "hgun_ACPC2_F", "Throw", "Put"};
+		respawnWeapons[] = {"asdg_LMG_03_F_ARCO_LP", "hgun_ACPC2_F", "Throw", "Put"};
+		magazines[] = {"200Rnd_556x45_Box_F", "200Rnd_556x45_Box_F", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
+		respawnMagazines[] = {"200Rnd_556x45_Box_F", "200Rnd_556x45_Box_F", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		linkedItems[] = {"V_PlateCarrierIA1_dgtl", "H_Watchcap_blk", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
 		respawnLinkedItems[] = {"V_PlateCarrierIA1_dgtl", "H_Watchcap_blk", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
 		backpack = "asdg_I_AssaultPack_dgtl_AR";

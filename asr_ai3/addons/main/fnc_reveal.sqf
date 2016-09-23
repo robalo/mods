@@ -9,7 +9,7 @@ if ([_rx,"(rain + windy + night)",2] call FUNC(isNearStuff)) then {_k = _k * 0.7
 private _oldk = _rx knowsAbout _tx;
 if (_oldk < _k) then {
 	_rx reveal [_tx,_k];
-	if (GVAR(debug)) then {
+	if (GVAR(debug_reveal)) then {
 		diag_log format["ASR AI3: %1 | Unit %2 knew %3 and learned %4 about %5",diag_ticktime,_rx,_oldk,_k,_tx];
 	};
 };

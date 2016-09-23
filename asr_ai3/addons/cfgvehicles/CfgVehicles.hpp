@@ -1000,6 +1000,9 @@ class CfgVehicles {
 		minFireTime = 5;
 		ASR_AI_CAMO_FULL;
     };
+    class O_V_Soldier_hex_F : O_V_Soldier_base_F {
+		ASR_AI_COST_SPECIAL;
+    };
     class O_V_Soldier_TL_hex_F : O_V_Soldier_base_F {
 		ASR_AI_COST_SPECIAL;
     };

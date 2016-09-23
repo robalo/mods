@@ -7,6 +7,7 @@ class CfgWeapons {
 	#include "items.hpp"
 
 	class Rifle_Base_F;
+    class Rifle_Short_Base_F : Rifle_Base_F {};
 
     class rhs_weap_kar98k_Base_F : Rifle_Base_F {
  		modes[] = {"ASR_SemiAuto", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
@@ -50,7 +51,7 @@ class CfgWeapons {
 		ASR_AI_RIFLE_SMALL_MODES(Single,FullAuto);
     };
 
-    class SMG_01_Base : Rifle_Base_F {
+    class SMG_01_Base : Rifle_Short_Base_F {
         class Single;
         class FullAuto;
     };

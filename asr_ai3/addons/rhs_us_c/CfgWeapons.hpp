@@ -7,6 +7,7 @@ class CfgWeapons {
 	#include "items.hpp"
 
 	class Rifle_Base_F;
+    class Rifle_Short_Base_F : Rifle_Base_F {};
 	class Rifle_Long_Base_F;
 	class Pistol_Base_F;
 
@@ -155,7 +156,7 @@ class CfgWeapons {
 		ASR_AI_DISP_REGULAR;
     };
 
-    class SMG_01_Base : Rifle_Base_F {
+    class SMG_01_Base : Rifle_Short_Base_F {
         class Single;
         class FullAuto;
     };

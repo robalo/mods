@@ -5,23 +5,23 @@ params ["_unit"];
 if (_unit getVariable[QGVAR(inprogress),false]) exitWith {};
 if (isPlayer _unit || {getText (configFile >> "cfgVehicles" >> (typeOf _unit) >> "genericNames") == "VRMen"}) exitWith {};
 
-if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Start.",time,_unit]};
+if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Start.",time,_unit]};
 _unit setVariable[QGVAR(inprogress),true];
 
 // So what do I need ?
 private _need = _unit call FUNC(inventoryCheck);
-if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Inventory check done for this unit.",time,_unit]};
+if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Inventory check done for this unit.",time,_unit]};
 TRACE_2("NEED",_unit,_need);
 
 if (!_need) exitWith {
-	if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Nothing needed. End.",time,_unit]};
+	if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Nothing needed. End.",time,_unit]};
 	_unit setVariable[QGVAR(inprogress),false];
 };
 
 private _leaderpos = getposATL _unit;
 
 // Look for places
-if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Searching.",time,_unit]};
+if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Searching.",time,_unit]};
 private _search = [];
 
 { // process near humans
@@ -35,7 +35,7 @@ private _search = [];
 // other containers
 _search append nearestObjects [_unit, ["ReammoBox","ReammoBox_F","WeaponHolderSimulated","LandVehicle"], GVAR(rearm)];
 
-if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places to loot: %3",time,_unit,_search]};
+if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places to loot: %3",time,_unit,_search]};
 
 {
 	scopeName "searching";
@@ -77,4 +77,4 @@ if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places to lo
 };
 
 _unit setVariable[QGVAR(inprogress),false];
-if (GVAR(debug)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Done.",time,_unit]};
+if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Done.",time,_unit]};

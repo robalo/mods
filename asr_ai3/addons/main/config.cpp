@@ -4,9 +4,9 @@
 
 PRELOAD_ADDONS;
 
-#include "CfgAmmo.hpp"
-#include "CfgWeapons.hpp"
-#include "CfgVehicles.hpp"
+//#include "CfgAmmo.hpp"
+//#include "CfgWeapons.hpp"
+//#include "CfgVehicles.hpp"
 
 #include "CfgEventhandlers.hpp"
 
@@ -43,3 +43,16 @@ Affects the accuracy of the information (Higher value = more accurate informatio
 spotTime
 Affects how quick the AI react to death, damage or observing an enemy (Higher value = quicker reaction)
 */
+
+class CfgVehicles {
+	class CAManBase;
+	class SoldierWB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
+	};
+	class SoldierEB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
+	};
+	class SoldierGB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
+	};
+};

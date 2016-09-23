@@ -7,6 +7,7 @@ class CfgWeapons {
 	#include "items.hpp"
 
 	class Rifle_Base_F;
+    class Rifle_Short_Base_F : Rifle_Base_F {};
 	class Rifle_Long_Base_F;
 	class Pistol_Base_F;
     class Launcher_Base_F;
@@ -106,7 +107,7 @@ class CfgWeapons {
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
 
-    class pdw2000_base_F : Rifle_Base_F {
+    class pdw2000_base_F : Rifle_Short_Base_F {
         class Single;
         class FullAuto;
     };

@@ -48,7 +48,7 @@ if (_initspeed < 360) then {_sdammo = true};
 TRACE_4("CHECK IF SILENCED",_weapon,_sdweap,_sdammo,_initspeed);
 
 if (_sdweap && _sdammo) exitWith {
-	if (GVAR(debug) && {isPlayer gunner _veh || isPlayer driver _veh}) then {hintSilent "ASR DEBUG: supressed weapon with subsonic ammo"};
+	if (GVAR(debug_firedeh) && {isPlayer gunner _veh || isPlayer driver _veh}) then {hintSilent "ASR DEBUG: supressed weapon with subsonic ammo"};
 };
 
 //check range
@@ -65,7 +65,7 @@ if ([_veh,"(forest + houses + rain + windy)",2] call FUNC(isNearStuff)) then {_d
 
 //debug
 if (isPlayer gunner _veh || isPlayer driver _veh) then {
-	if (GVAR(debug)) then {hintSilent format["ASR DEBUG: gunshot hearing aids up to %1 meters", _detectupto]};
+	if (GVAR(debug_firedeh)) then {hintSilent format["ASR DEBUG: gunshot hearing aids up to %1 meters", _detectupto]};
 };
 
 //alert

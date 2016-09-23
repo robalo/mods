@@ -466,6 +466,7 @@ Fire modes
 		}; \
 		class ASR_Burst2: ASR_Burst3 { \
 			burst = 2; \
+            textureType = "dual"; \
 		}
 
 #define ASR_AI_RIFLE_SMALL_MODES(semibase,fullbase) \

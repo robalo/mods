@@ -85,6 +85,7 @@ class CfgWeapons {
 		ASR_AI_DISP_REGULAR;
 	};
 	class Rifle_Base_F: Rifle {};
+    class Rifle_Short_Base_F : Rifle_Base_F {};
 	class Rifle_Long_Base_F: Rifle_Base_F {};
 
 	class HandGunBase: Rifle {
@@ -231,7 +232,7 @@ class CfgWeapons {
 		ASR_AI_RIFLE_SMALL_MODES(Single,FullAuto);
 	};
 
-	class pdw2000_base_F: Rifle_Base_F {
+	class pdw2000_base_F: Rifle_Short_Base_F {
 		modes[] = {"Single", "Burst", "FullAuto"};
 		class Single: Mode_SemiAuto {
 			ASR_AI_ROF_SMG_SINGLE;
@@ -246,7 +247,7 @@ class CfgWeapons {
 		};
 	};
 
-	class SMG_01_Base: Rifle_Base_F {
+	class SMG_01_Base: Rifle_Short_Base_F {
 		modes[] = {"Single", "Burst", "FullAuto"};
 		class Single: Mode_SemiAuto {
 			ASR_AI_ROF_SMG_SINGLE;
@@ -393,8 +394,41 @@ class CfgWeapons {
     };
 
     class arifle_AK12_base_F : Rifle_Base_F {
-		modes[] = {"FullAuto", "ASR_Burst3", "Single", "ASR_AI_Burst_close", "ASR_AI_Burst_far", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
-		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
+		modes[] = {"FullAuto", "Burst", "Single", "ASR_AI_Burst_close", "ASR_AI_Burst_far", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+		class Single: Mode_SemiAuto {
+			ASR_AI_ROF_RIFLE_SMALL_SINGLE;
+			ASR_AI_DISP_REGULAR;
+		};
+        class Burst : Mode_Burst {
+			ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST;
+			ASR_AI_DISP_REGULAR;
+		};
+		class FullAuto: Mode_FullAuto {
+			ASR_AI_ROF_RIFLE_SMALL_FULLAUTO;
+			ASR_AI_DISP_REGULAR;
+		};
+		class ASR_AI_Burst_close: FullAuto {
+			showToPlayer = 0;
+			burst = 5;
+			ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST;
+		};
+		class ASR_AI_Burst_far: FullAuto {
+			showToPlayer = 0;
+			burst = 5;
+			ASR_AI_ROF_RIFLE_SMALL_FAR_BURST;
+		};
+		class ASR_AI_Single_optics1: Single {
+			showToPlayer = 0;
+			requiredOpticType = 1;
+			ASR_AI_ROF_RIFLE_SMALL_MSCOPE_SINGLE;
+			ASR_AI_DISP_MARKSMAN;
+		};
+		class ASR_AI_Single_optics2: Single {
+			showToPlayer = 0;
+			requiredOpticType = 2;
+			ASR_AI_ROF_RIFLE_SMALL_HSCOPE_SINGLE;
+			ASR_AI_DISP_SNIPER;
+		};
     };
 
     class arifle_AKM_base_F : Rifle_Base_F {
@@ -444,7 +478,7 @@ class CfgWeapons {
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
 
-    class SMG_05_base_F : Rifle_Base_F {
+    class SMG_05_base_F : Rifle_Short_Base_F {
         //modes[] = {"Single", "FullAuto"};
 		ASR_AI_SMG_MODES;
     };
