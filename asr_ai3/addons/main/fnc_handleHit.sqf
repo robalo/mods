@@ -1,9 +1,13 @@
 //hit EH: remove gimps; switch to combat; go to cover
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-params ["_unit", "_hitman"];
+params ["_unit", "_hitman", "_damage"];
 
-if (!(isPlayer _unit) && {_unit call FUNC(isValidUnitC)} && {_unit != missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]}) then {
+if (local _unit && {!(isPlayer _unit)} && {_unit call FUNC(isValidUnitC)} && {_unit != missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]}) then {
+
+    // randomly fall down if damage was considerable
+	if (GVAR(fallDown) && {_damage > 0.1} && {!isNull _hitman} && {random 1 > 0.41}) then {[_unit] spawn FUNC(fallDown)};
+
 	// move to cover
     _unit limitSpeed 1; //km/h
 	if (GVAR(seekcover)) then {[_unit,_hitman,10] call FUNC(moveToCover)};

@@ -1,8 +1,8 @@
 #define __AUDIBLE0 1
-#define __AUDIBLE1 40
-#define __RANGE_HIT_FAR 800
+#define __AUDIBLE1 60
+#define __RANGE_HIT_FAR 1200
 #define __RANGE_HIT_SMALL 5
-#define __RANGE_CRACKS 80
+#define __RANGE_CRACKS 120
 
 #define AIAmmoUsageNone 0
 #define AIAmmoUsageLight 1

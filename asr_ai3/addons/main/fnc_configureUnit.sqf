@@ -2,7 +2,7 @@
 #include "script_component.hpp"
 params ["_unit"];
 
-if (!isNull _unit && {alive _unit} && {!(_unit getVariable ["asr_ai_exclude", false])}) then {
+if (_unit call FUNC(isValidUnit)) then {
 
     if (_unit == leader _unit) then {
         private _grp = group _unit;

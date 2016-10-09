@@ -12,13 +12,13 @@ class CfgWeapons {
 
     class BWA3_G36 : Rifle_Base_F {
         //displayName = "G36 IdZ-ES";
-		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_close2", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
 		ASR_AI_DISP_REGULAR;
     };
     class BWA3_G36K : BWA3_G36 {
         //displayName = "G36K IdZ-ES";
-		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", ASR_AI_Burst_close2, "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_MODES(Single,FullAuto);
     };
     class BWA3_G36_LMG : BWA3_G36 {
@@ -28,16 +28,16 @@ class CfgWeapons {
 		ASR_AI_DISP_REGULAR;
     };
     class BWA3_G38 : Rifle_Base_F {
-		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", ASR_AI_Burst_close2, "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
 		ASR_AI_DISP_REGULAR;
     };
     class BWA3_G38K : BWA3_G38 {
-		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", ASR_AI_Burst_close2, "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_MODES(Single,FullAuto);
     };
     class BWA3_G38C : BWA3_G38 {
-		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", ASR_AI_Burst_close2, "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
     };
     class BWA3_G28_Standard : Rifle_Long_Base_F {
@@ -53,7 +53,7 @@ class CfgWeapons {
     };
     class BWA3_G27 : BWA3_G28_Standard {
         //displayName = "G27";
- 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
+ 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", ASR_AI_Burst_close2, "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
  		ASR_AI_RIFLE_MEDIUM_MODES(Single,Mode_FullAuto);
 		ASR_AI_DISP_REGULAR;
     };

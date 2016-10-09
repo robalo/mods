@@ -13,7 +13,7 @@ class CfgPatches {
 			"rhsusf_c_troops","rhsusf_c_weapons"
 		};
 		version = VERSION;
-		author[] = {"Robalo"};
+		author = "Robalo";
 	};
 };
 

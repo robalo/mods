@@ -11,6 +11,5 @@ class CfgPatches {
 		};
 		requiredVersion = REQUIRED_VERSION;
         author = "Robalo";
-		authors[] = {"Robalo"};
 	};
 };

@@ -23,7 +23,7 @@
     "SLIDER",
     "Entering buildings (chance)",
     "ASR AI3",
-    [0, 1, 0.9, 1],
+    [0, 1, 0.8, 1],
     true,
     {
     }
@@ -75,7 +75,7 @@
     "SLIDER",
     "Radio report max range (meters, 0 to disable)",
     "ASR AI3",
-    [0, 2000, 600, 0],
+    [0, 2000, 700, 0],
     true,
     {
     }
@@ -131,6 +131,16 @@
     }
 ] call CBA_Settings_fnc_init;
 [
+    QGVAR(fallDown),
+    "CHECKBOX",
+    "Soldiers fall when hit",
+    "ASR AI3",
+    true, // data for this setting
+    true,
+    {
+    }
+] call CBA_Settings_fnc_init;
+[
     QGVAR(pgaistamina),
     "CHECKBOX",
     "Stamina system on AI in player's group",
@@ -156,7 +166,7 @@
     "SLIDER",
     "Gunshot hearing range (meters)",
     "ASR AI3",
-    [0, 5000, 0, 0],
+    [0, 5000, 1500, 0],
     false,
     {
     }
