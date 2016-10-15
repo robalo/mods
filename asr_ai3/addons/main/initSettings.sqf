@@ -75,7 +75,7 @@
     "SLIDER",
     "Radio report max range (meters, 0 to disable)",
     "ASR AI3",
-    [0, 2000, 700, 0],
+    [0, 2000, 600, 0],
     true,
     {
     }
@@ -166,7 +166,7 @@
     "SLIDER",
     "Gunshot hearing range (meters)",
     "ASR AI3",
-    [0, 5000, 1500, 0],
+    [0, 5000, 1200, 0],
     false,
     {
     }

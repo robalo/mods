@@ -1,8 +1,8 @@
 #define PREFIX asr_ai3
 #define MAJOR 0
 #define MINOR 9
-#define PATCHLVL 32
-#define BUILD 93
+#define PATCHLVL 33
+#define BUILD 94
 
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD

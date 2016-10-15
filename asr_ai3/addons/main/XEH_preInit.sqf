@@ -88,5 +88,6 @@ PREP(copyMyStance);
 PREP(configLoop);
 PREP(fallDown);
 PREP(handleExplosion);
+PREP(stopToShoot);
 
 ["ASR AI3", "ASR AI3", ["Toggle Copy My Stance", "asr_ai3_copymystance"], {player call FUNC(copyMyStance)}, {}, [DIK_BACKSLASH, [true, true, false]]] call cba_fnc_addKeybind;

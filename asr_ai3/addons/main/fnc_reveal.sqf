@@ -4,8 +4,8 @@
 params ["_rx", "_tx", "_k", "_r"];
 _k = _k * (1 - ((_tx distance _rx)/_r));
 // when in forest/houses/rain/wind/night, not so accurate
-if ([_rx,"(forest + houses)",2] call FUNC(isNearStuff)) then {_k = _k * 0.75};
-if ([_rx,"(rain + windy + night)",2] call FUNC(isNearStuff)) then {_k = _k * 0.75};
+if (count (nearestTerrainObjects [_rx, ["BUILDING","HOUSE"], 5, false]) > 0) then {_k = _k * 0.75};
+if ([_rx,"(forest + rain + windy + night)",1] call FUNC(isNearStuff)) then {_k = _k * 0.75};
 private _oldk = _rx knowsAbout _tx;
 if (_oldk < _k) then {
 	_rx reveal [_tx,_k];

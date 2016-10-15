@@ -41,7 +41,7 @@ _nearThingies append (nearestTerrainObjects [_unit, [], _maxdisttocover]);
 					}
 				} else { // danger source known, hide behind cover
 					private _dangerpos = _unit getHideFrom _dangerobj;
-                    _coverpos = _x getPos [_max + 2, _dangerpos getDir _objpos];
+                    _coverpos = _x getPos [_max + 3, _dangerpos getDir _objpos];
 					_cover pushBack _coverpos;
 					if (GVAR(debug_findcover)) then {[_unit,_x,"colorgreen"] call _fnc_debug};
 				};

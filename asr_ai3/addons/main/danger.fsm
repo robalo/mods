@@ -9,11 +9,11 @@ item4[] = {"Reacting_on_danger",0,250,-640.000000,-520.000000,-430.000000,-470.0
 item5[] = {"Cause_0_3_5_ENEMY",4,218,-1280.000000,-180.000000,-1040.000000,-60.000000,4.000000,"Cause 0,3,5" \n "ENEMY" \n "DETECTED/NEAR" \n "OR" \n " DEAD TEAMMATE"};
 item6[] = {"Signal_enemy",2,250,-1250.000000,0.000000,-1090.000000,80.000000,0.000000,"Signal enemy"};
 item7[] = {"Cause__8_CAN_FIR",4,218,-520.000000,-260.000000,-310.000000,-120.000000,6.000000,"Cause: 8" \n "CAN FIRE"};
-item8[] = {"Stop_to_fire___ASR",2,4346,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
+item8[] = {"Stop_to_fire___ASR",2,250,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
 item9[] = {"Check_queue",2,250,-260.000000,280.000000,-90.000000,340.000000,0.000000,"Check queue"};
 item10[] = {"Next__cause",4,218,-270.000000,-390.000000,-130.000000,-300.000000,1.000000,"Next  cause"};
 item11[] = {"Always",8,218,-240.000000,380.000000,-120.000000,460.000000,0.000000,"Always"};
-item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
+item12[] = {"Destroyed___captured",2,4346,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
 item14[] = {"local_AI",4,218,-810.000000,-400.000000,-630.000000,-310.000000,2.000000,"local AI"};
 item15[] = {"Reactions",2,250,-1020.000000,200.000000,-800.000000,340.000000,0.000000,"Reactions"};
@@ -57,7 +57,7 @@ link20[] = {16,17};
 link21[] = {17,15};
 link22[] = {18,15};
 globals[] = {10.000000,1,0,1,16777215,640,480,1,241,6316128,1,-1429.671265,83.656334,585.941772,-639.583313,1120,907,1};
-window[] = {2,-1,-1,-1,-1,892,112,1148,112,3,1140};
+window[] = {2,-1,-1,-1,-1,976,196,1232,196,3,1140};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -143,7 +143,7 @@ class FSM
     class Signal_enemy
     {
       name = "Signal_enemy";
-      init = /*%FSM<STATEINIT""">*/"if (_inf && {(_this getVariable [""lastGestFreezeT"", -1000]) + 25 < time}) then { //on foot and at least 20 seconds from last freeze gesture" \n
+      init = /*%FSM<STATEINIT""">*/"if (_inf && {stance _this != ""PRONE""} && {(_this getVariable [""lastGestFreezeT"", -1000]) + 25 < time}) then { //on foot and at least 20 seconds from last freeze gesture" \n
        "	if (count units _grp > 1 && {random 10 < 6}) then  { //me and somebody here" \n
        "		_this playAction ""gestureFreeze"";" \n
        "		_this setVariable [""lastGestFreezeT"",time];" \n
@@ -171,17 +171,15 @@ class FSM
     {
       name = "Stop_to_fire___ASR";
       init = /*%FSM<STATEINIT""">*/"//_this globalChat ""Stopping to fire"";" \n
-       "_stopUntil = time + 3 + random 3;" \n
+       "_stopUntil = time + 2 + random 3;" \n
        "" \n
        "if (_inf) then {" \n
-       "	// soldier stop - set max. speed to 0" \n
-       "	_this forceSpeed 0;" \n
+       "	[_this, _dangerCausedBy] call asr_ai3_main_fnc_stopToShoot;" \n
        "" \n
        "	// shoot moar bullets" \n
        "	if (_this ammo (currentWeapon _this) > 40) then {" \n
-       "		_stopUntil = _stopUntil + 4;" \n
+       "		_stopUntil = _stopUntil + 5;" \n
        "		_this suppressFor 1;" \n
-       "		//_this doSuppressiveFire _dangerCausedBy;//" \n
        "	}" \n
        "};" \n
        ""/*%FSM</STATEINIT""">*/;
@@ -249,6 +247,8 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"if (_inf) then {" \n
        "	// continue moving" \n
        "	_this forceSpeed -1;" \n
+       "	_upos = _this getVariable [""lastunitPos"", """"];" \n
+       "	if (_upos != """") then {	_this setunitPos _upos};" \n
        "};" \n
        ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;

@@ -9,14 +9,15 @@ if (vehicle _unit != _unit) exitWith {};
 
 private _time = time;
 private _grp = group _unit;
-private _attackenable = attackEnabled _grp;
-_grp enableAttack false;
 if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has HOLD wp",_grp)};
 
 if (_time < (_grp getVariable [QGVAR(lastMoveToCoverTime),-90]) + 90) exitWith {TRACE_1("too soon to move to cover again",_grp)};
 
 private _mToCover = false;
-if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {!([_unit,"(forest + trees + houses)",5] call FUNC(isNearStuff))}) then {_mToCover = true};
+if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {!([_unit,"(forest + trees + houses)",10] call FUNC(isNearStuff))}) then {_mToCover = true};
+
+private _attackenable = attackEnabled _grp;
+_grp enableAttack false;
 
 private _cpa = [];
 

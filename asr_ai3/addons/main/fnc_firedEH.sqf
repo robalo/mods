@@ -61,7 +61,7 @@ if (_range < 200) exitWith {LOG("short sound range, exiting")};
 private _detectupto = ceil (_range * (1 - (1/_MAXREVEAL_)));
 
 //reduce in forests/houses/rain/wind
-if ([_veh,"(forest + houses + rain + windy)",2] call FUNC(isNearStuff)) then {_detectupto = ceil (_detectupto * 0.75)};
+if (count (nearestTerrainObjects [_veh, ["BUILDING","HOUSE"], 5, false]) > 0 || {[_veh,"(forest + rain + windy)",1] call FUNC(isNearStuff)}) then {_detectupto = ceil (_detectupto * 0.75)};
 
 //debug
 if (isPlayer gunner _veh || isPlayer driver _veh) then {

@@ -76,7 +76,7 @@ Fire modes
 // assault rifles, carbines
 #define ASR_AI_ROF_RIFLE_SMALL_SINGLE \
 		aiRateOfFire = 1;\
-		aiRateOfFireDistance = 250;\
+		aiRateOfFireDistance = 300;\
 		aiRateOfFireDispersion = 2;\
 		minRange = 20;\
 		minRangeProbab = 0.7;\
@@ -86,7 +86,7 @@ Fire modes
 		maxRangeProbab = 0.1
 #define ASR_AI_ROF_RIFLE_SMALL_SEMI \
 		aiRateOfFire = 1;\
-		aiRateOfFireDistance = 200;\
+		aiRateOfFireDistance = 250;\
 		aiRateOfFireDispersion = 2;\
 		minRange = 0;\
 		minRangeProbab = 0.9;\
