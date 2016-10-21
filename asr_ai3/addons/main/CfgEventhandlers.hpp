@@ -68,10 +68,30 @@ class Extended_Hit_EventHandlers {
 			hit = QUOTE(_this call FUNC(handleHit));
 		};
 	};
+    class StaticWeapon {
+		class ADDON {
+			hit = QUOTE(_this call FUNC(handleHit));
+		};
+	};
 };
 
 class Extended_Explosion_EventHandlers {
-	class CAManBase {
+	class SoldierWB {
+		class ADDON {
+			explosion = QUOTE(_this call FUNC(handleExplosion));
+		};
+	};
+	class SoldierEB {
+		class ADDON {
+			explosion = QUOTE(_this call FUNC(handleExplosion));
+		};
+	};
+	class SoldierGB {
+		class ADDON {
+			explosion = QUOTE(_this call FUNC(handleExplosion));
+		};
+	};
+	class StaticWeapon {
 		class ADDON {
 			explosion = QUOTE(_this call FUNC(handleExplosion));
 		};
@@ -79,7 +99,13 @@ class Extended_Explosion_EventHandlers {
 };
 
 class Extended_InventoryClosed_EventHandlers {
-	class CAManBase {
+	class SoldierWB {
+		ADDON = QUOTE(_this call FUNC(inventoryClosed));
+	};
+	class SoldierEB {
+		ADDON = QUOTE(_this call FUNC(inventoryClosed));
+	};
+	class SoldierGB {
 		ADDON = QUOTE(_this call FUNC(inventoryClosed));
 	};
 };

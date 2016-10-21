@@ -14,7 +14,7 @@ if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has H
 if (_time < (_grp getVariable [QGVAR(lastMoveToCoverTime),-90]) + 90) exitWith {TRACE_1("too soon to move to cover again",_grp)};
 
 private _mToCover = false;
-if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {!([_unit,"(forest + trees + houses)",10] call FUNC(isNearStuff))}) then {_mToCover = true};
+if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {count (nearestTerrainObjects [_unit, ["WALL","BUILDING","HOUSE","TREE","ROCK","ROCKS"], 5, false]) == 0}) then {_mToCover = true};
 
 private _attackenable = attackEnabled _grp;
 _grp enableAttack false;

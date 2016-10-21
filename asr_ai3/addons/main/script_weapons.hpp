@@ -54,7 +54,7 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.7;\
 		maxRange = 400;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.01
 
 
 //shotguns
@@ -82,8 +82,8 @@ Fire modes
 		minRangeProbab = 0.7;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
-		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRange = 700;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_RIFLE_SMALL_SEMI \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 250;\
@@ -92,8 +92,8 @@ Fire modes
 		minRangeProbab = 0.9;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
-		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRange = 700;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_RIFLE_SMALL_MSCOPE_SINGLE \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 450;\
@@ -102,8 +102,8 @@ Fire modes
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.6;\
-		maxRange = 700;\
-		maxRangeProbab = 0.1
+		maxRange = 900;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_RIFLE_SMALL_HSCOPE_SINGLE \
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 500;\
@@ -112,8 +112,8 @@ Fire modes
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.6;\
-		maxRange = 900;\
-		maxRangeProbab = 0.1
+		maxRange = 1100;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -142,8 +142,8 @@ Fire modes
 		minRangeProbab = 0.05;\
 		midRange = 500;\
 		midRangeProbab = 0.3;\
-		maxRange = 600;\
-		maxRangeProbab = random 0.2
+		maxRange = 800;\
+		maxRangeProbab = random 0.1
 
 
 // CQB rifles (short barrels, small calibre)
@@ -155,8 +155,8 @@ Fire modes
 		minRangeProbab = 0.7;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
-		maxRange = 400;\
-		maxRangeProbab = 0.1
+		maxRange = 600;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_CQB_SEMI \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 200;\
@@ -165,8 +165,8 @@ Fire modes
 		minRangeProbab = 0.9;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
-		maxRange = 400;\
-		maxRangeProbab = 0.1
+		maxRange = 600;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_CQB_MSCOPE_SINGLE \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 450;\
@@ -175,8 +175,8 @@ Fire modes
 		minRangeProbab = 0.8;\
 		midRange = 200;\
 		midRangeProbab = 0.6;\
-		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRange = 700;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_CQB_FAR_BURST \
 		aiRateOfFire = 6;\
 		aiRateOfFireDistance = 600;\
@@ -198,8 +198,8 @@ Fire modes
 		minRangeProbab = 0.8;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
-		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRange = 700;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_RIFLE_MEDIUM_SEMI \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 250;\
@@ -208,8 +208,8 @@ Fire modes
 		minRangeProbab = 0.9;\
 		midRange = 150;\
 		midRangeProbab = 0.5;\
-		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRange = 700;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_RIFLE_MEDIUM_MSCOPE_SINGLE \
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 500;\
@@ -218,8 +218,8 @@ Fire modes
 		minRangeProbab = 0.9;\
 		midRange = 300;\
 		midRangeProbab = 0.8;\
-		maxRange = 800;\
-		maxRangeProbab = 0.1
+		maxRange = 1000;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_RIFLE_MEDIUM_HSCOPE_SINGLE \
 		aiRateOfFire = 8;\
 		aiRateOfFireDistance = 1200;\
@@ -229,7 +229,7 @@ Fire modes
 		midRange = 500;\
 		midRangeProbab = 0.8;\
 		maxRange = 1600;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_RIFLE_MEDIUM_CLOSE_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -293,8 +293,8 @@ Fire modes
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.7;\
-		maxRange = 650;\
-		maxRangeProbab = random 0.2
+		maxRange = 800;\
+		maxRangeProbab = random 0.1
 #define ASR_AI_ROF_MG_SCOPE_BURST \
 		burst = 4;\
 		aiRateOfFire = 3;\
@@ -348,8 +348,8 @@ Fire modes
 		minRangeProbab = 0.9;\
 		midRange = 80;\
 		midRangeProbab = 0.5;\
-		maxRange = 250;\
-		maxRangeProbab = 0.1
+		maxRange = 300;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_SMG_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 50;\
@@ -379,8 +379,8 @@ Fire modes
 		minRangeProbab = 0.4;\
 		midRange = 500;\
 		midRangeProbab = 0.8;\
-		maxRange = 1400;\
-		maxRangeProbab = 0.1
+		maxRange = 1600;\
+		maxRangeProbab = 0.01
 
 #define ASR_AI_ROF_BIGSNIPER_SEMI \
 		aiRateOfFire = 3;\
@@ -389,8 +389,8 @@ Fire modes
 		minRangeProbab = 0.4;\
 		midRange = 150;\
 		midRangeProbab = 0.7;\
-		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRange = 700;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_BIGSNIPER_MSCOPE_SEMI \
 		aiRateOfFire = 4;\
 		aiRateOfFireDistance = 500;\
@@ -399,7 +399,7 @@ Fire modes
 		midRange = 500;\
 		midRangeProbab = 0.7;\
 		maxRange = 1500;\
-		maxRangeProbab = 0.4
+		maxRangeProbab = 0.2
 #define ASR_AI_ROF_BIGSNIPER_HSCOPE_SEMI \
 		aiRateOfFire = 8;\
 		aiRateOfFireDistance = 1000;\
@@ -426,8 +426,8 @@ Fire modes
 		minRangeProbab = 0.4;\
 		midRange = 150;\
 		midRangeProbab = 0.7;\
-		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRange = 700;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_338SNIPER_MSCOPE_SEMI \
 		aiRateOfFire = 4;\
 		aiRateOfFireDistance = 500;\
@@ -435,8 +435,8 @@ Fire modes
 		minRangeProbab = 0.2;\
 		midRange = 500;\
 		midRangeProbab = 0.7;\
-		maxRange = 1000;\
-		maxRangeProbab = 0.1
+		maxRange = 1500;\
+		maxRangeProbab = 0.01
 #define ASR_AI_ROF_338SNIPER_HSCOPE_SEMI \
 		aiRateOfFire = 8;\
 		aiRateOfFireDistance = 1000;\
@@ -444,8 +444,8 @@ Fire modes
 		minRangeProbab = 0.2;\
 		midRange = 750;\
 		midRangeProbab = 0.7;\
-		maxRange = 2000;\
-		maxRangeProbab = 0.1
+		maxRange = 2200;\
+		maxRangeProbab = 0.01
 
 //modes
 

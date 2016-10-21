@@ -57,7 +57,7 @@ link20[] = {16,17};
 link21[] = {17,15};
 link22[] = {18,15};
 globals[] = {10.000000,1,0,1,16777215,640,480,1,241,6316128,1,-1429.671265,83.656334,585.941772,-639.583313,1120,907,1};
-window[] = {2,-1,-1,-1,-1,976,196,1232,196,3,1140};
+window[] = {2,-1,-1,-1,-1,1004,224,1260,224,3,1140};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -247,8 +247,11 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"if (_inf) then {" \n
        "	// continue moving" \n
        "	_this forceSpeed -1;" \n
-       "	_upos = _this getVariable [""lastunitPos"", """"];" \n
-       "	if (_upos != """") then {	_this setunitPos _upos};" \n
+       "	// reset unitpos" \n
+       "	if (_this getVariable [""asr_unitPos"", """"] != """") then {" \n
+       "		_this setunitPos ""AUTO"";" \n
+       "		_this setVariable [""asr_unitPos"", nil];" \n
+       "	};" \n
        "};" \n
        ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;

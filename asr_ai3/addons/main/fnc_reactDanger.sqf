@@ -2,6 +2,9 @@
 #include "script_component.hpp"
 params ["_unit", "_dangerCausedBy"];
 
+// skip in singleplayer when player is too far and not the source of danger (save computing resources)
+if (!isMultiPlayer && {_dangerCausedBy != player} && {_unit distance player > 2000}) exitWith {};
+
 private _grp = group _unit;
 private _time = time;
 

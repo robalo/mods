@@ -45,6 +45,7 @@ GVAR(needmax) = [ // The level of supplies the unit will try to maintain
 	GVAR(rearm_mags), // mags for primary weapon
 	GVAR(rearm_fak)  // fak
 ];
+GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit")];
 
 FUNC(isValidUnit) = {!(isNull _this) && {alive _this} && {{_x == faction _this} count GVAR(skip_factions) == 0} && {!(_this getVariable ["asr_ai_exclude", false])}};
 FUNC(isValidUnitC) = {_this call FUNC(isValidUnit) && {!(_this call FUNC(isUnc))}};
@@ -89,5 +90,6 @@ PREP(configLoop);
 PREP(fallDown);
 PREP(handleExplosion);
 PREP(stopToShoot);
+PREP(handleDamage);
 
 ["ASR AI3", "ASR AI3", ["Toggle Copy My Stance", "asr_ai3_copymystance"], {player call FUNC(copyMyStance)}, {}, [DIK_BACKSLASH, [true, true, false]]] call cba_fnc_addKeybind;

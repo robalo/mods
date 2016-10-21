@@ -4,8 +4,9 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit"];
+//diag_log format ["ASR AI3: fnc_fallDown: %1",_unit];
 
-if (!alive _unit || {!local _unit} || {isPlayer _unit} || {vehicle _unit != _unit} || {_unit getVariable ["tmr_falling", false]}) exitWith {};
+if (vehicle _unit != _unit || {_unit getVariable ["tmr_falling", false]}) exitWith {};
 
 // Don't fall when tpw_fall is enabled.
 if (!isNil "tpw_fall_active" && {tpw_fall_active}) exitWith {};
