@@ -12,9 +12,6 @@ if (local _unit && {!(isPlayer _unit)} && {_unit call FUNC(isValidUnitC)} && {_u
     // randomly fall down if damage was considerable
 	if (GVAR(fallDown) && {_damage > 0.1} && {!isNull _hitman} && {random 1 > 0.41}) then {[_unit] spawn FUNC(fallDown)};
 
-	// move to cover
-    _unit limitSpeed 1; //km/h
-	if (GVAR(seekcover)) then {[_unit,_hitman,10] call FUNC(moveToCover)};
 
 	if !([group _unit] call FUNC(hasPlayer)) then {
 		if (_unit != _hitman) then {
