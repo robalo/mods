@@ -1,11 +1,12 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-if (!isServer) exitWith {};
+params ["_unit"];
+if (!local _unit) exitWith {};
 
 scopeName "main";
 
 // get group of killed unit
-private _grp = group (_this select 0);
+private _grp = group _unit;
 if (isNull _grp) exitWith {LOG("Group is null, exiting")};
 
 // get the rest of units that are alive
@@ -23,6 +24,9 @@ if (GVAR(joinlast) == 0) exitWith {LOG("disabled, exiting")};
 
 // if one of them is a player, do nothing
 if (_grp call FUNC(hasPlayer)) exitWith {LOG("Group with player, exiting")};
+
+// if leader valid
+if !((leader _grp) call FUNC(isValidUnitC)) exitWith {LOG("Conditions unmet for survivor leader, exit")};
 
 // get initial group size
 private _grpinitsize = _grp getVariable [QGVAR(initgroupsize),-1];

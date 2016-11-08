@@ -2,12 +2,12 @@ class CfgVehicles {
     class Man;
 	class CAManBase: Man {
 		ASR_AI_SKILL_INS2; // default insurgent
-		audible = 0.03; //0.05
-		crouchProbabilityCombat = 0.70; //0.4
+		audible = 0.025; //0.05
+		crouchProbabilityCombat = 0.80; //0.4
 		minFireTime = 7;
 		ASR_AI_CAMO_HALF;
-		spotableDarkNightLightsOff = 0.002;  //0.003
-		spotableNightLightsOff = 0.02;       //0.035
+		spotableDarkNightLightsOff = 0.0015;  //0.003
+		spotableNightLightsOff = 0.0175;      //0.035
 	};
 
 // CIV
@@ -999,6 +999,9 @@ class CfgVehicles {
 		ASR_AI_COST_SPECIAL;
 		minFireTime = 5;
 		ASR_AI_CAMO_FULL;
+    };
+    class O_V_Soldier_hex_F : O_V_Soldier_base_F {
+		ASR_AI_COST_SPECIAL;
     };
     class O_V_Soldier_TL_hex_F : O_V_Soldier_base_F {
 		ASR_AI_COST_SPECIAL;

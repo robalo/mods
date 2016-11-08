@@ -37,13 +37,13 @@ _nearThingies append (nearestTerrainObjects [_unit, [], _maxdisttocover]);
 					_coverpos = _objpos findEmptyPosition [0,1];
 					if (count _coverpos > 0) then {
 						_cover pushBack _coverpos;
-						if (GVAR(debug)) then {[_unit,_x,"colorred"] call _fnc_debug};
+						if (GVAR(debug_findcover)) then {[_unit,_x,"colorred"] call _fnc_debug};
 					}
 				} else { // danger source known, hide behind cover
 					private _dangerpos = _unit getHideFrom _dangerobj;
-                    _coverpos = _x getPos [_max + 1.5, _dangerpos getDir _objpos];
+                    _coverpos = _x getPos [_max + 3, _dangerpos getDir _objpos];
 					_cover pushBack _coverpos;
-					if (GVAR(debug)) then {[_unit,_x,"colorgreen"] call _fnc_debug};
+					if (GVAR(debug_findcover)) then {[_unit,_x,"colorgreen"] call _fnc_debug};
 				};
 				if (count _cover > 0) then {
 					if (_x isKindOf "HouseBase") then {_isHouse = true; _nBuilding = _x};

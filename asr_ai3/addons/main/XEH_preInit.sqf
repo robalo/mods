@@ -3,20 +3,23 @@
 #include "script_component.hpp"
 LOG(MSG_INIT);
 
+#include "initSettings.sqf"
+
 if (isServer) then {
     if (isFilePatchingEnabled) then {
-        ASR_AI3_SETTINGS_SS = compile preprocessFileLineNumbers "\userconfig\asr_ai3\asr_ai3_settings_ss.sqf";
+        ASR_AI3_SETTINGS_SS = compile preprocessFileLineNumbers "\userconfig\asr_ai3\asr_ai3_config.sqf";
         if (!isNil "ASR_AI3_SETTINGS_SS") then {
             [] call ASR_AI3_SETTINGS_SS; // Load the server-side defaults
         };
     } else {
-        diag_log "ASR AI3: Loading default settings for AI skills, launch the game with -filePatching to enable loading from userconfig\asr_ai3\asr_ai3_settings_ss.sqf";
+        diag_log "ASR AI3: Loading default settings for AI skills, launch the game with -filePatching to enable loading from userconfig\asr_ai3\asr_ai3_config.sqf";
     };
 };
 
 ASR_AI_SETDEFAULT(sets,[]);
 ASR_AI_SETDEFAULT(levels_units,[]);
 ASR_AI_SETDEFAULT(factions,[]);
+ASR_AI_SETDEFAULT(skip_factions,[]);
 
 
 
@@ -45,8 +48,6 @@ if (count GVAR(sets) < 10) then {
 };
 if (count GVAR(levels_units) < 10) then {GVAR(levels_units) = [[],[],[],[],[],[],[],[],[],[],[]]};
 
-#include "initSettings.sqf"
-
 GVAR(configQueue) = [];
 GVAR(copymystance) = 0;
 
@@ -54,11 +55,12 @@ GVAR(needmax) = [ // The level of supplies the unit will try to maintain
 	GVAR(rearm_mags), // mags for primary weapon
 	GVAR(rearm_fak)  // fak
 ];
+GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit")];
 
-FUNC(isValidUnit) = {!(isNull _this) && {alive _this} && {!(_this isKindOf "Civilian")} && {!(_this getVariable ["asr_ai_exclude", false])}};
+FUNC(isValidUnit) = {!(isNull _this) && {alive _this} && {{_x == faction _this} count GVAR(skip_factions) == 0} && {!(_this getVariable ["asr_ai_exclude", false])}};
 FUNC(isValidUnitC) = {_this call FUNC(isValidUnit) && {!(_this call FUNC(isUnc))}};
 FUNC(isMedic) = {getNumber(configFile >>"CfgVehicles">>(typeOf _this)>>"attendant") == 1};
-FUNC(getAlive) = {[units _this, {alive _x}] call BIS_fnc_conditionalSelect};
+FUNC(getAlive) = {(units _this) select {alive _x}};
 FUNC(addUnitToQueue) = {params ["_unit"]; GVAR(configQueue) pushBack _unit};
 
 PREP(isUnc);
@@ -95,6 +97,10 @@ PREP(inventoryCheck);
 PREP(rearm);
 PREP(copyMyStance);
 PREP(configLoop);
+PREP(fallDown);
+PREP(handleExplosion);
+PREP(stopToShoot);
+PREP(handleDamage);
 
 ["ASR AI3", "ASR AI3", ["Toggle Copy My Stance", "asr_ai3_copymystance"], {player call FUNC(copyMyStance)}, {}, [DIK_BACKSLASH, [true, true, false]]] call cba_fnc_addKeybind;
 

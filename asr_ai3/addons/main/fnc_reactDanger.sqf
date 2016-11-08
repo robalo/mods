@@ -2,20 +2,28 @@
 #include "script_component.hpp"
 params ["_unit", "_dangerCausedBy"];
 
+// skip in singleplayer when player is too far and not the source of danger (save computing resources)
+if (!isMultiPlayer && {_dangerCausedBy != player} && {_unit distance player > 2000}) exitWith {};
+
 private _grp = group _unit;
 private _time = time;
 
-if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 20}) then {
+if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 20}) then {
         
     _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than thrice per minute / unit
+    private _leader = leader _grp;
+
+    // report to near groups
+    if (GVAR(radiorange > 0) && {_unit == _leader} && {_unit knowsAbout _dangerCausedBy > 1.5}) then {
+        [_grp,_dangerCausedBy] spawn FUNC(broadcastInfo);
+    };
 
 	// mount weapons
 	if (random 1 < GVAR(getinweapons)) then {
-        private ["_leader","_weapons","_wc","_weap","_mc","_ehid"];
-        _leader = leader _grp;
-        _weapons = [getposATL _leader, vehicles, 100, {!(_x isKindOf "Plane" || _x isKindOf "Tank") && {_x call FUNC(canMountAIGunner)}}] call FUNC(getNearest);
+        private ["_weap","_mc","_ehid"];
+        private _weapons = [getposATL _leader, vehicles, 100, {!(_x isKindOf "Plane" || _x isKindOf "Tank") && {_x call FUNC(canMountAIGunner)}}] call FUNC(getNearest);
         TRACE_2("empty weapons",_grp,_weapons);
-        _wc = count _weapons;
+        private _wc = count _weapons;
         if (_wc > 0) then {
             { //get some units to man the weapons
                 if (_wc > 0 && {_x != _leader} && {getSuppression _x < 0.4} && {random 1 < 0.8}) then {
@@ -50,7 +58,7 @@ if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVari
 			{
 				if (random 1 > 0.2) then {_bpos pushBack [_x select 2, _x]}; //pick some; get height and pos
 			} forEach ([_x] call BIS_fnc_buildingPositions);
-		} forEach (_dangerCausedBy nearObjects ["HouseBase", 75]);
+		} forEach (_dangerCausedBy nearObjects ["HouseBase", 100]);
 		if (count _bpos > 0) then {
 			_bpos sort false; //prefer higher positions
 			[_dude,(_time + 300),_bpos] spawn {
@@ -77,7 +85,7 @@ if (unitReady _unit && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVari
 	};
 
 	// check for cover near and divert
-	private _coverRange = if (currentWaypoint _grp == count waypoints _grp) then {100} else {20};
+	private _coverRange = if (currentWaypoint _grp == count waypoints _grp) then {150} else {30};
 	[_unit,_dangerCausedBy,_coverRange] call FUNC(moveToCover);
 
 };

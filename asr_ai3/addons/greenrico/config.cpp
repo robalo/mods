@@ -20,41 +20,29 @@
 class CfgPatches {
 	class ADDON {
 		units[] = {"asdg_I_AssaultPack_dgtl_AR","asdg_I_Soldier_MG","asdg_I_recon","asdg_I_recon_exp","asdg_I_recon_medic","asdg_I_recon_TL","asdg_I_recon_M","asdg_I_recon_MG"};
-		weapons[] = {"asdg_LMG_Mk200_ARCO_LP_BI","asdg_DMR_06_DMS_BI"};
+		weapons[] = {"asdg_LMG_03_F_ARCO_LP","asdg_DMR_06_DMS_BI"};
 		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"A3_Characters_F","A3_Weapons_F","A3_Weapons_F_Mark"};
+		requiredAddons[] = {"A3_Characters_F","A3_Weapons_F","A3_Weapons_F_Mark","A3_Weapons_F_Exp"};
 		version = VERSION;
-		author[] = {"Robalo"};
+        author = "Robalo";
 	};
 };
 
 PRELOAD_ADDONS;
 
-class Extended_InitPost_EventHandlers {
-	class asdg_I_Soldier_recon_base {
-		class ADDON {
-			init = "if (local (_this select 0)) then {[(_this select 0), [], []] call BIS_fnc_unitHeadgear;};";
-		};
-	};
-};
-
 class CfgWeapons {
 
-	class LMG_Mk200_F;
+	class LMG_03_F;
 
-	class asdg_LMG_Mk200_ARCO_LP_BI : LMG_Mk200_F {
+	class asdg_LMG_03_F_ARCO_LP : LMG_03_F {
 		class LinkedItems {
 			class LinkedItemsOptic {
 				slot = "CowsSlot";
-				item = "optic_Arco";
+				item = "optic_Arco_blk_F";
 			};
 			class LinkedItemsAcc {
 				slot = "PointerSlot";
 				item = "acc_pointer_IR";
-			};
-			class LinkedItemsUnder {
-				slot = "UnderBarrelSlot";
-				item = "bipod_03_F_blk";
 			};
 		};
 	};
@@ -73,6 +61,45 @@ class CfgWeapons {
 			};
 		};
 	};
+
+    class arifle_SPAR_01_blk_F;
+    class arifle_SPAR_01_blk_ERCO_Pointer_F : arifle_SPAR_01_blk_F {
+        class LinkedItems {
+            class LinkedItemsOptic;
+        };
+    };
+    class asdg_SPAR_01_blk_MRCO_LP : arifle_SPAR_01_blk_ERCO_Pointer_F {
+        class LinkedItems : LinkedItems {
+            class LinkedItemsOptic : LinkedItemsOptic {
+                item = "optic_MRCO";
+            };
+        };
+    };
+
+    class arifle_SPAR_01_blk_ACO_Pointer_F;
+    class asdg_SPAR_01_blk_HWS : arifle_SPAR_01_blk_ACO_Pointer_F {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "optic_Holosight_blk_F";
+            };
+        };
+    };
+
+    class arifle_SPAR_01_GL_blk_F;
+    class arifle_SPAR_01_GL_blk_ERCO_Pointer_F : arifle_SPAR_01_GL_blk_F {
+        class LinkedItems {
+            class LinkedItemsOptic;
+        };
+    };
+    class asdg_SPAR_01_GL_blk_MRCO_LP : arifle_SPAR_01_GL_blk_ERCO_Pointer_F {
+        class LinkedItems : LinkedItems {
+            class LinkedItemsOptic : LinkedItemsOptic {
+                item = "optic_MRCO";
+            };
+        };
+    };
+
 };
 
 class CfgVehicles {
@@ -83,17 +110,20 @@ class CfgVehicles {
 		scope = protected;
 		class TransportMagazines {
 			class _xx_200Rnd_65x39_cased_Box {
-				magazine = "200Rnd_65x39_cased_Box";
+				magazine = "200Rnd_556x45_Box_F";
 				count = 1;
 			};
 			class _xx_200Rnd_65x39_cased_Box_Tracer {
-				magazine = "200Rnd_65x39_cased_Box_Tracer";
+				magazine = "200Rnd_556x45_Box_Tracer_F";
 				count = 1;
 			};
 		};
 	};
 
-	class I_Soldier_base_F;
+    class SoldierGB;
+    class I_Soldier_base_F : SoldierGB {
+        class EventHandlers;
+    };
 
 	class asdg_I_Soldier_recon_base : I_Soldier_base_F {
 		scope = private;
@@ -114,14 +144,19 @@ class CfgVehicles {
 		ASR_AI_CAMO_FULL;
 		headgearProbability = 100;
 		allowedHeadgear[] = {"H_Bandanna_gry", "H_Bandanna_khk_hs", "H_Bandanna_khk", "H_Bandanna_sgg", "H_Watchcap_blk", "H_Watchcap_cbr", "H_Watchcap_camo", "H_Watchcap_khk", "H_Booniehat_dgtl", "H_Booniehat_oli", "H_Cap_blk", "H_Cap_oli", "H_Cap_oli_hs", "H_Cap_blk_Raven", "H_MilCap_dgtl", "H_Booniehat_dgtl", "H_Cap_blk_Raven"};
+        class EventHandlers: EventHandlers {
+            class ADDON {
+                init = "if (local (_this select 0)) then {[(_this select 0), [], []] call BIS_fnc_unitHeadgear;};";
+            };
+        };
 	};
 	
 	class asdg_I_recon : asdg_I_Soldier_recon_base {
 		scope = public;
 		displayName = "$STR_B_recon_F0";
 		uniformClass = "U_I_CombatUniform";
-		weapons[] = {"arifle_Mk20_MRCO_pointer_F", "hgun_ACPC2_F", "Throw", "Put", "Binocular"};
-		respawnWeapons[] = {"arifle_Mk20_MRCO_pointer_F", "hgun_ACPC2_F", "Throw", "Put", "Binocular"};
+		weapons[] = {"asdg_SPAR_01_blk_MRCO_LP", "hgun_ACPC2_F", "Throw", "Put", "Binocular"};
+		respawnWeapons[] = {"asdg_SPAR_01_blk_MRCO_LP", "hgun_ACPC2_F", "Throw", "Put", "Binocular"};
 		magazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		respawnMagazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		linkedItems[] = {"V_PlateCarrier1_blk", "H_Booniehat_dgtl", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
@@ -133,8 +168,8 @@ class CfgVehicles {
 		displayName = "$STR_B_recon_exp_F0";
 		uniformClass = "U_I_CombatUniform_shortsleeve";
 		backpack = "I_Carryall_oli_Exp";
-		weapons[] = {"arifle_Mk20C_ACO_F", "hgun_ACPC2_F", "Throw", "Put"};
-		respawnWeapons[] = {"arifle_Mk20C_ACO_F", "hgun_ACPC2_F", "Throw", "Put"};
+		weapons[] = {"asdg_SPAR_01_blk_HWS", "hgun_ACPC2_F", "Throw", "Put"};
+		respawnWeapons[] = {"asdg_SPAR_01_blk_HWS", "hgun_ACPC2_F", "Throw", "Put"};
 		magazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "APERSMine_Range_Mag", "APERSMine_Range_Mag", "APERSMine_Range_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		respawnMagazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "APERSMine_Range_Mag", "APERSMine_Range_Mag", "APERSMine_Range_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		canDeactivateMines = true;
@@ -151,8 +186,8 @@ class CfgVehicles {
 		uniformClass = "U_I_CombatUniform_shortsleeve";
 		backpack = "I_Fieldpack_oli_Medic";
 		attendant = true;
-		weapons[] = {"arifle_Mk20C_ACO_F", "hgun_ACPC2_F", "Throw", "Put"};
-		respawnWeapons[] = {"arifle_Mk20C_ACO_F", "hgun_ACPC2_F", "Throw", "Put"};
+		weapons[] = {"asdg_SPAR_01_blk_HWS", "hgun_ACPC2_F", "Throw", "Put"};
+		respawnWeapons[] = {"asdg_SPAR_01_blk_HWS", "hgun_ACPC2_F", "Throw", "Put"};
 		icon = "iconManMedic";
 		magazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		respawnMagazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
@@ -166,8 +201,8 @@ class CfgVehicles {
 		displayName = "$STR_B_recon_TL_F0";
 		uniformClass = "U_I_CombatUniform";
 		icon = "iconManLeader";
-		weapons[] = {"arifle_Mk20_GL_MRCO_pointer_F", "hgun_ACPC2_F", "Throw", "Put", "Binocular"};
-		respawnWeapons[] = {"arifle_Mk20_GL_MRCO_pointer_F", "hgun_ACPC2_F", "Throw", "Put", "Binocular"};
+		weapons[] = {"asdg_SPAR_01_GL_blk_MRCO_LP", "hgun_ACPC2_F", "Throw", "Put", "Binocular"};
+		respawnWeapons[] = {"asdg_SPAR_01_GL_blk_MRCO_LP", "hgun_ACPC2_F", "Throw", "Put", "Binocular"};
 		magazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "UGL_FlareWhite_F", "UGL_FlareWhite_F", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell"};
 		respawnMagazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "UGL_FlareWhite_F", "UGL_FlareWhite_F", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell"};
 		linkedItems[] = {"V_PlateCarrier1_blk", "H_MilCap_dgtl", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
@@ -200,10 +235,10 @@ class CfgVehicles {
 		scope = public;
 		displayName = "Recon (Support)";
 		uniformClass = "U_I_CombatUniform_tshirt";
-		weapons[] = {"asdg_LMG_Mk200_ARCO_LP_BI", "hgun_ACPC2_F", "Throw", "Put"};
-		respawnWeapons[] = {"asdg_LMG_Mk200_ARCO_LP_BI", "hgun_ACPC2_F", "Throw", "Put"};
-		magazines[] = {"200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
-		respawnMagazines[] = {"200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
+		weapons[] = {"asdg_LMG_03_F_ARCO_LP", "hgun_ACPC2_F", "Throw", "Put"};
+		respawnWeapons[] = {"asdg_LMG_03_F_ARCO_LP", "hgun_ACPC2_F", "Throw", "Put"};
+		magazines[] = {"200Rnd_556x45_Box_F", "200Rnd_556x45_Box_F", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
+		respawnMagazines[] = {"200Rnd_556x45_Box_F", "200Rnd_556x45_Box_F", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		linkedItems[] = {"V_PlateCarrierIA1_dgtl", "H_Watchcap_blk", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
 		respawnLinkedItems[] = {"V_PlateCarrierIA1_dgtl", "H_Watchcap_blk", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
 		backpack = "asdg_I_AssaultPack_dgtl_AR";

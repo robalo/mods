@@ -24,6 +24,7 @@ class Extended_InitPost_EventHandlers {
 	};
 };
 
+
 class Extended_FiredBIS_EventHandlers {
 	class AllVehicles {
 		class ADDON {
@@ -32,20 +33,21 @@ class Extended_FiredBIS_EventHandlers {
 	};
 };
 
+
 class Extended_Killed_EventHandlers {
 	class SoldierWB {
 		class ADDON {
-			serverKilled = QUOTE(_this spawn FUNC(killedEH));
+			killed = QUOTE(_this spawn FUNC(killedEH));
 		};
 	};
 	class SoldierEB {
 		class ADDON {
-			serverKilled = QUOTE(_this spawn FUNC(killedEH));
+			killed = QUOTE(_this spawn FUNC(killedEH));
 		};
 	};
 	class SoldierGB {
 		class ADDON {
-			serverKilled = QUOTE(_this spawn FUNC(killedEH));
+			killed = QUOTE(_this spawn FUNC(killedEH));
 		};
 	};
 };
@@ -53,23 +55,57 @@ class Extended_Killed_EventHandlers {
 class Extended_Hit_EventHandlers {
 	class SoldierWB {
 		class ADDON {
-			serverHit = QUOTE(_this call FUNC(handleHit));
+			hit = QUOTE(_this call FUNC(handleHit));
 		};
 	};
 	class SoldierEB {
 		class ADDON {
-			serverHit = QUOTE(_this call FUNC(handleHit));
+			hit = QUOTE(_this call FUNC(handleHit));
 		};
 	};
 	class SoldierGB {
 		class ADDON {
-			serverHit = QUOTE(_this call FUNC(handleHit));
+			hit = QUOTE(_this call FUNC(handleHit));
+		};
+	};
+    class StaticWeapon {
+		class ADDON {
+			hit = QUOTE(_this call FUNC(handleHit));
+		};
+	};
+};
+
+class Extended_Explosion_EventHandlers {
+	class SoldierWB {
+		class ADDON {
+			explosion = QUOTE(_this call FUNC(handleExplosion));
+		};
+	};
+	class SoldierEB {
+		class ADDON {
+			explosion = QUOTE(_this call FUNC(handleExplosion));
+		};
+	};
+	class SoldierGB {
+		class ADDON {
+			explosion = QUOTE(_this call FUNC(handleExplosion));
+		};
+	};
+	class StaticWeapon {
+		class ADDON {
+			explosion = QUOTE(_this call FUNC(handleExplosion));
 		};
 	};
 };
 
 class Extended_InventoryClosed_EventHandlers {
-	class CAManBase {
+	class SoldierWB {
+		ADDON = QUOTE(_this call FUNC(inventoryClosed));
+	};
+	class SoldierEB {
+		ADDON = QUOTE(_this call FUNC(inventoryClosed));
+	};
+	class SoldierGB {
 		ADDON = QUOTE(_this call FUNC(inventoryClosed));
 	};
 };

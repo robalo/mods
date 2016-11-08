@@ -48,29 +48,27 @@ if (_initspeed < 360) then {_sdammo = true};
 TRACE_4("CHECK IF SILENCED",_weapon,_sdweap,_sdammo,_initspeed);
 
 if (_sdweap && _sdammo) exitWith {
-	if (GVAR(debug) && {isPlayer gunner _veh || isPlayer driver _veh}) then {hintSilent "ASR DEBUG: supressed weapon with subsonic ammo"};
+	if (GVAR(debug_firedeh) && {isPlayer gunner _veh || isPlayer driver _veh}) then {hintSilent "ASR DEBUG: suppressed weapon with subsonic ammo"};
 };
 
 //check range
 private _range = GVAR(loudrange); // calculated with userconfig coefficient in preinit
-private _ammofactor = _audible / 40;
+private _ammofactor = _audible / 60;
 if (_ammofactor > 1 || _sdweap) then {_range = _range * _ammofactor};
-if (_range < 100) exitWith {LOG("short sound range, exiting")};
+if (_range < 200) exitWith {LOG("short sound range, exiting")};
 
 // maximum distance for which calculated knowledge is at least 1
 private _detectupto = ceil (_range * (1 - (1/_MAXREVEAL_)));
 
 //reduce in forests/houses/rain/wind
-if ([_veh,"(forest + houses + rain + windy)",2] call FUNC(isNearStuff)) then {_detectupto = ceil (_detectupto * 0.75)};
+if (count (nearestTerrainObjects [_veh, ["BUILDING","HOUSE"], 5, false]) > 0 || {[_veh,"(forest + rain + windy)",1] call FUNC(isNearStuff)}) then {_detectupto = ceil (_detectupto * 0.75)};
 
 //debug
 if (isPlayer gunner _veh || isPlayer driver _veh) then {
-	if (GVAR(debug)) then {hintSilent format["ASR DEBUG: gunshot hearing aids up to %1 meters", _detectupto]};
+	if (GVAR(debug_firedeh)) then {hintSilent format["ASR DEBUG: gunshot hearing aids up to %1 meters", _detectupto]};
 };
 
 //alert
 {
-
-	if (group _x != group _shooter) then {	[_x,_veh,_MAXREVEAL_,_range] call FUNC(reveal) };
-
+	if (group _x != group _shooter) then { [_x,_veh,_MAXREVEAL_,_range] call FUNC(reveal) };
 } forEach (_veh nearEntities [["SoldierWB","SoldierEB","SoldierGB","StaticWeapon"],_detectupto]);

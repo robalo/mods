@@ -11,7 +11,7 @@ if (_rxleader call FUNC(isValidUnitC)) then {
 		if (_knowledge > 4) then {_knowledge = 4}; // cap it
 		_rxleader reveal [_target, _knowledge];
 		#ifndef DEBUG_MODE_FULL
-		if (GVAR(debug)) then {
+		if (GVAR(debug_reveal)) then {
 		#endif
 			diag_log format["ASR AI3: %1 | Unit %2 sends %3 knowledge to %4 about %5",diag_ticktime,_sender,_knowledge,_rxleader,_target];
 		#ifndef DEBUG_MODE_FULL

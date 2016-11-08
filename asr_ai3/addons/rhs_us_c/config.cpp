@@ -2,8 +2,10 @@
 
 class CfgPatches {
 	class ADDON {
+        addonRootClass = "rhsusf_c_weapons";
 		units[] = {};
 		weapons[] = {};
+        ammo[] = {};
 		requiredVersion = REQUIRED_VERSION;
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
@@ -11,7 +13,7 @@ class CfgPatches {
 			"rhsusf_c_troops","rhsusf_c_weapons"
 		};
 		version = VERSION;
-		author[] = {"Robalo"};
+		author = "Robalo";
 	};
 };
 

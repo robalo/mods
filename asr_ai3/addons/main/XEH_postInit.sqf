@@ -16,9 +16,9 @@ if (isServer) then {
             if (GVAR(rearm) > 0) then {
                 { // cycle all groups
                     _thisgroup = _x;
-                    _units = units _thisgroup;
-                    if (side _thisgroup != civilian && {!(_thisgroup call FUNC(hasPlayer))}) then {
-                        _c = count _units;
+                    _units = (units _thisgroup) select {_x call FUNC(isValidUnitC)};
+                    _c = count _units;
+                    if (_c > 0 && {!(_thisgroup call FUNC(hasPlayer))}) then {
                         if (_c == 1) then {
                             _u = _units select 0;
                             if (_u call FUNC(isReady)) then {_u spawn FUNC(rearm)};
@@ -42,7 +42,7 @@ if (isServer) then {
                 } forEach allGroups;
                 _fh = !_fh;
             };
-			sleep 20;
+			sleep 30;
 		};
 	};
 };

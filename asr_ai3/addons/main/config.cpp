@@ -4,16 +4,16 @@
 
 PRELOAD_ADDONS;
 
-#include "CfgAmmo.hpp"
-#include "CfgWeapons.hpp"
-#include "CfgVehicles.hpp"
+//#include "CfgAmmo.hpp"
+//#include "CfgWeapons.hpp"
+//#include "CfgVehicles.hpp"
 
 #include "CfgEventhandlers.hpp"
 
 class CfgAISkill {
     aimingShake[] = {0, 0.1, 0.8, 0.4, 1, 1};
-	aimingSpeed[] = {0, 0.1, 0.2, 0.4, 1, 1};
-	spotDistance[] = {0, 0.1, 0.8, 0.4, 1, 1};
+	aimingSpeed[] = {0, 0.1, 0.2, 0.5, 1, 1};
+	spotDistance[] = {0, 0.1, 0.8, 0.3, 1, 1};
 };
 /*
 aimingAccuracy
@@ -43,3 +43,16 @@ Affects the accuracy of the information (Higher value = more accurate informatio
 spotTime
 Affects how quick the AI react to death, damage or observing an enemy (Higher value = quicker reaction)
 */
+
+class CfgVehicles {
+	class CAManBase;
+	class SoldierWB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
+	};
+	class SoldierEB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
+	};
+	class SoldierGB: CAManBase {
+		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
+	};
+};
