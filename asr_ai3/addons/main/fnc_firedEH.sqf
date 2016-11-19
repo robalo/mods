@@ -35,14 +35,11 @@ _sdweap = _sdweap || {getNumber (_cfg>>"fireLightIntensity") < 0.1};
 
 private _initspeed = getnumber (configFile>>"CfgMagazines">>_magazine>>"initSpeed");
 private _weaponinitspeed = [_cfg>>"initSpeed", "number", 0] call CBA_fnc_getConfigEntry;
-switch (true) do {
-	case (_weaponinitspeed > 0): {
-		_initspeed = _weaponinitspeed;
-	};
-	case (_weaponinitspeed < 0): {
-		_initspeed = (abs _weaponinitspeed) * _initspeed;
-	};
+call {
+	if (_weaponinitspeed > 0) exitWith {_initspeed = _weaponinitspeed};
+	if (_weaponinitspeed < 0) exitWith {_initspeed = (abs _weaponinitspeed) * _initspeed};
 };
+
 if (_initspeed < 360) then {_sdammo = true};
 
 TRACE_4("CHECK IF SILENCED",_weapon,_sdweap,_sdammo,_initspeed);
