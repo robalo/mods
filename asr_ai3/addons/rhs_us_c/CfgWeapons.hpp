@@ -21,23 +21,23 @@ class CfgWeapons {
 
     class cannon_120mm;
     class rhs_weap_m256 : cannon_120mm {
-		ASR_AI_DISP_SNIPER;
+		ASR_AI_DISPERSION_COEF;
     };
     class autocannon_30mm_CTWS;
     class RHS_weap_M242BC : autocannon_30mm_CTWS {
-		ASR_AI_DISP_SNIPER;
+		ASR_AI_DISPERSION_COEF;
     };
     class LMG_M200;
     class rhs_weap_m240veh : LMG_M200 {
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
     };
     class rhs_weap_M197;
     class rhs_weap_M230 : rhs_weap_M197 {
-		ASR_AI_DISP_SNIPER;
+		ASR_AI_DISPERSION_COEF;
     };
     class Cannon_30mm_Plane_CAS_02_F;
     class rhsusf_M61A2 : Cannon_30mm_Plane_CAS_02_F {
-		ASR_AI_DISP_SNIPER;
+		ASR_AI_DISPERSION_COEF;
     };
 
 	class rhs_weap_M320_Base_F : Pistol_Base_F {
@@ -45,13 +45,13 @@ class CfgWeapons {
 		class Single : Mode_SemiAuto {
 			ASR_AI_ROF_GL_SINGLE;
 		};
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
 	};
 
 	class rhs_weap_XM2010_Base_F: Rifle_Base_F {
  		modes[] = {"ASR_SemiAuto", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
 	};
 
 	class arifle_MX_Base_F;
@@ -60,7 +60,7 @@ class CfgWeapons {
 	class rhs_weap_m4_Base : arifle_MX_Base_F {
 		modes[] = {"Single", "ASR_Burst3", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
         class M203_GL : UGL_F {
             class Single : Mode_SemiAuto {
                 ASR_AI_ROF_GL_SINGLE;
@@ -97,30 +97,50 @@ class CfgWeapons {
 	};
 
     class rhs_weap_m27iar : rhs_weap_m4a1 {
-		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2"};
+		modes[] = {
+            "FullAuto", "Single",
+            "ASR_AI_Burst_long", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far",
+            "ASR_AI_Burst_far_optic1",
+            "ASR_AI_Burst_far_optic2"
+        };
 		ASR_AI_MG_MODES(FullAuto,FullAuto,Single);
 	};
 
     class LMG_Mk200_F;
     class rhs_weap_M249_base : LMG_Mk200_F {
-		modes[] = {"FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2"};
+		modes[] = {
+            "FullAuto",
+            "ASR_AI_Burst_long", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_toofar",
+            "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_toofar_optic1",
+            "ASR_AI_Burst_far_optic2", "ASR_AI_Burst_toofar_optic2"
+        };
 		ASR_AI_MG_MODES(FullAuto,Mode_FullAuto,Mode_SemiAuto);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
 	};
 
 	class rhs_weap_saw_base : Rifle_Base_F {
-		modes[] = {"FullAuto", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2"};
+		modes[] = {
+            "FullAuto",
+            "ASR_AI_Burst_long", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_toofar",
+            "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_toofar_optic1",
+            "ASR_AI_Burst_far_optic2", "ASR_AI_Burst_toofar_optic2"
+        };
 		ASR_AI_MG_MODES(FullAuto,Mode_FullAuto,Mode_SemiAuto);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
 	};
 	class rhs_weap_lmg_minimipara : rhs_weap_saw_base {
 		ASR_AI_MG_MODES(FullAuto,FullAuto,Mode_SemiAuto);
 	};
 
 	class rhs_weap_m240_base : rhs_weap_M249_base {
-		modes[] = {"manual", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_far_optic2"};
+		modes[] = {
+            "manual",
+            "ASR_AI_Burst_long", "ASR_AI_Burst_close", "ASR_AI_Burst_short", "ASR_AI_Burst_medium", "ASR_AI_Burst_far", "ASR_AI_Burst_toofar",
+            "ASR_AI_Burst_far_optic1", "ASR_AI_Burst_toofar_optic1",
+            "ASR_AI_Burst_far_optic2", "ASR_AI_Burst_toofar_optic2"
+        };
 		ASR_AI_MG_MODES(manual,Mode_FullAuto,manual);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
 	};
 
 	class srifle_EBR_F;
@@ -139,7 +159,7 @@ class CfgWeapons {
     class rhs_weap_M107_Base_F : GM6_base_F {
 		modes[] = {"Single", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2", "ASR_AI_Single_far_optics2"};
 		ASR_AI_BIGSNIPER_MODES(Mode_SemiAuto);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
     };
 
 	class rhs_weap_M590_5RD : Rifle_Base_F {
@@ -153,7 +173,7 @@ class CfgWeapons {
 		class Single : Mode_SemiAuto {
 			ASR_AI_ROF_GL_SINGLE;
 		};
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
     };
 
     class SMG_01_Base : Rifle_Short_Base_F {
@@ -169,7 +189,7 @@ class CfgWeapons {
         class FullAuto : FullAuto {
             ASR_AI_ROF_MG_FULLAUTO;
         };
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
     };
 
 	class Launcher_Base_F;

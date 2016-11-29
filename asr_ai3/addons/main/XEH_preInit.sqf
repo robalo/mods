@@ -23,23 +23,24 @@ ASR_AI_SETDEFAULT(skip_factions,[]);
 
 if (count GVAR(sets) < 10) then {
     GVAR(sets) = [
-	[	"general",[1.00,0.0],	"aiming",[1.00,0.00],	"spotting",[1.00,0.0]	],
-	[	"general",[0.90,0.1],	"aiming",[0.40,0.25],	"spotting",[0.40,0.1]	],
-	[	"general",[0.85,0.1],	"aiming",[0.35,0.25],	"spotting",[0.35,0.1]	],
-	[	"general",[0.80,0.1],	"aiming",[0.30,0.15],	"spotting",[0.30,0.1]	],
-	[	"general",[0.75,0.1],	"aiming",[0.25,0.15],	"spotting",[0.25,0.1]	],
-	[	"general",[0.70,0.1],	"aiming",[0.20,0.15],	"spotting",[0.20,0.1]	],
-	[	"general",[0.65,0.1],	"aiming",[0.15,0.15],	"spotting",[0.15,0.1]	],
-	[	"general",[0.60,0.1],	"aiming",[0.10,0.15],	"spotting",[0.10,0.1]	],
-	[	"general",[0.80,0.1],	"aiming",[0.25,0.15],	"spotting",[0.35,0.1]	],
-	[	"general",[0.70,0.1],	"aiming",[0.20,0.15],	"spotting",[0.30,0.1]	],
-	[	"general",[0.90,0.1],	"aiming",[0.70,0.30],	"spotting",[0.90,0.1]	]
+	[	"general",[1.00,0.0],	"aiming",[1.00,0.0],	"spotting",[1.00,0.0]	],
+	[	"general",[0.80,0.2],	"aiming",[0.40,0.2],	"spotting",[0.40,0.1]	],
+	[	"general",[0.70,0.2],	"aiming",[0.30,0.2],	"spotting",[0.35,0.1]	],
+	[	"general",[0.60,0.2],	"aiming",[0.25,0.1],	"spotting",[0.30,0.1]	],
+	[	"general",[0.50,0.2],	"aiming",[0.20,0.1],	"spotting",[0.25,0.1]	],
+	[	"general",[0.40,0.2],	"aiming",[0.15,0.1],	"spotting",[0.20,0.1]	],
+	[	"general",[0.30,0.2],	"aiming",[0.10,0.1],	"spotting",[0.15,0.1]	],
+	[	"general",[0.20,0.2],	"aiming",[0.05,0.1],	"spotting",[0.10,0.1]	],
+	[	"general",[0.60,0.2],	"aiming",[0.25,0.1],	"spotting",[0.35,0.1]	],
+	[	"general",[0.50,0.2],	"aiming",[0.20,0.1],	"spotting",[0.30,0.1]	],
+	[	"general",[0.80,0.2],	"aiming",[0.70,0.3],	"spotting",[0.90,0.1]	]
     ]
 };
 if (count GVAR(levels_units) < 10) then {GVAR(levels_units) = [[],[],[],[],[],[],[],[],[],[],[]]};
 
-GVAR(configQueue) = [];
+GVAR(cfgQ) = [];
 GVAR(copymystance) = 0;
+GVAR(fireonme) = 0;
 
 GVAR(needmax) = [ // The level of supplies the unit will try to maintain
 	GVAR(rearm_mags), // mags for primary weapon
@@ -47,27 +48,23 @@ GVAR(needmax) = [ // The level of supplies the unit will try to maintain
 ];
 GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit")];
 
-FUNC(isValidUnit) = {!(isNull _this) && {alive _this} && {{_x == faction _this} count GVAR(skip_factions) == 0} && {!(_this getVariable ["asr_ai_exclude", false])}};
-FUNC(isValidUnitC) = {_this call FUNC(isValidUnit) && {!(_this call FUNC(isUnc))}};
-FUNC(isMedic) = {getNumber(configFile >>"CfgVehicles">>(typeOf _this)>>"attendant") == 1};
-FUNC(getAlive) = {(units _this) select {alive _x}};
-FUNC(addUnitToQueue) = {params ["_unit"]; GVAR(configQueue) pushBack _unit};
-
+PREP(isValidUnit);
+PREP(isValidUnitC);
+PREP(getAlive);
+PREP(hasPlayer);
 PREP(isUnc);
 PREP(isNearStuff);
 PREP(getNearest);
-PREP(nearFactionGroups);
 PREP(hasRadio);
-PREP(hasPlayer);
 PREP(setUnitSkill);
 PREP(configureUnit);
-PREP(firedEH);
 PREP(killedEH);
 PREP(sendInfo);
 PREP(broadcastInfo);
 PREP(canCover);
 PREP(findCover);
 PREP(moveToCover);
+PREP(unitMoveToCover);
 PREP(getInWeaponsEH);
 PREP(handleHit);
 PREP(showHideNVG);
@@ -91,5 +88,7 @@ PREP(fallDown);
 PREP(handleExplosion);
 PREP(stopToShoot);
 PREP(handleDamage);
+PREP(fireOnMyShot);
 
-["ASR AI3", "ASR AI3", ["Toggle Copy My Stance", "asr_ai3_copymystance"], {player call FUNC(copyMyStance)}, {}, [DIK_BACKSLASH, [true, true, false]]] call cba_fnc_addKeybind;
+["ASR AI3", "asr_ai3_copymystance", ["Toggle Copy My Stance", "AI subordinates follow player stance"], {player call FUNC(copyMyStance)}, {}, [DIK_BACKSLASH, [true, true, false]]] call cba_fnc_addKeybind;
+["ASR AI3", "asr_ai3_fireonmyshot", ["Toggle Fire On My Shot", "AI hold fire until player shoots"], {player call FUNC(fireOnMyShot)}, {}, [DIK_RBRACKET, [true, true, false]]] call cba_fnc_addKeybind;

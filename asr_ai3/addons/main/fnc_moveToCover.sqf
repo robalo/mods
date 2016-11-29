@@ -4,17 +4,19 @@ params ["_unit", "_source", "_distance"];
 
 #define __DELAY_ 60
 
-if (!GVAR(seekcover)) exitWith {};
-if (vehicle _unit != _unit) exitWith {};
+if !(GVAR(seekcover) && isNull objectParent _unit) exitWith {};
 
 private _time = time;
 private _grp = group _unit;
 if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has HOLD wp",_grp)};
 
-if (_time < (_grp getVariable [QGVAR(lastMoveToCoverTime),-90]) + 90) exitWith {TRACE_1("too soon to move to cover again",_grp)};
+if (_time < (_grp getVariable [QGVAR(lastMoveToCoverTime),-1000]) + 90) exitWith {TRACE_1("too soon to move to cover again",_grp)};
+
+//found cover or not, don't bother trying to find again for 2 minutes, so we save the time of last try
+_grp setVariable [QGVAR(lastMoveToCoverTime),time,false];
 
 private _mToCover = false;
-if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {count (nearestTerrainObjects [_unit, ["WALL","BUILDING","HOUSE","TREE","ROCK","ROCKS"], 5, false]) == 0}) then {_mToCover = true};
+if (_unit call FUNC(isValidUnitC) && {!isHidden _unit} && {(nearestTerrainObjects [_unit, ["WALL","BUILDING","HOUSE","TREE","ROCK","ROCKS"], 5, false]) isEqualTo []}) then {_mToCover = true};
 
 private _attackenable = attackEnabled _grp;
 _grp enableAttack false;
@@ -26,14 +28,16 @@ if (_mToCover) then {
 	if (!isNil "_savedcpa") then {
 		{ if (_x distance _unit < _distance) then {_cpa pushBack _x} } forEach _savedcpa;
 	};
-	if (count _cpa == 0) then {
+	if (_cpa isEqualTo []) then {
 		_cpa = [_unit,_source,_distance] call FUNC(findCover);
 	};
-	if (count _cpa == 0) then {
+	if (_cpa isEqualTo []) then {
+        // shit, caught in the open
+        _unit setSuppression (1 min (0.2 + random 0.6 + getSuppression _unit));
 		// try twice farther
 		_cpa = [_unit,_source,(_distance*2)] call FUNC(findCover);
 	} else { // found cover close enough
-		if (_unit distance (_cpa select 0) < 10) then {_mToCover = false}; // let engine do this
+		if (_unit distance (_cpa select 0) < 7) then {_mToCover = false}; // let engine do this
 	};
 };
 
@@ -41,32 +45,28 @@ if (_mToCover && {count _cpa > 0}) then {
 
 	[_unit,_cpa,_time] spawn  {
 		params ["_unit", "_cpa", "_until"];
-		private ["_grp","_speed","_cover"];
-		_cover = [_cpa] call BIS_fnc_arrayShift; // get first cover pos out of array
+		private _cover = _cpa deleteAt 0; // get first cover pos out of array
 		TRACE_2("Choose cover",_cover,_cpa);
-		_grp = group _unit;
+		private _grp = group _unit;
 		_grp setVariable [QGVAR(nearcover),_cpa,false];
 		_grp lockwp true;
 		_unit doMove _cover;
 		if (_unit == leader _grp) then {
-			_speed = speedMode _grp;
-			{ if (_x != _unit) then {_x doFollow _unit} } forEach (units _grp);
-			_grp setSpeedMode "FULL";
-			[_unit,_grp,_until,_speed,_cover] spawn {
-				params ["_unit", "_grp", "_until", "_speed", "_cover"];
-				waitUntil {!alive _unit || {time > _until + __DELAY_} || {_unit distance _cover < 1}};
+			{ if (_x != _unit) then {_x doFollow (formationLeader _x)} } forEach (units _grp);
+			[_unit,_grp,_until,_cover] spawn {
+				params ["_unit", "_grp", "_until", "_cover"];
+				waitUntil {sleep 5; !alive _unit || {time > _until + __DELAY_} || {_unit distance _cover < 2}};
 				_grp lockwp false;
-				{[_x] joinSilent _grp} forEach (units _grp);
-				_grp setSpeedMode _speed;
+				{[_x] joinSilent _grp} forEach ((units _grp) select {unitReady _x});
 			};
 			{
 				if (_x != _unit && {unitReady _x} && {!(_x getVariable [QGVAR(housing),false])} && {_x call FUNC(isValidUnitC)}) then { // process subordinates
 					if (count _cpa > 0) then { // we have building positions available as cover
-						_cover = [_cpa] call BIS_fnc_arrayShift;
-						TRACE_3("Choose cover in house",_x,_cover,_cpa);
+						_cover = _cpa deleteAt 0;
+						TRACE_2("Choose cover in house",_x,_cover);
 						doStop _x; _x doMove _cover;
 					} else { // stay close to the leader
-						_x doFollow (leader _x);
+						_x doFollow (formationLeader _x);
 					};
 				};
 				sleep 0.42;
@@ -77,6 +77,3 @@ if (_mToCover && {count _cpa > 0}) then {
 };
 
 _grp enableAttack _attackenable;
-
-//found cover or not, don't bother trying to find again for 2 minutes, so we save the time of last try
-_grp setVariable [QGVAR(lastMoveToCoverTime),time,false];

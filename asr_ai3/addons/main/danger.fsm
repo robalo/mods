@@ -6,19 +6,19 @@ item1[] = {"End",1,250,-390.000000,420.000000,-300.000000,470.000000,0.000000,"E
 item2[] = {"Rest",8,218,-780.000000,370.000000,-610.000000,480.000000,0.000000,"Rest"};
 item3[] = {"Timeout",4,218,-370.000000,60.000000,-260.000000,150.000000,1.000000,"Timeout"};
 item4[] = {"Reacting_on_danger",0,250,-640.000000,-520.000000,-430.000000,-470.000000,0.000000,"Reacting on danger!"};
-item5[] = {"Cause_0_3_5_ENEMY",4,218,-1280.000000,-180.000000,-1040.000000,-60.000000,4.000000,"Cause 0,3,5" \n "ENEMY" \n "DETECTED/NEAR" \n "OR" \n " DEAD TEAMMATE"};
+item5[] = {"Cause_0_3_ENEMY",4,218,-1280.000000,-180.000000,-1040.000000,-60.000000,4.000000,"Cause 0,3" \n "ENEMY" \n "DETECTED / NEAR"};
 item6[] = {"Signal_enemy",2,250,-1250.000000,0.000000,-1090.000000,80.000000,0.000000,"Signal enemy"};
 item7[] = {"Cause__8_CAN_FIR",4,218,-520.000000,-260.000000,-310.000000,-120.000000,6.000000,"Cause: 8" \n "CAN FIRE"};
-item8[] = {"Stop_to_fire___ASR",2,250,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
+item8[] = {"Stop_to_fire___ASR",2,4346,-460.000000,-70.000000,-330.000000,10.000000,0.000000,"Stop to fire" \n "+" \n "ASR stuff"};
 item9[] = {"Check_queue",2,250,-260.000000,280.000000,-90.000000,340.000000,0.000000,"Check queue"};
 item10[] = {"Next__cause",4,218,-270.000000,-390.000000,-130.000000,-300.000000,1.000000,"Next  cause"};
 item11[] = {"Always",8,218,-240.000000,380.000000,-120.000000,460.000000,0.000000,"Always"};
-item12[] = {"Destroyed___captured",2,4346,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
+item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
 item14[] = {"local_AI",4,218,-810.000000,-400.000000,-630.000000,-310.000000,2.000000,"local AI"};
 item15[] = {"Reactions",2,250,-1020.000000,200.000000,-800.000000,340.000000,0.000000,"Reactions"};
 item16[] = {"set_vars_check_danger",2,250,-810.000000,-270.000000,-620.000000,-160.000000,0.000000,"set vars" \n "check danger cause"};
-item17[] = {"Cause_1_9_4_HEARD",4,218,-990.000000,-50.000000,-800.000000,80.000000,2.000000,"Cause 1,9,4" \n "HEARD" \n "SHOOTING OR AMMO" \n "IMPACT NEAR"};
+item17[] = {"Cause_1_9_4_5_HEARD",4,218,-1030.000000,-80.000000,-800.000000,80.000000,2.000000,"Cause 1,9,4,5" \n "HEARD" \n "SHOOTING OR AMMO" \n "IMPACT NEAR OR OR" \n " DEAD TEAMMATE"};
 item18[] = {"React",8,218,-1230.000000,140.000000,-1120.000000,210.000000,0.000000,"React"};
 version=1;
 class LayoutItems
@@ -56,8 +56,8 @@ link19[] = {16,7};
 link20[] = {16,17};
 link21[] = {17,15};
 link22[] = {18,15};
-globals[] = {10.000000,1,0,1,16777215,640,480,1,241,6316128,1,-1429.671265,83.656334,585.941772,-639.583313,1120,907,1};
-window[] = {2,-1,-1,-1,-1,1004,224,1260,224,3,1140};
+globals[] = {10.000000,1,0,1,16777215,640,480,1,241,6316128,1,-1429.671265,83.656334,585.941772,-639.583313,1122,920,1};
+window[] = {2,-1,-1,-1,-1,988,208,1244,208,3,1140};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -95,21 +95,12 @@ class FSM
        "*/" \n
        "" \n
        "// Retrieve the highest priority event from the _queue" \n
-       "private [""_priors"",""_priorCur"",""_cause""];" \n
-       "" \n
-       "_priors = [3, 2, 5, 3, 2, 3, 0, 0, 4, 2];" \n
-       "" \n
-       "if (_dangerCause>0) then {_priorCur = _priors select _dangerCause}" \n
-       "else {_priorCur=-1};" \n
+       "private _priors = [4, 2, 5, 3, 2, 3, 0, 0, 4, 2];" \n
+       "private _priorCur = if (_dangerCause>0) then {_priors select _dangerCause} else {-1};" \n
        "" \n
        "{" \n
-       "  _cause = _x select 0;" \n
-       "  if ((_priors select _cause)>_priorCur) then {" \n
-       "    _dangerCause = _cause;" \n
-       "    _dangerPos = _x select 1;" \n
-       "    _dangerUntil = _x select 2;" \n
-       "    _dangerCausedBy = _x select 3;" \n
-       "  }" \n
+       "	//diag_log format [""ASR AI danger queue: %1"", _x];" \n
+       "	if (_priors select (_x select 0)>_priorCur) then {_x params [""_dangerCause"",""_dangerPos"",""_dangerUntil"",""_dangerCausedBy""]	};" \n
        "} forEach _queue;" \n
        "_queue = [];" \n
        ""/*%FSM</STATEINIT""">*/;
@@ -171,15 +162,18 @@ class FSM
     {
       name = "Stop_to_fire___ASR";
       init = /*%FSM<STATEINIT""">*/"//_this globalChat ""Stopping to fire"";" \n
-       "_stopUntil = time + 2 + random 3;" \n
+       "_stopUntil = time + 2 + random 2;" \n
        "" \n
        "if (_inf) then {" \n
+       "	_this setVariable [""asr_shooting"", true, false];" \n
+       "	// soldier stop - set max. speed to 0" \n
+       "	//_this forceSpeed 0;" \n
        "	[_this, _dangerCausedBy] call asr_ai3_main_fnc_stopToShoot;" \n
        "" \n
        "	// shoot moar bullets" \n
        "	if (_this ammo (currentWeapon _this) > 40) then {" \n
        "		_stopUntil = _stopUntil + 5;" \n
-       "		_this suppressFor 1;" \n
+       "		_this suppressFor 2;" \n
        "	}" \n
        "};" \n
        ""/*%FSM</STATEINIT""">*/;
@@ -246,11 +240,12 @@ class FSM
       name = "Destroyed___captured";
       init = /*%FSM<STATEINIT""">*/"if (_inf) then {" \n
        "	// continue moving" \n
-       "	_this forceSpeed -1;" \n
-       "	// reset unitpos" \n
-       "	if (_this getVariable [""asr_unitPos"", """"] != """") then {" \n
-       "		_this setunitPos ""AUTO"";" \n
-       "		_this setVariable [""asr_unitPos"", nil];" \n
+       "	//_this forceSpeed -1;" \n
+       "	// reset unitpos, but not immediately" \n
+       "	_this setVariable [""asr_shooting"", nil, false];" \n
+       "	_this spawn {" \n
+       "		sleep 2;" \n
+       "		if !(_this getVariable [""asr_shooting"", false]) then {_this setunitPos ""AUTO""};" \n
        "	};" \n
        "};" \n
        ""/*%FSM</STATEINIT""">*/;
@@ -274,8 +269,7 @@ class FSM
     class Reactions
     {
       name = "Reactions";
-      init = /*%FSM<STATEINIT""">*/"if (_inf) then {[_this,_dangerCausedBy] call asr_ai3_main_fnc_reactDanger};" \n
-       ""/*%FSM</STATEINIT""">*/;
+      init = /*%FSM<STATEINIT""">*/"[_this,_dangerCausedBy] call asr_ai3_main_fnc_reactDanger;"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -298,7 +292,9 @@ class FSM
       name = "set_vars_check_danger";
       init = /*%FSM<STATEINIT""">*/"_grp = group _this;" \n
        "_isleader = leader _grp == _this;" \n
-       "_inf = vehicle _this == _this;"/*%FSM</STATEINIT""">*/;
+       "_inf = isNull objectParent _this;" \n
+       "//if (!_inf) then {_this globalChat ""ASR AI3: Danger fsm on vehicle!""};" \n
+       ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -312,8 +308,8 @@ class FSM
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
-        /*%FSM<LINK "Cause_0_3_5_ENEMY">*/
-        class Cause_0_3_5_ENEMY
+        /*%FSM<LINK "Cause_0_3_ENEMY">*/
+        class Cause_0_3_ENEMY
         {
           priority = 4.000000;
           to="Signal_enemy";
@@ -322,13 +318,13 @@ class FSM
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
-        /*%FSM<LINK "Cause_1_9_4_HEARD">*/
-        class Cause_1_9_4_HEARD
+        /*%FSM<LINK "Cause_1_9_4_5_HEARD">*/
+        class Cause_1_9_4_5_HEARD
         {
           priority = 2.000000;
           to="Reactions";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_isleader && {_dangerCause == 4 ||  {(_dangerCause == 1 || _dangerCause == 9)  && side _dangerCausedBy != side _this}}"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_isleader && {_dangerCause == 4 ||  {(_dangerCause == 1 || _dangerCause == 9 || _dangerCause == 5)  && side _dangerCausedBy != side _this}}"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/

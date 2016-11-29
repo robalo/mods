@@ -1,9 +1,24 @@
 class CfgVehicles {
+
+	class All {
+		class SpeechVariants {
+			class Default {
+				speechSingular[] = {};
+				speechPlural[] = {};
+			};
+		};
+		textSingular = "";
+		textPlural = "";
+		nameSound = "";
+    };
+
     class Man;
 	class CAManBase: Man {
 		ASR_AI_SKILL_INS2; // default insurgent
 		audible = 0.025; //0.05
+		crouchProbabilityHiding = 0.70; //0.8
 		crouchProbabilityCombat = 0.80; //0.4
+		crouchProbabilityEngage = 0.90; //0.75
 		minFireTime = 7;
 		ASR_AI_CAMO_HALF;
 		spotableDarkNightLightsOff = 0.0015;  //0.003

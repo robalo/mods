@@ -8,9 +8,9 @@ if (!isMultiPlayer && {_dangerCausedBy != player} && {_unit distance player > 20
 private _grp = group _unit;
 private _time = time;
 
-if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),0]) + 20}) then {
+if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),-1000]) + 30}) then {
         
-    _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than thrice per minute / unit
+    _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
     private _leader = leader _grp;
 
     // report to near groups
@@ -18,15 +18,18 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
         [_grp,_dangerCausedBy] spawn FUNC(broadcastInfo);
     };
 
+    // if mounted skip the rest
+    if !(isNull objectParent _unit) exitWith {};
+
 	// mount weapons
 	if (random 1 < GVAR(getinweapons)) then {
         private ["_weap","_mc","_ehid"];
-        private _weapons = [getposATL _leader, vehicles, 100, {!(_x isKindOf "Plane" || _x isKindOf "Tank") && {_x call FUNC(canMountAIGunner)}}] call FUNC(getNearest);
+        private _weapons = [getPosWorld _leader, vehicles, 50, {!(_x isKindOf "Plane" || _x isKindOf "Tank") && {_x call FUNC(canMountAIGunner)}}] call FUNC(getNearest);
         TRACE_2("empty weapons",_grp,_weapons);
         private _wc = count _weapons;
         if (_wc > 0) then {
             { //get some units to man the weapons
-                if (_wc > 0 && {_x != _leader} && {getSuppression _x < 0.4} && {random 1 < 0.8}) then {
+                if (_wc > 0 && {_x != _leader} && {getSuppression _x < 0.5} && {random 1 < 0.8}) then {
                     DEC(_wc);
                     _weap = _weapons select _wc;
                     _ehid = _weap getVariable [QGVAR(getInWeaponsEH), -1];
@@ -63,11 +66,10 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
 			_bpos sort false; //prefer higher positions
 			[_dude,(_time + 300),_bpos] spawn {
 				params ["_dude", "_dangerUntil", "_bpos"];
-				private "_timeout";
                 _dude setVariable [QGVAR(housing),true,false];
                 TRACE_1("House search duty",_dude);
 				while {count _bpos > 0 && {time < _dangerUntil} && {_dude call FUNC(isValidUnitC)}} do {
-					waitUntil {isNil {_dude getVariable QGVAR(shooting)} && {getSuppression _dude < 0.4}}; //stopped shooting and not suppressed
+					waitUntil {isNil {_dude getVariable "asr_shooting"} && {getSuppression _dude < 0.4}}; //stopped shooting and not suppressed
 					doStop _dude;
 					_dude doMove (([_bpos] call BIS_fnc_arrayShift) select 1);
 					waitUntil {unitReady _dude}; //reached pos
@@ -85,7 +87,7 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
 	};
 
 	// check for cover near and divert
-	private _coverRange = if (currentWaypoint _grp == count waypoints _grp) then {150} else {30};
+	private _coverRange = if (currentWaypoint _grp == count waypoints _grp) then {75} else {25};
 	[_unit,_dangerCausedBy,_coverRange] call FUNC(moveToCover);
 
 };

@@ -6,7 +6,7 @@ if (_grp call FUNC(hasRadio) && {!(_grp getVariable [QGVAR(sending), false])}) t
 	_grp setVariable [QGVAR(sending),true];
     private _leader = leader _grp;
 	// get all groups on the same side on comms
-	private _recgroups = [getposATL _leader, allGroups, GVAR(radiorange), {_x != _grp && {_x call FUNC(hasRadio)} && {side _leader == side _x}}] call FUNC(getNearest);
+	private _recgroups = [getPosWorld _leader, allGroups, GVAR(radiorange), {_x != _grp && {_x call FUNC(hasRadio)} && {side _leader == side _x}}] call FUNC(getNearest);
 	TRACE_2("Groups in range of unit",_recgroups,_leader);
 	if (count _recgroups > 0) then {
 		sleep (GVAR(rrdelaymin) + random GVAR(rrdelayplus)); // delay sending info

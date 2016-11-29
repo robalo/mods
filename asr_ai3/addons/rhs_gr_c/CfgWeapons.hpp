@@ -12,19 +12,19 @@ class CfgWeapons {
     class rhs_weap_kar98k_Base_F : Rifle_Base_F {
  		modes[] = {"ASR_SemiAuto", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
     };
 
     class rhs_weap_m38_Base_F : Rifle_Base_F {
  		modes[] = {"ASR_SemiAuto", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
  		ASR_AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
     };
 
     class rhs_weap_m70_base : Rifle_Base_F {
 		modes[] = {"Single", "FullAuto", "ASR_AI_Burst_close", ASR_AI_Burst_close2, "ASR_AI_Burst_far", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
 		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
-		ASR_AI_DISP_REGULAR;
+		ASR_AI_DISPERSION_COEF;
     };
 
     class rhs_weap_m92 : rhs_weap_m70_base {

@@ -1,9 +1,3 @@
-#define __AUDIBLE0 1
-#define __AUDIBLE1 60
-#define __RANGE_HIT_FAR 1200
-#define __RANGE_HIT_SMALL 5
-#define __RANGE_CRACKS 120
-
 #define AIAmmoUsageNone 0
 #define AIAmmoUsageLight 1
 #define AIAmmoUsageMarking 2
@@ -21,11 +15,11 @@ class CfgAmmo {
     class B_9x21_Ball;
 
     class rhs_ammo_9x17 : B_9x21_Ball {
-		audibleFire = __AUDIBLE1; //5.65;
+		audibleFire = ASR_AI_AMMO_AUDIBLE1; //5.65;
     };
     class rhs_ammo_792x57_Ball : BulletBase {
-		audibleFire = __AUDIBLE1; //18;
-		dangerRadiusHit = __RANGE_HIT_SMALL;
+		audibleFire = ASR_AI_AMMO_AUDIBLE1; //18;
+		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
         suppressionRadiusBulletClose = 6;
         suppressionRadiusHit = 8;
     };

@@ -75,7 +75,7 @@
     "SLIDER",
     "Radio report max range (meters, 0 to disable)",
     "ASR AI3",
-    [0, 2000, 600, 0],
+    [0, 2000, 700, 0],
     true,
     {
     }
@@ -95,7 +95,7 @@
     "SLIDER",
     "Radio report max random extra delay (seconds)",
     "ASR AI3",
-    [0, 60, 10, 1],
+    [0, 600, 10, 1],
     true,
     {
     }
@@ -107,16 +107,6 @@
     "ASR AI3",
     true, // data for this setting
     true,
-    {
-    }
-] call CBA_Settings_fnc_init;
-[
-    QGVAR(joinlast),
-    "SLIDER",
-    "Merge groups reduced to (team members)",
-    "ASR AI3",
-    [0, 3, 2, 0],
-    false,
     {
     }
 ] call CBA_Settings_fnc_init;
@@ -161,19 +151,8 @@
     {
     }
 ] call CBA_Settings_fnc_init;
-[
-    QGVAR(loudrange),
-    "SLIDER",
-    "Gunshot hearing range (meters)",
-    "ASR AI3",
-    [0, 5000, 1200, 0],
-    false,
-    {
-    }
-] call CBA_Settings_fnc_init;
 
 [ QGVAR(debug_setskill), "CHECKBOX", "Debug skills", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;
 [ QGVAR(debug_findcover), "CHECKBOX", "Debug find cover", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;
 [ QGVAR(debug_rearm), "CHECKBOX", "Debug rearming", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;
 [ QGVAR(debug_reveal), "CHECKBOX", "Debug knowledge transfer", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;
-[ QGVAR(debug_firedeh), "CHECKBOX", "Debug gunshot hearing", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;

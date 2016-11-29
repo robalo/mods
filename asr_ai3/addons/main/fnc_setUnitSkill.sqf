@@ -2,9 +2,9 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit"];
-private["_i","_st","_sv","_fc","_fnc_getskillvalue"];
+private ["_j","_st","_sv"];
 
-_fnc_getskillvalue = {
+private _fnc_getskillvalue = {
     params ["_min", "_var"]; //min skill, max variance
 	(_min + random _var)
 };
@@ -14,9 +14,9 @@ private _sc = [configfile>>"cfgvehicles">>_t>>"asr_ai_level", "number", 6] call 
 TRACE_2("config",_unit,_sc);
 
 // also check for override setting
-_i = 0;
+private _i = 0;
 {
-	if (_t in _x || {{if (_t isKindOf _x) exitWith {true}; false} forEach _x}) exitWith {
+	if (_t in _x || {{_t isKindOf _x} count _x > 0}) exitWith {
 		_sc = _i;
 		TRACE_2("override",_unit,_i);
 	};
@@ -25,40 +25,38 @@ _i = 0;
 forEach GVAR(levels_units);
 
 private _sa = GVAR(sets) select _sc; // get skill array for this unit
-if (count _sa == 0) exitWith {}; // do not run if empty
+if (_sa isEqualTo []) exitWith {}; // do not run if empty
 if (isNull _unit) exitWith {};
 
-_fc = 1;
+private _fc = 1;
 if (count GVAR(factions) > 0) then {
 	{ if (faction _unit == _x select 0) exitWith {_fc = _x select 1} } forEach GVAR(factions); TRACE_2("Faction coefficient",_unit,_fc);
 };
 
-_i = 0;
-while {_i < count _sa} do {
-	_st = _sa select _i; // skill type
-	INC(_i);
-	switch (_st) do {
-		case "general": {
-			{
-				_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				[_unit,[_x,_sv]] call FUNC(setSkill);
-			}
-			forEach ["courage","reloadSpeed","commanding"];
-		};
-		case "aiming": {
-			{
-				_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				[_unit,[_x,_sv]] call FUNC(setSkill);
-			}
-			forEach ["aimingAccuracy","aimingShake","aimingSpeed"];
-		};
-		case "spotting": {
-			{
-				_sv = ((_sa select _i) call _fnc_getskillvalue) * _fc;
-				[_unit,[_x,_sv]] call FUNC(setSkill);
-			}
-			forEach ["spotDistance","spotTime"];
-		};
-	};
-	INC(_i);
+for "_i" from 0 to (count _sa) step 2 do {
+    _st = _sa select _i; // skill type
+    _j = _i + 1;
+    call {
+        if (_st == "general") exitWith {
+            {
+                _sv = ((_sa select _j) call _fnc_getskillvalue) * _fc;
+                [_unit,[_x,_sv]] call FUNC(setSkill);
+            }
+            forEach ["courage","commanding"];
+        };
+        if (_st == "aiming") exitWith {
+            {
+                _sv = ((_sa select _j) call _fnc_getskillvalue) * _fc;
+                [_unit,[_x,_sv]] call FUNC(setSkill);
+            }
+            forEach ["aimingAccuracy","aimingShake","aimingSpeed"];
+        };
+        if (_st == "spotting") exitWith {
+            {
+                _sv = ((_sa select _j) call _fnc_getskillvalue) * _fc;
+                [_unit,[_x,_sv]] call FUNC(setSkill);
+            }
+            forEach ["spotDistance","spotTime"];
+        };
+    };
 };

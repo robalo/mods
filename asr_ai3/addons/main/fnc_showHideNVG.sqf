@@ -2,8 +2,8 @@
 #include "script_component.hpp"
 params ["_unit", "_show"];
 
-private ["_nvg","_eyew"];
-_nvg = "";
+private "_eyew";
+private _nvg = "";
 { if (getText(configFile>>"CfgWeapons">>_x>>"simulation") == "NVGoggles") exitWith {_nvg = _x} } forEach assignedItems _unit;
 
 if (_show) then { // Equip NVG
