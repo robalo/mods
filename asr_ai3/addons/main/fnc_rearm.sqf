@@ -63,7 +63,7 @@ if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places
 		_unit doWatch _x;
 		if (alive _x && {_x isKindOf "CAManbase"}) then {_unit action ["REARM",unitBackpack _x]} else {_unit action ["REARM",_x]};
 	};
-	if !(_unit call FUNC(isReady)) then {breakOut "searching"};
+	if !(_unit call FUNC(allowRearm)) then {breakOut "searching"};
 } forEach _search;
 
 [_unit,_leaderpos] spawn {

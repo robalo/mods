@@ -140,8 +140,6 @@ class CfgVehicles {
 		detectSkill = 30;
 		ASR_AI_SKILL_SOF2;
 		ASR_AI_COST_SPECIAL;
-		minFireTime = 5;
-		ASR_AI_CAMO_FULL;
 		headgearProbability = 100;
 		allowedHeadgear[] = {"H_Bandanna_gry", "H_Bandanna_khk_hs", "H_Bandanna_khk", "H_Bandanna_sgg", "H_Watchcap_blk", "H_Watchcap_cbr", "H_Watchcap_camo", "H_Watchcap_khk", "H_Booniehat_dgtl", "H_Booniehat_oli", "H_Cap_blk", "H_Cap_oli", "H_Cap_oli_hs", "H_Cap_blk_Raven", "H_MilCap_dgtl", "H_Booniehat_dgtl", "H_Cap_blk_Raven"};
         class EventHandlers: EventHandlers {

@@ -4,7 +4,7 @@ params ["_unit","_enemy"];
 
 //go prone if target is far and I have no cover - might need to improve this
 if (_enemy distance _unit > 200 && {nearestTerrainObjects [_unit, ["WALL","BUILDING","HOUSE","TREE"], 10, false] isEqualTo []}) then {
-	_unit setunitPosWeak "DOWN";
+	_unit setUnitPosWeak "DOWN";
 } else {
-    _unit setunitPosWeak "AUTO";
+    _unit setUnitPosWeak "AUTO";
 };

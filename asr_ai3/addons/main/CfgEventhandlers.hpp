@@ -102,3 +102,26 @@ class Extended_InventoryClosed_EventHandlers {
 		ADDON = QUOTE(_this call FUNC(inventoryClosed));
 	};
 };
+
+class Extended_Take_EventHandlers {
+	class SoldierWB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+	class SoldierEB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+	class SoldierGB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+};
+class Extended_Put_EventHandlers {
+	class SoldierWB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+	class SoldierEB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+	class SoldierGB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+};

@@ -23,9 +23,9 @@ Fire modes
 		aiRateOfFireDistance = 100;\
 		aiRateOfFireDispersion = 1;\
 		minRange = 0;\
-		minRangeProbab = 0.2;\
-		midRange = 40;\
-		midRangeProbab = 0.1;\
+		minRangeProbab = 0.1;\
+		midRange = 30;\
+		midRangeProbab = 0.05;\
 		maxRange = 90;\
 		maxRangeProbab = 0.01
 
@@ -83,7 +83,7 @@ Fire modes
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 500;\
 		aiRateOfFireDispersion = 3;\
-		minRange = 20;\
+		minRange = 200;\
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.6;\
@@ -93,7 +93,7 @@ Fire modes
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 500;\
 		aiRateOfFireDispersion = 4;\
-		minRange = 20;\
+		minRange = 200;\
 		minRangeProbab = 0.8;\
 		midRange = 300;\
 		midRangeProbab = 0.6;\
@@ -108,7 +108,7 @@ Fire modes
 		midRange = 10;\
 		midRangeProbab = 0.7;\
 		maxRange = 20;\
-		maxRangeProbab = random 0.2
+		maxRangeProbab = 0.2
 #define ASR_AI_ROF_RIFLE_SMALL_FULLAUTO \
 		aiRateOfFire = 0.2;\
 		aiRateOfFireDistance = 50;\
@@ -128,7 +128,7 @@ Fire modes
 		midRange = 500;\
 		midRangeProbab = 0.3;\
 		maxRange = 800;\
-		maxRangeProbab = random 0.1
+		maxRangeProbab = 0.1
 
 
 // CQB rifles (short barrels, small calibre)
@@ -156,7 +156,7 @@ Fire modes
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 500;\
 		aiRateOfFireDispersion = 3;\
-		minRange = 20;\
+		minRange = 120;\
 		minRangeProbab = 0.8;\
 		midRange = 200;\
 		midRangeProbab = 0.6;\
@@ -171,7 +171,7 @@ Fire modes
 		midRange = 400;\
 		midRangeProbab = 0.3;\
 		maxRange = 600;\
-		maxRangeProbab = random 0.2
+		maxRangeProbab = 0.01
 
 
 // battle rifles, 7.62 assault rifles
@@ -199,7 +199,7 @@ Fire modes
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 550;\
 		aiRateOfFireDispersion = 3;\
-		minRange = 15;\
+		minRange = 150;\
 		minRangeProbab = 0.9;\
 		midRange = 300;\
 		midRangeProbab = 0.8;\
@@ -209,7 +209,7 @@ Fire modes
 		aiRateOfFire = 8;\
 		aiRateOfFireDistance = 1200;\
 		aiRateOfFireDispersion = 4;\
-		minRange = 15;\
+		minRange = 150;\
 		minRangeProbab = 0.7;\
 		midRange = 500;\
 		midRangeProbab = 0.8;\
@@ -224,7 +224,7 @@ Fire modes
 		midRange = 10;\
 		midRangeProbab = 0.7;\
 		maxRange = 15;\
-		maxRangeProbab = random 0.2
+		maxRangeProbab = 0.2
 #define ASR_AI_ROF_RIFLE_MEDIUM_FULLAUTO \
 		aiRateOfFire = 0.2;\
 		aiRateOfFireDistance = 50;\
@@ -271,7 +271,7 @@ Fire modes
 #define ASR_AI_ROF_MG_SHORT_BURST \
 		burst = 5;\
 		aiRateOfFire = 1;\
-		aiRateOfFireDistance = 100;\
+		aiRateOfFireDistance = 200;\
 		aiRateOfFireDispersion = 1;\
 		minRange = 50;\
 		minRangeProbab = 0.1;\
@@ -393,7 +393,7 @@ Fire modes
 // submachineguns
 #define ASR_AI_ROF_SMG_SINGLE \
 		aiRateOfFire = 1;\
-		aiRateOfFireDistance = 250;\
+		aiRateOfFireDistance = 300;\
 		aiRateOfFireDispersion = 2;\
 		minRange = 50;\
 		minRangeProbab = 0.9;\
@@ -403,24 +403,23 @@ Fire modes
 		maxRangeProbab = 0.01
 #define ASR_AI_ROF_SMG_BURST \
 		aiRateOfFire = 1;\
-		aiRateOfFireDistance = 60;\
-		aiRateOfFireDispersion = 2;\
+		aiRateOfFireDistance = 100;\
+		aiRateOfFireDispersion = 0.5;\
 		minRange = 20;\
 		minRangeProbab = 0.8;\
 		midRange = 30;\
 		midRangeProbab = 0.5;\
 		maxRange = 60;\
-		maxRangeProbab = random 0.2
+		maxRangeProbab = 0.2
 #define ASR_AI_ROF_SMG_FULLAUTO \
-		aiRateOfFire = 0.2;\
+		aiRateOfFire = 0.1;\
 		aiRateOfFireDistance = 50;\
-		aiRateOfFireDispersion = 1;\
 		minRange = 0;\
 		minRangeProbab = 0.9;\
 		midRange = 10;\
 		midRangeProbab = 0.8;\
 		maxRange = 20;\
-		maxRangeProbab = random 0.2
+		maxRangeProbab = 0.2
 
 // sniper rifles (hi mag. scopes, medium-high calibre)
 #define ASR_AI_ROF_RIFLE_SNIPER762_SEMI \
@@ -532,12 +531,8 @@ Fire modes
 		class ASR_AI_Burst_close: FullAuto { \
 			showToPlayer = 0; \
             aiBurstTerminable = 1; \
-			burst = 2 + floor random 3; \
+			burst = 4; \
 			ASR_AI_ROF_RIFLE_MEDIUM_CLOSE_BURST; \
-		}; \
-		class ASR_AI_Burst_close2: ASR_AI_Burst_close { \
-			burst = 2 + floor random 3; \
-            maxRangeProbab = random 0.2; \
 		}; \
 		class ASR_AI_Single_optics1: Single { \
 			showToPlayer = 0; \
@@ -558,12 +553,8 @@ Fire modes
 		class ASR_AI_Burst_close: FullAuto { \
 			showToPlayer = 0; \
             aiBurstTerminable = 1; \
-			burst = 2 + floor random 5; \
+			burst = 4; \
 			ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST; \
-		}; \
-		class ASR_AI_Burst_close2: ASR_AI_Burst_close { \
-			burst = 2 + floor random 5; \
-            maxRangeProbab = random 0.2; \
 		}; \
 		class ASR_AI_Burst_far: FullAuto { \
 			showToPlayer = 0; \
@@ -617,12 +608,8 @@ Fire modes
 		class ASR_AI_Burst_close: FullAuto { \
 			showToPlayer = 0; \
             aiBurstTerminable = 1; \
-			burst = 2 + floor random 5; \
+			burst = 4; \
 			ASR_AI_ROF_RIFLE_SMALL_CLOSE_BURST; \
-		}; \
-		class ASR_AI_Burst_close2: ASR_AI_Burst_close { \
-			burst = 2 + floor random 5; \
-            maxRangeProbab = random 0.2; \
 		}; \
 		class ASR_AI_Burst_far: FullAuto { \
 			showToPlayer = 0; \

@@ -1,7 +1,7 @@
 // returns array with 1 cover position near unit
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-params ["_unit", "_dangerobj", ["_maxdisttocover", 100]];
+params ["_unit", "_dangerobj", ["_maxdisttocover", 100], ["_maxpositions", 5]];
 
 scopeName "main";
 private ["_coverpos","_nBuilding"];
@@ -54,11 +54,14 @@ _nearThingies append (nearestTerrainObjects [_unit, [], _maxdisttocover]);
 	};
 } forEach _nearThingies;
 
-if (_isHouse && {random 1 < GVAR(usebuildings)}) then {
+if (_isHouse && _maxpositions > 1) then {
 	private _bposa = ([_nBuilding] call BIS_fnc_buildingPositions) call BIS_fnc_arrayShuffle;
 	if (count _bposa > 0) then {
 		// pick some building positions and add them to the returned cover array
-		{if (_x select 2 > 1.5 || {random 1 > 0.2}) then {_cover pushBack _x}} forEach _bposa;
+		{
+            if (_x select 2 > 1 || {random 1 > 0.3}) then {_cover pushBack _x};
+            if (count _cover == _maxpositions) exitWith {};
+        } forEach _bposa;
 	};
 };
 

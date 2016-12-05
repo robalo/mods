@@ -11,7 +11,7 @@
 [
     QGVAR(seekcover),
     "CHECKBOX",
-    "Moving to cover",
+    "Move to cover",
     "ASR AI3",
     true,
     true,
@@ -21,7 +21,7 @@
 [
     QGVAR(usebuildings),
     "SLIDER",
-    "Entering buildings (chance)",
+    "Search buildings (chance)",
     "ASR AI3",
     [0, 1, 0.8, 1],
     true,
@@ -111,16 +111,6 @@
     }
 ] call CBA_Settings_fnc_init;
 [
-    QGVAR(removegimps),
-    "SLIDER",
-    "Ungroup units unable to walk after (seconds)",
-    "ASR AI3",
-    [0, 3600, 300, 0],
-    false,
-    {
-    }
-] call CBA_Settings_fnc_init;
-[
     QGVAR(fallDown),
     "CHECKBOX",
     "Soldiers fall when hit",
@@ -153,6 +143,7 @@
 ] call CBA_Settings_fnc_init;
 
 [ QGVAR(debug_setskill), "CHECKBOX", "Debug skills", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;
+[ QGVAR(debug_setcamo), "CHECKBOX", "Debug camouflage", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;
 [ QGVAR(debug_findcover), "CHECKBOX", "Debug find cover", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;
 [ QGVAR(debug_rearm), "CHECKBOX", "Debug rearming", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;
 [ QGVAR(debug_reveal), "CHECKBOX", "Debug knowledge transfer", "ASR AI3", false, true, {} ] call CBA_Settings_fnc_init;

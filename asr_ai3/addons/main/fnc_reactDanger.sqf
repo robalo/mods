@@ -8,13 +8,13 @@ if (!isMultiPlayer && {_dangerCausedBy != player} && {_unit distance player > 20
 private _grp = group _unit;
 private _time = time;
 
-if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),-1000]) + 30}) then {
+if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),-1000]) + 60}) then {
         
     _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
     private _leader = leader _grp;
 
     // report to near groups
-    if (GVAR(radiorange > 0) && {_unit == _leader} && {_unit knowsAbout _dangerCausedBy > 1.5}) then {
+    if (GVAR(radiorange > 0) && {_unit == _leader} && {_unit knowsAbout _dangerCausedBy > 1.4}) then {
         [_grp,_dangerCausedBy] spawn FUNC(broadcastInfo);
     };
 
@@ -24,7 +24,7 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
 	// mount weapons
 	if (random 1 < GVAR(getinweapons)) then {
         private ["_weap","_mc","_ehid"];
-        private _weapons = [getPosWorld _leader, vehicles, 50, {!(_x isKindOf "Plane" || _x isKindOf "Tank") && {_x call FUNC(canMountAIGunner)}}] call FUNC(getNearest);
+        private _weapons = [getPosWorld _leader, vehicles, 70, {!(_x isKindOf "Plane" || _x isKindOf "Tank") && {_x call FUNC(canMountAIGunner)}}] call FUNC(getNearest);
         TRACE_2("empty weapons",_grp,_weapons);
         private _wc = count _weapons;
         if (_wc > 0) then {
@@ -61,24 +61,28 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
 			{
 				if (random 1 > 0.2) then {_bpos pushBack [_x select 2, _x]}; //pick some; get height and pos
 			} forEach ([_x] call BIS_fnc_buildingPositions);
-		} forEach (_dangerCausedBy nearObjects ["HouseBase", 100]);
+		} forEach (_dangerCausedBy nearObjects ["HouseBase", 50]);
 		if (count _bpos > 0) then {
 			_bpos sort false; //prefer higher positions
-			[_dude,(_time + 300),_bpos] spawn {
+			[_dude,(_time + 240),_bpos] spawn { // 4 minutes
 				params ["_dude", "_dangerUntil", "_bpos"];
+                private "_toPos";
                 _dude setVariable [QGVAR(housing),true,false];
                 TRACE_1("House search duty",_dude);
 				while {count _bpos > 0 && {time < _dangerUntil} && {_dude call FUNC(isValidUnitC)}} do {
-					waitUntil {isNil {_dude getVariable "asr_shooting"} && {getSuppression _dude < 0.4}}; //stopped shooting and not suppressed
+                    if ((group _dude) call {_this call FUNC(hasPlayer) && {_this call FUNC(grpHasWP)}}) exitWith {}; //crossing paths issue
+                    _toPos = ((_bpos deleteAt 0) select 1);
+                     //wait until stopped shooting and not suppressed and pos not taken by a friendly
+					waitUntil {isNil {_dude getVariable "asr_shooting"} && {getSuppression _dude < 0.4} && {(_toPos nearEntities ["CAManBase", 1]) select {(side _x) getFriend (side _dude) >= 0.6} isEqualTo []}};
 					doStop _dude;
-					_dude doMove (([_bpos] call BIS_fnc_arrayShift) select 1);
+					_dude doMove _toPos;
 					waitUntil {unitReady _dude}; //reached pos
 					if (_dude call FUNC(isUnderRoof)) then {_dude setUnitPosWeak "Up"} else {_dude setUnitPosWeak "Auto"};
 					doStop _dude;
 					sleep (5 + random 20);
 				};
 				if (alive _dude) then { // regroup
-					_dude setUnitPos "Auto";
+					_dude setUnitPosWeak "Auto";
 					[_dude] joinSilent (group _dude);
                     _dude setVariable [QGVAR(housing),false,false];
 				};
@@ -87,7 +91,9 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
 	};
 
 	// check for cover near and divert
-	private _coverRange = if (currentWaypoint _grp == count waypoints _grp) then {75} else {25};
-	[_unit,_dangerCausedBy,_coverRange] call FUNC(moveToCover);
+    if (GVAR(seekcover)) then {
+        private _coverRange = if (_grp call FUNC(grpHasWP)) then {25} else {75};
+        [_unit,_dangerCausedBy,_coverRange] call FUNC(moveToCover);
+    };
 
 };

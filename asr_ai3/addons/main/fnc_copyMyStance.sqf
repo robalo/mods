@@ -14,7 +14,7 @@ if (GVAR(copymystance) == 0) then {
                         if !(isNull objectParent _leader) exitWith {_this setUnitPos "MIDDLE"};
                         if (stance _leader == "CROUCH") exitWith {_this setUnitPos "MIDDLE"};
                         if (stance _leader == "PRONE") exitWith {_this setUnitPos "DOWN"};
-                        _this setUnitPos "AUTO";
+                        if (_this call FUNC(isUnderRoof)) then {_this setUnitPos "UP"} else {_this setUnitPos "AUTO"};
                     };
                     /*private _leadspeed = speed vehicle _leader;
                     if (_leadspeed > 0) then {_this forceSpeed _leadspeed};*/
