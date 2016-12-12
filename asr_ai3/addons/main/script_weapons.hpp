@@ -235,6 +235,111 @@ Fire modes
 		midRangeProbab = 0.8;\
 		maxRange = 5;\
 		maxRangeProbab = 0.1
+
+
+// AK special
+#define ASR_AI_ROF_AK_SINGLE \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 350;\
+		aiRateOfFireDispersion = 2;\
+		minRange = 100;\
+		minRangeProbab = 0.7;\
+		midRange = 150;\
+		midRangeProbab = 0.5;\
+		maxRange = 500;\
+		maxRangeProbab = 0.01
+#define ASR_AI_ROF_AK_MSCOPE_SINGLE \
+		aiRateOfFire = 2;\
+		aiRateOfFireDistance = 500;\
+		aiRateOfFireDispersion = 3;\
+		minRange = 300;\
+		minRangeProbab = 0.8;\
+		midRange = 400;\
+		midRangeProbab = 0.5;\
+		maxRange = 700;\
+		maxRangeProbab = 0.01
+#define ASR_AI_ROF_AK_HSCOPE_SINGLE \
+		aiRateOfFire = 3;\
+		aiRateOfFireDistance = 500;\
+		aiRateOfFireDispersion = 4;\
+		minRange = 300;\
+		minRangeProbab = 0.8;\
+		midRange = 400;\
+		midRangeProbab = 0.5;\
+		maxRange = 900;\
+		maxRangeProbab = 0.01
+#define ASR_AI_ROF_AK_CLOSE_BURST \
+		aiRateOfFire = 1;\
+		aiRateOfFireDistance = 100;\
+		aiRateOfFireDispersion = 1;\
+		minRange = 5;\
+		minRangeProbab = 0.8;\
+		midRange = 50;\
+		midRangeProbab = 0.7;\
+		maxRange = 100;\
+		maxRangeProbab = 0.2
+#define ASR_AI_ROF_AK_FULLAUTO \
+		aiRateOfFire = 0.1;\
+		aiRateOfFireDistance = 50;\
+		minRange = 0;\
+		minRangeProbab = 0.9;\
+		midRange = 1;\
+		midRangeProbab = 0.8;\
+		maxRange = 5;\
+		maxRangeProbab = 0.1
+#define ASR_AI_ROF_AK_FAR_BURST \
+		aiRateOfFire = 5;\
+		aiRateOfFireDistance = 600;\
+		aiRateOfFireDispersion = 5;\
+		minRange = 400;\
+		minRangeProbab = 0.05;\
+		midRange = 500;\
+		midRangeProbab = 0.3;\
+		maxRange = 800;\
+		maxRangeProbab = 0.1
+
+#define ASR_AI_AK_MODES(semibase,fullbase) \
+		class Single: ##semibase { \
+			ASR_AI_ROF_AK_SINGLE; \
+		}; \
+		class FullAuto: ##fullbase { \
+			ASR_AI_ROF_AK_FULLAUTO; \
+		}; \
+		class ASR_AI_Burst_close: FullAuto { \
+			showToPlayer = 0; \
+            aiBurstTerminable = 1; \
+			burst = 7; \
+			ASR_AI_ROF_AK_CLOSE_BURST; \
+		}; \
+		class ASR_AI_Burst_far: FullAuto { \
+			showToPlayer = 0; \
+            aiBurstTerminable = 1; \
+			burst = 5; \
+			ASR_AI_ROF_AK_FAR_BURST; \
+		}; \
+		class ASR_AI_Single_optics1: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 1; \
+			ASR_AI_ROF_AK_MSCOPE_SINGLE; \
+		}; \
+		class ASR_AI_Single_optics2: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 2; \
+			ASR_AI_ROF_AK_HSCOPE_SINGLE; \
+		}; \
+		class ASR_Burst3: Single { \
+			ASR_AI_ROF_AK_CLOSE_BURST; \
+			showToPlayer = 1; \
+			burst = 3; \
+			displayName = $STR_DN_MODE_BURST; \
+			textureType = "burst"; \
+			soundBurst = 0; \
+		}; \
+		class ASR_Burst2: ASR_Burst3 { \
+			burst = 2; \
+            textureType = "dual"; \
+		}
+
 		
 // light-medium machineguns
 #define ASR_AI_ROF_MG_FULLAUTO \
@@ -547,6 +652,7 @@ Fire modes
 		class ASR_SemiAuto: Single { \
 			ASR_AI_ROF_RIFLE_MEDIUM_SEMI; \
 		}
+
 
 //6.5
 #define ASR_AI_RIFLE_SMALL_XMODES \
