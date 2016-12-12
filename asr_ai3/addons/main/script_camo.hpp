@@ -12,12 +12,16 @@
 #define __CAMO_U_MONOCAMO asr_camouflage = __EVAL((__CAMO_MONO + __CAMO_CAMO)/2)
 #define __CAMO_U_MONOMONO asr_camouflage = __CAMO_MONO
 #define __CAMO_U_COLORMONO asr_camouflage = __EVAL((__CAMO_MONO + __CAMO_COLOR)/2)
+#define __CAMO_U_COLORCAMO asr_camouflage = __EVAL((__CAMO_COLOR + __CAMO_CAMO)/2)
 
 #define __CAMO_U_DARKDARK asr_camouflage = __CAMO_DARK; asr_camouflage_night = 0.3
 #define __CAMO_U_CAMODARK asr_camouflage = __EVAL((__CAMO_DARK + __CAMO_CAMO)/2); asr_camouflage_night = 0.4
 #define __CAMO_U_MONODARK asr_camouflage = __EVAL((__CAMO_MONO + __CAMO_DARK)/2); asr_camouflage_night = 0.4
 
+#define __CAMO_U_SNOWSNOW asr_camouflage = __CAMO_COLOR; asr_camouflage_snow = 0.3
+
 #define __CAMO_U_CAMOMONO __CAMO_U_MONOCAMO
+#define __CAMO_U_CAMOCOLOR __CAMO_U_COLORCAMO
 #define __CAMO_U_MONOCOLOR __CAMO_U_COLORMONO
 #define __CAMO_U_DARKCAMO __CAMO_U_CAMODARK
 #define __CAMO_U_DARKMONO __CAMO_U_MONODARK
