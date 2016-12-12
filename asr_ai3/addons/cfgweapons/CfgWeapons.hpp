@@ -437,7 +437,7 @@ class CfgWeapons {
 
     class arifle_AKM_base_F : Rifle_Base_F {
 		modes[] = {"FullAuto", "Single", "ASR_AI_Burst_close", "ASR_AI_Burst_far", "ASR_AI_Single_optics1", "ASR_AI_Single_optics2"};
-		ASR_AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
+		ASR_AI_AK_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
 
     class arifle_AKS_base_F : Rifle_Base_F {
