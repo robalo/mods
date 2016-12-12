@@ -3,9 +3,8 @@
 #include "script_component.hpp"
 params ["_magpool", "_check"];
 
-private["_m","_c"];
-_c = 0;
-
+private _c = 0;
+private "_m";
 {
 	_m = _x;
 	_c = _c + ({_x == _m} count _magpool);

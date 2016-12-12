@@ -9,30 +9,23 @@ class Extended_PostInit_EventHandlers {
 class Extended_InitPost_EventHandlers {
 	class SoldierWB {
 		class ADDON {
-            serverInit = QUOTE(_this call FUNC(addUnitToQueue));
+            serverInit = QUOTE((GVAR(cfgQ)) pushBack (_this select 0));
 		};
 	};
 	class SoldierEB {
 		class ADDON {
-            serverInit = QUOTE(_this call FUNC(addUnitToQueue));
+            serverInit = QUOTE((GVAR(cfgQ)) pushBack (_this select 0));
 		};
 	};
 	class SoldierGB {
 		class ADDON {
-            serverInit = QUOTE(_this call FUNC(addUnitToQueue));
+            serverInit = QUOTE((GVAR(cfgQ)) pushBack (_this select 0));
 		};
 	};
-};
-
-
-class Extended_FiredBIS_EventHandlers {
-	class AllVehicles {
-		class ADDON {
-			serverFiredBIS = QUOTE(if (GVAR(loudrange) > 0) then {_this call FUNC(firedEH)});
-		};
+	class Tank {
+		ADDON = "if (local (_this select 0)) then {(_this select 0) allowCrewInImmobile true}";
 	};
 };
-
 
 class Extended_Killed_EventHandlers {
 	class SoldierWB {
@@ -107,5 +100,28 @@ class Extended_InventoryClosed_EventHandlers {
 	};
 	class SoldierGB {
 		ADDON = QUOTE(_this call FUNC(inventoryClosed));
+	};
+};
+
+class Extended_Take_EventHandlers {
+	class SoldierWB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+	class SoldierEB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+	class SoldierGB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+};
+class Extended_Put_EventHandlers {
+	class SoldierWB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+	class SoldierEB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
+	};
+	class SoldierGB {
+		ADDON = QUOTE(_this call FUNC(setUnitCamo));
 	};
 };

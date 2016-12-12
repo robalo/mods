@@ -2,17 +2,18 @@
 
 class CfgPatches {
 	class ADDON {
+        addonRootClass = "BWA3_Weapons";
 		units[] = {};
 		weapons[] = {};
+        ammo[] = {};
 		requiredVersion = REQUIRED_VERSION;
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
 			"A3_Characters_F","A3_Weapons_F",
-			"caf_ag_faction_afr","caf_ag_faction_eur","caf_ag_faction_me",
-			"caf_wp_weapons_c"
+			"BWA3_Units","BWA3_Vests","BWA3_Weapons","BWA3_Backpacks"
 		};
 		version = VERSION;
-		author[] = {"Robalo"};
+		author = "Robalo";
 	};
 };
 

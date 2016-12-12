@@ -21,7 +21,7 @@ if (isServer) then {
                     if (_c > 0 && {!(_thisgroup call FUNC(hasPlayer))}) then {
                         if (_c == 1) then {
                             _u = _units select 0;
-                            if (_u call FUNC(isReady)) then {_u spawn FUNC(rearm)};
+                            if (_u call FUNC(allowRearm)) then {_u spawn FUNC(rearm)};
                         } else {
                             _d = ceil(_c/2 - 1);
                             if (_fh) then { // first half
@@ -33,7 +33,7 @@ if (isServer) then {
                             };
                             for "_i" from _from to _to do {
                                 _u = _units select _i;
-                                if (_u call FUNC(isReady)) then {_u spawn FUNC(rearm)};
+                                if (_u call FUNC(allowRearm)) then {_u spawn FUNC(rearm)};
                                 sleep 0.1;
                             };
                         };

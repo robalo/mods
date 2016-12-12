@@ -1,8 +1,8 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 
-while {count GVAR(configQueue) > 0} do {
-    (GVAR(configQueue) deleteAt 0) call FUNC(configureUnit);
+while {!(GVAR(cfgQ) isEqualTo [])} do {
+    (GVAR(cfgQ) deleteAt 0) call FUNC(configureUnit);
 };
 
 if (GVAR(packNVG)) then {

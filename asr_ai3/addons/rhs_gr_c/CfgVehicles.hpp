@@ -6,10 +6,9 @@ class CfgVehicles {
 
     class rhsgref_cdf_ngd_base : SoldierGB {
 		ASR_AI_SKILL_REG2;
-		minFireTime = 7;
-		ASR_AI_CAMO_FULL;
 		ASR_AI_AMMOCOEF_STANDARD;
         ASR_AI_COST_REG;
+		ASR_AI_MINFIRETIME;
     };
     class rhsgref_cdf_ngd_rifleman : rhsgref_cdf_ngd_base {};
 
@@ -22,12 +21,10 @@ class CfgVehicles {
     };
     class rhsgref_cdf_ngd_officer : rhsgref_cdf_ngd_rifleman {
 		ASR_AI_COST_SPECIAL;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_ngd_squadleader : rhsgref_cdf_ngd_rifleman {
 		ASR_AI_SKILL_REG1;
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_ngd_grenadier_rpg : rhsgref_cdf_ngd_rifleman {
         ASR_AI_COST_REG;
@@ -35,20 +32,17 @@ class CfgVehicles {
     };
     class rhsgref_cdf_ngd_engineer : rhsgref_cdf_ngd_rifleman {
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_ngd_crew : rhsgref_cdf_ngd_rifleman {
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
 
 
     class rhsgref_cdf_reg_base : SoldierGB {
 		ASR_AI_SKILL_REG2;
-		minFireTime = 7;
-		ASR_AI_CAMO_FULL;
 		ASR_AI_AMMOCOEF_STANDARD;
         ASR_AI_COST_REG;
+		ASR_AI_MINFIRETIME;
     };
     class rhsgref_cdf_reg_rifleman : rhsgref_cdf_reg_base {};
 
@@ -66,16 +60,13 @@ class CfgVehicles {
     };
     class rhsgref_cdf_reg_general : rhsgref_cdf_reg_rifleman {
 		ASR_AI_COST_SPECIAL;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_reg_officer : rhsgref_cdf_reg_rifleman {
 		ASR_AI_COST_SPECIAL;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_reg_squadleader : rhsgref_cdf_reg_rifleman {
 		ASR_AI_SKILL_REG1;
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_reg_grenadier_rpg : rhsgref_cdf_reg_rifleman {
         ASR_AI_COST_REG;
@@ -86,26 +77,22 @@ class CfgVehicles {
     };
     class rhsgref_cdf_reg_engineer : rhsgref_cdf_reg_rifleman {
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_reg_crew : rhsgref_cdf_reg_rifleman {
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_air_pilot : rhsgref_cdf_reg_crew {
 		ASR_AI_SKILL_PIL1;
-        ASR_AI_CAMO_NONE;
         ASR_AI_COST_REG;
     };
 
     class rhsgref_cdf_para_base : rhsgref_cdf_reg_base {
 		ASR_AI_SKILL_REG2;
-        minFireTime = 7;
-		ASR_AI_CAMO_FULL;
 		ASR_AI_AMMOCOEF_STANDARD;
         ASR_AI_COST_REG;
+		ASR_AI_MINFIRETIME;
     };
-    class rhsgref_cdf_para_rifleman : rhsgref_cdf_para_base {};
+    class rhsgref_cdf_para_rifleman;
 
     class rhsgref_cdf_para_autorifleman : rhsgref_cdf_para_rifleman {
         ASR_AI_COST_REG;
@@ -121,12 +108,10 @@ class CfgVehicles {
     };
     class rhsgref_cdf_para_officer : rhsgref_cdf_para_rifleman {
 		ASR_AI_COST_SPECIAL;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_para_squadleader : rhsgref_cdf_para_rifleman {
 		ASR_AI_SKILL_REG1;
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_para_grenadier_rpg : rhsgref_cdf_para_rifleman {
         ASR_AI_COST_REG;
@@ -137,21 +122,19 @@ class CfgVehicles {
     };
     class rhsgref_cdf_para_engineer : rhsgref_cdf_para_rifleman {
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
     class rhsgref_cdf_para_crew : rhsgref_cdf_para_rifleman {
         ASR_AI_COST_REG;
-		ASR_AI_CAMO_FULL;
     };
 
     class rhsgref_nat_base : SoldierGB {
 		ASR_AI_SKILL_INS2;
-        minFireTime = 10;
         ASR_AI_CAMO_FULL;
 		ASR_AI_AMMOCOEF_STANDARD;
 		ASR_AI_COST_LESS;
+		ASR_AI_MINFIRETIME;
     };
-    class rhsgref_nat_rifleman : rhsgref_nat_base {};
+    class rhsgref_nat_rifleman;
 
     class rhsgref_nat_grenadier_rpg : rhsgref_nat_rifleman {
 		ASR_AI_AMMOCOEF_AT;
@@ -175,7 +158,7 @@ class CfgVehicles {
         ASR_AI_CAMO_FULL;
     };
 
-    class rhsgref_nat_pmil_rifleman : rhsgref_nat_base {};
+    class rhsgref_nat_pmil_rifleman;
 
     class rhsgref_nat_pmil_grenadier_rpg : rhsgref_nat_pmil_rifleman {
 		ASR_AI_AMMOCOEF_AT;
@@ -203,16 +186,16 @@ class CfgVehicles {
 
     class rhsgref_ins_base : SoldierGB {
 		ASR_AI_SKILL_INS2;
-        minFireTime = 10;
         ASR_AI_CAMO_FULL;
 		ASR_AI_AMMOCOEF_STANDARD;
 		ASR_AI_COST_LESS;
+		ASR_AI_MINFIRETIME;
     };
-    class rhsgref_ins_reed : rhsgref_ins_base {};
-    class rhsgref_ins_uniform_izlom : rhsgref_ins_base {};
-    class rhsgref_ins_uniform_specter : rhsgref_ins_base {};
-    class rhsgref_ins_uniform_gorka_y : rhsgref_ins_base {};
-    class rhsgref_ins_uniform_gorka_g : rhsgref_ins_uniform_gorka_y {};
+    class rhsgref_ins_reed;
+    class rhsgref_ins_uniform_izlom;
+    class rhsgref_ins_uniform_specter;
+    class rhsgref_ins_uniform_gorka_y;
+    class rhsgref_ins_uniform_gorka_g;
 
     class rhsgref_ins_squadleader : rhsgref_ins_uniform_specter {
 		ASR_AI_SKILL_INS1;
@@ -235,7 +218,6 @@ class CfgVehicles {
     class rhsgref_ins_sniper : rhsgref_ins_uniform_izlom {
 		ASR_AI_SKILL_SOF2;
 		ASR_AI_COST_REG;
-		minFireTime = 7;
         ASR_AI_CAMO_FULL;
 		ASR_AI_AMMOCOEF_SNIPER;
     };

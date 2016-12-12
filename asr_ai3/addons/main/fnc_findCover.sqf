@@ -1,12 +1,12 @@
 // returns array with 1 cover position near unit
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-params ["_unit", "_dangerobj", ["_maxdisttocover", 100]];
+params ["_unit", "_dangerobj", ["_maxdisttocover", 100], ["_maxpositions", 5]];
 
 scopeName "main";
-private ["_coverpos","_fnc_debug","_nBuilding"];
+private ["_coverpos","_nBuilding"];
 
-_fnc_debug = {
+private _fnc_debug = {
 	private ["_unit","_object","_marker","_markercolor"];
 	_unit = _this select 0;
 	_object = _this select 1;
@@ -31,7 +31,7 @@ _nearThingies append (nearestTerrainObjects [_unit, [], _maxdisttocover]);
 			private _min = _maxWidth min _maxLength;
 			private _max = _maxWidth max _maxLength;
 			if (_min > 0.5 && _max > 1) then {
-				private _objpos = getPosATL _x;
+				private _objpos = getPosWorld _x;
 				if (isNull _dangerobj) then {_dangerobj = _unit findNearestEnemy _unit};
 				if (isNull _dangerobj) then { // danger source unknown, just get to some cover
 					_coverpos = _objpos findEmptyPosition [0,1];
@@ -41,7 +41,7 @@ _nearThingies append (nearestTerrainObjects [_unit, [], _maxdisttocover]);
 					}
 				} else { // danger source known, hide behind cover
 					private _dangerpos = _unit getHideFrom _dangerobj;
-                    _coverpos = _x getPos [_max + 3, _dangerpos getDir _objpos];
+                    _coverpos = _objpos getPos [(_max/2) + 3, _dangerpos getDir _objpos];
 					_cover pushBack _coverpos;
 					if (GVAR(debug_findcover)) then {[_unit,_x,"colorgreen"] call _fnc_debug};
 				};
@@ -54,11 +54,14 @@ _nearThingies append (nearestTerrainObjects [_unit, [], _maxdisttocover]);
 	};
 } forEach _nearThingies;
 
-if (_isHouse && {random 1 < GVAR(usebuildings)}) then {
+if (_isHouse && _maxpositions > 1) then {
 	private _bposa = ([_nBuilding] call BIS_fnc_buildingPositions) call BIS_fnc_arrayShuffle;
 	if (count _bposa > 0) then {
 		// pick some building positions and add them to the returned cover array
-		{if (_x select 2 > 1.5 || {random 1 > 0.2}) then {_cover pushBack _x}} forEach _bposa;
+		{
+            if (_x select 2 > 1 || {random 1 > 0.3}) then {_cover pushBack _x};
+            if (count _cover == _maxpositions) exitWith {};
+        } forEach _bposa;
 	};
 };
 

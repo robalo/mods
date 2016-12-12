@@ -19,4 +19,5 @@ if (_type == "") then {
 };
 if (_tfilter) exitWith {false};
 if ((boundingCenter _this) select 2 < 0.4) exitWith {false};
+if (_this getVariable ["ace_cookoff_isCookingOff", false]) exitWith {false};
 true

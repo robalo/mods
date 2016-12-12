@@ -3,9 +3,9 @@
 #include "script_component.hpp"
 params ["_w"];
 private _compat = [];
-private["_mags","_find"];
+private "_mags";
 
-_find = {
+private _find = {
 	params ["_needle", "_haystack"];
 	({_needle == _x} count _haystack) > 0
 };

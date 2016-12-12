@@ -34,7 +34,7 @@
 
     class BWA3_optic_Shortdot : ItemCore {
         class ItemInfo : InventoryOpticsItem_Base_F {
-			__OPTIC_DMR;
+			__OPTIC_SNP;
         };
     };
 

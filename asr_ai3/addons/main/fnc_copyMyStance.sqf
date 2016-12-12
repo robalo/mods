@@ -10,24 +10,24 @@ if (GVAR(copymystance) == 0) then {
             while {alive _this && GVAR(copymystance) == 1} do {
                 private _leader = leader _this;
                 if (isPlayer _leader && !isPlayer _this) then {
-                    switch (true) do {
-                        case (vehicle _leader != _leader): {_this setUnitPos "AUTO"};
-                        case (stance _leader == "CROUCH"): {_this setUnitPos "MIDDLE"};
-                        case (stance _leader == "PRONE"): {_this setUnitPos "DOWN"};
-                        default {_this setUnitPos "AUTO"};
+                    call {
+                        if !(isNull objectParent _leader) exitWith {_this setUnitPos "MIDDLE"};
+                        if (stance _leader == "CROUCH") exitWith {_this setUnitPos "MIDDLE"};
+                        if (stance _leader == "PRONE") exitWith {_this setUnitPos "DOWN"};
+                        if (_this call FUNC(isUnderRoof)) then {_this setUnitPos "UP"} else {_this setUnitPos "AUTO"};
                     };
-                    private _leadspeed = speed _leader;
-                    if (_leadspeed > 0) then {_this limitSpeed _leadspeed};
+                    /*private _leadspeed = speed vehicle _leader;
+                    if (_leadspeed > 0) then {_this forceSpeed _leadspeed};*/
                 };
                 sleep 2;
             };
         };
     } forEach units group _caller;
-    hintSilent "ASR-AI3 :: Copy My Stance : Enabled";
+    hintSilent "Team follows my stance";
 } else {
     GVAR(copymystance) = 0;
-    { if (!isPlayer _x) then {_x setUnitPos "AUTO"; _x limitSpeed -1} } forEach units group _caller;
-    hintSilent "ASR-AI3 :: Copy My Stance : Disabled";
+    { if (!isPlayer _x) then {_x setUnitPos "AUTO"; /*_x forceSpeed -1*/} } forEach units group _caller;
+    hintSilent "Team stops copying my stance";
 };
 
 true

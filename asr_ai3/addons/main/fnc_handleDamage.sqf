@@ -4,10 +4,10 @@ params ["_unit", "_selection", "_damage"];
 
 // move out static weapon unit just before death
 if ((vehicle _unit) isKindOf "StaticWeapon" && {
-    switch _selection do {
-        case "": {_damage >= 1};
-        case "head": {_damage >= GVAR(crithit) select 0};
-        case "body": {_damage >= GVAR(crithit) select 1};
-        default {false};
-    }
+    call {
+        if (_selection == "") exitWith {_damage >= 1};
+        if (_selection == "head") exitWith {_damage >= GVAR(crithit) select 0};
+        if (_selection == "body") exitWith {_damage >= GVAR(crithit) select 1};
+        false
+    };
 }) then {moveOut _unit};

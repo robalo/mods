@@ -18,7 +18,7 @@ if (!_need) exitWith {
 	_unit setVariable[QGVAR(inprogress),false];
 };
 
-private _leaderpos = getposATL _unit;
+private _leaderpos = getPosWorld _unit;
 
 // Look for places
 if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Searching.",time,_unit]};
@@ -58,18 +58,17 @@ if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places
 	
 	if (_checkit) then {
 		_unit doWatch _x;
-		_unit doMove (getPosATL _x);
+		_unit doMove (getPosWorld _x);
 		waitUntil {_unit distance _x < 4};
 		_unit doWatch _x;
 		if (alive _x && {_x isKindOf "CAManbase"}) then {_unit action ["REARM",unitBackpack _x]} else {_unit action ["REARM",_x]};
 	};
-	if !(_unit call FUNC(isReady)) then {breakOut "searching"};
+	if !(_unit call FUNC(allowRearm)) then {breakOut "searching"};
 } forEach _search;
 
 [_unit,_leaderpos] spawn {
 	params ["_unit", "_pos"];
-	private ["_group"];
-	_group = group _unit;
+	private _group = group _unit;
 	_unit doWatch objNull;
 	if (_unit == leader _group) then {_unit doMove _pos} else {[_unit] joinSilent _group};
 	sleep 7; //finish reloading anim

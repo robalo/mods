@@ -16,14 +16,18 @@
 #define ASR_AI_COST_REG cost = 300000
 #define ASR_AI_COST_SPECIAL cost = 450000
 
+#define ASR_AI_CAMO_BASE camouflage = 2.0
+
 #define ASR_AI_CAMO_NONE camouflage = 2.0
 #define ASR_AI_CAMO_HALF camouflage = 1.2
 #define ASR_AI_CAMO_FULL camouflage = 0.8
 #define ASR_AI_CAMO_GHIL camouflage = 0.6
 #define ASR_AI_CAMO_BUSH camouflage = 0.4
 
-#define ASR_AI_AMMOCOEF_STANDARD primaryAmmoCoef = 0.4; secondaryAmmoCoef = 0.2; handgunAmmoCoef = 0.05
+#define ASR_AI_AMMOCOEF_STANDARD primaryAmmoCoef = 0.4; secondaryAmmoCoef = 0.2; handgunAmmoCoef = 0.01
 #define ASR_AI_AMMOCOEF_CIVILIAN primaryAmmoCoef = 0; secondaryAmmoCoef = 0; handgunAmmoCoef = 0
-#define ASR_AI_AMMOCOEF_DIVER primaryAmmoCoef = 0.4; secondaryAmmoCoef = 0.1; handgunAmmoCoef = 0.2
-#define ASR_AI_AMMOCOEF_SNIPER primaryAmmoCoef = 0.2; secondaryAmmoCoef = 0.05; handgunAmmoCoef = 0.1
+#define ASR_AI_AMMOCOEF_DIVER primaryAmmoCoef = 0.4; secondaryAmmoCoef = 0.01; handgunAmmoCoef = 0.1
+#define ASR_AI_AMMOCOEF_SNIPER primaryAmmoCoef = 0.3; secondaryAmmoCoef = 0.01; handgunAmmoCoef = 0.1
 #define ASR_AI_AMMOCOEF_AT secondaryAmmoCoef = 0.5
+
+#define ASR_AI_MINFIRETIME minFireTime = 10
