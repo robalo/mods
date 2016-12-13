@@ -30,7 +30,7 @@ while {_resolution > 0.25} do {
 };
 
 _coverPos = [_coverPos, -0.8, _dirFromUnitToCover] call BIS_fnc_relPos;
-if(GVAR(debug)) then {
+if(GVAR(debug_findcover)) then {
     if(isNil "unknownPoints") then {
         unknownPoints = [];
         addMissionEventHandler ["Draw3D", {

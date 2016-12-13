@@ -30,7 +30,7 @@ if(count _this == 2) then {
 };
 
 if(count _result != 0) exitWith {
-    if(GVAR(debug)) then {
+    if(GVAR(debug_findcover)) then {
 
         if(isNil "centerPts") then {
             centerPts = [];
@@ -119,7 +119,7 @@ if(_firstCheckAngle != 6000) then {
     _result = [((getPosASL _unit) vectorAdd [0,0,_height]), _farthestCheckDistance,  (_lastCheckAngle + _firstCheckAngle) / 2] call BIS_fnc_relPos;
 };
 
-if(GVAR(debug)) then {
+if(GVAR(debug_findcover)) then {
 
     if(count _result > 0) then {
         if(isNil "centerPts") then {

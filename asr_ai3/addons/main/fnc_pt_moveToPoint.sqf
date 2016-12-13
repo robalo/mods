@@ -6,7 +6,7 @@ private _unit = _this select 0;
 private _cover = _this select 1;
 private _dangerUnit = _this select 2;
 
-if(GVAR(debug)) then {
+if(GVAR(debug_findcover)) then {
 
     if(isNil "movePts") then {
         movePts = [];

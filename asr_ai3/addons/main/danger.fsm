@@ -269,7 +269,7 @@ class FSM
     class Reactions
     {
       name = "Reactions";
-      init = /*%FSM<STATEINIT""">*/"[_this,_dangerCausedBy] call asr_ai3_main_fnc_reactDanger;"/*%FSM</STATEINIT""">*/;
+      init = /*%FSM<STATEINIT""">*/"[_this,_dangerCausedBy, _dangerCause] call asr_ai3_main_fnc_pt_reactDanger;"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -324,7 +324,7 @@ class FSM
           priority = 2.000000;
           to="Reactions";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_isleader && {_dangerCause == 4 ||  {(_dangerCause == 1 || _dangerCause == 9 || _dangerCause == 5)  && side _dangerCausedBy != side _this}}"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_dangerCause == 4 ||  {(_dangerCause == 1 || _dangerCause == 9 || _dangerCause == 5)  && side _dangerCausedBy != side _this}"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/

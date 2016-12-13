@@ -51,7 +51,7 @@ while{_resolution > 0.25} do {
     };
     _coverPos = _coverPos vectorAdd [0,0,_originalCoverPos select 2];
 
-    if(GVAR(debug)) then {
+    if(GVAR(debug_findcover)) then {
 
         if(isNil "unitPts") then {
             unitPts = [];
@@ -105,7 +105,7 @@ if(_coverObj in lineIntersectsWith [ _coverPos, _originDetect]) then {
 
 //move 0.6m away from the cover, because the unit is not a point object
  _coverPos = [_coverPos, 0.6,  _dangerToCoverDir] call BIS_fnc_relPos;
- if(GVAR(debug)) then {
+ if(GVAR(debug_findcover)) then {
     if(isNil "coverPts") then {
         coverPts = [];
         addMissionEventHandler ["Draw3D", {
