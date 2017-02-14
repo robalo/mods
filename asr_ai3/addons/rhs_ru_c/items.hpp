@@ -71,36 +71,36 @@
 
     class rhs_acc_tgpa : rhs_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
     };
     class rhs_acc_pbs1 : rhs_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
     };
     class rhs_acc_tgpv : rhs_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
     };
     class rhs_acc_dtk4short : rhs_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
     };
     class rhs_acc_dtk4long : rhs_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
     };
     class rhs_acc_dtk4screws : rhs_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
     };
 	class rhs_acc_pbs4: rhs_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
     };

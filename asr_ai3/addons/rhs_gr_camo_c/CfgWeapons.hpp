@@ -142,4 +142,8 @@ class CfgWeapons {
         __CAMO_V_CAMO;
     };
 
+    class rhs_6b5 : rhs_6b23 {
+        __CAMO_V_MONO;
+    };
+
 };

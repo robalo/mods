@@ -24,14 +24,20 @@ private _pieces = 0;
     };
 } forEach _gearItems;
 
-if (_pieces > 0) then {
-    _camoCoef = _camo/_pieces;
-    _unit setUnitTrait ["camouflageCoef", _camoCoef];
+// launcher on back gives one up, the more the bigger it is.
+private _tube = secondaryWeapon _unit;
+private _tubeCoef = 1;
+if (_tube != "" && {isClass (configfile>>"CfgWeapons">>_tube)}) then {
+    private _tubemass = [configfile>>"CfgWeapons">>_tube>>"WeaponSlotsInfo">>"mass", "number", 0] call CBA_fnc_getConfigEntry;
+    if (_tubemass > 100) then {_tubeCoef = _tubemass/100};
+};
 
-    if (GVAR(debug_setcamo)) then {
-        private _unitType = typeOf _unit;
-        private _basecamo = getNumber (configfile>>"CfgVehicles">>_unitType>>"camouflage");
-        private _camofinal = _basecamo * _camoCoef;
-        diag_log format["ASR AI3: %1 | Unit %2, type: %3, uniform: %4, vest: %5, ruck: %6, baseCamo: %7, camoCoef: %8, camoFinal: %9",diag_ticktime,_unit,_unitType,_uniform,_vest,_ruck,_basecamo,_camoCoef,_camofinal];
-    };
+private _camoCoef = if (_pieces > 0) then {(_camo/_pieces)*_tubeCoef} else {_tubeCoef};
+_unit setUnitTrait ["camouflageCoef", _camoCoef];
+
+if (GVAR(debug_setcamo)) then {
+    private _unitType = typeOf _unit;
+    private _basecamo = getNumber (configfile>>"CfgVehicles">>_unitType>>"camouflage");
+    private _camofinal = _basecamo * _camoCoef;
+    diag_log format["ASR AI3: Unit %1, type: %2, uniform: %3, vest: %4, ruck: %5, launcher: %6, baseCamo: %7, camoCoef: %8, camoFinal: %9",_unit,_unitType,_uniform,_vest,_ruck,_tube,_basecamo,_camoCoef,_camofinal];
 };

@@ -2,7 +2,7 @@
 
 class CfgPatches {
 	class ADDON {
-        addonRootClass = "hlcweapons_core";
+        addonRootClass = "rhssaf_c_weapons";
 		units[] = {};
 		weapons[] = {};
         ammo[] = {};
@@ -10,9 +10,7 @@ class CfgPatches {
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
 			"A3_Characters_F","A3_Weapons_F",
-			"hlcweapons_core",
-            "hlcweapons_MG3s","hlcweapons_Springfield1903",
-            "hlcweapons_SAW"
+			"rhssaf_c_troops","rhssaf_c_weapons"
 		};
 		version = VERSION;
 		author = "Robalo";
@@ -21,6 +19,6 @@ class CfgPatches {
 
 PRELOAD_ADDONS;
 
+#include "CfgWeapons.hpp"
+#include "CfgVehicles.hpp"
 #include "CfgAmmo.hpp"
-
-#include "\hlc_core\script_macros.hpp"

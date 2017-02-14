@@ -18,22 +18,22 @@
 	
 	class rhsusf_acc_M2010S : rhsusf_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
 	};
 	class rhsusf_acc_SR25S : rhsusf_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
 	};
 	class rhsusf_acc_rotex5_grey : rhsusf_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
 	};
     class rhsusf_acc_nt4_black : rhsusf_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
 	};
 
@@ -91,5 +91,11 @@
     class rhsusf_acc_premier_anpvs27 : rhsusf_acc_premier {
         class ItemInfo : InventoryOpticsItem_Base_F {
 			__OPTIC_SNP;
+		};
+	};
+
+    class rhsusf_acc_ACOG_MDO : ItemCore {
+        class ItemInfo : InventoryOpticsItem_Base_F {
+			__OPTIC_DMR;
 		};
 	};

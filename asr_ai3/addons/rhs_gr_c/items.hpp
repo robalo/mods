@@ -29,6 +29,6 @@
 
 	class rhsgref_savz61_suppressor: rhsgref_silencer_base {
 		class ItemInfo : ItemInfo {
-			ASR_SUPP_INH_COEFF;
+			__AI_SUPP_INH_COEFF;
 		};
     };

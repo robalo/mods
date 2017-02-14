@@ -68,6 +68,7 @@ PREP(moveToCover);
 PREP(unitMoveToCover);
 PREP(getInWeaponsEH);
 PREP(handleHit);
+PREP(unitNVG);
 PREP(showHideNVG);
 PREP(setupGear);
 PREP(reactDanger);

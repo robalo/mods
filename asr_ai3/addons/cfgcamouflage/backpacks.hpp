@@ -182,45 +182,45 @@
     class B_ViperHarness_base_F;
     class B_ViperHarness_blk_F : B_ViperHarness_base_F {
         //displayName = "Viper Harness (Black)";
-        __CAMO_B_MEDIUMDARK;
+        __CAMO_B_SMALLDARK;
     };
     class B_ViperHarness_ghex_F : B_ViperHarness_base_F {
         //displayName = "Viper Harness (Green Hex)";
-        __CAMO_B_MEDIUMCAMO;
+        __CAMO_B_SMALLCAMO;
     };
     class B_ViperHarness_hex_F : B_ViperHarness_base_F {
         //displayName = "Viper Harness (Hex)";
-        __CAMO_B_MEDIUMCAMO;
+        __CAMO_B_SMALLCAMO;
     };
     class B_ViperHarness_khk_F : B_ViperHarness_base_F {
         //displayName = "Viper Harness (Khaki)";
-        __CAMO_B_MEDIUMMONO;
+        __CAMO_B_SMALLMONO;
     };
     class B_ViperHarness_oli_F : B_ViperHarness_base_F {
         //displayName = "Viper Harness (Olive)";
-        __CAMO_B_MEDIUMMONO;
+        __CAMO_B_SMALLMONO;
     };
 
     class B_ViperLightHarness_base_F;
     class B_ViperLightHarness_blk_F : B_ViperLightHarness_base_F {
         //displayName = "Viper Light Harness (Black)";
-        __CAMO_B_MEDIUMDARK;
+        __CAMO_B_SMALLDARK;
     };
     class B_ViperLightHarness_ghex_F : B_ViperLightHarness_base_F {
         //displayName = "Viper Light Harness (Green Hex)";
-        __CAMO_B_MEDIUMCAMO;
+        __CAMO_B_SMALLCAMO;
     };
     class B_ViperLightHarness_hex_F : B_ViperLightHarness_base_F {
         //displayName = "Viper Light Harness (Hex)";
-        __CAMO_B_MEDIUMCAMO;
+        __CAMO_B_SMALLCAMO;
     };
     class B_ViperLightHarness_khk_F : B_ViperLightHarness_base_F {
         //displayName = "Viper Light Harness (Khaki)";
-        __CAMO_B_MEDIUMMONO;
+        __CAMO_B_SMALLMONO;
     };
     class B_ViperLightHarness_oli_F : B_ViperLightHarness_base_F {
         //displayName = "Viper Light Harness (Olive)";
-        __CAMO_B_MEDIUMMONO;
+        __CAMO_B_SMALLMONO;
     };
 
     class Weapon_Bag_Base;

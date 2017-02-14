@@ -15,34 +15,34 @@ class CfgAmmo {
 
     class BWA3_B_556x45_Ball;
     class BWA3_B_556x45_Ball_SD : BWA3_B_556x45_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE0; //0.6;
+		audibleFire = __AI_AMMO_AUDIBLE0; //0.6;
 		dangerRadiusBulletClose = 1; //subsonic
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
     };
     class BWA3_B_762x51_Ball;
     class BWA3_B_762x51_Ball_SD : BWA3_B_762x51_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE0; //0.9;
+		audibleFire = __AI_AMMO_AUDIBLE0; //0.9;
 		dangerRadiusBulletClose = 1; //subsonic
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
     };
     class BWA3_B_127x99_Ball;
     class BWA3_B_127x99_Ball_SD : BWA3_B_127x99_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE0; //1.5;
+		audibleFire = __AI_AMMO_AUDIBLE0; //1.5;
 		dangerRadiusBulletClose = 1; //subsonic
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
     };
     class BWA3_B_46x30_Ball : BulletBase {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //7;
-		dangerRadiusBulletClose = ASR_AI_AMMO_RANGE_CRACKS;
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		audibleFire = __AI_AMMO_AUDIBLE1; //7;
+		dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
     };
     class BWA3_B_46x30_Ball_SD : BWA3_B_46x30_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE0; //0.7;
+		audibleFire = __AI_AMMO_AUDIBLE0; //0.7;
 		dangerRadiusBulletClose = 1; //subsonic
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
     };
 

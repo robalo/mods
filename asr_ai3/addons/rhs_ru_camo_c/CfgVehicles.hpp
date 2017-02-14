@@ -13,6 +13,9 @@ class CfgVehicles {
         //displayName = "Sidor";
         __CAMO_B_MEDIUMMONO;
     };
+    class rhs_medic_bag: B_AssaultPack_Base {
+        __CAMO_B_SMALLMONO;
+    };
 
     class SoldierGB;
     class rhs_msv_rifleman;
@@ -162,4 +165,8 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
 
+    class rhs_rva_crew;
+    class rhs_rva_crew_officer : rhs_rva_crew {
+        ASR_AI_CAMO_BASE;
+    };
 };

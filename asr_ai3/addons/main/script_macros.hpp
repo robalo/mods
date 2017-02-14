@@ -9,8 +9,5 @@
 #include "script_units.hpp"
 #include "script_camo.hpp"
 
-#define ASR_AI_AMMO_AUDIBLE0 2
-#define ASR_AI_AMMO_AUDIBLE1 100
-#define ASR_AI_AMMO_RANGE_HIT_FAR 1200
-#define ASR_AI_AMMO_RANGE_HIT_SMALL 5
-#define ASR_AI_AMMO_RANGE_CRACKS 120
+#define __AI_SUPP_COEFF class AmmoCoef { visibleFire = 0.2; audibleFire = 0.2; }
+#define __AI_SUPP_INH_COEFF class AmmoCoef : AmmoCoef { visibleFire = 0.2; audibleFire = 0.2; }

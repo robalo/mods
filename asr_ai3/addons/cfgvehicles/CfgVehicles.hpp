@@ -27,11 +27,8 @@ class CfgVehicles {
 
 	class Civilian: CAManBase {
 		ASR_AI_SKILL_CIV1; // default civilian
-		ASR_AI_COST_LESS;
 		accuracy = 0.2;
-//        primaryAmmoCoef = 0;
-//        secondaryAmmoCoef = 0;
-//        handgunAmmoCoef = 0;
+        ASR_AI_AMMOCOEF_CIVILIAN;
 	};
 	class C_man_1;
 
@@ -45,39 +42,23 @@ class CfgVehicles {
 	class SoldierWB: CAManBase {
 		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
 		ASR_AI_SKILL_REG2; // default soldier
-		ASR_AI_COST_REG;
-/*
-        primaryAmmoCoef = 0.4;
-        secondaryAmmoCoef = 0.2;
-        handgunAmmoCoef = 0.1;
-*/
+        ASR_AI_AMMOCOEF_STANDARD;
 	};
 	class SoldierEB: CAManBase {
 		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
 		ASR_AI_SKILL_REG2;
-		ASR_AI_COST_REG;
-/*
-        primaryAmmoCoef = 0.4;
-        secondaryAmmoCoef = 0.2;
-        handgunAmmoCoef = 0.1;
-*/
+        ASR_AI_AMMOCOEF_STANDARD;
 	};
 	class SoldierGB: CAManBase {
 		fsmDanger = "x\asr_ai3\addons\main\danger.fsm";
 		ASR_AI_SKILL_REG2;
-		ASR_AI_COST_REG;
-/*
-        primaryAmmoCoef = 0.4;
-        secondaryAmmoCoef = 0.2;
-        handgunAmmoCoef = 0.1;
-*/
+        ASR_AI_AMMOCOEF_STANDARD;
 	};
 
  // BLUFOR
  // basic
 
 	class B_Soldier_base_F: SoldierWB {
-		ASR_AI_COST_REG;
 		ASR_AI_MINFIRETIME;
 	};
 	class B_Soldier_02_f;
@@ -85,107 +66,30 @@ class CfgVehicles {
 	class B_Soldier_04_f;
 	class B_Soldier_05_f;
 
-	class B_Soldier_lite_F: B_Soldier_03_f {
-		ASR_AI_COST_REG;
-	};
-	class B_Soldier_GL_F: B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_LAT_F: B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_medic_F: B_Soldier_02_f {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_repair_F: B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_exp_F: B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_Soldier_A_F: B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_AT_F: B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_AA_F: B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_engineer_F: B_Soldier_03_f {
-		ASR_AI_COST_REG;
-	};
-	class B_crew_F: B_Soldier_03_f {
-		ASR_AI_COST_REG;
-	};
-	class B_Soldier_support_base_F;
-	class B_soldier_AAR_F: B_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_AAT_F: B_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_AAA_F: B_soldier_AAT_F {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_PG_F : B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_soldier_UAV_F: B_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_support_MG_F : B_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_support_GMG_F : B_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_support_Mort_F : B_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_support_AMG_F : B_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_support_AMort_F : B_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-
-// ar
-	class B_soldier_AR_F: B_Soldier_02_f {
-		ASR_AI_COST_REG;
-	};
-
 // lead
 	class B_Soldier_SL_F: B_Soldier_03_f {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
 	};
 	class B_Soldier_TL_F: B_Soldier_03_f {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
 	};
 
 // dm
 	class B_soldier_M_F: B_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class B_Sharpshooter_F : B_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 
 // pilot
 	class B_Helipilot_F: B_Soldier_04_f {
 		ASR_AI_SKILL_PIL1;
-		ASR_AI_COST_REG;
 	};
 	class B_Pilot_F : B_Soldier_05_f {
 		ASR_AI_SKILL_PIL1;
-		ASR_AI_COST_REG;
-	};
-	class B_helicrew_F : B_helipilot_F {
-		ASR_AI_COST_REG;
 	};
 	class B_Story_Pilot_F : B_Soldier_base_F {
 		ASR_AI_SKILL_PIL1;
@@ -194,142 +98,57 @@ class CfgVehicles {
 // diver
 	class B_Soldier_diver_base_F: B_Soldier_base_F {
 		ASR_AI_SKILL_SOF2;
-		ASR_AI_COST_REG;
-//        primaryAmmoCoef = 0.4;
-//        secondaryAmmoCoef = 0.1;
-//        handgunAmmoCoef = 0.2;
-	};
-	class B_diver_F: B_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_diver_TL_F: B_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
-	};
-	class B_diver_exp_F: B_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_DIVER;
 	};
 
 // sniper
 	class B_Soldier_sniper_base_F: B_Soldier_base_F {
 		ASR_AI_SKILL_SNP1;
-		ASR_AI_COST_SPECIAL;
-//        primaryAmmoCoef = 0.2;
-//        secondaryAmmoCoef = 0.05;
-//        handgunAmmoCoef = 0.1;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class B_spotter_F: B_Soldier_sniper_base_F {
 		ASR_AI_SKILL_SOF2;
-		ASR_AI_COST_SPECIAL;
-	};
-	class B_sniper_F: B_Soldier_sniper_base_F {
-		ASR_AI_COST_SPECIAL;
-	};
-	class B_ghillie_base_F : B_Soldier_sniper_base_F {
-		ASR_AI_COST_SPECIAL;
+        ASR_AI_AMMOCOEF_STANDARD;
 	};
 
-// officer
-	class B_officer_F: B_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-	};
-	class B_Story_Colonel_F : B_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-	};
 
 // sof
 	class B_Soldier_recon_base: B_Soldier_base_F {
 		ASR_AI_SKILL_SOF2;
-		ASR_AI_COST_SPECIAL;
-	};
-	class B_recon_F: B_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-	};
-	class B_recon_LAT_F: B_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-	};
-	class B_recon_exp_F: B_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-	};
-	class B_recon_medic_F: B_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-	};
-	class B_recon_TL_F: B_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
 	};
 	class B_recon_M_F: B_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-//        primaryAmmoCoef = 0.2;
-//        secondaryAmmoCoef = 0.05;
-//        handgunAmmoCoef = 0.1;
-	};
-	class B_recon_JTAC_F: B_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class B_Story_SF_Captain_F : B_Soldier_02_f {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
 	};
 	class B_CTRG_soldier_GL_LAT_F : B_Soldier_base_F {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
 	};
 	class B_CTRG_soldier_engineer_exp_F : B_Soldier_02_f {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
 	};
 	class B_CTRG_soldier_M_medic_F : B_Soldier_03_f {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
 	};
 	class B_CTRG_soldier_AR_A_F : B_Soldier_03_f {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
 	};
 	class B_CTRG_Sharphooter_F : B_Soldier_base_F {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
 	};
 
 	class B_G_Soldier_F;
 
     class B_CTRG_Soldier_base_F : B_Soldier_base_F {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
-    };
-    class B_CTRG_Soldier_F;
-    class B_CTRG_Soldier_TL_tna_F : B_CTRG_Soldier_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class B_CTRG_Soldier_Exp_tna_F : B_CTRG_Soldier_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class B_CTRG_Soldier_Medic_tna_F : B_CTRG_Soldier_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class B_CTRG_Soldier_M_tna_F : B_CTRG_Soldier_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class B_CTRG_Soldier_tna_F : B_CTRG_Soldier_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class B_CTRG_Soldier_LAT_tna_F : B_CTRG_Soldier_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class B_CTRG_Soldier_AR_tna_F : B_CTRG_Soldier_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class B_CTRG_Soldier_JTAC_tna_F : B_CTRG_Soldier_F {
-		ASR_AI_COST_SPECIAL;
     };
 
 // gendarme
 
-    class B_Soldier_F;
-    class B_GEN_Soldier_base_F : B_Soldier_F {
-    };
+    class B_GEN_Soldier_base_F;
     class B_GEN_Commander_F : B_GEN_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_SPECIAL;
     };
 
 
@@ -339,144 +158,81 @@ class CfgVehicles {
 
 	class I_G_Soldier_base_F : SoldierGB {
 		ASR_AI_SKILL_INS2;
-		ASR_AI_COST_LESS;
 		ASR_AI_MINFIRETIME;
 	};
-	class I_G_Soldier_lite_F : I_G_Soldier_base_F {
-		ASR_AI_COST_LESS;
-	};
-	class I_G_medic_F : I_G_Soldier_base_F {
-		ASR_AI_COST_LESS;
-	};
-	class I_G_engineer_F : I_G_Soldier_base_F {
-		ASR_AI_COST_LESS;
-	};
-	class I_G_Soldier_exp_F : I_G_Soldier_base_F {
-		ASR_AI_COST_LESS;
-	};
-	class I_G_Soldier_GL_F : I_G_Soldier_base_F {
-		ASR_AI_COST_LESS;
-	};
-	class I_G_Soldier_A_F : I_G_Soldier_base_F {
-		ASR_AI_COST_LESS;
-	};
-	
 
 // lead
 	class I_G_Soldier_SL_F : I_G_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
 	};
 	class I_G_Soldier_TL_F : I_G_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
 	};
 	class I_G_Story_Protagonist_F : B_G_Soldier_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
 	};
 
-// ar
-	class I_G_Soldier_AR_F : I_G_Soldier_base_F {
-		ASR_AI_COST_LESS;
-	};
 
 // dm
 	class I_G_Soldier_M_F : I_G_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class I_G_Sharpshooter_F : I_G_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 
 // officer
 	class I_G_officer_F : I_G_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_SPECIAL;
 	};
 
 // sof
 	class I_G_Story_SF_Captain_F : B_G_Soldier_F {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
 	};
 
 // Syndikat
 
-    class I_C_Soldier_base_F : I_G_Soldier_base_F {
-		ASR_AI_COST_LESS;
-    };
+    class I_C_Soldier_base_F;
+
     class I_C_Soldier_Para_1_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
     };
     class I_C_Soldier_Para_2_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
     };
     class I_C_Soldier_Para_3_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
     };
     class I_C_Soldier_Para_4_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
     };
     class I_C_Soldier_Para_5_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
         ASR_AI_AMMOCOEF_AT;
     };
     class I_C_Soldier_Para_6_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
     };
     class I_C_Soldier_Para_7_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
     };
     class I_C_Soldier_Para_8_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_LESS;
-    };
-    class I_C_Soldier_Bandit_1_F : I_C_Soldier_base_F {
-		ASR_AI_COST_LESS;
     };
     class I_C_Soldier_Bandit_2_F : I_C_Soldier_base_F {
-		ASR_AI_COST_LESS;
         ASR_AI_AMMOCOEF_AT;
-    };
-    class I_C_Soldier_Bandit_3_F : I_C_Soldier_base_F {
-		ASR_AI_COST_LESS;
-    };
-    class I_C_Soldier_Bandit_4_F : I_C_Soldier_base_F {
-		ASR_AI_COST_LESS;
-    };
-    class I_C_Soldier_Bandit_5_F : I_C_Soldier_base_F {
-		ASR_AI_COST_LESS;
-    };
-    class I_C_Soldier_Bandit_6_F : I_C_Soldier_base_F {
-		ASR_AI_COST_LESS;
-    };
-    class I_C_Soldier_Bandit_7_F : I_C_Soldier_base_F {
-		ASR_AI_COST_LESS;
-    };
-    class I_C_Soldier_Bandit_8_F : I_C_Soldier_base_F {
-		ASR_AI_COST_LESS;
     };
     class I_C_Soldier_Camo_F : I_C_Soldier_base_F {
 		ASR_AI_SKILL_INS1;
-		ASR_AI_COST_REG;
     };
     class I_C_Pilot_F : I_C_Soldier_base_F {
         ASR_AI_SKILL_PIL2;
-		ASR_AI_COST_LESS;
     };
     class I_C_Helipilot_F : I_C_Soldier_base_F {
         ASR_AI_SKILL_PIL2;
-		ASR_AI_COST_LESS;
     };
 
 
@@ -484,429 +240,127 @@ class CfgVehicles {
  // basic
 
 	class I_Soldier_base_F: SoldierGB {
-		ASR_AI_COST_REG;
 		ASR_AI_MINFIRETIME;
 	};
 	class I_Soldier_02_F;
 	class I_Soldier_03_F;
 	class I_Soldier_04_F;
 
-	class I_soldier_F: I_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_lite_F: I_Soldier_02_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_A_F: I_Soldier_02_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_GL_F: I_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_LAT_F: I_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_AT_F: I_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_AA_F: I_Soldier_02_F {
-		ASR_AI_COST_REG;
-	};
-	class I_medic_F: I_Soldier_02_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_repair_F: I_Soldier_02_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_exp_F: I_Soldier_02_F {
-		ASR_AI_COST_REG;
-	};
-	class I_engineer_F: I_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_crew_F: I_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_soldier_UAV_F: I_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_support_base_F;
-	class I_Soldier_AAR_F: I_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_AAT_F: I_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_Soldier_AAA_F: I_Soldier_AAT_F {
-		ASR_AI_COST_REG;
-	};
-	class I_support_MG_F : I_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_support_GMG_F : I_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_support_Mort_F : I_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_support_AMG_F : I_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_support_AMort_F : I_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-
-// ar
-	class I_Soldier_AR_F: I_Soldier_02_F {
-		ASR_AI_COST_REG;
-	};
-
 // lead
 	class I_Soldier_SL_F: I_Soldier_02_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
 	};
 	class I_Soldier_TL_F: I_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
 	};
 
 // dm
 	class I_Soldier_M_F: I_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 
 // pilot
 	class I_helipilot_F: I_Soldier_03_F {
 		ASR_AI_SKILL_PIL1;
-		ASR_AI_COST_REG;
 	};
 	class I_pilot_F : I_Soldier_04_F {
 		ASR_AI_SKILL_PIL1;
-		ASR_AI_COST_REG;
-	};
-	class I_helicrew_F: I_helipilot_F {
-		ASR_AI_COST_REG;
-	};
-
-// officer
-	class I_officer_F: I_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
 	};
 
 // sniper
 	class I_Soldier_sniper_base_F: I_Soldier_base_F {
 		ASR_AI_SKILL_SNP1;
-		ASR_AI_COST_SPECIAL;
-//        primaryAmmoCoef = 0.2;
-//        secondaryAmmoCoef = 0.05;
-//        handgunAmmoCoef = 0.1;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class I_Spotter_F: I_Soldier_sniper_base_F {
-		ASR_AI_COST_SPECIAL;
-	};
-	class I_Sniper_F: I_Soldier_sniper_base_F {
-		ASR_AI_COST_SPECIAL;
-	};
-	class I_ghillie_base_F : I_Soldier_sniper_base_F {
-		ASR_AI_COST_SPECIAL;
+		ASR_AI_SKILL_SOF2;
+        ASR_AI_AMMOCOEF_STANDARD;
 	};
 
 // diver
 	class I_Soldier_diver_base_F: I_Soldier_base_F {
 		ASR_AI_SKILL_SOF2;
-		ASR_AI_COST_REG;
-//        primaryAmmoCoef = 0.4;
-//        secondaryAmmoCoef = 0.1;
-//        handgunAmmoCoef = 0.2;
+        ASR_AI_AMMOCOEF_DIVER;
 	};
-	class I_diver_F: I_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_diver_exp_F: I_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
-	};
-	class I_diver_TL_F: I_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
-	};
+
 
  // OPFOR
 
  // basic
 
 	class O_Soldier_base_F: SoldierEB {
-		ASR_AI_COST_REG;
 		ASR_AI_MINFIRETIME;
 	};
 	class O_Soldier_02_F;
-	class O_Soldier_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_lite_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_GL_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_LAT_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_medic_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_soldier_repair_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_soldier_exp_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_A_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_AT_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_AA_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_engineer_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_crew_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_soldier_PG_F : O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_soldier_UAV_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_support_base_F;
-	class O_Soldier_AAR_F: O_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_AAT_F: O_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_AAA_F: O_Soldier_AAT_F {
-		ASR_AI_COST_REG;
-	};
-	class O_support_MG_F : O_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_support_GMG_F : O_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_support_Mort_F : O_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_support_AMG_F : O_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_support_AMort_F : O_Soldier_support_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_Soldier_Urban_base;
-	class O_soldierU_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_AAR_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_LAT_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_AT_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_AAT_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_AA_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_AAA_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_medic_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_repair_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_exp_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_engineer_U_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_A_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-	class O_SoldierU_GL_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
-
-// ar
-	class O_Soldier_AR_F: O_Soldier_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_soldierU_AR_F : O_Soldier_Urban_base {
-		ASR_AI_COST_REG;
-	};
+    class O_Soldier_Urban_base;
 
 // lead
 	class O_Soldier_SL_F: O_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
 	};
 	class O_Soldier_TL_F: O_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
 	};
 	class O_soldierU_TL_F : O_Soldier_Urban_base {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
 	};
 	class O_SoldierU_SL_F : O_Soldier_Urban_base {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
 	};
 
 // dm
 	class O_soldier_M_F: O_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class O_soldierU_M_F : O_Soldier_Urban_base {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class O_Sharpshooter_F : O_Soldier_base_F {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class O_Urban_Sharpshooter_F : O_Soldier_Urban_base {
 		ASR_AI_SKILL_REG1;
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 
 // pilot
 	class O_helipilot_F: O_Soldier_02_F {
 		ASR_AI_SKILL_PIL1;
-		ASR_AI_COST_REG;
-	};
-	class O_Pilot_F : O_helipilot_F {
-		ASR_AI_COST_REG;
-	};
-	class O_helicrew_F : O_helipilot_F {
-		ASR_AI_COST_REG;
 	};
 
 // diver
 	class O_Soldier_diver_base_F: O_Soldier_base_F {
 		ASR_AI_SKILL_SOF2;
-		ASR_AI_COST_REG;
-//        primaryAmmoCoef = 0.4;
-//        secondaryAmmoCoef = 0.1;
-//        handgunAmmoCoef = 0.2;
-	};
-	class O_diver_F: O_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_diver_TL_F: O_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
-	};
-	class O_diver_exp_F: O_Soldier_diver_base_F {
-		ASR_AI_COST_REG;
+        ASR_AI_AMMOCOEF_DIVER;
 	};
 
 // sniper
 	class O_Soldier_sniper_base_F: O_Soldier_base_F {
 		ASR_AI_SKILL_SNP1;
-		ASR_AI_COST_SPECIAL;
-//        primaryAmmoCoef = 0.2;
-//        secondaryAmmoCoef = 0.05;
-//        handgunAmmoCoef = 0.1;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 	class O_spotter_F: O_Soldier_sniper_base_F {
 		ASR_AI_SKILL_SOF2;
-		ASR_AI_COST_SPECIAL;
-	};
-	class O_sniper_F: O_Soldier_sniper_base_F {
-		ASR_AI_COST_SPECIAL;
-	};
-	class O_ghillie_base_F : O_Soldier_sniper_base_F {
-		ASR_AI_COST_SPECIAL;
-	};
-
-// officer
-	class O_officer_F: O_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-	};
-	class O_Story_Colonel_F : O_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
+        ASR_AI_AMMOCOEF_STANDARD;
 	};
 
 // sof
 	class O_Soldier_recon_base: O_Soldier_base_F {
 		ASR_AI_SKILL_SOF2;
-		ASR_AI_COST_SPECIAL;
-	};
-	class O_recon_F: O_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
 	};
 	class O_recon_M_F: O_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-//        primaryAmmoCoef = 0.2;
-//        secondaryAmmoCoef = 0.05;
-//        handgunAmmoCoef = 0.1;
-	};
-	class O_recon_LAT_F: O_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-	};
-	class O_recon_medic_F: O_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-	};
-	class O_recon_exp_F: O_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-	};
-	class O_recon_JTAC_F: O_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
-	};
-	class O_recon_TL_F: O_Soldier_recon_base {
-		ASR_AI_COST_SPECIAL;
+        ASR_AI_AMMOCOEF_SNIPER;
 	};
 
     class O_V_Soldier_Viper_F : O_Soldier_base_F {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
     };
     class O_V_Soldier_base_F : O_Soldier_base_F {
 		ASR_AI_SKILL_SOF1;
-		ASR_AI_COST_SPECIAL;
-    };
-    class O_V_Soldier_hex_F : O_V_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class O_V_Soldier_TL_hex_F : O_V_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class O_V_Soldier_Exp_hex_F : O_V_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class O_V_Soldier_Medic_hex_F : O_V_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class O_V_Soldier_M_hex_F : O_V_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class O_V_Soldier_LAT_hex_F : O_V_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
-    };
-    class O_V_Soldier_JTAC_hex_F : O_V_Soldier_base_F {
-		ASR_AI_COST_SPECIAL;
     };
 
 // UAV

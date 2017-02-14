@@ -56,6 +56,6 @@
 
     class BWA3_muzzle_snds_G28 : muzzle_snds_H {
         class ItemInfo : ItemInfo {
-			ASR_SUPP_COEFF;
+			__AI_SUPP_COEFF;
         };
     };

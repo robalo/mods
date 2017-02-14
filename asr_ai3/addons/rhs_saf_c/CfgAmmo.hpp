@@ -12,15 +12,22 @@
 
 class CfgAmmo {
     class BulletBase;
-    class B_9x21_Ball;
+    class B_556x45_Ball;
 
-    class rhs_ammo_9x17 : B_9x21_Ball {
-		audibleFire = __AI_AMMO_AUDIBLE1; //5.65;
+    class rhssaf_ammo_556x45_EPR : B_556x45_Ball {
+		audibleFire = __AI_AMMO_AUDIBLE1;
+    };
+    class rhssaf_ammo_556x45_SOST : B_556x45_Ball {
+		audibleFire = __AI_AMMO_AUDIBLE1;
+    };
+    class rhssaf_ammo_556x45_SPR : B_556x45_Ball {
+		audibleFire = __AI_AMMO_AUDIBLE1;
     };
     class rhs_ammo_792x57_Ball : BulletBase {
-		audibleFire = __AI_AMMO_AUDIBLE1; //18;
+		audibleFire = __AI_AMMO_AUDIBLE1;
+		dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS;
 		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
-        suppressionRadiusBulletClose = 6;
-        suppressionRadiusHit = 8;
+		suppressionRadiusBulletClose = 6;
+		suppressionRadiusHit = 8;
     };
 };

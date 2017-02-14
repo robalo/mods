@@ -26,49 +26,49 @@ class CfgAmmo {
     };
 
     class rhs_ammo_556x45_M855A1_Ball : B_556x45_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //7;
+		audibleFire = __AI_AMMO_AUDIBLE1; //7;
     };
     class rhs_ammo_556x45_Mk318_Ball : B_556x45_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //5.5;
+		audibleFire = __AI_AMMO_AUDIBLE1; //5.5;
     };
     class rhs_ammo_556x45_Mk262_Ball : B_556x45_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //5;
+		audibleFire = __AI_AMMO_AUDIBLE1; //5;
     };
     class rhs_ammo_762x51_M80_Ball : BulletBase {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //18
-		dangerRadiusBulletClose = ASR_AI_AMMO_RANGE_CRACKS;
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		audibleFire = __AI_AMMO_AUDIBLE1; //18
+		dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 6;
 		suppressionRadiusHit = 8;
     };
     class rhs_ammo_12g_FRAG : B_12Gauge_Slug {
-		dangerRadiusBulletClose = ASR_AI_AMMO_RANGE_CRACKS;
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 8;
 		suppressionRadiusHit = 12;
     };
     class rhs_ammo_45ACP_MHP : BulletBase {
-		audibleFire = ASR_AI_AMMO_AUDIBLE0; //9;
+		audibleFire = __AI_AMMO_AUDIBLE0; //9;
 		dangerRadiusBulletClose = 1; //subsonic
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
 		suppressionRadiusBulletClose = 1;
     };
     class rhs_ammo_9x19_FMJ : BulletBase {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //3;
-		dangerRadiusBulletClose = ASR_AI_AMMO_RANGE_CRACKS;
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		audibleFire = __AI_AMMO_AUDIBLE1; //3;
+		dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
     };
     class rhs_ammo_9x19_JHP : BulletBase {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //3;
-		dangerRadiusBulletClose = ASR_AI_AMMO_RANGE_CRACKS;
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		audibleFire = __AI_AMMO_AUDIBLE1; //3;
+		dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
     };
     class rhs_ammo_46x30_FMJ : rhs_ammo_556x45_M855A1_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //3;
+		audibleFire = __AI_AMMO_AUDIBLE1; //3;
     };
 
     class rhs_ammo_M136_rocket : RocketBase {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //16;
+		audibleFire = __AI_AMMO_AUDIBLE1; //16;
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
     };
     class rhs_ammo_M_fgm148_AT : M_Titan_AT {

@@ -21,4 +21,14 @@ if (local _unit && {_unit != call CBA_fnc_currentUnit} && {_unit call FUNC(isVal
         // move to cover
         if (GVAR(seekcover)) then {[_unit, _hitman, 20] call FUNC(unitMoveToCover)};
 	};
+
+    // patch self when clear
+    _unit spawn {
+        while {sleep 5 + random 5; alive _this && {damage _this > 0.3}} do {
+            waitUntil {"FirstAidKit" in (items _this) && {isNull (_this findNearestEnemy _this)}};
+            _this action ["HealSoldierSelf", _this];
+            sleep 10;
+        };
+    };
+    
 };

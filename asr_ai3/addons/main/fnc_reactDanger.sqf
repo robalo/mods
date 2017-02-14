@@ -50,6 +50,8 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
         };
     };
 
+    if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has HOLD wp",_grp)};
+
 	// search buildings
 	if (!isNull _dangerCausedBy && {random 1 < GVAR(usebuildings)}) then {
 		private _dude = _unit;

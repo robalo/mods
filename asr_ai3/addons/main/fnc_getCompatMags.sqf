@@ -5,11 +5,6 @@ params ["_w"];
 private _compat = [];
 private "_mags";
 
-private _find = {
-	params ["_needle", "_haystack"];
-	({_needle == _x} count _haystack) > 0
-};
-
 { // for each weapon muzzle
 	if (toLower _x == "this") then {
 		_mags = getArray(configFile >> "CfgWeapons" >> _w >> "magazines");

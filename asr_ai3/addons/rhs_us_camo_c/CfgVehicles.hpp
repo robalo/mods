@@ -77,6 +77,9 @@ class CfgVehicles {
         //displayName = "AT Specialist (Javelin)";
         ASR_AI_CAMO_BASE;
     };
+    class rhsusf_army_ocp_javelin_assistant : rhsusf_army_ocp_riflemanat {
+        ASR_AI_CAMO_BASE;
+    };
     class rhsusf_army_ocp_aa : rhsusf_army_ocp_riflemanat {
         //displayName = "AA Specialist (FIM-92F)";
         ASR_AI_CAMO_BASE;
