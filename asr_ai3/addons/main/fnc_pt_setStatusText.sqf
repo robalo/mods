@@ -4,8 +4,8 @@
 private _unit = _this select 0;
 private _text = _this select 1;
 
-if(isNil QGVAR(DEBUG_FUNC) && GVAR(DEBUG_NAME) != "") then {
-    GVAR(DEBUG_FUNC) = {
+if(GVAR(debug_findcover)) then {
+    _this spawn {
         _unit = _this select 0;
         _text = _this select 1;
         if(isNil "statusWords") then {
@@ -39,23 +39,6 @@ if(isNil QGVAR(DEBUG_FUNC) && GVAR(DEBUG_NAME) != "") then {
             statusWords set [_foundUnit, _text];
         };
     };
-    publicVariable QGVAR(DEBUG_FUNC);
 };
 
 
-
-if(GVAR(DEBUG_NAME) != "") then {
-    if(isDedicated) then {
-       /* if(isNil (GVAR(DEBUG_ID))) then {
-            {  
-                if(GVAR(DEBUG_NAME) == name _x) then {
-                    GVAR(DEBUG_ID) = owner  _x;
-                };
-            } forEach playableUnits;
-        };
-        _this remoteExec [QGVAR(DEBUG_FUNC), GVAR(DEBUG_ID), false];*/
-    }else {
-        _this spawn GVAR(DEBUG_FUNC);
-    };
-    
-};

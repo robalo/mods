@@ -28,7 +28,7 @@ if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (
         _unit  setVariable [QGVAR(ATTACKER_POS),(getPosATL _dangerCausedBy),false];
     };
     //CT is when we're allowed to consider cover again
-    if(_dangerCause in GVAR(DC_NEED_COVER) && (time > (_unit getVariable [QGVAR(CT),0]))) then {
+    if(_dangerCause in GVAR(DC_NEED_COVER) && (time > (_unit getVariable [QGVAR(CT),0])) && vehicle _unit == _unit) then {
         //format ["react danger, %1 reconsidering cover", _unit] call BIS_fnc_log;
 
         if(_unit call FUNC(isUnderRoof)) then {
@@ -77,7 +77,7 @@ if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (
 
   
     
-    if(_unit == leader _unit) then {
+    if(_unit == leader _unit && vehicle _unit == _unit) then {
     
         // mount weapons
         if (random 1 < GVAR(getinweapons)) then {
