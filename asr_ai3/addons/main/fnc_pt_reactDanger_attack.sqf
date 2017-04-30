@@ -6,7 +6,7 @@ private _unit = _this select 0;
 //this variable may change between recursive calls
 private _attackTime = (_unit getVariable [QGVAR(AT), 0]);
 
-        [_unit, format ["AT0"]] call FUNC(pt_setStatusText);
+[_unit, format ["AT0"]] call FUNC(pt_setStatusText);
 if(_attackTime == 0) exitWith {};
 //not yet time, sleep until then
 if(time < _attackTime) then {
@@ -41,12 +41,18 @@ if(time < _attackTime) then {
             [_group, currentWaypoint _group] setWaypointPosition [_dangerPos, 0];
         }else {
             //add in a waypoint
+            private _returnWP = _group addWaypoint [position _unit, 0, currentWaypoint _group];
+            _returnWp setWaypointBehaviour  "SAFE";
+            _returnWp setWaypointCombatMode "YELLOW";
             private _wp = _group addWaypoint [_dangerPos, 0, currentWaypoint _group];
             _wp setWaypointName "PT_ASR_AI_SAD";
             _wp setWaypointBehaviour "COMBAT";
             _wp setWaypointCombatMode "RED";
             _wp setWaypointSpeed "FULL";
         };
+        {
+            _x doFollow leader _group;
+        } forEach units _group;
     }else {
         TRACE_3("not attacking, enemy at dist 1, max dist 2", (_unit distance2D _dangerPos), (_unit getVariable [QGVAR(AD), 0]));
         [_unit, format ["not attacking, %1, %2, %3",_inDistance,  !_hasCargo, !_hasCheckpoint]] call FUNC(pt_setStatusText);

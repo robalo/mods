@@ -22,8 +22,10 @@ class Extended_InitPost_EventHandlers {
             serverInit = QUOTE((GVAR(cfgQ)) pushBack (_this select 0));
 		};
 	};
-	class Tank {
-		ADDON = "if (local (_this select 0)) then {(_this select 0) allowCrewInImmobile true}";
+	class LandVehicle {
+		class ADDON {
+            serverInit = QUOTE((_this select 0) call FUNC(pt_vehicle_setup));
+		};
 	};
 };
 
@@ -64,6 +66,13 @@ class Extended_Hit_EventHandlers {
     class StaticWeapon {
 		class ADDON {
 			hit = QUOTE(_this call FUNC(handleHit));
+		};
+	};
+	class LandVehicle
+	{
+		class ADDON
+		{
+			hit=QUOTE(_this call FUNC(pt_handleHitVehicle));
 		};
 	};
 };

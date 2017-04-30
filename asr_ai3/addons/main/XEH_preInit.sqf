@@ -123,3 +123,5 @@ PREP(pt_reactDanger);
 PREP(pt_reset_pos);
 PREP(pt_calculatePos);
 PREP(pt_setStatusText);
+PREP(pt_handleHitVehicle);
+PREP(pt_vehicle_setup);

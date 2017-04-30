@@ -18,7 +18,5 @@ if (local _unit && {_unit != call CBA_fnc_currentUnit} && {_unit call FUNC(isVal
 		if (_unit != _hitman) then {
 			if ((behaviour _unit) in ["SAFE","AWARE"]) then {_unit setBehaviour "COMBAT"};
 		};
-        // move to cover
-        if (GVAR(seekcover)) then {[_unit, _hitman, 20] call FUNC(unitMoveToCover)};
 	};
 };

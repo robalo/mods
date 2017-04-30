@@ -161,9 +161,9 @@
 [
     QGVAR(AUTO_ATTACK_WITHIN), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "SLIDER", // setting type
-    "Always counterattack for danger within this distance", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Always counterattack for danger within(m)", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "Pooters ASR AI3", // Pretty name of the category where the setting can be found. Can be stringtable entry.
-    [0, 300, 50, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
+    [0, 300, 15, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
     false, // "global" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
     } // function that will be executed once on mission start and every time the setting is changed.
@@ -171,7 +171,7 @@
 [
     QGVAR(MIN_HEIGHT_OBJ_TO_CONSIDER), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "SLIDER", // setting type
-    "Minimum height of objects considered for cover", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Minimum height of objects for cover", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "Pooters ASR AI3", // Pretty name of the category where the setting can be found. Can be stringtable entry.
     [0, 2, 0.2, 1], // data for this setting: [min, max, default, number of shown trailing decimals]
     false, // "global" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -181,7 +181,7 @@
 [
     QGVAR(CHANCE_USE_BUILDING_POS), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "SLIDER", // setting type
-    "Chance to use a building pos (higher = more populated buildings)", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Chance to use a building pos", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "Pooters ASR AI3", // Pretty name of the category where the setting can be found. Can be stringtable entry.
     [0, 1, 0.2, 1], // data for this setting: [min, max, default, number of shown trailing decimals]
     false, // "global" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -231,9 +231,9 @@
 [
     QGVAR(AT_OUTSIDE), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "SLIDER", // setting type
-    "time until counterattack while outside", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "seconds until counterattack while outside", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "Pooters ASR AI3", // Pretty name of the category where the setting can be found. Can be stringtable entry.
-    [0, 180, 15, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
+    [0, 180, 60, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
     false, // "global" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
     } // function that will be executed once on mission start and every time the setting is changed.
@@ -241,9 +241,9 @@
 [
     QGVAR(AT_INSIDE), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "SLIDER", // setting type
-    "time until counterattack while inside", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "seconds until counterattack while inside", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "Pooters ASR AI3", // Pretty name of the category where the setting can be found. Can be stringtable entry.
-    [0, 180, 15, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
+    [0, 180, 60, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
     false, // "global" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
     } // function that will be executed once on mission start and every time the setting is changed.
@@ -268,3 +268,5 @@
     {
     } // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;
+
+[ QGVAR(STAY_IN_VEH), "CHECKBOX", "Stay in armed immobile vehicles", "Pooters ASR AI3", true, true, {} ] call CBA_Settings_fnc_init;

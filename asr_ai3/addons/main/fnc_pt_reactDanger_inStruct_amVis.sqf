@@ -35,6 +35,12 @@ if((_foundResult == "") && _checkDown) then {
     };
 };
 
+
+if(_unit == leader _unit) then {
+    _unit  setVariable [QGVAR(AT),time + GVAR(AT_INSIDE),false];
+    _unit  setVariable [QGVAR(AD),GVAR(AD_INSIDE),false];
+};
+
 //if found a unitPos where we would be safe, switch to it
 //else go to another the next position in the building
 if(_foundResult != "") then {
@@ -42,16 +48,8 @@ if(_foundResult != "") then {
     [_unit, "ducking from known"] call FUNC(pt_setStatusText);
     _unit setUnitPos _foundResult;
     _unit  setVariable [QGVAR(DT),time + GVAR(DT_INSIDE),false];
-    if(_unit == leader _unit) then {
-        _unit  setVariable [QGVAR(AT),time + GVAR(AT_INSIDE),false];
-        _unit  setVariable [QGVAR(AD),GVAR(AD_INSIDE),false];
-    };
 }else {
     [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_goToNextBuildingPos);
     _unit  setVariable [QGVAR(DT),time + GVAR(DT_INSIDE),false];
 
-        if(_unit == leader _unit) then {
-            _unit  setVariable [QGVAR(AT),time + GVAR(AT_INSIDE),false];
-            _unit  setVariable [QGVAR(AD),GVAR(AD_INSIDE),false];
-        };
 };

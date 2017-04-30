@@ -14,7 +14,7 @@ private _grp = group _unit;
  
  
  
-if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (_unit getVariable [QGVAR(DT),0])}) then {
+if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (_unit getVariable [QGVAR(DT),0])} && {_unit call FUNC(isValidUnitC)}) then {
 
     _unit setVariable [QGVAR(PT_SLEEP), 1, false];
     //sleep half a second to let the AI find its attacker before making decisions
@@ -52,23 +52,11 @@ if (_unit getVariable[QGVAR(PT_SLEEP), 0] == 0 && {!isPlayer _unit} && {time > (
         _unitDistance = ((_unit distance _dangerCausedBy) < GVAR(AUTO_ATTACK_WITHIN));
         _unitKnowledgeOrDistance = (_unitKnowledge || _unitDistance);
         _unitLeaderAndPending = _unitIsLeader && _unitPendingAttack;
+        _validTarget = vehicle _dangerCausedBy == _dangerCausedBy || vehicle _dangerCausedBy isKindOf "LandVehicle";
+        _validSelfVehicle = vehicle _unit == _unit || vehicle _unit isKindOf "LandVehicle";
         
-        if(_unitLeaderAndPending && _unitKnowledgeOrDistance) then {
-            if(_unit getVariable [QGVAR(AT), 0] == 0) then {
-                
-                //format ["react danger, %1 attacking but didn't know much", _unit] call BIS_fnc_log;
-                _unit setVariable [QGVAR(AT), GVAR(AT_OUTSIDE), false];
-                if(_unit call FUNC(isUnderRoof)) then {
-                    //format ["and is indoors", _unit] call BIS_fnc_log;
-                    _unit setVariable [QGVAR(AD), GVAR(AD_INSIDE), false];
-                }else {
-                    //format ["and is outdoors", _unit] call BIS_fnc_log;
-                    _unit setVariable [QGVAR(AD), GVAR(AD_OUTSIDE), false];
-                };
-            };
-            
-            //format ["react danger, %1 will be attacking", _unit] call BIS_fnc_log;
-            //format ["unit knowledge: %1 at distance: %2", (_unit targetKnowledge _dangerCausedBy select 5), _unit distance _dangerCausedBy] call BIS_fnc_log;
+        if(_unitLeaderAndPending && _unitKnowledgeOrDistance
+            && _validTarget && _validSelfVehicle) then {
             _unit  setVariable [QGVAR(ATK_PEND),1,false];
             //format ["attackCalled"] call BIS_fnc_log;
             [_unit, getPosATL _dangerCausedBy] call FUNC(pt_reactDanger_attack);
