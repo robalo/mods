@@ -122,13 +122,15 @@
 ] call CBA_Settings_fnc_init;
 [
     QGVAR(pgaistamina),
-    "CHECKBOX",
+    "LIST",
     "Stamina system on AI in player's group",
     "ASR AI3",
-    false, // data for this setting
+    [[0, 1, 2], ["Disable", "Enable", "No Change"], 0], // data for this setting
     true,
     {
-        {{_x enableStamina (isPlayer _x || GVAR(pgaistamina))} forEach (units _x)} forEach ([] call BIS_fnc_listPlayers);
+        if (GVAR(pgaistamina) < 2) then {
+            {{_x enableStamina (isPlayer _x || GVAR(pgaistamina) == 1)} forEach (units _x)} forEach ([] call BIS_fnc_listPlayers);
+        };
     }
 ] call CBA_Settings_fnc_init;
 [

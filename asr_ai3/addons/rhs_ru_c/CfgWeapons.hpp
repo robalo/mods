@@ -60,7 +60,7 @@ class CfgWeapons {
 
 
     class rhs_weap_ak74m_Base_F : Rifle_Base_F {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_AK_MODES(Mode_SemiAuto,Mode_FullAuto);
 		__AI_DISPERSION_COEF;
     };
@@ -70,19 +70,19 @@ class CfgWeapons {
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
     };
     class rhs_weap_ak105 : rhs_weap_ak74m {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
     };
     class rhs_weap_akm : rhs_weap_ak74m {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_AK_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
     class rhs_weap_ak103_base : rhs_weap_akm {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_AK_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
     class rhs_weap_ak104 : rhs_weap_ak103_base {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
     };
     class rhs_weap_ak103_1 : rhs_weap_ak103_base {
@@ -90,13 +90,13 @@ class CfgWeapons {
 		__AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
     class rhs_weap_ak103_2 : rhs_weap_ak103_base {
-		modes[] = {"FullAuto", "Burst3", "Single", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "Burst3", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_AK_MODES(Mode_SemiAuto,FullAuto);
     };
     class rhs_weap_ak74 : rhs_weap_ak74m {};
     class rhs_weap_aks74 : rhs_weap_ak74 {};
     class rhs_weap_aks74u : rhs_weap_aks74 {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
 		__AI_DISPERSION_COEF;
     };

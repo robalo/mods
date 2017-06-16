@@ -60,18 +60,46 @@
     class rhssaf_vest_md99_md2camo_rifleman : rhssaf_tactical_vest_base {
         __CAMO_V_CAMO;
     };
+	class rhssaf_vest_md99_md2camo_rifleman_radio: rhssaf_tactical_vest_base {
+        __CAMO_V_CAMO;
+    };
     class rhssaf_vest_md99_digital_rifleman : rhssaf_tactical_vest_base {
+        __CAMO_V_CAMO;
+    };
+	class rhssaf_vest_md99_digital_rifleman_radio: rhssaf_tactical_vest_base {
         __CAMO_V_CAMO;
     };
     class rhssaf_vest_md99_woodland_rifleman : rhssaf_tactical_vest_base {
         __CAMO_V_CAMO;
     };
+	class rhssaf_vest_md99_woodland_rifleman_radio: rhssaf_tactical_vest_base {
+        __CAMO_V_CAMO;
+    };
     class rhssaf_vest_md99_md2camo : rhssaf_tactical_vest_base {
+        __CAMO_V_CAMO;
+    };
+	class rhssaf_vest_md99_md2camo_radio: rhssaf_tactical_vest_base {
         __CAMO_V_CAMO;
     };
     class rhssaf_vest_md99_digital : rhssaf_tactical_vest_base {
         __CAMO_V_CAMO;
     };
+	class rhssaf_vest_md99_digital_radio: rhssaf_tactical_vest_base {
+        __CAMO_V_CAMO;
+    };
     class rhssaf_vest_md99_woodland : rhssaf_tactical_vest_base {
         __CAMO_V_CAMO;
     };
+	class rhssaf_vest_md99_woodland_radio: rhssaf_tactical_vest_base {
+        __CAMO_V_CAMO;
+    };
+
+	class rhssaf_vest_md99t_digital: rhssaf_balistic_vest_base {
+        __CAMO_V_CAMO;
+	};
+	class rhssaf_vest_md99t_md2camo: rhssaf_balistic_vest_base {
+        __CAMO_V_CAMO;
+	};
+	class rhssaf_vest_md99t_woodland: rhssaf_balistic_vest_base	{
+        __CAMO_V_CAMO;
+	};

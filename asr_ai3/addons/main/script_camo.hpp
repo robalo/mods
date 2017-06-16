@@ -30,6 +30,7 @@
 
 #define __CAMO_V_CAMO asr_camouflage = __CAMO_CAMO
 #define __CAMO_V_MONO asr_camouflage = __CAMO_MONO
+#define __CAMO_V_COLOR asr_camouflage = __CAMO_COLOR
 #define __CAMO_V_DARK asr_camouflage = __CAMO_DARK; asr_camouflage_night = 0.5
 #define __CAMO_V_IGNORE asr_camouflage_ignore = 1
 

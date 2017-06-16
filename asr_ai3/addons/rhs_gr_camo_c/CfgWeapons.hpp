@@ -43,8 +43,10 @@ class CfgWeapons {
         __CAMO_U_CAMOCAMO;
     };
     class rhsgref_uniform_flecktarn : Uniform_Base {
-        //displayName = "M93 (Flecktarn)";
         __CAMO_U_CAMOMONO;
+    };
+    class rhsgref_uniform_flecktarn_full : Uniform_Base {
+        __CAMO_U_CAMOCAMO;
     };
     class rhsgref_uniform_tigerstripe : Uniform_Base {
         //displayName = "M93 (Tiger Stripe)";

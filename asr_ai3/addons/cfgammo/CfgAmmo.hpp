@@ -353,9 +353,11 @@ class CfgAmmo {
 	class M_PG_AT : MissileBase {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
 	};
+/*
 	class M_NLAW_AT_F : MissileBase {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
 	};
+*/
     class M_Scalpel_AT : MissileBase {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
     };
@@ -367,12 +369,12 @@ class CfgAmmo {
 	class R_TBG32V_F : R_PG32V_F {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir;
 	};
-
+/*
     class M_Titan_AT;
 	class M_Titan_AP : M_Titan_AT {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh;
 	};
-
+*/
     class R_PG7_F : RocketBase {
         airLock = 1;
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;

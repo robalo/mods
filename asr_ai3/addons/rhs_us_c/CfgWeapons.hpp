@@ -176,13 +176,12 @@ class CfgWeapons {
 		__AI_DISPERSION_COEF;
     };
 
-    class SMG_01_Base : Rifle_Short_Base_F {
+    class SMG_02_base_F : Rifle_Short_Base_F {
         class Single;
         class FullAuto;
     };
-    class SMG_01_F : SMG_01_Base {};
 
-    class rhsusf_weap_MP7A1_base_f : SMG_01_F {
+    class rhsusf_weap_MP7A1_base_f : SMG_02_base_F {
         modes[] = {"Single", "FullAuto", "AI_Burst_close"};
 		class Single: Single {
 			__AI_ROF_SMG_SINGLE;

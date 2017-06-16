@@ -752,6 +752,212 @@ class CfgWeapons {
         //displayName = "MarCiras Light (KHK)";
         __CAMO_V_MONO;
     };
+
+    class milgp_v_mmac_assaulter_rgr : ItemCore {
+        //displayName = "MMAC Assaulter (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_assaulter_belt_rgr : ItemCore {
+        //displayName = "MMAC Assaulter + Belt (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_medic_rgr : ItemCore {
+        //displayName = "MMAC Medic (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_medic_belt_rgr : ItemCore {
+        //displayName = "MMAC Medic + Belt (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_teamleader_rgr : ItemCore {
+        //displayName = "MMAC TeamLeader (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_teamleader_belt_rgr : ItemCore {
+        //displayName = "MMAC TeamLeader + Belt (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_marksman_rgr : ItemCore {
+        //displayName = "MMAC Marksman (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_marksman_belt_rgr : ItemCore {
+        //displayName = "MMAC Marksman + Belt (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_hgunner_rgr : ItemCore {
+        //displayName = "MMAC HeavyGunner (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_hgunner_belt_rgr : ItemCore {
+        //displayName = "MMAC HeavyGunner + Belt (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_grenadier_rgr : ItemCore {
+        //displayName = "MMAC Grenadier (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_grenadier_belt_rgr : ItemCore {
+        //displayName = "MMAC Grenadier + Belt (RGR)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_light_KHK : ItemCore {
+        //displayName = "MMAC Light (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_assaulter_KHK : ItemCore {
+        //displayName = "MMAC Assaulter (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_assaulter_belt_KHK : ItemCore {
+        //displayName = "MMAC Assaulter + Belt (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_medic_KHK : ItemCore {
+        //displayName = "MMAC Medic (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_medic_belt_KHK : ItemCore {
+        //displayName = "MMAC Medic + Belt (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_teamleader_KHK : ItemCore {
+        //displayName = "MMAC TeamLeader (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_teamleader_belt_KHK : ItemCore {
+        //displayName = "MMAC TeamLeader + Belt (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_marksman_KHK : ItemCore {
+        //displayName = "MMAC Marksman (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_marksman_belt_KHK : ItemCore {
+        //displayName = "MMAC Marksman + Belt (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_hgunner_KHK : ItemCore {
+        //displayName = "MMAC HeavyGunner (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_hgunner_belt_KHK : ItemCore {
+        //displayName = "MMAC HeavyGunner + Belt (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_grenadier_KHK : ItemCore {
+        //displayName = "MMAC Grenadier (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_grenadier_belt_KHK : ItemCore {
+        //displayName = "MMAC Grenadier + Belt (KHK)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_light_MC : ItemCore {
+        //displayName = "MMAC Light (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_assaulter_MC : ItemCore {
+        //displayName = "MMAC Assaulter (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_assaulter_belt_MC : ItemCore {
+        //displayName = "MMAC Assaulter + Belt (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_medic_MC : ItemCore {
+        //displayName = "MMAC Medic (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_medic_belt_MC : ItemCore {
+        //displayName = "MMAC Medic + Belt (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_teamleader_MC : ItemCore {
+        //displayName = "MMAC TeamLeader (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_teamleader_belt_MC : ItemCore {
+        //displayName = "MMAC TeamLeader + Belt (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_marksman_MC : ItemCore {
+        //displayName = "MMAC Marksman (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_marksman_belt_MC : ItemCore {
+        //displayName = "MMAC Marksman + Belt (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_hgunner_MC : ItemCore {
+        //displayName = "MMAC HeavyGunner (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_hgunner_belt_MC : ItemCore {
+        //displayName = "MMAC HeavyGunner + Belt (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_grenadier_MC : ItemCore {
+        //displayName = "MMAC Grenadier (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_grenadier_belt_MC : ItemCore {
+        //displayName = "MMAC Grenadier + Belt (MC)";
+        __CAMO_V_CAMO;
+    };
+    class milgp_v_mmac_light_CB : ItemCore {
+        //displayName = "MMAC Light (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_assaulter_CB : ItemCore {
+        //displayName = "MMAC Assaulter (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_assaulter_belt_CB : ItemCore {
+        //displayName = "MMAC Assaulter + Belt (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_medic_CB : ItemCore {
+        //displayName = "MMAC Medic (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_medic_belt_CB : ItemCore {
+        //displayName = "MMAC Medic + Belt (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_teamleader_CB : ItemCore {
+        //displayName = "MMAC TeamLeader (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_teamleader_belt_CB : ItemCore {
+        //displayName = "MMAC TeamLeader + Belt (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_marksman_CB : ItemCore {
+        //displayName = "MMAC Marksman (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_marksman_belt_CB : ItemCore {
+        //displayName = "MMAC Marksman + Belt (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_hgunner_CB : ItemCore {
+        //displayName = "MMAC HeavyGunner (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_hgunner_belt_CB : ItemCore {
+        //displayName = "MMAC HeavyGunner + Belt (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_grenadier_CB : ItemCore {
+        //displayName = "MMAC Grenadier (CB)";
+        __CAMO_V_MONO;
+    };
+    class milgp_v_mmac_grenadier_belt_CB : ItemCore {
+        //displayName = "MMAC Grenadier + Belt (CB)";
+        __CAMO_V_MONO;
+    };
+
 };
 
 class CfgVehicles {
@@ -821,4 +1027,18 @@ class CfgVehicles {
         //displayName = "MarCiras Back Panel Breacher (KHK)";
         __CAMO_B_SMALLMONO;
     };
+
+	class milgp_b_patrol_01_khk: milgp_Bag_Base {
+		//displayName = "Patrol 01 (KHK)";
+        __CAMO_B_LARGEMONO;
+    };
+	class milgp_b_patrol_01_rgr: milgp_Bag_Base {
+		//displayName = "Patrol 01 (RGR)";
+        __CAMO_B_LARGEMONO;
+    };
+	class milgp_b_patrol_01_cb: milgp_Bag_Base {
+		//displayName = "Patrol 01 (CB)";
+        __CAMO_B_LARGEMONO;
+    };
+
 };

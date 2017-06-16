@@ -37,7 +37,7 @@ class CfgWeapons {
 			__AI_DISPERSION_COEF;
 		};
 	};
-	class gatling_30mm: CannonCore {
+	class gatling_30mm_base: CannonCore {
 		class LowROF: Mode_FullAuto {
 			__AI_DISPERSION_COEF;
 		};
@@ -98,7 +98,8 @@ class CfgWeapons {
 
 	class Throw: GrenadeLauncher {
 		class ThrowMuzzle: GrenadeLauncher {
-			__AI_DISPERSION_COEF;
+			aiDispersionCoefX = 12;
+            aiDispersionCoefY = 16;
 		};
 		class HandGrenadeMuzzle: ThrowMuzzle {
 			minRange = 20;
@@ -425,7 +426,7 @@ class CfgWeapons {
     };
 
     class arifle_AK12_base_F : Rifle_Base_F {
-		modes[] = {"FullAuto", "Burst", "Single", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_Burst_far"};
+		modes[] = {"Single", "Burst", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_Burst_far"};
 		class Single: Mode_SemiAuto {
 			__AI_ROF_AK_SINGLE;
 		};
@@ -457,12 +458,12 @@ class CfgWeapons {
     };
 
     class arifle_AKM_base_F : Rifle_Base_F {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_AK_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
 
     class arifle_AKS_base_F : Rifle_Base_F {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_RIFLE_SMALL_CQB_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
 
@@ -476,7 +477,7 @@ class CfgWeapons {
     };
 
     class arifle_CTAR_base_F : Rifle_Base_F {
-		modes[] = {"FullAuto", "Single", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
 		__AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
     class arifle_CTAR_GL_base_F : arifle_CTAR_base_F {
@@ -484,7 +485,7 @@ class CfgWeapons {
     };
     class arifle_CTARS_base_F : Rifle_Base_F {
 		modes[] = {
-            "FullAuto", "Single",
+            "Single", "FullAuto", 
             "AI_long", "AI_close", "AI_short", "AI_medium", "AI_far",
             "AI_far_optic1",
             "AI_far_optic2"

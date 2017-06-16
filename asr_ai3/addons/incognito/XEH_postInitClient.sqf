@@ -3,6 +3,13 @@
 //if (!hasInterface) exitWith {}; //exit if HC
 if (isMultiplayer) exitWith {}; //exit if MP - not ready yet, would mess with revive systems and need to take care of code locality
 
+/*
+// NOTES/TODO
+
+MP: run code on group leader unit only; must reset on leadership change
+
+*/
+
 [] spawn {
     _wasIncognito = false;
     RYD_INC_Fired = -10;
@@ -22,7 +29,7 @@ if (isMultiplayer) exitWith {}; //exit if MP - not ready yet, would mess with re
                 if not (_x == _vh) then {
                     _fEHadded = _vh getVariable "RYD_INC_FEH";
                     if (isNil "_fEHadded") then {
-                        _ix = _vh addEventHandler ["Fired",{if (({(_x in (_this select 0))} count (units (group player))) > 0) then {RYD_INC_Fired = time} else {(vehicle (_this select 0)) removeEventHandler ((vehicle (_this select 0)) getVariable "RYD_INC_FEH")}}];
+                        _ix = _vh addEventHandler ["Fired",{if (({(_x in (_this select 0))} count (units (group player))) > 0) then {RYD_INC_Fired = time} else {(vehicle (_this select 0)) removeEventHandler ["Fired", (vehicle (_this select 0)) getVariable "RYD_INC_FEH"]}}];
                         _vh setVariable ["RYD_INC_FEH",_ix];
                     };
                 } else {
@@ -128,7 +135,8 @@ if (isMultiplayer) exitWith {}; //exit if MP - not ready yet, would mess with re
 
                             {
                                 if ((_x distance _vh) < _safeDst) then {
-                                    if ((_x distance _vh) < (random (_safeDst/_div)) + (random (_safeDst/_div)) + (random (_safeDst/_div)) + (random (_safeDst/_div))) then	{
+                                    _safeDistPerDiv = _safeDst/_div; //divide once
+                                    if (_x distance _vh < (random _safeDistPerDiv) + (random _safeDistPerDiv) + (random _safeDistPerDiv) + (random _safeDistPerDiv)) then {
                                         if (!([_vh,_x] call FUNC(isFlanking)) && {[objNull, "VIEW"] checkVisibility [eyePos _x, eyePos _unit] > 0.7}) then {_recognized = true};
                                     };
                                 };
@@ -140,7 +148,7 @@ if (isMultiplayer) exitWith {}; //exit if MP - not ready yet, would mess with re
 
                 RYD_INC_Fired = -10;
 
-                _unit setVariable ["RYD_INC_Compromised",((_unit getVariable ["RYD_INC_Exposed",false]) or {(_armed) or {(_wrongVeh) or {(_firing) or {(_recognized)}}}})];
+                _unit setVariable ["RYD_INC_Compromised", (_unit getVariable ["RYD_INC_Exposed",false] || _armed || _wrongVeh || _firing || _recognized)];
 
                 _knownFor = count _enemiesG;
 
@@ -169,28 +177,9 @@ if (isMultiplayer) exitWith {}; //exit if MP - not ready yet, would mess with re
             _incognito = {(_x getVariable ["RYD_INC_Undercover",false]) and {not (_x getVariable ["RYD_INC_Compromised",false])}} count _units;
 
             if (_exposed == 0) then {
-                {
-/*
-                    _unit = _x;
-                    _unit setVariable ["RYD_INC_Settings",[behaviour _unit,combatMode _unit]];
-                    _unit setCombatMode "CARELESS";
-                    _unit setBehaviour "BLUE";
-                    _unit setCaptive true;
-*/
-                    _x setCaptive true;
-                } foreach _units;
+                { _x setCaptive true } foreach _units;
             } else {
-                {
-/*
-                    _unit = _x;
-                    _unit setVariable ["RYD_INC_Undercover",false];
-                    _settings = _unit getVariable ["RYD_INC_Settings",["AWARE","YELLOW"]];
-                    _unit setCombatMode (_settings select 0);
-                    _unit setBehaviour (_settings select 1);
-                    _unit setCaptive false;
-*/
-                    _x setCaptive false;
-              } foreach _units;
+                { _x setCaptive false } foreach _units;
             };
 
             if (GVAR(incodiff) < 3) then {
