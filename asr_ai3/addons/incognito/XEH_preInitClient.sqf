@@ -10,7 +10,7 @@ LOG(MSG_INIT);
     "LIST",
     "Incognito mode",
     "ASR AI3",
-    [[0, 1, 2, 3], ["Disabled", "Easy", "Normal", "Hard"], 2],
+    [[0, 1, 2, 3], ["Disabled", "Easy", "Normal", "Hard"], 0],
     true,
     {if (GVAR(incodiff) == 0) then {{_x setCaptive false} forEach units player};}
 ] call CBA_Settings_fnc_init;

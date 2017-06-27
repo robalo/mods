@@ -5,7 +5,7 @@ params ["_unit", "_show"];
 (_unit call FUNC(unitNVG)) params ["_nvg", "_nvgHelmet"];
 
 if (_show) then { // Equip NVG
-	if (nvg != "" || _nvgHelmet != "") exitWith {
+	if (_nvg != "" || _nvgHelmet != "") exitWith {
 		LOG("Already has NVG equipped");
 	};
 	{ if (getText(configFile>>"CfgWeapons">>_x>>"simulation") == "NVGoggles") exitWith {_nvg = _x} } forEach items _unit;
