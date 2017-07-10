@@ -88,7 +88,7 @@ class CfgWeapons {
 
 	class rhs_weap_m16a4 : rhs_weap_m4_Base {
 		modes[] = {"Single", "Burst3", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
-		__AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
+		__AI_RIFLE_SMALL_MODES(Mode_SemiAuto,FullAuto);
 	};
 
     class rhs_weap_hk416d10 : rhs_weap_m4a1 {

@@ -4,10 +4,6 @@
 
 PRELOAD_ADDONS;
 
-//#include "CfgAmmo.hpp"
-//#include "CfgWeapons.hpp"
-//#include "CfgVehicles.hpp"
-
 #include "CfgEventhandlers.hpp"
 
 class CfgAISkill {

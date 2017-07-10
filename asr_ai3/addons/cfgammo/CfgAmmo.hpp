@@ -96,7 +96,7 @@ class CfgAmmo {
 	class Grenade : Default {
 //        visibleFire = 2;
 //        audibleFire = 0.25;
-		cost = 5; //give'em as if they were free
+		cost = 10; //give'em as if they were free
 		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
 	};
 	class RocketBase : RocketCore {
