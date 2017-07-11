@@ -13,6 +13,7 @@ if (GVAR(copymystance) == 0) then {
                     call {
                         if !(isNull objectParent _leader) exitWith {_this setUnitPos "MIDDLE"};
                         if (stance _leader == "CROUCH") exitWith {_this setUnitPos "MIDDLE"};
+                        if (currentWeapon _this == "") exitWith {_this setUnitPos "MIDDLE"}; //avoid going prone with no weapon, they never get back up
                         if (stance _leader == "PRONE") exitWith {_this setUnitPos "DOWN"};
                         if (_this call FUNC(isUnderRoof)) then {_this setUnitPos "UP"} else {_this setUnitPos "AUTO"};
                     };

@@ -2,7 +2,7 @@
 
 class CfgPatches {
 	class ADDON {
-        addonRootClass = "rhs_c_weapons";
+        addonRootClass = "po_vehicles";
 		units[] = {};
 		weapons[] = {};
         ammo[] = {};
@@ -10,7 +10,7 @@ class CfgPatches {
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
 			"A3_Characters_F","A3_Weapons_F",
-			"rhs_c_troops","rhs_c_weapons","rhs_cti_insurgents"
+			"po_main","po_vehicles","po_factions_afr","po_factions_eu","po_factions_fic","po_factions_me"
 		};
 		version = VERSION;
 		author = "Robalo";

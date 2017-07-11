@@ -15,11 +15,11 @@ class CfgAmmo {
     class B_9x21_Ball;
 
     class rhs_ammo_9x17 : B_9x21_Ball {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //5.65;
+		audibleFire = __AI_AMMO_AUDIBLE1; //5.65;
     };
     class rhs_ammo_792x57_Ball : BulletBase {
-		audibleFire = ASR_AI_AMMO_AUDIBLE1; //18;
-		dangerRadiusHit = ASR_AI_AMMO_RANGE_HIT_SMALL;
+		audibleFire = __AI_AMMO_AUDIBLE1; //18;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
         suppressionRadiusBulletClose = 6;
         suppressionRadiusHit = 8;
     };

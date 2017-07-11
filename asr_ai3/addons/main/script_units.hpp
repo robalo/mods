@@ -11,18 +11,7 @@
 #define ASR_AI_SKILL_PIL2 asr_ai_level = 9
 #define ASR_AI_SKILL_SNP1 asr_ai_level = 10
 
-//simple unit cost: civs, regs, specs
-#define ASR_AI_COST_LESS cost = 150000
-#define ASR_AI_COST_REG cost = 300000
-#define ASR_AI_COST_SPECIAL cost = 450000
-
 #define ASR_AI_CAMO_BASE camouflage = 2.0
-
-#define ASR_AI_CAMO_NONE camouflage = 2.0
-#define ASR_AI_CAMO_HALF camouflage = 1.2
-#define ASR_AI_CAMO_FULL camouflage = 0.8
-#define ASR_AI_CAMO_GHIL camouflage = 0.6
-#define ASR_AI_CAMO_BUSH camouflage = 0.4
 
 #define ASR_AI_AMMOCOEF_STANDARD primaryAmmoCoef = 0.4; secondaryAmmoCoef = 0.2; handgunAmmoCoef = 0.01
 #define ASR_AI_AMMOCOEF_CIVILIAN primaryAmmoCoef = 0; secondaryAmmoCoef = 0; handgunAmmoCoef = 0

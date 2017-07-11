@@ -13,10 +13,10 @@ item8[] = {"Stop_to_fire___ASR",2,250,-460.000000,-70.000000,-330.000000,10.0000
 item9[] = {"Check_queue",2,250,-260.000000,280.000000,-90.000000,340.000000,0.000000,"Check queue"};
 item10[] = {"Next__cause",4,218,-270.000000,-390.000000,-130.000000,-300.000000,1.000000,"Next  cause"};
 item11[] = {"Always",8,218,-240.000000,380.000000,-120.000000,460.000000,0.000000,"Always"};
-item12[] = {"Destroyed___captured",2,4346,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
+item12[] = {"Destroyed___captured",2,250,-500.000000,200.000000,-340.000000,290.000000,0.000000,"Destroyed, " \n "captured or timeout:" \n "Continue"};
 item13[] = {"Destroyed",4,218,-550.000000,60.000000,-430.000000,150.000000,0.000000,"Destroyed"};
 item14[] = {"local_AI",4,218,-810.000000,-400.000000,-630.000000,-310.000000,2.000000,"local AI"};
-item15[] = {"Reactions",2,250,-1020.000000,200.000000,-800.000000,340.000000,0.000000,"Reactions"};
+item15[] = {"Reactions",2,4346,-1020.000000,200.000000,-800.000000,340.000000,0.000000,"Reactions"};
 item16[] = {"set_vars_check_danger",2,250,-810.000000,-270.000000,-620.000000,-160.000000,0.000000,"set vars" \n "check danger cause"};
 item17[] = {"Cause_1_9_4_5_HEARD",4,218,-1030.000000,-80.000000,-800.000000,80.000000,2.000000,"Cause 1,9,4,5" \n "HEARD" \n "SHOOTING OR AMMO" \n "IMPACT NEAR OR OR" \n " DEAD TEAMMATE"};
 item18[] = {"React",8,218,-1230.000000,140.000000,-1120.000000,210.000000,0.000000,"React"};
@@ -57,7 +57,7 @@ link20[] = {16,17};
 link21[] = {17,15};
 link22[] = {18,15};
 globals[] = {10.000000,1,0,1,16777215,640,480,1,241,6316128,1,-1429.671265,83.656334,585.941772,-639.583313,1122,920,1};
-window[] = {2,-1,-1,-1,-1,988,208,1244,208,3,1140};
+window[] = {2,-1,-1,-1,-1,910,130,1166,130,3,1140};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -314,7 +314,7 @@ class FSM
           priority = 4.000000;
           to="Signal_enemy";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_dangerCause == 0 || _dangerCause == 3"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_isleader && {_dangerCause == 0 || _dangerCause == 3}"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/

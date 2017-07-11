@@ -12,4 +12,4 @@ private _units = _grp call FUNC(getAlive);
 if (count _units == 0) exitWith {LOG("Group is empty, exiting")};
 
 // reduce morale for all remaining units
-{ _x setskill ["courage",0.01 max ((_x skill "courage") - 0.1)] } forEach _units;
+{ _x setskill ["courage",0.01 max ((_x skill "courage") - 0.2)] } forEach _units;

@@ -50,6 +50,8 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
         };
     };
 
+    if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has HOLD wp",_grp)};
+
 	// search buildings
 	if (!isNull _dangerCausedBy && {random 1 < GVAR(usebuildings)}) then {
 		private _dude = _unit;
@@ -92,7 +94,7 @@ if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasP
 
 	// check for cover near and divert
     if (GVAR(seekcover)) then {
-        private _coverRange = if (_grp call FUNC(grpHasWP)) then {25} else {75};
+        private _coverRange = if (_grp call FUNC(grpHasWP)) then {20} else {100};
         [_unit,_dangerCausedBy,_coverRange] call FUNC(moveToCover);
     };
 

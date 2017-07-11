@@ -15,6 +15,14 @@ class CfgPatches {
 		version = VERSION;
 		author = "Robalo";
 	};
+    class asr_ai3_rhs_us_camo_c {
+		units[] = {};
+		weapons[] = {};
+        ammo[] = {};
+		requiredVersion = REQUIRED_VERSION;
+		requiredAddons[] = {};
+		author = "Robalo";
+	};
 };
 
 PRELOAD_ADDONS;

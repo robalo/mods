@@ -162,3 +162,7 @@
         //displayName = "Tactical Chest Rig (Green)";
         __CAMO_V_IGNORE;
     };
+
+    class V_DeckCrew_base_F : Vest_Camo_Base {
+        __CAMO_V_COLOR;
+    };

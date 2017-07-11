@@ -4,15 +4,11 @@
 
 PRELOAD_ADDONS;
 
-//#include "CfgAmmo.hpp"
-//#include "CfgWeapons.hpp"
-//#include "CfgVehicles.hpp"
-
 #include "CfgEventhandlers.hpp"
 
 class CfgAISkill {
     aimingShake[] = {0, 0.1, 0.8, 0.4, 1, 1};
-    //aimingSpeed[] = {0, 0.1, 0.2, 0.4, 1, 1};
+    aimingSpeed[] = {0, 0.1, 0.8, 0.6, 1, 1};
     spotDistance[] = {0, 0.1, 0.8, 0.4, 1, 1};
     //courage[] = {0, 0, 0.5, 0.2, 1, 1};
 };

@@ -2,15 +2,15 @@
 
 class CfgPatches {
 	class ADDON {
-        addonRootClass = "rhsusf_c_weapons";
+        addonRootClass = "C_Gen3_Characters";
 		units[] = {};
 		weapons[] = {};
         ammo[] = {};
 		requiredVersion = REQUIRED_VERSION;
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
-			"A3_Characters_F","A3_Weapons_F",
-			"rhsusf_c_troops","rhsusf_c_weapons"
+			"A3_Characters_F", "A3_Weapons_F",
+			"C_Gen3_Characters", "fatpack", "cpc_Vest_config", "lbtt_Vest_config"
 		};
 		version = VERSION;
 		author = "Robalo";
