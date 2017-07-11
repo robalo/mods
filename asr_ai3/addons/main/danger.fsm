@@ -314,7 +314,7 @@ class FSM
           priority = 4.000000;
           to="Signal_enemy";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"_isleader && {_dangerCause == 0 || _dangerCause == 3}"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_dangerCause == 0 || _dangerCause == 3"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
