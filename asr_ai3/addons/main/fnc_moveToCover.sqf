@@ -47,17 +47,14 @@ _grp setVariable [QGVAR(nearcover),_cpa,false];
 	private _cover = _cpa deleteAt 0; // get first cover pos out of array
 	TRACE_2("Choose cover",_cover,_cpa);
 	private _grp = group _unit;
-    private _formation = formation _grp;
-    _grp setFormation "LINE";
 	_grp lockwp true;
 	_unit doMove _cover;
 
     // resume after reaching cover
-	[_unit,_grp,_until,_cover,_formation] spawn {
-		params ["_unit", "_grp", "_until", "_cover", "_formation"];
+	[_unit,_grp,_until,_cover] spawn {
+		params ["_unit", "_grp", "_until", "_cover"];
 		waitUntil {{ if (_x != _unit) then {_x doFollow (formationLeader _x)} } forEach (units _grp); sleep 5; !alive _unit || {time > _until + __DELAY_} || {_unit distance _cover < 2}};
 		_grp lockwp false;
-        _grp setFormation _formation;
         {_x doFollow (leader _x)} forEach (units _grp);
 	};
 

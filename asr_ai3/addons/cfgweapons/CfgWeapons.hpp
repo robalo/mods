@@ -17,6 +17,13 @@ class CfgWeapons {
 		__AI_ROF_RIFLE_SMALL_SEMI;
 		__AI_DISPERSION_COEF;
 	};
+
+    class Binocular : Default {
+        minRangeProbab = 0.1;
+        midRangeProbab = 0.4;
+        maxRangeProbab = 0.04;
+	};
+
 	class RifleCore;
 	class MGunCore;
 	class CannonCore;

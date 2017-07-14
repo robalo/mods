@@ -56,7 +56,7 @@ class CfgAmmo {
 	class GrenadeCore : Default {
 //        visibleFire = 2;
 //        audibleFire = 0.25;
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class TimeBombCore : Default {
 //        visibleFire = 0;
@@ -97,7 +97,7 @@ class CfgAmmo {
 //        visibleFire = 2;
 //        audibleFire = 0.25;
 		cost = 10; //give'em as if they were free
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class RocketBase : RocketCore {
 		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
@@ -225,33 +225,33 @@ class CfgAmmo {
 	};
 
 	class B_19mm_HE : BulletBase {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class B_30mm_HE : B_19mm_HE {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class B_30mm_MP : B_30mm_HE {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class B_20mm : BulletBase {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class B_25mm : BulletBase {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class B_30mm_AP : BulletBase {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class B_35mm_AA : BulletBase {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class GrenadeHand : Grenade {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 //        visibleFire = 0.5;
 //        audibleFire = 0.05;
 	};
 	class mini_Grenade : GrenadeHand {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 	class GrenadeHand_stone : GrenadeHand {
 		dangerRadiusHit = 2;
@@ -271,7 +271,7 @@ class CfgAmmo {
 	};
 
 	class G_40mm_HE : GrenadeBase {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh;
 	};
 
@@ -286,7 +286,7 @@ class CfgAmmo {
 		dangerRadiusHit = 2;
 	};
 	class Gatling_30mm_HE_Plane_CAS_01_F : BulletBase {
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
 	};
 
 	class B_338_Ball : BulletBase {

@@ -8,6 +8,9 @@ if (!isMultiPlayer && {_dangerCausedBy != player} && {_unit distance player > 20
 private _grp = group _unit;
 private _time = time;
 
+// don't send units away when less than 6 in group
+if (attackEnabled _grp && {count (_grp call FUNC(getAlive)) < 6}) then {_grp enableAttack false};
+
 if (_unit call FUNC(isValidUnitC) && {unitReady _unit} && {!(_grp call FUNC(hasPlayer))} && {_time > (_unit getVariable [QGVAR(reacting),-1000]) + 60}) then {
         
     _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
