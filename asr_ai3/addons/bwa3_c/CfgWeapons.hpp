@@ -5,6 +5,8 @@ class Mode_FullAuto;
 class CfgWeapons {
 
 	#include "items.hpp"
+    #include "vests.hpp"
+    #include "uniforms.hpp"
 
 	class Rifle_Base_F;
 	class Rifle_Long_Base_F;
