@@ -55,7 +55,6 @@
         GVAR(levels_units) = call compile GVAR(levels_units_str);
     }
 ] call CBA_Settings_fnc_init;
-*/
 [
     QGVAR(factions_str),
     "EDITBOX",
@@ -78,6 +77,7 @@
         GVAR(skip_factions) = call compile GVAR(factionskip_str);
     }
 ] call CBA_Settings_fnc_init;
+*/
 [
     QGVAR(seekcover),
     "CHECKBOX",

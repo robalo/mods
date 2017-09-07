@@ -26,7 +26,7 @@ class Extended_InitPost_EventHandlers {
 		ADDON = "if (local (_this select 0)) then {(_this select 0) allowCrewInImmobile true}";
 	};
 };
-
+/*
 class Extended_Killed_EventHandlers {
 	class SoldierWB {
 		class ADDON {
@@ -44,7 +44,7 @@ class Extended_Killed_EventHandlers {
 		};
 	};
 };
-
+*/
 class Extended_Hit_EventHandlers {
 	class SoldierWB {
 		class ADDON {

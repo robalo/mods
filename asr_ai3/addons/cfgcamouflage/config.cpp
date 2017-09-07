@@ -7,7 +7,8 @@ class CfgPatches {
 		weapons[] = {};
         ammo[] = {};
 		requiredAddons[] = {"A3_Characters_F", "A3_Characters_F_Mark", "A3_Characters_F_Exp",
-			"A3_Weapons_F", "A3_Weapons_F_Mark", "A3_Weapons_F_Exp"
+			"A3_Weapons_F", "A3_Weapons_F_Mark", "A3_Weapons_F_Exp",
+            "A3_Supplies_F_Orange_Bags", "A3_Characters_F_Orange", "A3_Characters_F_Orange_Vests"
 		};
 		requiredVersion = REQUIRED_VERSION;
         author = "Robalo";

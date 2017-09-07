@@ -414,3 +414,61 @@
 	class B_OutdoorPack_blk: B_OutdoorPack_Base {
         __CAMO_B_MEDIUMDARK;
 	};
+
+    class B_Messenger_Base_F;
+    class B_Messenger_Coyote_F : B_Messenger_Base_F {
+        __CAMO_B_SMALLMONO;
+    };
+    class B_Messenger_Olive_F : B_Messenger_Base_F {
+        __CAMO_B_SMALLMONO;
+    };
+    class B_Messenger_Black_F : B_Messenger_Base_F {
+        __CAMO_B_SMALLDARK;
+    };
+    class B_Messenger_Gray_F : B_Messenger_Base_F {
+        __CAMO_B_SMALLMONO;
+    };
+    class B_Messenger_IDAP_F : B_Messenger_Base_F {
+        __CAMO_B_SMALLCOLOR;
+    };
+
+    class C_IDAP_UAV_01_backpack_F : Weapon_Bag_Base {
+        __CAMO_B_LARGEDARK;
+    };
+    class UAV_06_backpack_base_F;
+    class UAV_06_medical_backpack_base_F;
+
+    class B_UAV_06_backpack_F : UAV_06_backpack_base_F {
+        __CAMO_B_LARGEMONO;
+    };
+    class O_UAV_06_backpack_F : UAV_06_backpack_base_F {
+        __CAMO_B_LARGEMONO;
+    };
+    class I_UAV_06_backpack_F : UAV_06_backpack_base_F {
+        __CAMO_B_LARGEMONO;
+    };
+    class C_IDAP_UAV_06_backpack_F : UAV_06_backpack_base_F {
+        __CAMO_B_LARGEDARK;
+    };
+    class C_UAV_06_backpack_F : UAV_06_backpack_base_F {
+        __CAMO_B_LARGEDARK;
+    };
+    class B_UAV_06_medical_backpack_F : UAV_06_medical_backpack_base_F {
+        __CAMO_B_LARGEMONO;
+    };
+    class O_UAV_06_medical_backpack_F : UAV_06_medical_backpack_base_F {
+        __CAMO_B_LARGEMONO;
+    };
+    class I_UAV_06_medical_backpack_F : UAV_06_medical_backpack_base_F {
+        __CAMO_B_LARGEMONO;
+    };
+    class C_IDAP_UAV_06_medical_backpack_F : UAV_06_medical_backpack_base_F {
+        __CAMO_B_LARGEDARK;
+    };
+    class C_UAV_06_medical_backpack_F : UAV_06_medical_backpack_base_F {
+        __CAMO_B_LARGEDARK;
+    };
+
+    class B_LegStrapBag_base_F : Bag_Base {
+        __CAMO_B_IGNORE;
+    };

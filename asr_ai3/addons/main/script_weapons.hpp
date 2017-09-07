@@ -7,6 +7,7 @@
 
 #define __AI_DISPERSION_COEF aiDispersionCoefX = 6; aiDispersionCoefY = 8
 #define __AI_DISPERSION_2XCOEF aiDispersionCoefX = 12; aiDispersionCoefY = 16
+#define __AI_DISPERSION_3XCOEF aiDispersionCoefX = 18; aiDispersionCoefY = 24
 
 /*
 Fire modes

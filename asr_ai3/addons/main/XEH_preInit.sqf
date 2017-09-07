@@ -23,17 +23,17 @@ ASR_AI_SETDEFAULT(skip_factions,[]);
 
 if (count GVAR(sets) < 10) then {
     GVAR(sets) = [
-	[	"general",[1.00,0.0],	"aiming",[1.00,0.0],	"spotting",[1.00,0.0]	],
-	[	"general",[0.80,0.2],	"aiming",[0.40,0.2],	"spotting",[0.40,0.1]	],
-	[	"general",[0.70,0.2],	"aiming",[0.30,0.2],	"spotting",[0.35,0.1]	],
-	[	"general",[0.60,0.2],	"aiming",[0.25,0.1],	"spotting",[0.30,0.1]	],
-	[	"general",[0.50,0.2],	"aiming",[0.20,0.1],	"spotting",[0.25,0.1]	],
-	[	"general",[0.40,0.2],	"aiming",[0.15,0.1],	"spotting",[0.20,0.1]	],
-	[	"general",[0.30,0.2],	"aiming",[0.10,0.1],	"spotting",[0.15,0.1]	],
-	[	"general",[0.20,0.2],	"aiming",[0.05,0.1],	"spotting",[0.10,0.1]	],
-	[	"general",[0.60,0.2],	"aiming",[0.25,0.1],	"spotting",[0.35,0.1]	],
-	[	"general",[0.50,0.2],	"aiming",[0.20,0.1],	"spotting",[0.30,0.1]	],
-	[	"general",[0.80,0.2],	"aiming",[0.70,0.3],	"spotting",[0.90,0.1]	]
+	[	'general',[1.00,0.0],	'aiming',[1.00,0.0],	'spotting',[1.00,0.0]	],
+	[	'general',[0.90,0.1],	'aiming',[0.50,0.2],	'spotting',[0.50,0.1]	],
+	[	'general',[0.85,0.1],	'aiming',[0.40,0.2],	'spotting',[0.40,0.1]	],
+	[	'general',[0.80,0.1],	'aiming',[0.25,0.1],	'spotting',[0.30,0.1]	],
+	[	'general',[0.75,0.1],	'aiming',[0.20,0.1],	'spotting',[0.25,0.1]	],
+	[	'general',[0.70,0.1],	'aiming',[0.15,0.1],	'spotting',[0.20,0.1]	],
+	[	'general',[0.65,0.1],	'aiming',[0.10,0.1],	'spotting',[0.15,0.1]	],
+	[	'general',[0.60,0.1],	'aiming',[0.05,0.1],	'spotting',[0.10,0.1]	],
+	[	'general',[0.80,0.1],	'aiming',[0.20,0.1],	'spotting',[0.35,0.1]	],
+	[	'general',[0.75,0.1],	'aiming',[0.15,0.1],	'spotting',[0.30,0.1]	],
+	[	'general',[0.90,0.1],	'aiming',[0.70,0.3],	'spotting',[0.90,0.1]	]
     ]
 };
 if (count GVAR(levels_units) < 10) then {GVAR(levels_units) = [[],[],[],[],[],[],[],[],[],[],[]]};
@@ -46,7 +46,7 @@ GVAR(needmax) = [ // The level of supplies the unit will try to maintain
 	GVAR(rearm_mags), // mags for primary weapon
 	GVAR(rearm_fak)  // fak
 ];
-GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit")];
+//GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit")];
 
 PREP(isValidUnit);
 PREP(isValidUnitC);
@@ -59,7 +59,7 @@ PREP(hasRadio);
 PREP(setUnitCamo);
 PREP(setUnitSkill);
 PREP(configureUnit);
-PREP(killedEH);
+//PREP(killedEH);
 PREP(sendInfo);
 PREP(broadcastInfo);
 PREP(canCover);
@@ -89,7 +89,7 @@ PREP(configLoop);
 PREP(fallDown);
 PREP(handleExplosion);
 PREP(stopToShoot);
-PREP(handleDamage);
+//PREP(handleDamage);
 PREP(fireOnMyShot);
 PREP(grpHasWP);
 

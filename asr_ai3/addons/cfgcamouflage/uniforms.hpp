@@ -385,3 +385,20 @@
         //displayName = "CTRG Urban Uniform (Rolled-up)";
         __CAMO_U_CAMOCAMO;
     };
+
+    class U_C_IDAP_Man_casual_F : Uniform_Base {
+        //displayName = "Aid Worker Clothes (Polo) [IDAP]";
+        __CAMO_U_DARKMONO;
+    };
+    class U_C_IDAP_Man_cargo_F : Uniform_Base {
+        //displayName = "Aid Worker Clothes (Cargo) [IDAP]";
+        __CAMO_U_COLORMONO;
+    };
+    class U_C_IDAP_Man_Tee_F : Uniform_Base {
+        //displayName = "Aid Worker Clothes (Tee) [IDAP]";
+        __CAMO_U_COLORMONO;
+    };
+    class U_BG_Guerilla1_2_F : Uniform_Base {
+        //displayName = "Guerilla Garment (Olive)";
+        __CAMO_U_MONOCAMO;
+    };

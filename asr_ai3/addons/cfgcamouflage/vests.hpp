@@ -166,3 +166,40 @@
     class V_DeckCrew_base_F : Vest_Camo_Base {
         __CAMO_V_COLOR;
     };
+
+    class V_Plain_base_F;
+    class V_Plain_medical_F : V_Plain_base_F {
+       __CAMO_V_COLOR;
+    };
+    class V_Plain_crystal_F : V_Plain_base_F {
+       __CAMO_V_COLOR;
+    };
+    class V_Pocketed_base_F;
+    class V_Pocketed_olive_F : V_Pocketed_base_F {
+        __CAMO_V_MONO;
+    };
+    class V_Pocketed_coyote_F : V_Pocketed_base_F {
+        __CAMO_V_MONO;
+    };
+    class V_Pocketed_black_F : V_Pocketed_base_F {
+        __CAMO_V_DARK;
+    };
+    class V_Safety_base_F : Vest_Camo_Base {
+       __CAMO_V_COLOR;
+    };
+    class V_LegStrapBag_base_F : Vest_Camo_Base {
+        __CAMO_V_IGNORE;
+    };
+    class V_EOD_base_F;
+    class V_EOD_blue_F : V_EOD_base_F {
+       __CAMO_V_COLOR;
+    };
+    class V_EOD_olive_F : V_EOD_base_F {
+        __CAMO_V_MONO;
+    };
+    class V_EOD_coyote_F : V_EOD_base_F {
+        __CAMO_V_MONO;
+    };
+    class V_EOD_IDAP_blue_F : V_EOD_base_F {
+       __CAMO_V_COLOR;
+    };

@@ -80,12 +80,12 @@ class CfgWeapons {
 
 	class GrenadeLauncher: Default {
 		__AI_ROF_GL_SINGLE;
-		__AI_DISPERSION_2XCOEF;
+		__AI_DISPERSION_3XCOEF;
 	};
     class UGL_F : GrenadeLauncher {
         class Single : Mode_SemiAuto {
             __AI_ROF_GL_SINGLE;
-            __AI_DISPERSION_2XCOEF;
+            __AI_DISPERSION_3XCOEF;
         };
     };
 
@@ -105,7 +105,9 @@ class CfgWeapons {
 	};
 
 	class Throw: GrenadeLauncher {
-		class ThrowMuzzle;
+        class ThrowMuzzle : GrenadeLauncher {
+            __AI_DISPERSION_3XCOEF;
+        };
 		class HandGrenadeMuzzle: ThrowMuzzle {
 			minRange = 20;
 			minRangeProbab = 0.7;
