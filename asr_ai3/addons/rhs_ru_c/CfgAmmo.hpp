@@ -17,9 +17,6 @@ class CfgAmmo {
     class B_9x21_Ball;
     class R_PG32V_F;
 
-    class rhs_ammo_3d17_shell : Grenade {
-        aiAmmoUsageFlags = AIAmmoUsageConcealment + AIAmmoUsageCountermeasures;
-    };
     class rhs_B_545x39_Ball : B_556x45_Ball {
 		audibleFire = __AI_AMMO_AUDIBLE1; //7;
     };

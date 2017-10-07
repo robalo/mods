@@ -365,6 +365,7 @@ class CfgAmmo {
     class R_PG32V_F: RocketBase {
         airlock = 1;
         aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;
+        audibleFire = __AI_AMMO_AUDIBLE1;
     };
     class R_TBG32V_F : R_PG32V_F {
         aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir;
@@ -378,6 +379,7 @@ class CfgAmmo {
     class R_PG7_F : RocketBase {
         airLock = 1;
         aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;
+        audibleFire = __AI_AMMO_AUDIBLE1;
     };
 
     class FlareBase;

@@ -4,6 +4,13 @@
 params ["_unit"];
 private ["_j","_st","_sv"];
 
+if (GVAR(teamsuperai) && {(group _unit) call FUNC(hasPlayer)}) exitWith {
+    _unit setSkill 1;
+    if (GVAR(debug_setskill)) then {
+        diag_log format["ASR AI3: %1 | Unit %2 in player group aimingAccuracy: %3, skillFinal: %4",diag_ticktime,_unit,_unit skill "aimingAccuracy",_unit skillFinal "aimingAccuracy"];
+    };
+};
+
 private _fnc_getskillvalue = {
     params ["_min", "_var"]; //min skill, max variance
 	(_min + random _var)

@@ -14,7 +14,7 @@ class CfgVehicles {
 
 	class SoldierGB;
 
-    class rhssaf_soldier_base : SoldierGB {
+    class rhssaf_soldier_m10_base : SoldierGB {
 		ASR_AI_SKILL_REG2;
 		ASR_AI_AMMOCOEF_STANDARD;
 		ASR_AI_MINFIRETIME;

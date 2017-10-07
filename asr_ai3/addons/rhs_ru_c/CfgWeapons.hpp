@@ -11,12 +11,10 @@ class CfgWeapons {
 	class Rifle_Long_Base_F;
 	class Pistol_Base_F;
     class Launcher_Base_F;
-
+    class MGun;
     class PKT;
     class LMG_RCWS;
-    class KPVT;
     class gatling_30mm;
-    class autocannon_30mm_CTWS;
     class rockets_Skyfire;
     class hgun_Rook40_F;
 
@@ -29,7 +27,7 @@ class CfgWeapons {
     class rhs_weap_nsvt : rhs_weap_DSHKM {
 		__AI_DISPERSION_COEF;
     };
-    class rhs_weap_kpvt : KPVT {
+    class rhs_weap_kpvt : MGun {
 		__AI_DISPERSION_COEF;
     };
     class rhs_weap_yakB : gatling_30mm {
@@ -37,22 +35,8 @@ class CfgWeapons {
             __AI_DISPERSION_COEF;
         };
     };
-    class RHS_weap_GSh30 : gatling_30mm {
-		__AI_DISPERSION_COEF;
-    };
     class rhs_weap_pkm_tigr : rhs_weap_pkt {
 		__AI_DISPERSION_COEF;
-    };
-    class rhs_weap_2a42_base : autocannon_30mm_CTWS {
-        class LowROFBMD2 : Mode_FullAuto {
-            __AI_DISPERSION_COEF;
-        };
-    };
-    class rhs_weap_2a42 : rhs_weap_2a42_base {};
-    class rhs_weap_2a72_base : rhs_weap_2a42 {
-        class LowROFBMD2 : LowROFBMD2 {
-            __AI_DISPERSION_COEF;
-        };
     };
     class rhs_weap_s5 : rockets_Skyfire {
         __AI_DISPERSION_COEF;
@@ -68,6 +52,7 @@ class CfgWeapons {
     class rhs_weap_asval : rhs_weap_ak74m {
 		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
+        __AI_DISPERSION_COEF;
     };
     class rhs_weap_ak105 : rhs_weap_ak74m {
 		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};

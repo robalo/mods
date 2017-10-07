@@ -1,21 +1,17 @@
 class Mode_SemiAuto {
 	__AI_ROF_RIFLE_SMALL_SEMI;
-	__AI_DISPERSION_COEF;
 };
 class Mode_Burst: Mode_SemiAuto {
 	__AI_ROF_RIFLE_SMALL_CLOSE_BURST;
-	__AI_DISPERSION_COEF;
 };
 class Mode_FullAuto: Mode_SemiAuto {
 	__AI_ROF_RIFLE_SMALL_FULLAUTO;
-	__AI_DISPERSION_COEF;
 };
 
 class CfgWeapons {
 
 	class Default {
 		__AI_ROF_RIFLE_SMALL_SEMI;
-		__AI_DISPERSION_COEF;
 	};
 
     class Binocular : Default {
@@ -80,12 +76,10 @@ class CfgWeapons {
 
 	class GrenadeLauncher: Default {
 		__AI_ROF_GL_SINGLE;
-		__AI_DISPERSION_3XCOEF;
 	};
     class UGL_F : GrenadeLauncher {
         class Single : Mode_SemiAuto {
             __AI_ROF_GL_SINGLE;
-            __AI_DISPERSION_3XCOEF;
         };
     };
 

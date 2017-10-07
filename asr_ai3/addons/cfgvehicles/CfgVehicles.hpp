@@ -374,5 +374,8 @@ class CfgVehicles {
     class I_UAV_AI : O_UAV_AI {
         ASR_AI_SKILL_UAV1;
     };
+    class UAV_AI_base_F : CAManBase {
+        ASR_AI_SKILL_UAV1;
+    };
 
 };

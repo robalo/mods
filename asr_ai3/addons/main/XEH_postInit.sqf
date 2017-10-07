@@ -3,9 +3,7 @@
 LOG(MSG_INIT);
 
 if (isServer) then {
-	// Server, propagate settings and required functions to clients
-	//publicVariable "ASR_AI3_SETTINGS";
-    ["itemAdd", [QGVAR(cfgLoop), {call FUNC(configLoop);}, 10]] call BIS_fnc_loop;
+    ["itemAdd", [QGVAR(cfgLoop), {call FUNC(configLoop);}, 20]] call BIS_fnc_loop;
 
 	[] spawn {
 		private ["_i","_thisgroup","_units","_c","_u","_d","_from","_to"];

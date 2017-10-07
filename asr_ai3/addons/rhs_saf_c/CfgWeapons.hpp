@@ -65,31 +65,6 @@ class CfgWeapons {
 		__AI_RIFLE_SMALL_CQB_MODES(Mode_SemiAuto,Mode_FullAuto);
     };
 
-    class rhs_weap_g36e1 : rhs_weap_g36a1 {
-		modes[] = {"Single", "Burst2", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
-    };
-    class rhs_weap_g36e1_ag36 : rhs_weap_g36a1_ag36 {
-		modes[] = {"Single", "Burst2", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
-    };
-    class rhs_weap_g36ke1 : rhs_weap_g36ka1 {
-		modes[] = {"Single", "Burst2", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
-    };
-    class rhs_weap_g36kv;
-    class rhs_weap_g36ka1_ksk : rhs_weap_g36kv {
-		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
-    };
-
-    class rhs_weap_g36_mlic : rhs_weap_g36_base {
-		modes[] = {"Single", "Burst2", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
-		__AI_RIFLE_SMALL_MODES(Single,FullAuto);
-    };
-    class rhs_weap_g36k_mlic : rhs_weap_g36_mlic {
-		__AI_RIFLE_SMALL_MODES(Single,FullAuto);
-    };
-    class rhs_weap_g36c_mlic : rhs_weap_g36_mlic {
-		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
-    };
-
     class Rifle_Long_Base_F;
     class rhs_weap_m84 : Rifle_Long_Base_F {
 		modes[] = {
@@ -102,5 +77,26 @@ class CfgWeapons {
 		__AI_DISPERSION_COEF;
     };
 
+    class Rifle_Short_Base_F;
+    class SMG_01_Base : Rifle_Short_Base_F {
+        class Single;
+        class FullAuto;
+    };
+    class SMG_01_F : SMG_01_Base {};
 
+    class rhs_weap_scorpion : SMG_01_F {
+        modes[] = {"Single", "FullAuto", "AI_Burst_close"};
+		class Single: Single {
+			__AI_ROF_SMG_SINGLE;
+		};
+		class FullAuto: FullAuto {
+			__AI_ROF_SMG_FULLAUTO;
+		};
+		class AI_Burst_close: FullAuto {
+			showToPlayer = 0;
+            aiBurstTerminable = 1;
+			burst = 4;
+			__AI_ROF_SMG_BURST;
+		};
+    };
 };

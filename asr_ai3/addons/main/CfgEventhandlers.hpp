@@ -125,3 +125,21 @@ class Extended_Put_EventHandlers {
 		ADDON = QUOTE(_this call FUNC(setUnitCamo));
 	};
 };
+
+class Extended_Local_EventHandlers {
+	class SoldierWB {
+		class ADDON {
+			local = QUOTE(_this call FUNC(handleLocal));
+		};
+	};
+	class SoldierEB {
+		class ADDON {
+			local = QUOTE(_this call FUNC(handleLocal));
+		};
+	};
+	class SoldierGB {
+		class ADDON {
+			local = QUOTE(_this call FUNC(handleLocal));
+		};
+	};
+};

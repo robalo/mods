@@ -4,10 +4,18 @@
 #define __AI_AMMO_RANGE_HIT_MEDIUM 300
 #define __AI_AMMO_RANGE_HIT_SMALL 5
 #define __AI_AMMO_RANGE_CRACKS 50
-
+/*
 #define __AI_DISPERSION_COEF aiDispersionCoefX = 6; aiDispersionCoefY = 8
 #define __AI_DISPERSION_2XCOEF aiDispersionCoefX = 12; aiDispersionCoefY = 16
 #define __AI_DISPERSION_3XCOEF aiDispersionCoefX = 18; aiDispersionCoefY = 24
+#define __AI_DISPERSION_HALFCOEF aiDispersionCoefX = 3; aiDispersionCoefY = 4
+#define __AI_DISPERSION_THIRDCOEF aiDispersionCoefX = 2; aiDispersionCoefY = 3
+*/
+#define __AI_DISPERSION_COEF aiDispersionCoefX = 4; aiDispersionCoefY = 8
+#define __AI_DISPERSION_2XCOEF aiDispersionCoefX = 8; aiDispersionCoefY = 16
+#define __AI_DISPERSION_3XCOEF aiDispersionCoefX = 12; aiDispersionCoefY = 24
+#define __AI_DISPERSION_HALFCOEF aiDispersionCoefX = 2; aiDispersionCoefY = 4
+#define __AI_DISPERSION_THIRDCOEF aiDispersionCoefX = 1; aiDispersionCoefY = 2
 
 /*
 Fire modes
@@ -23,7 +31,8 @@ Fire modes
 		midRange = 30;\
 		midRangeProbab = 0.05;\
 		maxRange = 70;\
-		maxRangeProbab = 0.01
+		maxRangeProbab = 0.01;\
+        __AI_DISPERSION_COEF
 
 //gl
 #define __AI_ROF_GL_SINGLE \
@@ -35,8 +44,8 @@ Fire modes
 		midRange = 200;\
 		midRangeProbab = 0.65;\
 		maxRange = 400;\
-		maxRangeProbab = 0.01
-
+		maxRangeProbab = 0.01;\
+        __AI_DISPERSION_3XCOEF
 
 //shotgun
 #define __AI_ROF_SHOTGUN_SEMI \
@@ -45,14 +54,16 @@ Fire modes
 		midRange = 50;\
 		midRangeProbab = 0.6;\
 		maxRange = 150;\
-		maxRangeProbab = 0.02
+		maxRangeProbab = 0.02;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_SHOTGUN_AUTO \
 		minRange = 0;\
 		minRangeProbab = 0.8;\
 		midRange = 30;\
 		midRangeProbab = 0.7;\
 		maxRange = 60;\
-		maxRangeProbab = 0.02
+		maxRangeProbab = 0.02;\
+        __AI_DISPERSION_COEF
 
 //assault rifles, carbines
 #define __AI_ROF_RIFLE_SMALL_SINGLE \
@@ -64,7 +75,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.5;\
 		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_RIFLE_SMALL_SEMI \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 300;\
@@ -74,7 +86,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.5;\
 		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_RIFLE_SMALL_MSCOPE_SINGLE \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 500;\
@@ -84,7 +97,8 @@ Fire modes
 		midRange = 300;\
 		midRangeProbab = 0.6;\
 		maxRange = 700;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_HALFCOEF
 #define __AI_ROF_RIFLE_SMALL_HSCOPE_SINGLE \
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 500;\
@@ -94,7 +108,8 @@ Fire modes
 		midRange = 300;\
 		midRangeProbab = 0.6;\
 		maxRange = 900;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_THIRDCOEF
 #define __AI_ROF_RIFLE_SMALL_SHORT_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -104,7 +119,8 @@ Fire modes
 		midRange = 20;\
 		midRangeProbab = 0.8;\
 		maxRange = 40;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_RIFLE_SMALL_CLOSE_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -114,7 +130,8 @@ Fire modes
 		midRange = 10;\
 		midRangeProbab = 0.7;\
 		maxRange = 20;\
-		maxRangeProbab = 0.2
+		maxRangeProbab = 0.2;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_RIFLE_SMALL_FULLAUTO \
 		aiRateOfFire = 0.1;\
 		aiRateOfFireDistance = 50;\
@@ -123,7 +140,8 @@ Fire modes
 		midRange = 1;\
 		midRangeProbab = 0.8;\
 		maxRange = 5;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_RIFLE_SMALL_FAR_FAST_SINGLE \
 		aiRateOfFire = 5;\
 		aiRateOfFireDistance = 600;\
@@ -133,7 +151,8 @@ Fire modes
 		midRange = 600;\
 		midRangeProbab = 0.05;\
 		maxRange = 800;\
-		maxRangeProbab = 0.01
+		maxRangeProbab = 0.01;\
+        __AI_DISPERSION_3XCOEF
 
 #define __AI_RIFLE_SMALL_MODES(semibase,fullbase) \
 		class Single: ##semibase { \
@@ -190,7 +209,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.5;\
 		maxRange = 500;\
-		maxRangeProbab = 0.04
+		maxRangeProbab = 0.04;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_CQB_SEMI \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 250;\
@@ -200,7 +220,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.5;\
 		maxRange = 500;\
-		maxRangeProbab = 0.04
+		maxRangeProbab = 0.04;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_CQB_MSCOPE_SINGLE \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 500;\
@@ -210,7 +231,8 @@ Fire modes
 		midRange = 200;\
 		midRangeProbab = 0.6;\
 		maxRange = 600;\
-		maxRangeProbab = 0.01
+		maxRangeProbab = 0.01;\
+        __AI_DISPERSION_HALFCOEF
 #define __AI_ROF_CQB_SHORT_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -220,7 +242,8 @@ Fire modes
 		midRange = 30;\
 		midRangeProbab = 0.8;\
 		maxRange = 60;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_CQB_CLOSE_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -230,7 +253,8 @@ Fire modes
 		midRange = 15;\
 		midRangeProbab = 0.7;\
 		maxRange = 30;\
-		maxRangeProbab = 0.2
+		maxRangeProbab = 0.2;\
+        __AI_DISPERSION_COEF
 
 #define __AI_RIFLE_SMALL_CQB_MODES(semibase,fullbase) \
 		class Single: ##semibase { \
@@ -279,7 +303,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.5;\
 		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_RIFLE_MEDIUM_SEMI \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 300;\
@@ -289,7 +314,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.5;\
 		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_RIFLE_MEDIUM_MSCOPE_SINGLE \
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 550;\
@@ -299,7 +325,8 @@ Fire modes
 		midRange = 300;\
 		midRangeProbab = 0.8;\
 		maxRange = 800;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_HALFCOEF
 #define __AI_ROF_RIFLE_MEDIUM_HSCOPE_SINGLE \
 		aiRateOfFire = 6;\
 		aiRateOfFireDistance = 1200;\
@@ -309,7 +336,8 @@ Fire modes
 		midRange = 500;\
 		midRangeProbab = 0.8;\
 		maxRange = 1200;\
-		maxRangeProbab = 0.05
+		maxRangeProbab = 0.05;\
+        __AI_DISPERSION_THIRDCOEF
 #define __AI_ROF_RIFLE_MEDIUM_CLOSE_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -319,7 +347,8 @@ Fire modes
 		midRange = 10;\
 		midRangeProbab = 0.7;\
 		maxRange = 15;\
-		maxRangeProbab = 0.2
+		maxRangeProbab = 0.2;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_RIFLE_MEDIUM_FULLAUTO \
 		aiRateOfFire = 0.1;\
 		aiRateOfFireDistance = 50;\
@@ -328,7 +357,8 @@ Fire modes
 		midRange = 1;\
 		midRangeProbab = 0.8;\
 		maxRange = 5;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 
 #define __AI_RIFLE_MEDIUM_MODES(semibase,fullbase) \
 		class Single: ##semibase { \
@@ -356,6 +386,20 @@ Fire modes
 			__AI_ROF_RIFLE_MEDIUM_SEMI; \
 		}
 
+#define __AI_RIFLE_MEDIUMSEMI_MODES(semibase) \
+		class Single: ##semibase { \
+			__AI_ROF_RIFLE_MEDIUM_SEMI; \
+		}; \
+		class AI_Single_optics1: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 1; \
+			__AI_ROF_RIFLE_MEDIUM_MSCOPE_SINGLE; \
+		}; \
+		class AI_Single_optics2: AI_Single_optics1 { \
+			requiredOpticType = 2; \
+			__AI_ROF_RIFLE_MEDIUM_HSCOPE_SINGLE; \
+		}
+
 //AK special
 #define __AI_ROF_AK_SINGLE \
 		aiRateOfFire = 1;\
@@ -366,7 +410,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.5;\
 		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_AK_MSCOPE_SINGLE \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 500;\
@@ -376,7 +421,8 @@ Fire modes
 		midRange = 400;\
 		midRangeProbab = 0.5;\
 		maxRange = 600;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_HALFCOEF
 #define __AI_ROF_AK_HSCOPE_SINGLE \
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 500;\
@@ -386,7 +432,8 @@ Fire modes
 		midRange = 400;\
 		midRangeProbab = 0.5;\
 		maxRange = 800;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_THIRDCOEF
 #define __AI_ROF_AK_SHORT_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -396,7 +443,8 @@ Fire modes
 		midRange = 100;\
 		midRangeProbab = 0.8;\
 		maxRange = 200;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_AK_CLOSE_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -406,7 +454,8 @@ Fire modes
 		midRange = 50;\
 		midRangeProbab = 0.7;\
 		maxRange = 100;\
-		maxRangeProbab = 0.2
+		maxRangeProbab = 0.2;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_AK_FULLAUTO \
 		aiRateOfFire = 0.1;\
 		aiRateOfFireDistance = 50;\
@@ -415,7 +464,8 @@ Fire modes
 		midRange = 1;\
 		midRangeProbab = 0.8;\
 		maxRange = 5;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_AK_FAR_BURST \
 		aiRateOfFire = 5;\
 		aiRateOfFireDistance = 600;\
@@ -425,7 +475,8 @@ Fire modes
 		midRange = 500;\
 		midRangeProbab = 0.3;\
 		maxRange = 1000;\
-		maxRangeProbab = 0.01
+		maxRangeProbab = 0.01;\
+        __AI_DISPERSION_3XCOEF
 
 #define __AI_AK_MODES(semibase,fullbase) \
 		class Single: ##semibase { \
@@ -476,7 +527,8 @@ Fire modes
 		midRange = 10;\
 		midRangeProbab = 0.7;\
 		maxRange = 20;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_MG_LONG_BURST \
 		burst = 10;\
 		aiRateOfFire = 0.5;\
@@ -487,7 +539,8 @@ Fire modes
 		midRange = 25;\
 		midRangeProbab = 0.8;\
 		maxRange = 50;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_MG_CLOSE_BURST \
 		burst = 8;\
 		aiRateOfFire = 1;\
@@ -498,7 +551,8 @@ Fire modes
 		midRange = 50;\
 		midRangeProbab = 0.8;\
 		maxRange = 100;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_MG_SHORT_BURST \
 		burst = 5;\
 		aiRateOfFire = 1;\
@@ -509,7 +563,8 @@ Fire modes
 		midRange = 100;\
 		midRangeProbab = 0.8;\
 		maxRange = 200;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_MG_MEDIUM_BURST \
 		burst = 4;\
 		aiRateOfFire = 1;\
@@ -520,7 +575,8 @@ Fire modes
 		midRange = 200;\
 		midRangeProbab = 0.8;\
 		maxRange = 400;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_MG_FAR_BURST \
 		burst = 4;\
 		aiRateOfFire = 1;\
@@ -531,7 +587,8 @@ Fire modes
 		midRange = 400;\
 		midRangeProbab = 0.8;\
 		maxRange = 800;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_2XCOEF
 #define __AI_ROF_MG_VERYFAR_BURST \
 		burst = 5;\
 		aiRateOfFire = 3;\
@@ -542,7 +599,8 @@ Fire modes
 		midRange = 800;\
 		midRangeProbab = 0.2;\
 		maxRange = 1000;\
-		maxRangeProbab = 0.01
+		maxRangeProbab = 0.01;\
+        __AI_DISPERSION_3XCOEF
 #define __AI_ROF_MG_FAR_SCOPE_BURST \
 		burst = 3;\
 		aiRateOfFire = 1;\
@@ -553,7 +611,8 @@ Fire modes
 		midRange = 800;\
 		midRangeProbab = 0.8;\
 		maxRange = 1200;\
-		maxRangeProbab = 0.2
+		maxRangeProbab = 0.2;\
+        __AI_DISPERSION_HALFCOEF
 #define __AI_ROF_MG_VERYFAR_SCOPE_BURST \
 		burst = 2;\
 		aiRateOfFire = 2;\
@@ -564,7 +623,8 @@ Fire modes
 		midRange = 1200;\
 		midRangeProbab = 0.6;\
 		maxRange = 1600;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_HALFCOEF
 #define __AI_ROF_MG_SINGLE \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 300;\
@@ -574,7 +634,8 @@ Fire modes
 		midRange = 400;\
 		midRangeProbab = 0.1;\
 		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 
 #define __AI_MG_MODES(m,fullbase,semibase) \
 		class ##m: ##fullbase { \
@@ -627,7 +688,8 @@ Fire modes
 		midRange = 80;\
 		midRangeProbab = 0.5;\
 		maxRange = 300;\
-		maxRangeProbab = 0.01
+		maxRangeProbab = 0.01;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_SMG_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
@@ -637,7 +699,8 @@ Fire modes
 		midRange = 30;\
 		midRangeProbab = 0.5;\
 		maxRange = 60;\
-		maxRangeProbab = 0.4
+		maxRangeProbab = 0.4;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_SMG_FULLAUTO \
 		aiRateOfFire = 0.1;\
 		aiRateOfFireDistance = 50;\
@@ -646,7 +709,8 @@ Fire modes
 		midRange = 10;\
 		midRangeProbab = 0.8;\
 		maxRange = 20;\
-		maxRangeProbab = 0.4
+		maxRangeProbab = 0.4;\
+        __AI_DISPERSION_COEF
 
 #define __AI_SMG_MODES \
 		class Single: Mode_SemiAuto { \
@@ -669,7 +733,8 @@ Fire modes
 		midRange = 500;\
 		midRangeProbab = 0.8;\
 		maxRange = 1600;\
-		maxRangeProbab = 0.01
+		maxRangeProbab = 0.01;\
+        __AI_DISPERSION_THIRDCOEF
 
 
 #define __AI_ROF_338SNIPER_SEMI \
@@ -681,7 +746,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.7;\
 		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_338SNIPER_MSCOPE_SEMI \
 		aiRateOfFire = 4;\
 		aiRateOfFireDistance = 500;\
@@ -691,7 +757,8 @@ Fire modes
 		midRange = 500;\
 		midRangeProbab = 0.7;\
 		maxRange = 1000;\
-		maxRangeProbab = 0.05
+		maxRangeProbab = 0.05;\
+        __AI_DISPERSION_HALFCOEF
 #define __AI_ROF_338SNIPER_HSCOPE_SEMI \
 		aiRateOfFire = 8;\
 		aiRateOfFireDistance = 1000;\
@@ -701,7 +768,8 @@ Fire modes
 		midRange = 750;\
 		midRangeProbab = 0.7;\
 		maxRange = 2000;\
-		maxRangeProbab = 0.05
+		maxRangeProbab = 0.05;\
+        __AI_DISPERSION_THIRDCOEF
 
 #define __AI_338SNIPER_MODES(semibase) \
 		class Single: ##semibase { \
@@ -727,7 +795,8 @@ Fire modes
 		midRange = 150;\
 		midRangeProbab = 0.7;\
 		maxRange = 500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_COEF
 #define __AI_ROF_BIGSNIPER_MSCOPE_SEMI \
 		aiRateOfFire = 4;\
 		aiRateOfFireDistance = 600;\
@@ -737,7 +806,8 @@ Fire modes
 		midRange = 500;\
 		midRangeProbab = 0.7;\
 		maxRange = 1000;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_HALFCOEF
 #define __AI_ROF_BIGSNIPER_HSCOPE_SEMI \
 		aiRateOfFire = 8;\
 		aiRateOfFireDistance = 1100;\
@@ -747,7 +817,8 @@ Fire modes
 		midRange = 750;\
 		midRangeProbab = 0.7;\
 		maxRange = 1500;\
-		maxRangeProbab = 0.4
+		maxRangeProbab = 0.4;\
+        __AI_DISPERSION_THIRDCOEF
 #define __AI_ROF_BIGSNIPER_HSCOPE_FAR_SEMI \
 		aiRateOfFire = 10;\
 		aiRateOfFireDistance = 1500;\
@@ -757,7 +828,8 @@ Fire modes
 		midRange = 1200;\
 		midRangeProbab = 0.7;\
 		maxRange = 2500;\
-		maxRangeProbab = 0.1
+		maxRangeProbab = 0.1;\
+        __AI_DISPERSION_THIRDCOEF
 
 #define __AI_BIGSNIPER_MODES(semibase) \
 		class Single: ##semibase { \

@@ -117,7 +117,9 @@
         //displayName = "Flora (MSV)";
         __CAMO_U_CAMOCAMO;
     };
-    class rhs_uniform_df15;
+    class rhs_uniform_df15 : rhs_uniform_flora {
+        asr_camouflage = __CAMO_COLOR;
+    };
     class rhs_uniform_df15_tan : rhs_uniform_df15 {
         //displayName = "DF-15-2 (Tan)";
         __CAMO_U_MONOMONO;

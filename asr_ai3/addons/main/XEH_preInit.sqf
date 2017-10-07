@@ -46,7 +46,7 @@ GVAR(needmax) = [ // The level of supplies the unit will try to maintain
 	GVAR(rearm_mags), // mags for primary weapon
 	GVAR(rearm_fak)  // fak
 ];
-//GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit")];
+GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit")];
 
 PREP(isValidUnit);
 PREP(isValidUnitC);
@@ -68,11 +68,12 @@ PREP(moveToCover);
 PREP(unitMoveToCover);
 PREP(getInWeaponsEH);
 PREP(handleHit);
+PREP(handleLocal);
 PREP(unitNVG);
 PREP(showHideNVG);
 PREP(setupGear);
 PREP(reactDanger);
-PREP(reveal);
+//PREP(reveal);
 PREP(isUnderRoof);
 PREP(pistolToPrimary);
 PREP(inventoryClosed);
@@ -89,7 +90,7 @@ PREP(configLoop);
 PREP(fallDown);
 PREP(handleExplosion);
 PREP(stopToShoot);
-//PREP(handleDamage);
+PREP(handleDamage);
 PREP(fireOnMyShot);
 PREP(grpHasWP);
 

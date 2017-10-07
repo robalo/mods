@@ -8,6 +8,16 @@
     {
     } // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;
+[
+    QGVAR(teamsuperai),
+    "CHECKBOX",
+    "Better skills for player group AI",
+    "ASR AI3",
+    true,
+    1,
+    {
+    }
+] call CBA_Settings_fnc_init;
 /*
 [
     QGVAR(sets_str),
