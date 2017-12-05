@@ -29,49 +29,23 @@ class CfgWeapons {
 	class LMG_RCWS: MGun {
 		__AI_DISPERSION_COEF;
 	};
+    class LMG_Minigun : LMG_RCWS {
+	};
+    class HMG_01;
+    class HMG_M2 : HMG_01 {
+		__AI_DISPERSION_COEF;
+	};
 	class M134_minigun: MGunCore {
-		class LowROF: Mode_FullAuto {
-			__AI_DISPERSION_COEF;
-		};
-	};
-	class autocannon_Base_F: CannonCore {
-		class player;
-		class close: player {
-			__AI_DISPERSION_COEF;
-		};
-	};
-	class gatling_30mm_base: CannonCore {
-		class LowROF: Mode_FullAuto {
-			__AI_DISPERSION_COEF;
-		};
+		__AI_DISPERSION_COEF;
 	};
 	class cannon_120mm: CannonCore {
-		class player;
-		class close: player {
-			__AI_DISPERSION_COEF;
-		};
-	};
-	class Gatling_30mm_Plane_CAS_01_F: CannonCore {
-		class LowROF: Mode_FullAuto {
-			__AI_DISPERSION_COEF;
-		};
-	};
-	class Cannon_30mm_Plane_CAS_02_F: CannonCore {
-		class LowROF: Mode_FullAuto {
-			__AI_DISPERSION_COEF;
-		};
+		__AI_DISPERSION_COEF;
 	};
 	class cannon_125mm : CannonCore {
-		class player;
-		class close: player {
-			__AI_DISPERSION_COEF;
-		};
+		__AI_DISPERSION_COEF;
 	};
 	class cannon_105mm: CannonCore {
-		class player;
-		class close: player {
-			__AI_DISPERSION_COEF;
-		};
+		__AI_DISPERSION_COEF;
 	};
 
 	class GrenadeLauncher: Default {
@@ -81,6 +55,7 @@ class CfgWeapons {
         class Single : Mode_SemiAuto {
             __AI_ROF_GL_SINGLE;
         };
+        __AI_DISPERSION_2XCOEF;
     };
 
 	class Rifle: RifleCore {
@@ -100,7 +75,7 @@ class CfgWeapons {
 
 	class Throw: GrenadeLauncher {
         class ThrowMuzzle : GrenadeLauncher {
-            __AI_DISPERSION_3XCOEF;
+            __AI_DISPERSION_2XCOEF;
         };
 		class HandGrenadeMuzzle: ThrowMuzzle {
 			minRange = 20;
@@ -203,6 +178,10 @@ class CfgWeapons {
 		__AI_DISPERSION_COEF;
 	};
 	class arifle_Mk20C_F: mk20_base_F {
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
+		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
+	};
+    class arifle_Mk20_GL_F : mk20_base_F {
 		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
 	};

@@ -45,24 +45,12 @@ class CfgWeapons {
 		__AI_DISPERSION_COEF;
     };
 
-    class rhs_weap_g36a1 : rhs_weap_g36_base {};
-    class rhs_weap_g36a1_ag36 : rhs_weap_g36a1 {};
-
-    class rhs_weap_mg36 : rhs_weap_g36_base {
-		modes[] = {
-            "Single", "FullAuto",
-            "AI_long", "AI_close", "AI_short", "AI_medium", "AI_far",
-            "AI_far_optic1",
-            "AI_far_optic2"
-        };
-		__AI_MG_MODES(FullAuto,FullAuto,Single);
-    };
-    class rhs_weap_g36ka1 : rhs_weap_g36a1 {
-		__AI_RIFLE_SMALL_MODES(Single,FullAuto);
-    };
     class rhs_weap_g36c : rhs_weap_g36_base {
 		modes[] = {"Single", "Burst2", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_RIFLE_SMALL_CQB_MODES(Mode_SemiAuto,Mode_FullAuto);
+    };
+    class rhs_weap_g36kv : rhs_weap_g36_base {
+		modes[] = {"Single", "Burst2", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
     };
 
     class Rifle_Long_Base_F;

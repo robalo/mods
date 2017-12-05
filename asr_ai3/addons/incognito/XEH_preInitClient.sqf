@@ -1,6 +1,5 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
-#include "\a3\editor_f\Data\Scripts\dikCodes.h"
 if (isMultiplayer) exitWith {}; //exit if MP - not ready yet, would mess with revive systems and need to take care of code locality
 
 LOG(MSG_INIT);

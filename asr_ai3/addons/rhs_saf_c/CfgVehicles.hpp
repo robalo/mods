@@ -12,6 +12,14 @@ class CfgVehicles {
         __CAMO_B_MEDIUMMONO;
     };
 
+    class Bag_Base;
+    class rhssaf_alice_md2camo : Bag_Base {
+        __CAMO_B_LARGECAMO;
+    };
+    class rhssaf_alice_smb : Bag_Base {
+        __CAMO_B_LARGEMONO;
+    };
+
 	class SoldierGB;
 
     class rhssaf_soldier_m10_base : SoldierGB {

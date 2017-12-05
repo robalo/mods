@@ -37,21 +37,11 @@ class CfgWeapons {
     };
     class HMG_127;
     class RHS_weap_gau19 : HMG_127 {
-        class LowROF : Mode_FullAuto {
-            __AI_DISPERSION_COEF;
-        };
-        class close : LowROF {
-            __AI_DISPERSION_COEF;
-        };
+        __AI_DISPERSION_COEF;
     };
     class RocketPods;
     class rhs_weap_FFARLauncher : RocketPods {
-        class Far_AI : RocketPods {
-            __AI_DISPERSION_COEF;
-        };
-        class Burst : RocketPods {
-            __AI_DISPERSION_COEF;
-        };
+        __AI_DISPERSION_COEF;
     };
     class Cannon_30mm_Plane_CAS_02_F;
     class rhsusf_M61A2 : Cannon_30mm_Plane_CAS_02_F {
@@ -63,7 +53,7 @@ class CfgWeapons {
 		class Single : Mode_SemiAuto {
 			__AI_ROF_GL_SINGLE;
 		};
-		__AI_DISPERSION_COEF;
+        __AI_DISPERSION_2XCOEF;
 	};
 
 	class rhs_weap_XM2010_Base_F: Rifle_Base_F {
@@ -72,10 +62,10 @@ class CfgWeapons {
 		__AI_DISPERSION_COEF;
 	};
     class rhs_weap_m24sws : rhs_weap_XM2010_Base_F {
- 		__AI_RIFLE_MEDIUMSEMI_MODES(Mode_SemiAuto);
+ 		__AI_RIFLE_MEDIUMSEMI_MODES(Single);
 	};
     class rhs_weap_m40a5 : rhs_weap_XM2010_Base_F {
- 		__AI_RIFLE_MEDIUMSEMI_MODES(Mode_SemiAuto);
+ 		__AI_RIFLE_MEDIUMSEMI_MODES(Single);
 	};
 
 	class arifle_MX_Base_F;
@@ -112,7 +102,7 @@ class CfgWeapons {
 
 	class rhs_weap_m16a4 : rhs_weap_m4_Base {
 		modes[] = {"Single", "Burst3", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
-		__AI_RIFLE_SMALL_MODES(Mode_SemiAuto,FullAuto);
+		__AI_RIFLE_SMALL_MODES(Single,FullAuto);
 	};
 
     class rhs_weap_hk416d10 : rhs_weap_m4a1 {
@@ -201,7 +191,7 @@ class CfgWeapons {
 		class Single : Mode_SemiAuto {
 			__AI_ROF_GL_SINGLE;
 		};
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_2XCOEF;
     };
 
     class SMG_02_base_F : Rifle_Short_Base_F {

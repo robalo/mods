@@ -106,3 +106,6 @@
 	class rhssaf_vest_md12_m70_rifleman: rhssaf_balistic_vest_base {
         __CAMO_V_CAMO;
 	};
+    class rhssaf_vest_md12_digital_desert : rhssaf_balistic_vest_base {
+        __CAMO_V_CAMO;
+	};

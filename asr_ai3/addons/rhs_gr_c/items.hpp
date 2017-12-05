@@ -115,6 +115,14 @@
     class rhsgref_uniform_3color_desert : Uniform_Base {
         __CAMO_U_CAMOCAMO;
     };
+    class rhsgref_uniform_og107 : Uniform_Base {
+        //displayName = "M93 (OG-107)";
+        __CAMO_U_CAMOMONO;
+    };
+    class rhsgref_uniform_og107_erdl : Uniform_Base {
+        //displayName = "M93 (OG-107/ERDL)";
+        __CAMO_U_CAMOMONO;
+    };
 
     class rhs_6b23;
     class rhsgref_6b23_khaki : rhs_6b23 {

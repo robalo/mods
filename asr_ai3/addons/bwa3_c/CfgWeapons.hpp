@@ -108,11 +108,8 @@ class CfgWeapons {
     };
 
     class CannonCore;
-
     class BWA3_RMK30 : CannonCore {
-        class manual : Mode_FullAuto {
-            __AI_DISPERSION_COEF;
-        };
+        __AI_DISPERSION_COEF;
     };
 
 };

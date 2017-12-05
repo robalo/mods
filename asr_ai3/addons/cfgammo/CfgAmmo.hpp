@@ -96,7 +96,7 @@ class CfgAmmo {
     class Grenade : Default {
 //        visibleFire = 2;
 //        audibleFire = 0.25;
-        cost = 15; //give'em as if they were free
+        cost = 5; //give'em as if they were free
         dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
     };
     class RocketBase : RocketCore {
@@ -271,6 +271,7 @@ class CfgAmmo {
     };
 
     class G_40mm_HE : GrenadeBase {
+        cost = 5;
         dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
         aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh;
     };
@@ -367,10 +368,10 @@ class CfgAmmo {
         aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;
         audibleFire = __AI_AMMO_AUDIBLE1;
     };
+/*
     class R_TBG32V_F : R_PG32V_F {
         aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir;
     };
-/*
     class M_Titan_AT;
     class M_Titan_AP : M_Titan_AT {
         aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh;

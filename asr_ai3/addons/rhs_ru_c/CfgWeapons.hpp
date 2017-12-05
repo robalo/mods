@@ -42,6 +42,12 @@ class CfgWeapons {
         __AI_DISPERSION_COEF;
     };
 
+    class UGL_F;
+	class GP25_Base: UGL_F {
+		class Single: Mode_SemiAuto {
+            __AI_ROF_GL_SINGLE;
+        };
+    };
 
     class rhs_weap_ak74m_Base_F : Rifle_Base_F {
 		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};

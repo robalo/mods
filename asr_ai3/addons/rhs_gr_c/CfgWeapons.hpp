@@ -98,6 +98,12 @@ class CfgWeapons {
 		};
     };
 
+    class rhs_weap_stgw57_base : Rifle_Base_F {
+ 		modes[] = {"Single", "FullAuto", "AI_Single_optics1", "AI_Single_optics2"};
+ 		__AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
+		__AI_DISPERSION_COEF;
+    };
+
     class gatling_30mm;
     class RHS_weap_zpl20 : gatling_30mm {
 		__AI_DISPERSION_COEF;
