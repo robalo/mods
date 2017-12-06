@@ -5,6 +5,8 @@ class Mode_FullAuto;
 class CfgWeapons {
 
 	#include "items.hpp"
+    #include "vests.hpp"
+    #include "uniforms.hpp"
 
 	class Rifle_Base_F;
 	class Rifle_Long_Base_F;
@@ -106,11 +108,8 @@ class CfgWeapons {
     };
 
     class CannonCore;
-
     class BWA3_RMK30 : CannonCore {
-        class manual : Mode_FullAuto {
-            __AI_DISPERSION_COEF;
-        };
+        __AI_DISPERSION_COEF;
     };
 
 };

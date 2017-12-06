@@ -23,4 +23,13 @@ class CfgAmmo {
         suppressionRadiusBulletClose = 6;
         suppressionRadiusHit = 8;
     };
+    class rhs_ammo_762x25_Ball : BulletBase {
+		audibleFire = __AI_AMMO_AUDIBLE1; //3
+    };
+	class rhs_ammo_75x55_Ball: BulletBase {
+		audibleFire = __AI_AMMO_AUDIBLE1; //18;
+		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
+        suppressionRadiusBulletClose = 6;
+        suppressionRadiusHit = 8;
+    };
 };

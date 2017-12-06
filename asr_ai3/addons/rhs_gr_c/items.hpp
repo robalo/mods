@@ -97,6 +97,32 @@
         //displayName = "M93 (ERDL)";
         __CAMO_U_CAMOCAMO;
     };
+    class rhsgref_uniform_altis_lizard : Uniform_Base {
+        __CAMO_U_CAMOCAMO;
+    };
+    class rhsgref_uniform_altis_lizard_olive : Uniform_Base {
+        __CAMO_U_CAMOMONO;
+    };
+    class rhsgref_uniform_olive : Uniform_Base {
+        __CAMO_U_MONOMONO;
+    };
+    class rhsgref_uniform_dpm : Uniform_Base {
+        __CAMO_U_CAMOCAMO;
+    };
+    class rhsgref_uniform_dpm_olive : Uniform_Base {
+        __CAMO_U_CAMOMONO;
+    };
+    class rhsgref_uniform_3color_desert : Uniform_Base {
+        __CAMO_U_CAMOCAMO;
+    };
+    class rhsgref_uniform_og107 : Uniform_Base {
+        //displayName = "M93 (OG-107)";
+        __CAMO_U_CAMOMONO;
+    };
+    class rhsgref_uniform_og107_erdl : Uniform_Base {
+        //displayName = "M93 (OG-107/ERDL)";
+        __CAMO_U_CAMOMONO;
+    };
 
     class rhs_6b23;
     class rhsgref_6b23_khaki : rhs_6b23 {
@@ -179,4 +205,7 @@
 
     class rhs_6b5 : rhs_6b23 {
         __CAMO_V_MONO;
+    };
+    class rhsgref_alice_webbing : rhs_6b23 {
+        __CAMO_V_IGNORE;
     };

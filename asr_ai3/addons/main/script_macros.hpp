@@ -8,6 +8,3 @@
 #include "script_weapons.hpp"
 #include "script_units.hpp"
 #include "script_camo.hpp"
-
-#define __AI_SUPP_COEFF class AmmoCoef { visibleFire = 0.2; audibleFire = 0.2; }
-#define __AI_SUPP_INH_COEFF class AmmoCoef : AmmoCoef { visibleFire = 0.2; audibleFire = 0.2; }

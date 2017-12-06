@@ -12,9 +12,17 @@ class CfgVehicles {
         __CAMO_B_MEDIUMMONO;
     };
 
+    class Bag_Base;
+    class rhssaf_alice_md2camo : Bag_Base {
+        __CAMO_B_LARGECAMO;
+    };
+    class rhssaf_alice_smb : Bag_Base {
+        __CAMO_B_LARGEMONO;
+    };
+
 	class SoldierGB;
 
-    class rhssaf_soldier_base : SoldierGB {
+    class rhssaf_soldier_m10_base : SoldierGB {
 		ASR_AI_SKILL_REG2;
 		ASR_AI_AMMOCOEF_STANDARD;
 		ASR_AI_MINFIRETIME;

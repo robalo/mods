@@ -1,11 +1,21 @@
+//burstRangeMax - when >0 then AI will randomize burst in range{burst, burstRangeMax};
+
 #define __AI_AMMO_AUDIBLE0 2
 #define __AI_AMMO_AUDIBLE1 100
 #define __AI_AMMO_RANGE_HIT_FAR 1000
+#define __AI_AMMO_RANGE_HIT_MEDIUM 300
 #define __AI_AMMO_RANGE_HIT_SMALL 5
-#define __AI_AMMO_RANGE_CRACKS 100
+#define __AI_AMMO_RANGE_CRACKS 50
 
-#define __AI_DISPERSION_COEF aiDispersionCoefX = 6; aiDispersionCoefY = 8
-#define __AI_DISPERSION_2XCOEF aiDispersionCoefX = 12; aiDispersionCoefY = 16
+#define __AI_DISPERSION_COEF aiDispersionCoefX = 4; aiDispersionCoefY = 8
+#define __AI_DISPERSION_2XCOEF aiDispersionCoefX = 8; aiDispersionCoefY = 16
+#define __AI_DISPERSION_3XCOEF aiDispersionCoefX = 12; aiDispersionCoefY = 24
+#define __AI_DISPERSION_HALFCOEF aiDispersionCoefX = 2; aiDispersionCoefY = 4
+#define __AI_DISPERSION_THIRDCOEF aiDispersionCoefX = 1; aiDispersionCoefY = 2
+
+#define __AI_SUPP_COEFF class AmmoCoef { visibleFire = 0.2; audibleFire = 0.2; }
+#define __AI_SUPP_INH_COEFF class AmmoCoef : AmmoCoef { visibleFire = 0.2; audibleFire = 0.2; }
+
 
 /*
 Fire modes
@@ -25,16 +35,16 @@ Fire modes
 
 //gl
 #define __AI_ROF_GL_SINGLE \
-		aiRateOfFire = 4;\
-		aiRateOfFireDistance = 50;\
-		aiRateOfFireDispersion = 4;\
-		minRange = 60;\
-		minRangeProbab = 0.45;\
-		midRange = 200;\
-		midRangeProbab = 0.65;\
+		aiRateOfFire = 2;\
+		aiRateOfFireDistance = 100;\
+		aiRateOfFireDispersion = 2;\
+		minRange = 75;\
+		minRangeProbab = 0.4;\
+		midRange = 150;\
+		midRangeProbab = 0.8;\
 		maxRange = 400;\
-		maxRangeProbab = 0.01
-
+		maxRangeProbab = 0.01;\
+        magazineReloadTime = 1
 
 //shotgun
 #define __AI_ROF_SHOTGUN_SEMI \
@@ -143,7 +153,8 @@ Fire modes
 		class AI_Burst_close: FullAuto { \
 			showToPlayer = 0; \
             aiBurstTerminable = 1; \
-			burst = 4; \
+			burst = 2; \
+            burstRangeMax = 6; \
 			__AI_ROF_RIFLE_SMALL_CLOSE_BURST; \
 		}; \
 		class AI_Single_optics1: Single { \
@@ -240,7 +251,8 @@ Fire modes
 		class AI_Burst_close: FullAuto { \
 			showToPlayer = 0; \
             aiBurstTerminable = 1; \
-			burst = 4; \
+			burst = 2; \
+            burstRangeMax = 6; \
 			__AI_ROF_CQB_CLOSE_BURST; \
 		}; \
 		class AI_Single_optics1: Single { \
@@ -338,7 +350,8 @@ Fire modes
 		class AI_Burst_close: FullAuto { \
 			showToPlayer = 0; \
             aiBurstTerminable = 1; \
-			burst = 4; \
+			burst = 2; \
+            burstRangeMax = 5; \
 			__AI_ROF_RIFLE_MEDIUM_CLOSE_BURST; \
 		}; \
 		class AI_Single_optics1: Single { \
@@ -352,6 +365,20 @@ Fire modes
 		}; \
 		class SemiAuto: Single { \
 			__AI_ROF_RIFLE_MEDIUM_SEMI; \
+		}
+
+#define __AI_RIFLE_MEDIUMSEMI_MODES(semibase) \
+		class Single: ##semibase { \
+			__AI_ROF_RIFLE_MEDIUM_SEMI; \
+		}; \
+		class AI_Single_optics1: Single { \
+			showToPlayer = 0; \
+			requiredOpticType = 1; \
+			__AI_ROF_RIFLE_MEDIUM_MSCOPE_SINGLE; \
+		}; \
+		class AI_Single_optics2: AI_Single_optics1 { \
+			requiredOpticType = 2; \
+			__AI_ROF_RIFLE_MEDIUM_HSCOPE_SINGLE; \
 		}
 
 //AK special
@@ -391,28 +418,28 @@ Fire modes
 		aiRateOfFireDispersion = 1;\
 		minRange = 50;\
 		minRangeProbab = 0.1;\
-		midRange = 100;\
+		midRange = 150;\
 		midRangeProbab = 0.8;\
-		maxRange = 200;\
+		maxRange = 250;\
 		maxRangeProbab = 0.1
 #define __AI_ROF_AK_CLOSE_BURST \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
 		aiRateOfFireDispersion = 0.5;\
-		minRange = 5;\
+		minRange = 10;\
 		minRangeProbab = 0.8;\
 		midRange = 50;\
 		midRangeProbab = 0.7;\
-		maxRange = 100;\
+		maxRange = 150;\
 		maxRangeProbab = 0.2
 #define __AI_ROF_AK_FULLAUTO \
 		aiRateOfFire = 0.1;\
 		aiRateOfFireDistance = 50;\
 		minRange = 0;\
 		minRangeProbab = 0.9;\
-		midRange = 1;\
+		midRange = 5;\
 		midRangeProbab = 0.8;\
-		maxRange = 5;\
+		maxRange = 10;\
 		maxRangeProbab = 0.1
 #define __AI_ROF_AK_FAR_BURST \
 		aiRateOfFire = 5;\
@@ -435,11 +462,13 @@ Fire modes
 		class AI_Burst_close: FullAuto { \
 			showToPlayer = 0; \
             aiBurstTerminable = 1; \
-			burst = 7; \
+			burst = 3; \
+            burstRangeMax = 10; \
 			__AI_ROF_AK_CLOSE_BURST; \
 		}; \
 		class AI_Burst_far: AI_Burst_close { \
-			burst = 4; \
+			burst = 3; \
+            burstRangeMax = 6; \
 			__AI_ROF_AK_FAR_BURST; \
 		}; \
 		class AI_Single_optics1: Single { \
@@ -476,7 +505,8 @@ Fire modes
 		maxRange = 20;\
 		maxRangeProbab = 0.1
 #define __AI_ROF_MG_LONG_BURST \
-		burst = 10;\
+		burst = 3; \
+        burstRangeMax = 10; \
 		aiRateOfFire = 0.5;\
 		aiRateOfFireDistance = 50;\
 		aiRateOfFireDispersion = 0.5;\
@@ -487,7 +517,8 @@ Fire modes
 		maxRange = 50;\
 		maxRangeProbab = 0.1
 #define __AI_ROF_MG_CLOSE_BURST \
-		burst = 8;\
+		burst = 3; \
+        burstRangeMax = 9; \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 100;\
 		aiRateOfFireDispersion = 0.5;\
@@ -498,7 +529,8 @@ Fire modes
 		maxRange = 100;\
 		maxRangeProbab = 0.1
 #define __AI_ROF_MG_SHORT_BURST \
-		burst = 5;\
+		burst = 3; \
+        burstRangeMax = 8; \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 200;\
 		aiRateOfFireDispersion = 1;\
@@ -509,7 +541,8 @@ Fire modes
 		maxRange = 200;\
 		maxRangeProbab = 0.1
 #define __AI_ROF_MG_MEDIUM_BURST \
-		burst = 4;\
+		burst = 3; \
+        burstRangeMax = 7; \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 400;\
 		aiRateOfFireDispersion = 1;\
@@ -520,7 +553,8 @@ Fire modes
 		maxRange = 400;\
 		maxRangeProbab = 0.1
 #define __AI_ROF_MG_FAR_BURST \
-		burst = 4;\
+		burst = 2; \
+        burstRangeMax = 6; \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 400;\
 		aiRateOfFireDispersion = 1;\
@@ -531,7 +565,8 @@ Fire modes
 		maxRange = 800;\
 		maxRangeProbab = 0.1
 #define __AI_ROF_MG_VERYFAR_BURST \
-		burst = 5;\
+		burst = 2; \
+        burstRangeMax = 5; \
 		aiRateOfFire = 3;\
 		aiRateOfFireDistance = 800;\
 		aiRateOfFireDispersion = 2;\
@@ -542,7 +577,8 @@ Fire modes
 		maxRange = 1000;\
 		maxRangeProbab = 0.01
 #define __AI_ROF_MG_FAR_SCOPE_BURST \
-		burst = 3;\
+		burst = 2; \
+        burstRangeMax = 5; \
 		aiRateOfFire = 1;\
 		aiRateOfFireDistance = 800;\
 		aiRateOfFireDispersion = 1;\
@@ -553,7 +589,8 @@ Fire modes
 		maxRange = 1200;\
 		maxRangeProbab = 0.2
 #define __AI_ROF_MG_VERYFAR_SCOPE_BURST \
-		burst = 2;\
+		burst = 2; \
+        burstRangeMax = 4; \
 		aiRateOfFire = 2;\
 		aiRateOfFireDistance = 1200;\
 		aiRateOfFireDispersion = 2;\

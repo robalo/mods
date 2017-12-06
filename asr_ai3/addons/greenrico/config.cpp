@@ -137,7 +137,7 @@ class CfgVehicles {
 		textPlural = "$STR_A3_nameSound_veh_infantry_SF_p";
 		nameSound = "veh_infantry_SF_s";
 		vehicleClass = "MenRecon";
-		detectSkill = 30;
+		detectSkill = 18;
 		ASR_AI_SKILL_SOF2;
 		headgearProbability = 100;
 		allowedHeadgear[] = {"H_Bandanna_gry", "H_Bandanna_khk_hs", "H_Bandanna_khk", "H_Bandanna_sgg", "H_Watchcap_blk", "H_Watchcap_cbr", "H_Watchcap_camo", "H_Watchcap_khk", "H_Booniehat_dgtl", "H_Booniehat_oli", "H_Cap_blk", "H_Cap_oli", "H_Cap_oli_hs", "H_Cap_blk_Raven", "H_MilCap_dgtl", "H_Booniehat_dgtl", "H_Cap_blk_Raven"};
@@ -170,7 +170,7 @@ class CfgVehicles {
 		magazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "APERSMine_Range_Mag", "APERSMine_Range_Mag", "APERSMine_Range_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		respawnMagazines[] = {"30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "9Rnd_45ACP_Mag", "APERSMine_Range_Mag", "APERSMine_Range_Mag", "APERSMine_Range_Mag", "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green"};
 		canDeactivateMines = true;
-		detectSkill = 80;
+		detectSkill = 38;
 		linkedItems[] = {"V_PlateCarrier1_blk", "H_Booniehat_dgtl", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
 		respawnLinkedItems[] = {"V_PlateCarrier1_blk", "H_Booniehat_dgtl", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"};
 		icon = "iconManExplosive";

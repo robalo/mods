@@ -1,5 +1,16 @@
 class CfgVehicles {
 
+    class Bag_Base;
+    class rhsgref_hidf_alicepack : Bag_Base {
+        __CAMO_B_LARGEMONO;
+    };
+    class rhsgref_wdl_alicepack : rhsgref_hidf_alicepack {
+        __CAMO_B_LARGECAMO;
+    };
+    class rhsgref_ttsko_alicepack : rhsgref_hidf_alicepack {
+        __CAMO_B_LARGECAMO;
+    };
+
 	class SoldierGB;
 
 //CDF
@@ -217,6 +228,44 @@ class CfgVehicles {
     };
     class rhsgref_ins_pilot : rhsgref_ins_uniform_specter {
 		ASR_AI_SKILL_PIL2;
+        ASR_AI_CAMO_BASE;
+    };
+
+//HI DF
+
+    class SoldierWB;
+    class rhsgref_hidf_base : SoldierWB {
+		ASR_AI_SKILL_REG2;
+		ASR_AI_AMMOCOEF_STANDARD;
+		ASR_AI_MINFIRETIME;
+        ASR_AI_CAMO_BASE;
+    };
+    class rhsgref_hidf_rifleman;
+    class rhsgref_hidf_rifleman_m72 : rhsgref_hidf_rifleman {
+		ASR_AI_AMMOCOEF_AT;
+    };
+    class rhsgref_hidf_marksman : rhsgref_hidf_rifleman {
+		ASR_AI_SKILL_REG1;
+		ASR_AI_AMMOCOEF_SNIPER;
+    };
+    class rhsgref_hidf_squadleader : rhsgref_hidf_rifleman {
+		ASR_AI_SKILL_REG1;
+        ASR_AI_CAMO_BASE;
+    };
+    class rhsgref_hidf_teamleader : rhsgref_hidf_rifleman {
+		ASR_AI_SKILL_REG1;
+        ASR_AI_CAMO_BASE;
+    };
+    class rhsgref_hidf_sniper : rhsgref_hidf_marksman {
+		ASR_AI_SKILL_SOF2;
+		ASR_AI_AMMOCOEF_SNIPER;
+        ASR_AI_CAMO_BASE;
+    };
+    class rhsgref_hidf_crewman : rhsgref_hidf_base {
+        ASR_AI_CAMO_BASE;
+    };
+    class rhsgref_hidf_helipilot : rhsgref_hidf_base {
+		ASR_AI_SKILL_PIL1;
         ASR_AI_CAMO_BASE;
     };
 

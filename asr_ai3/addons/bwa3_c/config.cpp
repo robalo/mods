@@ -10,8 +10,8 @@ class CfgPatches {
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
 			"A3_Characters_F","A3_Weapons_F",
-			"BWA3_Units",
-            "BWA3_Optics","BWA3_Attachments","BWA3_Weapons","BWA3_AssaultRifles","BWA3_BattleRifles","BWA3_Handguns","BWA3_Launchers","BWA3_MachineGuns","BWA3_SniperRifles"
+			"BWA3_Units","BWA3_Vests","BWA3_Backpacks",
+            "BWA3_Weapons","BWA3_Optics","BWA3_Attachments","BWA3_AssaultRifles","BWA3_BattleRifles","BWA3_Handguns","BWA3_Launchers","BWA3_MachineGuns","BWA3_SniperRifles"
 		};
 		version = VERSION;
 		author = "Robalo";

@@ -39,15 +39,21 @@
 #define __CAMO_B_SMALLCAMO asr_camouflage = 0.8
 #define __CAMO_B_SMALLMONO asr_camouflage = 0.9
 #define __CAMO_B_SMALLDARK asr_camouflage = 1.0; asr_camouflage_night = 0.8
+#define __CAMO_B_SMALLCOLOR asr_camouflage = 1.2
 
 #define __CAMO_B_MEDIUMCAMO asr_camouflage = 0.9
 #define __CAMO_B_MEDIUMMONO asr_camouflage = 1.0
 #define __CAMO_B_MEDIUMDARK asr_camouflage = 1.1; asr_camouflage_night = 0.9
+#define __CAMO_B_MEDIUMCOLOR asr_camouflage = 1.3
 
 #define __CAMO_B_LARGECAMO asr_camouflage = 1.0
 #define __CAMO_B_LARGEMONO asr_camouflage = 1.1
 #define __CAMO_B_LARGEDARK asr_camouflage = 1.2; asr_camouflage_night = 1.0
+#define __CAMO_B_LARGECOLOR asr_camouflage = 1.4
 
 #define __CAMO_B_HUGECAMO asr_camouflage = 1.1
 #define __CAMO_B_HUGEMONO asr_camouflage = 1.2
 #define __CAMO_B_HUGEDARK asr_camouflage = 1.3; asr_camouflage_night = 1.1
+#define __CAMO_B_HUGECOLOR asr_camouflage = 1.5
+
+#define __CAMO_B_IGNORE asr_camouflage_ignore = 1

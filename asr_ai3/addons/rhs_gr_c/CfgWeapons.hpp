@@ -20,6 +20,12 @@ class CfgWeapons {
  		__AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
 		__AI_DISPERSION_COEF;
     };
+    class rhs_weap_m38 : rhs_weap_m38_Base_F {};
+    class rhs_weap_m38_rail : rhs_weap_m38 {};
+    class rhs_weap_mosin_sbr : rhs_weap_m38_rail {
+		modes[] = {"Single", "AI_Single_optics1", "AI_Single_optics2"};
+		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
+    };
 
     class rhs_weap_m70_base : Rifle_Base_F {
 		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
@@ -73,4 +79,33 @@ class CfgWeapons {
 		};
     };
 
+    class rhs_weap_savz58_base : Rifle_Base_F {
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
+		__AI_AK_MODES(Mode_SemiAuto,Mode_FullAuto);
+		__AI_DISPERSION_COEF;
+    };
+
+    class rhs_weap_Izh18 : Rifle_Base_F {
+        class Single : Mode_SemiAuto {
+            __AI_ROF_SHOTGUN_SEMI;
+		};
+    };
+
+    class rhs_weap_pya;
+    class rhs_weap_tt33 : rhs_weap_pya {
+        class Single : Mode_SemiAuto {
+            __AI_ROF_PISTOL_SEMI;
+		};
+    };
+
+    class rhs_weap_stgw57_base : Rifle_Base_F {
+ 		modes[] = {"Single", "FullAuto", "AI_Single_optics1", "AI_Single_optics2"};
+ 		__AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
+		__AI_DISPERSION_COEF;
+    };
+
+    class gatling_30mm;
+    class RHS_weap_zpl20 : gatling_30mm {
+		__AI_DISPERSION_COEF;
+    };
 };

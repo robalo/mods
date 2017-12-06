@@ -61,6 +61,9 @@ class CfgVehicles {
     class rhsusf_army_ocp_riflemanat : rhsusf_army_ocp_rifleman {
 		ASR_AI_AMMOCOEF_AT;
     };
+    class rhsusf_army_ocp_maaws : rhsusf_army_ocp_riflemanat {
+        ASR_AI_CAMO_BASE;
+    };
     class rhsusf_army_ocp_marksman : rhsusf_infantry_army_base {
 		ASR_AI_SKILL_REG1;
 		ASR_AI_AMMOCOEF_SNIPER;

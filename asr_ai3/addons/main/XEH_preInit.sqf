@@ -1,5 +1,4 @@
 //#define DEBUG_MODE_FULL
-#include "\a3\editor_f\Data\Scripts\dikCodes.h"
 #include "script_component.hpp"
 LOG(MSG_INIT);
 
@@ -60,51 +59,12 @@ GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), g
 
 PREP(isValidUnit);
 PREP(isValidUnitC);
-PREP(getAlive);
 PREP(hasPlayer);
-PREP(isUnc);
-PREP(isNearStuff);
-PREP(getNearest);
-PREP(hasRadio);
-PREP(setUnitCamo);
-PREP(setUnitSkill);
-PREP(configureUnit);
-PREP(killedEH);
-PREP(sendInfo);
-PREP(broadcastInfo);
-PREP(canCover);
-PREP(findCover);
-PREP(moveToCover);
-PREP(unitMoveToCover);
-PREP(getInWeaponsEH);
-PREP(handleHit);
-PREP(unitNVG);
-PREP(showHideNVG);
-PREP(setupGear);
-PREP(reactDanger);
-PREP(reveal);
+PREP(hasNoPlayer);
 PREP(isUnderRoof);
-PREP(pistolToPrimary);
-PREP(inventoryClosed);
-PREP(setSkill);
-PREP(canMountAIGunner);
-PREP(onTeamSwitch);
-PREP(allowRearm);
-PREP(getCompatMags);
-PREP(countItems);
-PREP(inventoryCheck);
-PREP(rearm);
-PREP(copyMyStance);
-PREP(configLoop);
-PREP(fallDown);
-PREP(handleExplosion);
-PREP(stopToShoot);
-PREP(handleDamage);
-PREP(fireOnMyShot);
 PREP(grpHasWP);
 
-["ASR AI3", "asr_ai3_copymystance", ["Toggle Copy My Stance", "AI subordinates follow player stance"], {player call FUNC(copyMyStance)}, {}, [DIK_BACKSLASH, [true, true, false]]] call cba_fnc_addKeybind;
-["ASR AI3", "asr_ai3_fireonmyshot", ["Toggle Fire On My Shot", "AI hold fire until player shoots"], {player call FUNC(fireOnMyShot)}, {}, [DIK_RBRACKET, [true, true, false]]] call cba_fnc_addKeybind;
+//unused: reveal, isNearStuff
 
 PREP(pt_checkVis);
 PREP(pt_downPos);

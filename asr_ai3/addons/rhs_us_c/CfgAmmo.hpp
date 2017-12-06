@@ -28,6 +28,9 @@ class CfgAmmo {
     class rhs_ammo_556x45_M855A1_Ball : B_556x45_Ball {
 		audibleFire = __AI_AMMO_AUDIBLE1; //7;
     };
+    class rhs_ammo_556x45_M855_Ball : B_556x45_Ball {
+		audibleFire = __AI_AMMO_AUDIBLE1; //7;
+    };
     class rhs_ammo_556x45_Mk318_Ball : B_556x45_Ball {
 		audibleFire = __AI_AMMO_AUDIBLE1; //5.5;
     };
@@ -71,9 +74,6 @@ class CfgAmmo {
 		audibleFire = __AI_AMMO_AUDIBLE1; //16;
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
     };
-    class rhs_ammo_M_fgm148_AT : M_Titan_AT {
-		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
-    };
     class rhs_ammo_smaw_HEAA : RocketBase {
 		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
     };
@@ -82,5 +82,31 @@ class CfgAmmo {
     };
     class rhs_ammo_smaw_SR : RocketBase {
 		aiAmmoUsageFlags = AIAmmoUsageMarking;
+    };
+    class rhs_ammo_maaws_HEAT : RocketBase {
+		aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
+		audibleFire = __AI_AMMO_AUDIBLE1; //20
+    };
+    class rhs_ammo_maaws_HEDP : RocketBase {
+        airLock = 1;
+        aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir + AIAmmoUsageOffensiveArmour;
+		audibleFire = __AI_AMMO_AUDIBLE1; //20
+    };
+    class rhs_ammo_maaws_HE : RocketBase {
+        airLock = 1;
+        aiAmmoUsageFlags = AIAmmoUsageOffensiveInf + AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveAir;
+		audibleFire = __AI_AMMO_AUDIBLE1; //20
+    };
+    class rhs_ammo_maaws_SMOKE : RocketBase {
+		aiAmmoUsageFlags = AIAmmoUsageConcealment;
+		audibleFire = __AI_AMMO_AUDIBLE1; //20
+        dangerRadiusHit = -1;
+        suppressionRadiusHit = -1;
+    };
+    class rhs_ammo_maaws_ILLUM : RocketBase {
+		aiAmmoUsageFlags = AIAmmoUsageLight;
+		audibleFire = __AI_AMMO_AUDIBLE1; //20
+        dangerRadiusHit = -1;
+        suppressionRadiusHit = -1;
     };
 };

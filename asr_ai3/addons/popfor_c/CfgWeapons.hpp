@@ -3,7 +3,6 @@ class Mode_Burst;
 class Mode_FullAuto;
 
 class CfgWeapons {
-
 	#include "items.hpp"
 
     class LMG_M200;
@@ -12,16 +11,12 @@ class CfgWeapons {
     };
     class LOP_D81;
     class LOP_S53 : LOP_D81 {
-        class player;
-        class close : player {
-            __AI_DISPERSION_COEF;
-        };
+        __AI_DISPERSION_COEF;
     };
-    class srifle_EBR_F;
-    class LOP_Weap_LeeEnfield : srifle_EBR_F {
+    class EBR_base_F;
+    class LOP_Weap_LeeEnfield : EBR_base_F {
 		modes[] = {"SemiAuto", "AI_Single_optics1", "AI_Single_optics2"};
  		__AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
 		__AI_DISPERSION_COEF;
     };
-
 };

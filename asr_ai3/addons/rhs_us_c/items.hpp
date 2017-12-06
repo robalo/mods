@@ -100,6 +100,12 @@
 		};
 	};
 
+    class rhsusf_acc_g33_xps3 : ItemCore {
+        class ItemInfo : InventoryOpticsItem_Base_F {
+			__OPTIC_DMR;
+		};
+	};
+
     class Uniform_Base;
 
     class rhs_uniform_g3_mc : Uniform_Base {
@@ -126,6 +132,9 @@
         //displayName = "Combat Uniform OCP";
         __CAMO_U_CAMOCAMO;
     };
+    class rhs_uniform_acu_ucp : Uniform_Base {
+        __CAMO_U_CAMOCAMO;
+    };
 
     class Vest_Camo_Base;
     
@@ -134,5 +143,11 @@
     };
     class rhsusf_spc : rhsusf_iotv_ocp_base {
         //displayName = "SPC";
+        __CAMO_V_MONO;
+    };
+    class rhsusf_mbav : rhsusf_iotv_ocp_base {
+        __CAMO_V_MONO;
+    };
+    class rhsusf_plateframe_sapi : rhsusf_iotv_ocp_base {
         __CAMO_V_MONO;
     };
