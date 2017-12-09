@@ -39,6 +39,13 @@ class Extended_Hit_EventHandlers {
 			hit = QUOTE(_this call FUNC(handleHit));
 		};
 	};
+	class LandVehicle
+	{
+		class ADDON
+		{
+			hit=QUOTE(_this call FUNC(handleHitVehicle));
+		};
+	};
 };
 
 class Extended_Explosion_EventHandlers {
@@ -80,7 +87,9 @@ class Extended_InitPost_EventHandlers {
             serverInit = QUOTE(_this call FUNC(addHandleDamage));
 		};
 	};
-	class Tank {
-		ADDON = "if (local (_this select 0)) then {(_this select 0) allowCrewInImmobile true}";
+	class LandVehicle {
+		class ADDON {
+            serverInit = QUOTE((_this select 0) call FUNC(vehicleSetup));
+		};
 	};
 };
