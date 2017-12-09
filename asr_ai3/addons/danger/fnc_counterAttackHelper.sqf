@@ -1,6 +1,6 @@
+
 #include "script_component.hpp"
 
-private ["_unit", "_attackTime", "_dangerPos", "_wp"];
 private _unit = _this select 0;
 //check what time we're supposed to attack
 //this variable may change between recursive calls
@@ -16,7 +16,7 @@ if(time < _attackTime) then {
         [_unit, format ["AT TIMER %1", _attackTime]] call FUNC(pt_setStatusText);
         sleep (_attackTime - time);
         //then restart
-        [_unit] call FUNC(pt_reactDanger_attack);
+        [_unit] call FUNC(counterAttackHelper);
     };
 }else {
 
@@ -24,14 +24,10 @@ if(time < _attackTime) then {
     _unit  setVariable [QGVAR(ATK_PEND),0,false];
     //this variable may have change between recursive calls
     private _dangerPos = _unit getVariable  [QGVAR(ATTACKER_POS), 0];
-    _unitIndividualAttackDistance = _unit getVariable [QGVAR(AD_INDIVIDUAL), -1];
-    if(_unitIndividualAttackDistance == -1) then {
-        _unitIndividualAttackDistance = _unit getVariable [QGVAR(AD), 0];
-    };
 
     private _group = group _unit;
-    
-    private _inDistance = (_unit distance2D _dangerPos) < (_unitIndividualAttackDistance);
+
+    private _inDistance = (_unit distance2D _dangerPos) < (_unit getVariable [QGVAR(AD), 0]);
     private _hasCargo = count( fullCrew [(vehicle _unit), "cargo"]) > 0;
     private _hasCheckpoint = waypointType [_group, currentWaypoint _group] in ["GETOUT","UNLOAD","TR UNLOAD"];
     if(_inDistance && !_hasCargo && !_hasCheckpoint) then {

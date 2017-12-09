@@ -27,7 +27,9 @@ _unit doMove ASLToATL _cover;
 private _unitPos = getPosASL _unit;
 private _currentDist = [_unitPos select 0, _unitPos select 1, 0] distance [_cover select 0, _cover select 1, 0];
 //a player's bounding box is max ~1.15 meters from where position is measured from.
-while{_currentDist > 1.25 && ! (_unit call FUNC(isUnc)) && !(unitReady _unit)} do {
+private _lifestate = lifeState _unit;
+private _isDown = (_lifestate == "DEAD" || _lifestate == "UNCONSCIOUS" || _lifestate == "INCAPACITATED");
+while{_currentDist > 1.25 && !_isDown && !(unitReady _unit)} do {
     sleep 0.25;
     _unitPos = getPosATL _unit;
     _unitPos = [_unitPos select 0, _unitPos select 1, 0];

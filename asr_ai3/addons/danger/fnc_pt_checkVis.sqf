@@ -1,7 +1,5 @@
 #include "script_component.hpp"
-private ["_unit", "_dangerCausedBy", "_unitPos", "_height", "_dangerPos", "_objs", "_visible"];
-private _unit = _this select 0;
-private _dangerCausedBy = _this select 1;
+params["_unit", "_dangerCausedBy"];
 private _unitPos = eyePos _unit;
 
 if(count _this > 2) then {
@@ -18,7 +16,7 @@ private _visible = true;
     _p1 = _bbr select 0;
     _p2 = _bbr select 1;
     _maxHeight = abs ((_p2 select 2) - (_p1 select 2));
-    if(_maxHeight > GVAR(MIN_HEIGHT_OBJ_TO_CONSIDER)
+    if(_maxHeight > 0.2
             && _x != _unit && _x != _dangerCausedBy) then {
         _visible = false;
     }

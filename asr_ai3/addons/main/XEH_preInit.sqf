@@ -22,11 +22,6 @@ ASR_AI_SETDEFAULT(skip_factions,[]);
 
 
 
-ASR_AI_SETDEFAULT(DEBUG_NAME, "");
-
-GVAR(DC_NEED_COVER) = [2,4,9];
-GVAR(DC_ATTACK) =[2,3,4,6,9];
-
 
 
 
@@ -65,24 +60,3 @@ PREP(isUnderRoof);
 PREP(grpHasWP);
 
 //unused: reveal, isNearStuff
-
-PREP(pt_checkVis);
-PREP(pt_downPos);
-PREP(pt_findPossibleCenter);
-PREP(pt_getCoverPos);
-PREP(pt_getCoverPosUnknownEnemy);
-PREP(pt_getClosestBuildingPos);
-PREP(pt_getUnitsThatNeedCover);
-PREP(pt_goToNextBuildingPos);
-PREP(pt_isCoverValid);
-PREP(pt_moveToPoint);
-PREP(pt_reactDanger_attack);
-PREP(pt_reactDanger_inStruct);
-PREP(pt_reactDanger_inStruct_amVis);
-PREP(pt_reactDanger_outStruct);
-PREP(pt_reactDanger);
-PREP(pt_reset_pos);
-PREP(pt_calculatePos);
-PREP(pt_setStatusText);
-PREP(pt_handleHitVehicle);
-PREP(pt_vehicle_setup);
