@@ -1,6 +1,6 @@
 
 #include "script_component.hpp"
-#define DEBUG_MODE_FULL
+//#define DEBUG_MODE_FULL
 private _unit = _this select 0;
 //check what time we're supposed to attack
 //this variable may change between recursive calls
