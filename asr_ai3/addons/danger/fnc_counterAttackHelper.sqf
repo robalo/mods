@@ -1,6 +1,6 @@
 
 #include "script_component.hpp"
-
+#define DEBUG_MODE_FULL
 private _unit = _this select 0;
 //check what time we're supposed to attack
 //this variable may change between recursive calls
@@ -19,6 +19,8 @@ if(time < _attackTime) then {
         [_unit] call FUNC(counterAttackHelper);
     };
 }else {
+
+    if(!alive _unit) exitWith {};
 
     //attack no longer pending, allow attack to be called again
     _unit  setVariable [QGVAR(ATK_PEND),0,false];
@@ -50,8 +52,7 @@ if(time < _attackTime) then {
             _x doFollow leader _group;
         } forEach units _group;
     }else {
-        TRACE_3("not attacking, enemy at dist 1, max dist 2", (_unit distance2D _dangerPos), (_unit getVariable [QGVAR(AD), 0]));
-        [_unit, format ["not attacking, %1, %2, %3",_inDistance,  !_hasCargo, !_hasCheckpoint]] call FUNC(pt_setStatusText);
+        [_unit, format ["not attacking, %1, %2, %3",(_unit distance2D _dangerPos), (_unit getVariable [QGVAR(AD), 0]), !_hasCheckpoint]] call FUNC(pt_setStatusText);
     };
     _unit setVariable[QGVAR(AT), 0, false];
     _unit setVariable[QGVAR(AD), 0, false];

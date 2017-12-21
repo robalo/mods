@@ -34,5 +34,4 @@ PREP(pt_getUnitsThatNeedCover);
 PREP(pt_isCoverValid);
 PREP(pt_moveToPoint);
 PREP(pt_advancedCover);
-PREP(pt_reset_pos);
 PREP(pt_setStatusText);

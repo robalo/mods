@@ -52,7 +52,7 @@
 
 [ QGVAR(COUNTER_ATTACK), "CHECKBOX",  "Counterattack after being alerted",  "ASR AI3",  false, 1 ] call CBA_Settings_fnc_init;
 [ QGVAR(ADVANCED_COVER), "CHECKBOX",  "Use advanced cover behavior",  "ASR AI3",  false, 1 ] call CBA_Settings_fnc_init;
-[ QGVAR(FLEE_CIVVIE), "CHECKBOX",  "Civillians will Flee",  "ASR AI3",  false, 1 ] call CBA_Settings_fnc_init;
+//\[ QGVAR(FLEE_CIVVIE), "CHECKBOX",  "Civillians will Flee",  "ASR AI3",  false, 1 ] call CBA_Settings_fnc_init;
 [
     QGVAR(MAX_DIST_TO_COVER),
     "SLIDER",
@@ -68,7 +68,7 @@
     "SLIDER",
     "Always counterattack for danger within(m)",
     "ASR AI3", 
-    [0, 300, 15, 0], 
+    [0, 300, 35, 0],
     false,
     {
     } 
@@ -88,7 +88,7 @@
     "SLIDER",
     "seconds until counterattack",
     "ASR AI3", 
-    [65, 300, 120, 0],
+    [0, 180, 60, 0],
     false,
     {
     } 
