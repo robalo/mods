@@ -8,7 +8,7 @@
     {
         GVAR(skip_factions) = call compile GVAR(factionskip_str);
 
-		private _civFactions = ("(getNumber (_x >> 'side')) == 3" configClasses (configFile >> "CfgFactionClasses")) apply {configName _x};
-		GVAR(skip_factions) append _civFactions;
+        private _civFactions = ("(getNumber (_x >> 'side')) == 3" configClasses (configFile >> "CfgFactionClasses")) apply {configName _x};
+        GVAR(skip_factions) append _civFactions;
     }
 ] call CBA_Settings_fnc_init;
