@@ -272,7 +272,7 @@ class FSM
     class Reactions
     {
       name = "Reactions";
-      init = /*%FSM<STATEINIT""">*/"[_this,_dangerCausedBy] call asr_ai3_danger_fnc_reactDanger;"/*%FSM</STATEINIT""">*/;
+      init = /*%FSM<STATEINIT""">*/"[_this,_dangerCausedBy, _dangerCause] call asr_ai3_danger_fnc_reactDanger;"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {

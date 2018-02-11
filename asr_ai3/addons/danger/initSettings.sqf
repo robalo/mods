@@ -49,3 +49,68 @@
 
 [ QGVAR(debug_findcover), "CHECKBOX", "Debug find cover", "ASR AI3", false, 1 ] call CBA_Settings_fnc_init;
 [ QGVAR(debug_reveal), "CHECKBOX", "Debug knowledge transfer", "ASR AI3", false, 1 ] call CBA_Settings_fnc_init;
+
+[ QGVAR(COUNTER_ATTACK), "CHECKBOX",  "Counterattack after being alerted",  "ASR AI3",  false, 1 ] call CBA_Settings_fnc_init;
+[ QGVAR(ADVANCED_COVER), "CHECKBOX",  "Use advanced cover behavior",  "ASR AI3",  false, 1 ] call CBA_Settings_fnc_init;
+//\[ QGVAR(FLEE_CIVVIE), "CHECKBOX",  "Civillians will Flee",  "ASR AI3",  false, 1 ] call CBA_Settings_fnc_init;
+[
+    QGVAR(MAX_DIST_TO_COVER),
+    "SLIDER",
+    "Max distance to consider objects as cover",
+    "ASR AI3", 
+    [0, 300, 50, 0], 
+    false,
+    {
+    } 
+] call CBA_Settings_fnc_init;
+[
+    QGVAR(AUTO_ATTACK_WITHIN),
+    "SLIDER",
+    "Always counterattack for danger within(m)",
+    "ASR AI3", 
+    [0, 300, 35, 0],
+    false,
+    {
+    } 
+] call CBA_Settings_fnc_init;
+[
+    QGVAR(NO_COVER_FOR_DANGER_WITHIN),
+    "SLIDER",
+    "AI will not take cover for threats within",
+    "ASR AI3", 
+    [0, 300, 75, 0],
+    false,
+    {
+    } 
+] call CBA_Settings_fnc_init;
+[
+    QGVAR(ATTACK_TIMER),
+    "SLIDER",
+    "seconds until counterattack",
+    "ASR AI3", 
+    [0, 180, 60, 0],
+    false,
+    {
+    } 
+] call CBA_Settings_fnc_init;
+[
+    QGVAR(AD_OUTSIDE),
+    "SLIDER",
+    "max distance AI outside will attempt to attack at",
+    "ASR AI3", 
+    [0, 500, 250, 0], 
+    false,
+    {
+    } 
+] call CBA_Settings_fnc_init;
+[
+    QGVAR(AD_INSIDE),
+    "SLIDER",
+    "max distance AI inside will attempt to attack at",
+    "ASR AI3", 
+    [0, 500, 50, 0], 
+    false,
+    {
+    } 
+] call CBA_Settings_fnc_init;
+
