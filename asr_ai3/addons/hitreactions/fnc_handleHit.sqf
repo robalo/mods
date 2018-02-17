@@ -18,6 +18,12 @@ if (local _unit && {_unit != call CBA_fnc_currentUnit} && {_unit call FNCMAIN(is
 		if (_unit != _hitman) then {
 			if ((behaviour _unit) in ["SAFE","AWARE"]) then {_unit setBehaviour "COMBAT"};
 		};
+/*
+        // move to cover - disabled by Raptoer
+        if (!isNil "asr_ai3_danger_fnc_unitMoveToCover") then {
+            if (asr_ai3_danger_seekcover) then {[_unit, _hitman, 20] call asr_ai3_danger_fnc_unitMoveToCover};
+        };
+*/
 	};
 
     if (!isClass (configFile >> "CfgPatches" >> "ace_medical_ai")) then {

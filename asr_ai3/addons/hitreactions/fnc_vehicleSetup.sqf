@@ -1,3 +1,5 @@
-if(GVAR(STAY_IN_VEH) && !isNil {_this getHitPointDamage "HitTurret"}) then {
-    _this allowCrewInImmobile true;
-}
+if (GVAR(STAY_IN_VEH)) then {
+    if (!isNil {_this getHitPointDamage "HitTurret"} && !isNil {_this getHitPointDamage "HitGun"}) then {
+        _this allowCrewInImmobile true;
+    };
+};

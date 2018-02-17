@@ -1,7 +1,9 @@
+//#define DEBUG_MODE_FULL
+#include "script_component.hpp"
+params ["_vehicle"];
 
-_vehicle = _this select 0;
-
-if(GVAR(STAY_IN_VEH) && !isNil {_vehicle getHitPointDamage "HitTurret"}
-     && {_vehicle getHitPointDamage "HitTurret" > 0.9}) then {
-    _vehicle allowCrewInImmobile false;
-}
+if (GVAR(STAY_IN_VEH)) then {
+    {
+        if (!isNil "_x" && {_x > 0.9}) then {_vehicle allowCrewInImmobile false};
+    } forEach [_vehicle getHitPointDamage "HitTurret", _vehicle getHitPointDamage "HitGun"];
+};

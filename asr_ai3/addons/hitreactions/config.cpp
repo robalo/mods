@@ -39,11 +39,9 @@ class Extended_Hit_EventHandlers {
 			hit = QUOTE(_this call FUNC(handleHit));
 		};
 	};
-	class LandVehicle
-	{
-		class ADDON
-		{
-			hit=QUOTE(_this call FUNC(handleHitVehicle));
+	class LandVehicle {
+		class ADDON {
+			hit = QUOTE(_this call FUNC(handleHitVehicle));
 		};
 	};
 };
