@@ -270,6 +270,18 @@ class CfgAmmo {
         dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
     };
 
+    //stop pinpointing mortar pos from 2km away
+    class Sh_82mm_AMOS : Sh_155mm_AMOS {
+        audibleFire = __AI_AMMO_AUDIBLE0;
+    };
+    class SubmunitionBase;
+    class Sh_82mm_AMOS_guided : SubmunitionBase {
+        audibleFire = __AI_AMMO_AUDIBLE0;
+    };
+    class M_Mo_82mm_AT : MissileBase {
+        audibleFire = __AI_AMMO_AUDIBLE0;
+    };
+
     class G_40mm_HE : GrenadeBase {
         cost = 5;
         dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM;
