@@ -39,6 +39,9 @@ class CfgWeapons {
     class RHS_weap_gau19 : HMG_127 {
         __AI_DISPERSION_COEF;
     };
+    class RHS_MK19 : GMG_20mm {
+        __AI_DISPERSION_COEF;
+    };
     class RocketPods;
     class rhs_weap_FFARLauncher : RocketPods {
         __AI_DISPERSION_COEF;

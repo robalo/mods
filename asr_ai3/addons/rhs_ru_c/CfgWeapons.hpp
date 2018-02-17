@@ -15,6 +15,9 @@ class CfgWeapons {
     class PKT;
     class LMG_RCWS;
     class gatling_30mm;
+    class GMG_20mm;
+    class cannon_120mm;
+    class autocannon_30mm_CTWS;
     class rockets_Skyfire;
     class hgun_Rook40_F;
 
@@ -31,9 +34,43 @@ class CfgWeapons {
 		__AI_DISPERSION_COEF;
     };
     class rhs_weap_yakB : gatling_30mm {
-        class manual : Mode_FullAuto {
-            __AI_DISPERSION_COEF;
-        };
+		__AI_DISPERSION_COEF;
+    };
+    class RHS_weap_Ags30 : GMG_20mm {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_d81 : cannon_120mm {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a26 : rhs_weap_d81 {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a46_2 : rhs_weap_d81 {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a46m_2 : rhs_weap_d81 {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a46m : rhs_weap_2a46m_2 {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a46m_4 : rhs_weap_2a46m_2 {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a46m_5 : rhs_weap_2a46m_2 {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a42_base : autocannon_30mm_CTWS {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a70 : rhs_weap_d81 {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a75 : rhs_weap_d81 {
+		__AI_DISPERSION_COEF;
+    };
+    class rhs_weap_2a28_base : cannon_120mm {
+		__AI_DISPERSION_COEF;
     };
     class rhs_weap_pkm_tigr : rhs_weap_pkt {
 		__AI_DISPERSION_COEF;
