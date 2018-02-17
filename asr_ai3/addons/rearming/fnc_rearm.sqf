@@ -62,8 +62,8 @@ if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places
 	
 	if (_checkit) then {
 		_unit doWatch _x;
-		_unit doMove (getPosWorld _x);
-		waitUntil {_unit distance _x < 4};
+        [_unit, getPosWorld _x] call FNCMAIN(moveTo);
+        waitUntil {unitReady _unit};
 		_unit doWatch _x;
 		if (alive _x && {_x isKindOf "CAManbase"}) then {_unit action ["REARM",unitBackpack _x]} else {_unit action ["REARM",_x]};
 	};
@@ -72,9 +72,9 @@ if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places
 
 [_unit,_leaderpos] spawn {
 	params ["_unit", "_pos"];
-	private _group = group _unit;
+    private _leader = leader _unit;
 	_unit doWatch objNull;
-	if (_unit == leader _group) then {_unit doMove _pos} else {[_unit] joinSilent _group};
+	if (_unit isEqualTo _leader) then {_unit doMove _pos} else {_unit doFollow _leader};
 	sleep 7; //finish reloading anim
 	_unit call FUNC(pistolToPrimary);
 };
