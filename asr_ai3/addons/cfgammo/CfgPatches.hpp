@@ -1,14 +1,10 @@
 class CfgPatches {
 	class ADDON {
-        addonRootClass = "A3_Weapons_F";
 		units[] = {};
 		weapons[] = {};
         ammo[] = {};
-		requiredAddons[] = {
-			"A3_Weapons_F",
-			"A3_Weapons_F_Mark",
-            "A3_Weapons_F_Exp"
-		};
+        addonRootClass = "A3_Data_F";
+		requiredAddons[] = {"A3_Data_F_Tacops_Loadorder"};
 		requiredVersion = REQUIRED_VERSION;
         author = "Robalo";
 	};
