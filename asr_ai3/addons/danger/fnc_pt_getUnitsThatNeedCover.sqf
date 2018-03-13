@@ -7,7 +7,7 @@ private _unitThatNeedCover = [];
 
 
 {
-    if((!_x getVariable [QGVAR(ADV_COVER_MOVING), false])) then {
+    if(!(_x getVariable [QGVAR(ADV_COVER_MOVING), false])) then {
         //just use _x as a default so we know that it is blank
         private _coverObj = _x getVariable [QGVAR(savedCover), _x];
         if(_coverObj == _x) then {
