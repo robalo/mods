@@ -25,7 +25,8 @@ if(time < _attackTime) then {
     //attack no longer pending, allow attack to be called again
     _unit  setVariable [QGVAR(ATK_PEND),0,false];
     //this variable may have change between recursive calls
-    private _dangerPos = _unit getVariable  [QGVAR(ATTACKER_POS), 0];
+    private _dangerPos = _unit getVariable [QGVAR(ATTACKER_POS)];
+    if (isNil "_dangerPos") exitWith {};
 
     private _group = group _unit;
 
