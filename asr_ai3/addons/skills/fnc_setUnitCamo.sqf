@@ -7,12 +7,13 @@ if !(local _unit) exitWith {};
 private _uniform = uniform _unit;
 private _vest = vest _unit;
 private _ruck = backpack _unit;
+private _tube = secondaryWeapon _unit;
 
 private _gearItems = [_uniform, _vest, _ruck]; //uni must be checked first for ghillie special case
 
 //Don't do anything if the relevant items didn't change
-if (_unit getVariable ["asr_ai_skills_camoCache", []] isEqualTo _gearItems) exitWith {};
-unit setVariable ["asr_ai_skills_camoCache", _gearItems];
+if (_unit getVariable ["asr_ai_skills_camoCache", []] isEqualTo [_gearItems, _tube]) exitWith {};
+unit setVariable ["asr_ai_skills_camoCache", [_gearItems, _tube]];
 
 private _rootclasses = ["CfgWeapons", "CfgWeapons", "CfgVehicles"];
 private _camo = 0;
@@ -30,7 +31,7 @@ private _pieces = 0;
 } forEach _gearItems;
 
 // launcher on back gives one up, the more the bigger it is.
-private _tube = secondaryWeapon _unit;
+
 private _tubeCoef = 1;
 if (_tube != "" && {isClass (configfile>>"CfgWeapons">>_tube)}) then {
     private _tubemass = [configfile>>"CfgWeapons">>_tube>>"WeaponSlotsInfo">>"mass", "number", 0] call CBA_fnc_getConfigEntry;
