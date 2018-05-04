@@ -3,7 +3,7 @@
 params ["_unit", "_selection", "_damage"];
 
 // move out static weapon unit just before death
-if ((vehicle _unit) isKindOf "StaticWeapon" && {
+if (((vehicle _unit) isKindOf "StaticWeapon" || (vehicle _unit) isKindOf "Truck") && {
     call {
         if (_selection == "") exitWith {_damage >= 1};
         if (_selection == "head") exitWith {_damage >= GVAR(crithit) select 0};

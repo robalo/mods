@@ -14,28 +14,33 @@ class CfgWeapons {
 		__AI_ROF_RIFLE_SMALL_SEMI;
 	};
 
-    class Binocular : Default {
-        minRangeProbab = 0.1;
-        midRangeProbab = 0.4;
-        maxRangeProbab = 0.04;
-	};
-
 	class RifleCore;
 	class MGunCore;
+    class LauncherCore;
 	class CannonCore;
 
-	class MGun;
+    class RocketPods : LauncherCore {
+		__AI_DISPERSION_COEF;
+	};
 
+	class MGun;
 	class LMG_RCWS: MGun {
 		__AI_DISPERSION_COEF;
 	};
     class LMG_Minigun : LMG_RCWS {
+		__AI_DISPERSION_COEF;
 	};
     class HMG_01;
     class HMG_M2 : HMG_01 {
 		__AI_DISPERSION_COEF;
 	};
 	class M134_minigun: MGunCore {
+		__AI_DISPERSION_COEF;
+	};
+    class gatling_20mm : CannonCore {
+		__AI_DISPERSION_COEF;
+	};
+    class gatling_30mm_base : CannonCore {
 		__AI_DISPERSION_COEF;
 	};
 	class cannon_120mm: CannonCore {
@@ -47,8 +52,12 @@ class CfgWeapons {
 	class cannon_105mm: CannonCore {
 		__AI_DISPERSION_COEF;
 	};
+    class Gatling_30mm_Plane_CAS_01_F : CannonCore {
+		__AI_DISPERSION_COEF;
+	};
 
 	class GrenadeLauncher: Default {
+        __AI_DISPERSION_2XCOEF;
 		__AI_ROF_GL_SINGLE;
 	};
     class UGL_F : GrenadeLauncher {
@@ -89,6 +98,12 @@ class CfgWeapons {
 			midRange = 50;
 			midRangeProbab = 0.8;
 		};
+	};
+
+    class Binocular : Default {
+        minRangeProbab = 0.1;
+        midRangeProbab = 0.4;
+        maxRangeProbab = 0.04;
 	};
 
 	class DMR_01_base_F: Rifle_Long_Base_F {
@@ -234,7 +249,8 @@ class CfgWeapons {
 		};
 		class Burst: Mode_Burst {
 			showToPlayer = 0;
-			burst = 4;
+			burst = 2;
+            burstRangeMax = 8;
 			__AI_ROF_SMG_BURST;
 		};
 		class FullAuto: Mode_FullAuto {
@@ -419,11 +435,12 @@ class CfgWeapons {
 		class AI_Burst_close: FullAuto {
 			showToPlayer = 0;
             aiBurstTerminable = 1;
-			burst = 7;
+			burst = 3;
+            burstRangeMax = 10;
 			__AI_ROF_AK_CLOSE_BURST;
 		};
 		class AI_Burst_far: AI_Burst_close {
-			burst = 4;
+            burstRangeMax = 5;
 			__AI_ROF_AK_FAR_BURST;
 		};
 		class AI_Single_optics1: Single {
@@ -505,7 +522,8 @@ class CfgWeapons {
 		class AI_Burst_close: FullAuto {
 			showToPlayer = 0;
             aiBurstTerminable = 1;
-			burst = 4;
+			burst = 2;
+            burstRangeMax = 8;
 			__AI_ROF_SMG_BURST;
 		};
     };

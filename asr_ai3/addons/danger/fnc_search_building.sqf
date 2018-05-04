@@ -1,4 +1,3 @@
-
 #include "script_component.hpp"
 
 params["_unit"];
@@ -12,12 +11,12 @@ private _bpos = [];
         if (random 1 > 0.2) then {_bpos pushBack [_x select 2, _x]}; //pick some; get height and pos
     } forEach ([_x] call BIS_fnc_buildingPositions);
 } forEach (_dangerCausedBy nearObjects ["HouseBase", 50]);
-if (count _bpos > 0) then {
+if !(_bpos isEqualTo []) then {
     _bpos sort false; //prefer higher positions
-    [_unit,(_time + 240),_bpos] spawn { // 4 minutes
+    [_unit, (_time + 240), _bpos] spawn { // 4 minutes
         params ["_unit", "_dangerUntil", "_bpos"];
         private "_toPos";
-        _unit setVariable [QGVAR(housing),true,false];
+        _unit setVariable [QGVAR(housing), true];
         TRACE_1("House search duty",_unit);
         while {count _bpos > 0 && {time < _dangerUntil} && {_unit call FNCMAIN(isValidUnitC)}} do {
             if ((group _unit) call {_this call FNCMAIN(hasPlayer) && {_this call FNCMAIN(grpHasWP)}}) exitWith {}; //crossing paths issue
@@ -34,7 +33,7 @@ if (count _bpos > 0) then {
         if (alive _unit) then { // regroup
             _unit setUnitPosWeak "Auto";
             [_unit] joinSilent (group _unit);
-            _unit setVariable [QGVAR(housing),false,false];
+            _unit setVariable [QGVAR(housing), false];
         };
     };
 };

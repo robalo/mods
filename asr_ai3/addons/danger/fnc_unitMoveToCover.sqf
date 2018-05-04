@@ -11,7 +11,7 @@ private _time = time;
 if (_time < (_unit getVariable [QGVAR(lastMoveToCoverTime),-1000]) + 90) exitWith {TRACE_1("too soon to move to cover again",_unit)};
 
 //found cover or not, don't bother trying to find again for 90 sec, so we save the time of last try
-_unit setVariable [QGVAR(lastMoveToCoverTime),time,false];
+_unit setVariable [QGVAR(lastMoveToCoverTime), time];
 
 private _mToCover = false;
 if (_unit call FNCMAIN(isValidUnitC) && {(nearestTerrainObjects [_unit, [], 10, false, true]) isEqualTo []}) then {_mToCover = true};
@@ -34,7 +34,7 @@ if (_mToCover) then {
 if (!_mToCover || _cpa isEqualTo []) exitWith {};
 
 //remember
-_grp setVariable [QGVAR(nearcover),_cpa,false];
+_grp setVariable [QGVAR(nearcover), _cpa];
 
 //proceed
 [_unit,_cpa select 0,_time] spawn {

@@ -12,8 +12,8 @@ private _tube = secondaryWeapon _unit;
 private _gearItems = [_uniform, _vest, _ruck]; //uni must be checked first for ghillie special case
 
 //Don't do anything if the relevant items didn't change
-if (_unit getVariable ["asr_ai_skills_camoCache", []] isEqualTo [_gearItems, _tube]) exitWith {};
-_unit setVariable ["asr_ai_skills_camoCache", [_gearItems, _tube]];
+if (_unit getVariable [QGVAR(camoCache), []] isEqualTo [_gearItems, _tube]) exitWith {};
+_unit setVariable [QGVAR(camoCache), [_gearItems, _tube]];
 
 private _rootclasses = ["CfgWeapons", "CfgWeapons", "CfgVehicles"];
 private _camo = 0;

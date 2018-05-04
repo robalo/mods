@@ -1,8 +1,9 @@
+/*
 [
     QGVAR(pgaistamina),
     "LIST",
     "Stamina system on AI in player's group",
-    "ASR AI3",
+    ["ASR AI3", "control"],
     [[0, 1, 2], ["Disable", "Enable", "No Change"], 0], // data for this setting
     1,
     {
@@ -11,12 +12,12 @@
         };
     }
 ] call CBA_Settings_fnc_init;
-
+*/
 [
     QGVAR(onteamswitchleader),
     "CHECKBOX",
     "On teamswitch become group leader",
-    "ASR AI3",
+    ["ASR AI3", "control"],
     true, // data for this setting
     1
 ] call CBA_Settings_fnc_init;

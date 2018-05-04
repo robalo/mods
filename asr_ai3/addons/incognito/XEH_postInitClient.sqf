@@ -30,13 +30,13 @@ MP: run code on group leader unit only; must reset on leadership change
                     _fEHadded = _vh getVariable "RYD_INC_FEH";
                     if (isNil "_fEHadded") then {
                         _ix = _vh addEventHandler ["Fired",{if (({(_x in (_this select 0))} count (units (group player))) > 0) then {RYD_INC_Fired = time} else {(vehicle (_this select 0)) removeEventHandler ["Fired", (vehicle (_this select 0)) getVariable "RYD_INC_FEH"]}}];
-                        _vh setVariable ["RYD_INC_FEH",_ix];
+                        _vh setVariable ["RYD_INC_FEH", _ix];
                     };
                 } else {
                     _fEHadded = _vh getVariable "RYD_INC_FEH";
                     if (isNil "_fEHadded") then {
                         _ix = _vh addEventHandler ["Fired",{RYD_INC_Fired = time}];
-                        _vh setVariable ["RYD_INC_FEH",_ix];
+                        _vh setVariable ["RYD_INC_FEH", _ix];
                     };
                 }
             } foreach _units;
@@ -152,19 +152,19 @@ MP: run code on group leader unit only; must reset on leadership change
 
                 _knownFor = count _enemiesG;
 
-                _unit setVariable ["RYD_INC_Exposed",false];
+                _unit setVariable ["RYD_INC_Exposed", false];
 
                 if (_unit getVariable ["RYD_INC_Compromised",false]) then {
-                    if (_knownFor > 0) then {_unit setVariable ["RYD_INC_Exposed",true]};
+                    if (_knownFor > 0) then {_unit setVariable ["RYD_INC_Exposed", true]};
                 };
 
                 if (_knownFor > 0) then	{_knownForAll = _knownFor};
 
                 if not (_unit getVariable ["RYD_INC_Exposed",false]) then {
-                    _unit setVariable ["RYD_INC_Undercover",true];
+                    _unit setVariable ["RYD_INC_Undercover", true];
                     _wasIncognito = true;
                 } else {
-                    _unit setVariable ["RYD_INC_Undercover",false];
+                    _unit setVariable ["RYD_INC_Undercover", false];
                 };
                 
                 if (GVAR(incodbg) && {_unit getVariable ["RYD_INC_Exposed",false] || {_armed || {_wrongVeh || {_firing || {_recognized}}}}}) then {

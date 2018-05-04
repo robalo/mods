@@ -11,6 +11,7 @@ class CfgPatches {
 		versionAct = "";
 		VERSION_CONFIG;
         author = "Robalo";
+        authors[] = {"Robalo","Raptoer"};
 	};
 };
 

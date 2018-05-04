@@ -6,11 +6,27 @@ class CfgPatches {
 		weapons[] = {};
         ammo[] = {};
         addonRootClass = "A3_Data_F";
-		requiredAddons[] = {QUOTE(MAIN_ADDON),"A3_Data_F_Tacops_Loadorder"};
+		requiredAddons[] = {QUOTE(MAIN_ADDON),"A3_Data_F_Tank_Loadorder"};
 		requiredVersion = REQUIRED_VERSION;
 		versionDesc = "ASR AI3";
 		versionAct = "";
 		VERSION_CONFIG;
+        author = "Robalo";
+	};
+	class asr_ai3_cfgcamouflage {
+		units[] = {};
+		weapons[] = {};
+        ammo[] = {};
+		requiredAddons[] = {};
+		requiredVersion = REQUIRED_VERSION;
+        author = "Robalo";
+	};
+	class asr_ai3_cfgvehicles {
+		units[] = {};
+		weapons[] = {};
+        ammo[] = {};
+		requiredAddons[] = {};
+		requiredVersion = REQUIRED_VERSION;
         author = "Robalo";
 	};
 };
@@ -116,7 +132,7 @@ Affects how quick the AI react to death, damage or observing an enemy (Higher va
 class CfgAISkill {
     aimingShake[]  = {0, 0.1, 0.8, 0.4, 1, 1}; //aimingShake[] = {0, 0, 1, 1};
     aimingSpeed[]  = {0, 0.1, 0.8, 0.6, 1, 1}; //aimingSpeed[] = {0, 0.5, 1, 1};
-    spotDistance[] = {0, 0.2, 0.8, 0.6, 1, 1}; //spotDistance[] = {0, 0, 1, 1};
+    spotDistance[] = {0, 0.2, 0.8, 0.4, 1, 1}; //spotDistance[] = {0, 0, 1, 1};
     spotTime[]     = {0, 0.2, 0.8, 0.6, 1, 1}; //spotTime[] = {0, 0, 1, 1};
 };
 

@@ -14,6 +14,6 @@ private _validSelfVehicle = vehicle _unit == _unit || (vehicle _unit isKindOf "L
 TRACE_5("counterattack: ", _unitLeaderAndPending, _unitKnowledgeOrDistance, _validTarget, _validSelfVehicle, (_unit targetKnowledge _dangerCausedBy));
 if(_unitLeaderAndPending && _unitKnowledgeOrDistance
     && _validTarget && _validSelfVehicle) then {
-    _unit  setVariable [QGVAR(ATK_PEND),1,false];
+    _unit setVariable [QGVAR(ATK_PEND), 1];
     [_unit, getPosATL _dangerCausedBy] call FUNC(counterAttackHelper);
 };

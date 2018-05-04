@@ -11,7 +11,7 @@ if (waypointType [_grp,currentWaypoint _grp] == "HOLD") exitWith {TRACE_1("has H
 if (_time < (_grp getVariable [QGVAR(lastMoveToCoverTime),-1000]) + 150) exitWith {TRACE_1("too soon to move to cover again",_grp)};
 
 //found cover or not, don't bother trying to find again for 2 minutes, so we save the time of last try
-_grp setVariable [QGVAR(lastMoveToCoverTime),time,false];
+_grp setVariable [QGVAR(lastMoveToCoverTime), time];
 
 private _mToCover = false;
 if (_unit call FNCMAIN(isValidUnitC) && {!isHidden _unit} && {(nearestTerrainObjects [_unit, [], 10, false, true]) isEqualTo []}) then {_mToCover = true};
@@ -39,7 +39,7 @@ if (_mToCover) then {
 if (!_mToCover || {_cpa isEqualTo []}) exitWith {};
 
 //remember
-_grp setVariable [QGVAR(nearcover),_cpa,false];
+_grp setVariable [QGVAR(nearcover), _cpa];
 
 //proceed
 [_unit,_cpa,_time] spawn  {

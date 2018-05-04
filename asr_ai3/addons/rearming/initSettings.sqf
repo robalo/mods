@@ -2,7 +2,7 @@
     QGVAR(rearm),
     "SLIDER",
     "Basic rearming range (meters)",
-    "ASR AI3",
+    ["ASR AI3", "rearming"],
     [0, 200, 40, 0],
     1
 ] call CBA_Settings_fnc_init;
@@ -10,7 +10,7 @@
     QGVAR(rearm_mags),
     "SLIDER",
     "Rearm if primary has less than (magazines)",
-    "ASR AI3",
+    ["ASR AI3", "rearming"],
     [0, 7, 3, 0],
     0,
     {
@@ -21,7 +21,7 @@
     QGVAR(rearm_fak),
     "SLIDER",
     "Rearm if first aid less than (kits)",
-    "ASR AI3",
+    ["ASR AI3", "rearming"],
     [0, 5, 1, 0],
     0,
     {
@@ -29,4 +29,4 @@
     }
 ] call CBA_Settings_fnc_init;
 
-[ QGVAR(debug_rearm), "CHECKBOX", "Debug rearming", "ASR AI3", false, 1 ] call CBA_Settings_fnc_init;
+[ QGVAR(debug_rearm), "CHECKBOX", "Debug rearming", ["ASR AI3", "rearming"], false, 1 ] call CBA_Settings_fnc_init;
