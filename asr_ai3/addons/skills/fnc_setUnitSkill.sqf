@@ -9,14 +9,14 @@ private _fnc_getskillvalue = {
 	(_min + random _var)
 };
 
-private _t = typeOf _unit;
-private _sc = [configfile>>"cfgvehicles">>_t>>"asr_ai_level", "number", 6] call CBA_fnc_getConfigEntry;
+private _unitType = typeOf _unit;
+private _sc = [configfile>>"cfgvehicles">>_unitType>>"asr_ai_level", "number", 6] call CBA_fnc_getConfigEntry;
 TRACE_2("config",_unit,_sc);
 
 // also check for override setting
 private _i = 0;
 {
-	if (_t in _x || {{_t isKindOf _x} count _x > 0}) exitWith {
+	if (_unitType in _x || {_x findIf {_unitType isKindOf _x} > -1}) exitWith {
 		_sc = _i;
 		TRACE_2("override",_unit,_i);
 	};

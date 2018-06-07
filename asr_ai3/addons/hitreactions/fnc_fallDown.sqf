@@ -4,7 +4,7 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit"];
-//diag_log format ["ASR AI3: fnc_fallDown: %1",_unit];
+//diag_log format ["ASR AI3: fnc_fallDown BEGIN: %1",_unit];
 
 if (!(isNull objectParent _unit) || {_unit getVariable ["tmr_falling", false]}) exitWith {};
 
@@ -74,3 +74,4 @@ call {
 		};
     };
 };
+//diag_log format ["ASR AI3: fnc_fallDown END: %1",_unit];

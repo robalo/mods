@@ -25,95 +25,95 @@ class CfgWeapons {
 
     class cannon_120mm;
     class rhs_weap_m256 : cannon_120mm {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class autocannon_30mm_CTWS;
     class RHS_weap_M242BC : autocannon_30mm_CTWS {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class LMG_M200;
     class rhs_weap_m240veh : LMG_M200 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_M197;
     class rhs_weap_M230 : rhs_weap_M197 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class HMG_127;
     class RHS_weap_gau19 : HMG_127 {
-        __AI_DISPERSION_COEF;
+        __AI_DISPERSION_THIRDCOEF;
     };
     class GMG_20mm;
     class RHS_MK19 : GMG_20mm {
-        __AI_DISPERSION_COEF;
+        __AI_DISPERSION_THIRDCOEF;
     };
     class Cannon_30mm_Plane_CAS_02_F;
     class rhsusf_M61A2 : Cannon_30mm_Plane_CAS_02_F {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class gatling_30mm;
     class RHS_weap_zpl20 : gatling_30mm {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class PKT;
     class rhs_weap_pkt : PKT {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class LMG_RCWS;
     class rhs_weap_DSHKM : LMG_RCWS {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_nsvt : rhs_weap_DSHKM {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_kpvt : MGun {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_yakB : gatling_30mm {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class RHS_weap_Ags30 : GMG_20mm {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_pkm_tigr : rhs_weap_pkt {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_d81 : cannon_120mm {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a26 : rhs_weap_d81 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a46_2 : rhs_weap_d81 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a46m_2 : rhs_weap_d81 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a46m : rhs_weap_2a46m_2 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a46m_4 : rhs_weap_2a46m_2 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a46m_5 : rhs_weap_2a46m_2 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a42_base : autocannon_30mm_CTWS {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a70 : rhs_weap_d81 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a75 : rhs_weap_d81 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rhs_weap_2a28_base : cannon_120mm {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
     };
     class rockets_Skyfire;
     class rhs_weap_s5 : rockets_Skyfire {
-        __AI_DISPERSION_COEF;
+        __AI_DISPERSION_THIRDCOEF;
     };
 
     class RHS_SAFE_BASE : Rifle_Base_F {

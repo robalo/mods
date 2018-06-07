@@ -5,7 +5,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         ammo[] = {};
-        requiredAddons[] = {"CBA_MAIN",QUOTE(MAIN_ADDON)};
+        requiredAddons[] = {QUOTE(MAIN_ADDON)};
         requiredVersion = REQUIRED_VERSION;
         author = "Rydygier";
     };

@@ -20,40 +20,40 @@ class CfgWeapons {
 	class CannonCore;
 
     class RocketPods : LauncherCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
 
 	class MGun;
 	class LMG_RCWS: MGun {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
     class LMG_Minigun : LMG_RCWS {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
     class HMG_01;
     class HMG_M2 : HMG_01 {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
 	class M134_minigun: MGunCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
     class gatling_20mm : CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
     class gatling_30mm_base : CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
 	class cannon_120mm: CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
 	class cannon_125mm : CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
 	class cannon_105mm: CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
     class Gatling_30mm_Plane_CAS_01_F : CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
 
 	class GrenadeLauncher: Default {
@@ -101,8 +101,8 @@ class CfgWeapons {
 	};
 
     class Binocular : Default {
-        minRangeProbab = 0.1;
-        midRangeProbab = 0.4;
+        minRangeProbab = 0.01;
+        midRangeProbab = 0.02;
         maxRangeProbab = 0.04;
 	};
 

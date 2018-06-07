@@ -5,7 +5,7 @@ class CfgPatches {
 		units[] = {};
 		weapons[] = {};
         ammo[] = {};
-		requiredAddons[] = {"CBA_MAIN", "A3_Ui_F"};
+		requiredAddons[] = {QUOTE(MAIN_ADDON)};
 		requiredVersion = REQUIRED_VERSION;
 		versionDesc = "ASR AI3";
 		versionAct = "";

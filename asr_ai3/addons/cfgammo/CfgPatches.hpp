@@ -4,7 +4,7 @@ class CfgPatches {
 		weapons[] = {};
         ammo[] = {};
         addonRootClass = "A3_Data_F";
-		requiredAddons[] = {"A3_Data_F_Tank_Loadorder"};
+		requiredAddons[] = {QUOTE(MAIN_ADDON)};
 		requiredVersion = REQUIRED_VERSION;
         author = "Robalo";
 	};

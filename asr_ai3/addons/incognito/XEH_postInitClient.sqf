@@ -21,15 +21,13 @@ MP: run code on group leader unit only; must reset on leadership change
         waituntil {sleep 3; !(isNull player)};
 
         if (GVAR(incodiff) > 0) then {
-
             _units = units player;
-
             {
                 _vh = vehicle _x;
                 if not (_x == _vh) then {
                     _fEHadded = _vh getVariable "RYD_INC_FEH";
                     if (isNil "_fEHadded") then {
-                        _ix = _vh addEventHandler ["Fired",{if (({(_x in (_this select 0))} count (units (group player))) > 0) then {RYD_INC_Fired = time} else {(vehicle (_this select 0)) removeEventHandler ["Fired", (vehicle (_this select 0)) getVariable "RYD_INC_FEH"]}}];
+                        _ix = _vh addEventHandler ["Fired",{if ((units player) findIf {_x in (_this select 0)} > -1) then {RYD_INC_Fired = time} else {(vehicle (_this select 0)) removeEventHandler ["Fired", (vehicle (_this select 0)) getVariable "RYD_INC_FEH"]}}];
                         _vh setVariable ["RYD_INC_FEH", _ix];
                     };
                 } else {
@@ -88,7 +86,7 @@ MP: run code on group leader unit only; must reset on leadership change
                 _firing = false;
                 _recognized = false;
 
-                if ((_onFoot) and {(({not ((toLower _x) in ["","throw"])} count [(currentWeapon _unit),(primaryWeapon _unit),(secondaryWeapon _unit)]) > 0)}) then {_armed = true};
+                if ((_onFoot) and {[currentWeapon _unit, primaryWeapon _unit, secondaryWeapon _unit] findIf {not ((toLower _x) in ["","throw"])} > -1}) then {_armed = true};
 
                 if not (_armed) then {
                     if not (_onFoot) then {

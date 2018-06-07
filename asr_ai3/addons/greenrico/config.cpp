@@ -22,7 +22,7 @@ class CfgPatches {
 		units[] = {"asdg_I_AssaultPack_dgtl_AR","asdg_I_Soldier_MG","asdg_I_recon","asdg_I_recon_exp","asdg_I_recon_medic","asdg_I_recon_TL","asdg_I_recon_M","asdg_I_recon_MG"};
 		weapons[] = {"asdg_LMG_03_F_ARCO_LP","asdg_DMR_06_DMS_BI"};
 		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"A3_Characters_F","A3_Weapons_F","A3_Weapons_F_Mark","A3_Weapons_F_Exp"};
+		requiredAddons[] = {QUOTE(MAIN_ADDON)};
 		version = VERSION;
         author = "Robalo";
 	};
