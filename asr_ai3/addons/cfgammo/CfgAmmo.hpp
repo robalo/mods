@@ -11,7 +11,7 @@
 #define AIAmmoUsageOffensiveArmour 512
 
 class CfgAmmo {
-    class Default {
+    class Default;
 /*
         cost = 0;
         airLock = 0;
@@ -22,7 +22,6 @@ class CfgAmmo {
         dangerRadiusBulletClose = -1;
         dangerRadiusHit = -1;
 */
-    };
     class MissileCore : Default {
         dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR;
     };

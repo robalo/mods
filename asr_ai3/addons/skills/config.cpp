@@ -5,28 +5,12 @@ class CfgPatches {
 		units[] = {};
 		weapons[] = {};
         ammo[] = {};
-        addonRootClass = "A3_Data_F";
+        addonRootClass = "A3_Characters_F";
 		requiredAddons[] = {QUOTE(MAIN_ADDON)};
 		requiredVersion = REQUIRED_VERSION;
 		versionDesc = "ASR AI3";
 		versionAct = "";
 		VERSION_CONFIG;
-        author = "Robalo";
-	};
-	class asr_ai3_cfgcamouflage {
-		units[] = {};
-		weapons[] = {};
-        ammo[] = {};
-		requiredAddons[] = {};
-		requiredVersion = REQUIRED_VERSION;
-        author = "Robalo";
-	};
-	class asr_ai3_cfgvehicles {
-		units[] = {};
-		weapons[] = {};
-        ammo[] = {};
-		requiredAddons[] = {};
-		requiredVersion = REQUIRED_VERSION;
         author = "Robalo";
 	};
 };
