@@ -3,9 +3,10 @@
 #define __AI_AMMO_AUDIBLE0 2
 #define __AI_AMMO_AUDIBLE1 100
 #define __AI_AMMO_RANGE_HIT_FAR 1000
-#define __AI_AMMO_RANGE_HIT_MEDIUM 400
-#define __AI_AMMO_RANGE_HIT_SMALL 5
-#define __AI_AMMO_RANGE_CRACKS 70
+#define __AI_AMMO_RANGE_HIT_MEDIUM 500
+#define __AI_AMMO_RANGE_HIT_EXPSMALL 100
+#define __AI_AMMO_RANGE_HIT_SMALL 3
+#define __AI_AMMO_RANGE_CRACKS 80
 
 #define __AI_DISPERSION_COEF aiDispersionCoefX = 4; aiDispersionCoefY = 8
 #define __AI_DISPERSION_2XCOEF aiDispersionCoefX = 8; aiDispersionCoefY = 16
@@ -15,6 +16,20 @@
 
 #define __AI_SUPP_COEFF class AmmoCoef { visibleFire = 0.2; audibleFire = 0.2; }
 #define __AI_SUPP_INH_COEFF class AmmoCoef : AmmoCoef { visibleFire = 0.2; audibleFire = 0.2; }
+
+#define ASR_AI_DANGER_RADIUS_LARGE dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS; dangerRadiusHit = __AI_AMMO_RANGE_HIT_FAR
+#define ASR_AI_DANGER_RADIUS_MEDIUM dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS; dangerRadiusHit = __AI_AMMO_RANGE_HIT_MEDIUM
+#define ASR_AI_DANGER_RADIUS_EXPSMALL dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS; dangerRadiusHit = __AI_AMMO_RANGE_HIT_EXPSMALL
+#define ASR_AI_DANGER_RADIUS_SMALL dangerRadiusBulletClose = __AI_AMMO_RANGE_CRACKS; dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL
+#define ASR_AI_DANGER_RADIUS_TINY dangerRadiusBulletClose = 1; dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL
+#define ASR_AI_AUDIBLE0 audibleFire = __AI_AMMO_AUDIBLE0
+#define ASR_AI_AUDIBLE1 audibleFire = __AI_AMMO_AUDIBLE1
+#define ASR_AI_VISIBLE_NONE visibleFire = 1
+#define ASR_AI_VISIBLE_SMALL visibleFire = 4
+#define ASR_AI_VISIBLE_TRACER visibleFire = 8
+#define ASR_AI_SUPPRESSION_BULLET_LOUD suppressionRadiusBulletClose = 8; suppressionRadiusHit = 12
+#define ASR_AI_SUPPRESSION_BULLET_QUIET suppressionRadiusBulletClose = 0; suppressionRadiusHit = 12
+#define ASR_AI_SUPPRESSION_BULLET_DEFAULT suppressionRadiusBulletClose = -1; suppressionRadiusHit = -1
 
 
 /*

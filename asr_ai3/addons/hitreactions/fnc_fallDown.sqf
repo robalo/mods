@@ -42,36 +42,36 @@ private _knl_nw_fallarray = ["AmovPknlMstpSnonWnonDnon_AmovPpneMstpSnonWnonDnon"
 private _fallAnims = [_nw_fallarray, _hw_fallarray, _pw_fallarray, _sw_fallarray];
 private _knl_fallAnims = [_knl_nw_fallarray, _knl_hw_fallarray, _knl_pw_fallarray, _knl_sw_fallarray];
 
-// Clear falling after 2 seconds and ensure that AI gets back to prone.
-private _backToProne = {
-	sleep 2;
-	_this setVariable ["tmr_falling", false];
-
-	if (alive _this && !isPlayer _this) then {
-		// Back to prone.
-		_this playMoveNow "amovppnemstpsraswrfldnon";
-	};
+private _stance = stance _unit;
+_possibleAnims = call {
+    // Play fall to ground animation
+	if (_stance isEqualTo "STAND") exitWith {_fallAnims select _wepType};
+    // Fall back to sitting position
+	if (_stance isEqualTo "CROUCH") exitWith {_knl_fallAnims select _wepType};
+    [];
 };
+if (_possibleAnims isEqualTo []) exitWith {};
 
 // Mark that unit is falling
 _unit setVariable ["tmr_falling", true];
-private _stance = stance _unit;
-call {
-	if (_stance == "STAND") exitWith {
-		// Play fall to ground animation
-		_possibleAnims = _fallAnims select _wepType;
-		_anim = selectRandom _possibleAnims;
-		_unit switchMove _anim;
-        _unit spawn _backToProne;
-    };
-	if (_stance == "CROUCH") exitWith {
-		// Fall back to sitting position (pistol/rifle only)
-		_possibleAnims = _knl_fallAnims select _wepType;
-		if (count _possibleAnims > 0) then {
-			_anim = selectRandom _possibleAnims;
-			_unit switchMove _anim;
-            _unit spawn _backToProne;
-		};
-    };
+private _aimcoef = getCustomAimCoef _unit;
+private _anim = selectRandom _possibleAnims;
+_unit setCustomAimCoef 1;
+_unit switchMove _anim;
+
+// Clear falling after 2 seconds and ensure that AI gets back to prone.
+[_unit, _aimcoef] spawn {
+    params ["_unit", "_aimcoef"];
+	sleep 2;
+    if (isNull _unit || {!alive _unit}) exitWith {};
+	_unit setVariable ["tmr_falling", false];
+
+	// Back to prone.
+	if (_unit != call CBA_fnc_currentUnit) then {
+		_unit playMoveNow "amovppnemstpsraswrfldnon";
+	};
+    // Restore sway
+    _unit setCustomAimCoef _aimcoef;
 };
+
 //diag_log format ["ASR AI3: fnc_fallDown END: %1",_unit];

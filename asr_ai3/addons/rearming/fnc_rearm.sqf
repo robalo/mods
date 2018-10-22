@@ -1,6 +1,7 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit"];
+scopeName "main";
 
 sleep (20 + random 5);
 
@@ -63,7 +64,11 @@ if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places
 	if (_checkit) then {
 		_unit doWatch _x;
         [_unit, getPosWorld _x] call FNCMAIN(moveTo);
-        waitUntil {unitReady _unit};
+        waitUntil {
+            sleep 0.1;
+            if (isNull _unit || {!alive _unit}) exitWith {breakOut "main"; true};
+            unitReady _unit;
+        };
 		_unit doWatch _x;
 		if (alive _x && {_x isKindOf "CAManbase"}) then {_unit action ["REARM",unitBackpack _x]} else {_unit action ["REARM",_x]};
 	};

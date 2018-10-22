@@ -53,7 +53,13 @@ _grp setVariable [QGVAR(nearcover), _cpa];
     // resume after reaching cover
 	[_unit,_grp,_until,_cover] spawn {
 		params ["_unit", "_grp", "_until", "_cover"];
-		waitUntil {{ if (_x != _unit) then {_x doFollow (formationLeader _x)} } forEach (units _grp); sleep 5; !alive _unit || {time > _until + __DELAY_} || {_unit distance _cover < 2}};
+        scopeName "resume";
+		waitUntil {
+            if (isNull _unit || isNull _grp) exitWith {breakOut "resume"; true};
+            { if (_x != _unit) then {_x doFollow (formationLeader _x)} } forEach (units _grp);
+            sleep 5;
+            !alive _unit || {time > _until + __DELAY_} || {_unit distance _cover < 2};
+        };
 		_grp lockwp false;
         {_x doFollow (leader _x)} forEach (units _grp);
 	};

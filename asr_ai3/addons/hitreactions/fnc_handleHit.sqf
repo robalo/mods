@@ -33,10 +33,14 @@ if (local _unit && {_unit != call CBA_fnc_currentUnit} && {_unit call FNCMAIN(is
     if (!isClass (configFile >> "CfgPatches" >> "ace_medical_ai")) then {
         // patch self when clear
         _unit spawn {
-            while {sleep 5 + random 5; alive _this && {damage _this > 0.3}} do {
-                waitUntil {"FirstAidKit" in (items _this) && {isNull (_this findNearestEnemy _this)}};
+            scopeName "heal";
+            while {sleep 5 + random 5; damage _this > 0.3 && {_this != call CBA_fnc_currentUnit} && {_this call FNCMAIN(isValidUnitC)}} do {
+                waitUntil {
+                    sleep 10;
+                    if (isNull _this || {!alive _this}) exitWith {breakOut "heal"; true};
+                    "FirstAidKit" in (items _this) && {isNull (_this findNearestEnemy _this)};
+                };
                 _this action ["HealSoldierSelf", _this];
-                sleep 10;
             };
         };
     };

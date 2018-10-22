@@ -114,10 +114,11 @@ Affects how quick the AI react to death, damage or observing an enemy (Higher va
 */
 
 class CfgAISkill {
-    aimingShake[]  = {0, 0.1, 0.8, 0.4, 1, 1}; //aimingShake[] = {0, 0, 1, 1};
-    aimingSpeed[]  = {0, 0.1, 0.8, 0.6, 1, 1}; //aimingSpeed[] = {0, 0.5, 1, 1};
-    spotDistance[] = {0, 0.2, 0.8, 0.4, 1, 1}; //spotDistance[] = {0, 0, 1, 1};
-    spotTime[]     = {0, 0.2, 0.8, 0.6, 1, 1}; //spotTime[] = {0, 0, 1, 1};
+    aimingAccuracy[] = {0, 0.1, 0.8, 0.7, 1, 1}; //aimingAccuracy[] = {0, 0, 1, 1};
+       aimingShake[] = {0, 0.1, 0.8, 0.4, 1, 1}; //   aimingShake[] = {0, 0, 1, 1};
+       aimingSpeed[] = {0, 0.1, 0.8, 0.6, 1, 1}; //   aimingSpeed[] = {0, 0.5, 1, 1};
+      spotDistance[] = {0, 0.1, 0.8, 0.3, 1, 1}; //  spotDistance[] = {0, 0, 1, 1};
+          spotTime[] = {0, 0.1, 0.8, 0.4, 1, 1}; //      spotTime[] = {0, 0, 1, 1};
 };
 
 class CfgWeapons {

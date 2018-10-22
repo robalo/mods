@@ -12,12 +12,14 @@ if (_copy isEqualTo 1) then {
             while {alive _this && {(_this getVariable [QGVAR(copymystance), 0]) isEqualTo 1}} do {
                 private _leader = leader _this;
                 if (isPlayer _leader && !isPlayer _this) then {
+                    private _stance = stance _leader;
                     call {
-                        if !(isNull objectParent _leader) exitWith {_this setUnitPos "MIDDLE"};
-                        if (stance _leader == "CROUCH") exitWith {_this setUnitPos "MIDDLE"};
-                        if (currentWeapon _this == "") exitWith {_this setUnitPos "MIDDLE"}; //avoid going prone with no weapon, they never get back up
-                        if (stance _leader == "PRONE") exitWith {_this setUnitPos "DOWN"};
-                        if (_this call FNCMAIN(isUnderRoof)) then {_this setUnitPos "UP"} else {_this setUnitPos "AUTO"};
+                        if (currentWeapon _this isEqualTo "") exitWith {_this setUnitPos "MIDDLE"};  // keep low if unarmed; prevent prone stuck bug
+                        if !(isNull objectParent _leader) exitWith {_this setUnitPos "UP"};          // faster mounting
+                        if (_leader distance _this > 100) exitWith {_this setUnitPos "AUTO"};        // revert to auto when away
+                        if (_stance isEqualTo "CROUCH") exitWith {_this setUnitPos "MIDDLE"};
+                        if (_stance isEqualTo "PRONE") exitWith {_this setUnitPos "DOWN"};
+                        _this setUnitPos "UP"; //on auto they went prone way too often
                     };
                 };
                 sleep 2;

@@ -40,9 +40,14 @@ _grp setVariable [QGVAR(nearcover), _cpa];
 [_unit,_cpa select 0,_time] spawn {
 	params ["_unit", "_cover", "_until"];
 	TRACE_1("Choose cover",_cover);
+    scopeName "go";
     _unit doMove _cover;
     sleep 5;
-    waitUntil {time > _until + __DELAY_ || {_unit distance _cover < 2}};
+    waitUntil {
+        sleep 0.1;
+        if (isNull _unit || {!alive _unit}) exitWith {breakOut "go"; true};
+        time > _until + __DELAY_ || {_unit distance _cover < 2};
+    };
     //return
     sleep 5 + random 10;
     [_unit] joinSilent (group _unit);

@@ -13,35 +13,56 @@ class CfgWeapons {
 	class Default {
 		__AI_ROF_RIFLE_SMALL_SEMI;
 	};
-
-	class RifleCore;
-	class MGunCore;
-    class LauncherCore;
-	class CannonCore;
-
+    class PistolCore : Default {
+		__AI_DISPERSION_COEF;
+    };
+    class RifleCore : Default {
+		__AI_DISPERSION_COEF;
+    };
+    class MGunCore : Default {
+		__AI_DISPERSION_COEF;
+    };
+    class LauncherCore : Default {
+		__AI_DISPERSION_COEF;
+    };
+    class GrenadeCore : Default {
+        __AI_DISPERSION_2XCOEF;
+    };
+    class CannonCore : Default {
+		__AI_DISPERSION_THIRDCOEF;
+    };
     class RocketPods : LauncherCore {
 		__AI_DISPERSION_THIRDCOEF;
 	};
-
-	class MGun;
+    class MGun : MGunCore {
+		__AI_DISPERSION_COEF;
+    };
 	class LMG_RCWS: MGun {
-		__AI_DISPERSION_THIRDCOEF;
+		__AI_DISPERSION_HALFCOEF;
 	};
     class LMG_Minigun : LMG_RCWS {
-		__AI_DISPERSION_THIRDCOEF;
+		__AI_DISPERSION_HALFCOEF;
 	};
-    class HMG_01;
+    class HMG_127 : LMG_RCWS {
+		__AI_DISPERSION_HALFCOEF;
+	};
+    class HMG_01 : HMG_127 {
+		__AI_DISPERSION_HALFCOEF;
+    };
+    class HMG_static : HMG_01 {
+		__AI_DISPERSION_COEF;
+	};
     class HMG_M2 : HMG_01 {
-		__AI_DISPERSION_THIRDCOEF;
+		__AI_DISPERSION_COEF;
 	};
 	class M134_minigun: MGunCore {
-		__AI_DISPERSION_THIRDCOEF;
+		__AI_DISPERSION_HALFCOEF;
 	};
     class gatling_20mm : CannonCore {
-		__AI_DISPERSION_THIRDCOEF;
+		__AI_DISPERSION_HALFCOEF;
 	};
     class gatling_30mm_base : CannonCore {
-		__AI_DISPERSION_THIRDCOEF;
+		__AI_DISPERSION_HALFCOEF;
 	};
 	class cannon_120mm: CannonCore {
 		__AI_DISPERSION_THIRDCOEF;
@@ -53,7 +74,7 @@ class CfgWeapons {
 		__AI_DISPERSION_THIRDCOEF;
 	};
     class Gatling_30mm_Plane_CAS_01_F : CannonCore {
-		__AI_DISPERSION_THIRDCOEF;
+		__AI_DISPERSION_HALFCOEF;
 	};
 
 	class GrenadeLauncher: Default {
@@ -101,9 +122,10 @@ class CfgWeapons {
 	};
 
     class Binocular : Default {
-        minRangeProbab = 0.01;
-        midRangeProbab = 0.02;
-        maxRangeProbab = 0.04;
+        minRangeProbab = 0;
+        midRangeProbab = 0;
+        maxRangeProbab = 0.001;
+        reloadtime = 1;
 	};
 
 	class DMR_01_base_F: Rifle_Long_Base_F {
@@ -398,8 +420,8 @@ class CfgWeapons {
 	};
 
     class DMR_07_base_F : Rifle_Long_Base_F {
-		modes[] = {"SemiAuto", "AI_Single_optics1", "AI_Single_optics2"};
-		__AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
+		modes[] = {"Single", "AI_Single_optics1", "AI_Single_optics2"};
+		__AI_RIFLE_MEDIUMSEMI_MODES(Mode_SemiAuto);
 		__AI_DISPERSION_COEF;
     };
 
