@@ -8,10 +8,11 @@ if (_nvg != "") exitWith {[_nvg, ""]}; //quick way out
 
 private _helmet = headGear _unit;
 private _nvgHelmet = "";
+if (_helmet == "") exitWith {["",""]};
 
-if (_helmet != "") then {
-    private _subItems = [(configFile>>"CfgWeapons">>_helmet), "subItems", []] call BIS_fnc_returnConfigEntry;
-    { if (getText(configFile>>"CfgWeapons">>_x>>"simulation") == "NVGoggles") exitWith {_nvgHelmet = _helmet} } forEach _subItems;
-};
+private _cfgWeapons = configFile >> "CfgWeapons";
+private _subItems = getArray _cfgWeapons >> _helmet >> "subItems";
+private _found = _subItems findIf {getText(_cfgWeapons >> _x >> "simulation") == "NVGoggles"};
+if (_found == -1) exitWith {["",""]};
 
-["", _nvgHelmet]
+["", _helmet]
