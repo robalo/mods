@@ -8,7 +8,11 @@ if (_show) then { // Equip NVG
 	if (_nvg != "" || _nvgHelmet != "") exitWith {
 		LOG("Already has NVG equipped");
 	};
-	{ if (getText(configFile>>"CfgWeapons">>_x>>"simulation") == "NVGoggles") exitWith {_nvg = _x} } forEach items _unit;
+	private _unitItems = [_unit, false, true, true, true, false] call CBA_fnc_uniqueUnitItems;
+	private _cfgWeapons = configFile >> "CfgWeapons";
+	private _found = _unitItems findIf {getText (_cfgWeapons >> _x >> "simulation") isEqualTo "NVGoggles"};
+	if (_found != -1) then {_nvg = _unitItems select _found;};
+
 	if (_nvg != "") then {
 		_unit assignItem _nvg;
 		TRACE_2("Unit equips NVG",_unit,_nvg);
