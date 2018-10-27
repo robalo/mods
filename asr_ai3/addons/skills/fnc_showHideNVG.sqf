@@ -9,7 +9,8 @@ if (_show) then { // Equip NVG
 		LOG("Already has NVG equipped");
 	};
 	private _unitItems = [_unit, false, true, true, true, false] call CBA_fnc_uniqueUnitItems;
-	private _found = _unitItems findIf {getText (configFile >> "CfgWeapons" >> _x >> "simulation") isEqualTo "NVGoggles"};
+	private _cfgWeapons = configFile >> "CfgWeapons";
+	private _found = _unitItems findIf {getText (_cfgWeapons >> _x >> "simulation") isEqualTo "NVGoggles"};
 	if (_found != -1) then {_nvg = _unitItems select _found;};
 
 	if (_nvg != "") then {
