@@ -9,11 +9,4 @@ GVAR(needmax) = [ // The level of supplies the unit will try to maintain
 	GVAR(rearm_fak)  // fak
 ];
 
-PREP(allowRearm);
-PREP(getCompatMags);
-PREP(countItems);
-PREP(inventoryCheck);
-PREP(pistolToPrimary);
-PREP(rearm);
-PREP(rearmAll);
-PREP(inventoryClosed);
+#include "XEH_PREP.hpp"
