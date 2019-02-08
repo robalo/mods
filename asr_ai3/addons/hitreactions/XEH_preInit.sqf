@@ -7,10 +7,4 @@ LOG(MSG_INIT);
 GVAR(critHeadHit) = getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit");
 GVAR(critBodyHit) = getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit");
 
-PREP(fallDown);
-PREP(handleHit);
-PREP(handleExplosion);
-PREP(ejectDeadGunner);
-PREP(addHandleDamage);
-PREP(handleHitVehicle);
-PREP(vehicleSetup);
+#include "XEH_PREP.hpp"
