@@ -81,6 +81,16 @@ class CfgWeapons {
 		};
     };
 
+    class BWA3_MG3 : Rifle_Long_Base_F {
+		modes[] = {
+            "burst",
+            "AI_long", "AI_close", "AI_short", "AI_medium", "AI_far", "AI_toofar",
+            "AI_far_optic1", "AI_toofar_optic1",
+            "AI_far_optic2", "AI_toofar_optic2"
+        };
+		__AI_MG_MODES(burst,Mode_FullAuto,burst);
+		__AI_DISPERSION_COEF;
+    };
     class BWA3_MG4 : Rifle_Long_Base_F {
 		modes[] = {
             "manual",

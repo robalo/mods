@@ -6,12 +6,13 @@ class CfgPatches {
 		units[] = {};
 		weapons[] = {};
         ammo[] = {};
-		requiredAddons[] = { QUOTE(MAIN_ADDON), "A3_Characters_F" };
+		requiredAddons[] = {QUOTE(MAIN_ADDON)};
 		requiredVersion = REQUIRED_VERSION;
 		versionDesc = "ASR AI3";
 		versionAct = "";
 		VERSION_CONFIG;
         author = "Robalo";
+        authors[] = {"Robalo","Raptoer"};
 	};
 };
 

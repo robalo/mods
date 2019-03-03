@@ -5,44 +5,98 @@ class Mode_FullAuto;
 class CfgWeapons {
 
 	#include "items.hpp"
+	#include "uniforms.hpp"
+	#include "vests.hpp"
+
+    class Default;
+    class rhs_weap_MASTERSAFE : Default {
+        minRangeProbab = 0;
+        midRangeProbab = 0;
+        maxRangeProbab = 0;
+    };
 
 	class Rifle_Base_F;
-    class Rifle_Short_Base_F : Rifle_Base_F {};
+    class Rifle_Short_Base_F;
 	class Rifle_Long_Base_F;
-	class Pistol_Base_F;
-    class Launcher_Base_F;
     class MGun;
-    class PKT;
-    class LMG_RCWS;
-    class gatling_30mm;
-    class rockets_Skyfire;
-    class hgun_Rook40_F;
+    class UGL_F;
+	class Launcher_Base_F;
 
+    class PKT;
     class rhs_weap_pkt : PKT {
 		__AI_DISPERSION_COEF;
     };
+    class LMG_RCWS;
     class rhs_weap_DSHKM : LMG_RCWS {
 		__AI_DISPERSION_COEF;
     };
     class rhs_weap_nsvt : rhs_weap_DSHKM {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_HALFCOEF;
     };
     class rhs_weap_kpvt : MGun {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_HALFCOEF;
     };
+    class gatling_30mm;
     class rhs_weap_yakB : gatling_30mm {
-        class manual : Mode_FullAuto {
-            __AI_DISPERSION_COEF;
-        };
+		__AI_DISPERSION_HALFCOEF;
+    };
+    class GMG_20mm;
+    class RHS_weap_Ags30 : GMG_20mm {
+		__AI_DISPERSION_COEF;
     };
     class rhs_weap_pkm_tigr : rhs_weap_pkt {
 		__AI_DISPERSION_COEF;
     };
-    class rhs_weap_s5 : rockets_Skyfire {
-        __AI_DISPERSION_COEF;
+    class cannon_120mm;
+    class rhs_weap_d81 : cannon_120mm {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a26 : rhs_weap_d81 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a46_2 : rhs_weap_d81 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a46m_2 : rhs_weap_d81 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a46m : rhs_weap_2a46m_2 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a46m_4 : rhs_weap_2a46m_2 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a46m_5 : rhs_weap_2a46m_2 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a82 : rhs_weap_2a46m_2 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a82_1m : rhs_weap_2a82 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class autocannon_30mm_CTWS;
+    class rhs_weap_2a42_base : autocannon_30mm_CTWS {
+		__AI_DISPERSION_HALFCOEF;
+    };
+    class rhs_weap_2a70 : rhs_weap_d81 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a75 : rhs_weap_d81 {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class rhs_weap_2a28_base : cannon_120mm {
+		__AI_DISPERSION_THIRDCOEF;
     };
 
-    class UGL_F;
+    class RHS_SAFE_BASE : Rifle_Base_F {
+        class Safe : Mode_SemiAuto {
+            minRangeProbab = 0;
+            midRangeProbab = 0;
+            maxRangeProbab = 0;
+        };
+    };
+
 	class GP25_Base: UGL_F {
 		class Single: Mode_SemiAuto {
             __AI_ROF_GL_SINGLE;
@@ -55,11 +109,6 @@ class CfgWeapons {
 		__AI_DISPERSION_COEF;
     };
     class rhs_weap_ak74m : rhs_weap_ak74m_Base_F {};
-    class rhs_weap_asval : rhs_weap_ak74m {
-		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
-		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
-        __AI_DISPERSION_COEF;
-    };
     class rhs_weap_ak105 : rhs_weap_ak74m {
 		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
@@ -77,8 +126,8 @@ class CfgWeapons {
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
     };
     class rhs_weap_ak103_1 : rhs_weap_ak103_base {
-		modes[] = {"SemiAuto", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
-		__AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
+		modes[] = {"Single", "AI_Single_optics1", "AI_Single_optics2", "AI_far"};
+		__AI_RIFLE_MEDIUMSEMI_MODES(Mode_SemiAuto);
     };
     class rhs_weap_ak103_2 : rhs_weap_ak103_base {
 		modes[] = {"Single", "Burst3", "FullAuto", "AI_Burst_close", "AI_Burst_far", "AI_Single_optics1", "AI_Single_optics2"};
@@ -91,16 +140,24 @@ class CfgWeapons {
 		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
 		__AI_DISPERSION_COEF;
     };
+    class rhs_weap_asval : rhs_weap_ak74m {
+		modes[] = {"Single", "FullAuto", "AI_Burst_close", "AI_Single_optics1", "AI_Single_optics2"};
+		__AI_RIFLE_SMALL_CQB_MODES(Single,FullAuto);
+        __AI_DISPERSION_COEF;
+    };
     class rhs_weap_svd : rhs_weap_ak74m {
- 		modes[] = {"SemiAuto", "AI_Single_optics1", "AI_Single_optics2"};
- 		__AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
-
+ 		modes[] = {"Single", "AI_Single_optics1", "AI_Single_optics2"};
+ 		__AI_RIFLE_MEDIUMSEMI_MODES(Mode_SemiAuto);
     };
     class rhs_weap_svdp : rhs_weap_svd {
- 		modes[] = {"SemiAuto", "AI_Single_optics1", "AI_Single_optics2"};
- 		__AI_RIFLE_MEDIUM_MODES(Mode_SemiAuto,Mode_FullAuto);
+ 		modes[] = {"Single", "AI_Single_optics1", "AI_Single_optics2"};
+ 		__AI_RIFLE_MEDIUMSEMI_MODES(Mode_SemiAuto);
     };
-
+    class rhs_weap_orsis_Base_F : Rifle_Base_F {
+		modes[] = {"Single", "AI_Single_optics1", "AI_Single_optics2", "AI_Single_far_optics2"};
+		__AI_BIGSNIPER_MODES(Mode_SemiAuto);
+		__AI_DISPERSION_COEF;
+    };
     class pdw2000_base_F : Rifle_Short_Base_F {
         class Single;
         class FullAuto;
@@ -118,10 +175,12 @@ class CfgWeapons {
 		class AI_Burst_close: FullAuto {
 			showToPlayer = 0;
             aiBurstTerminable = 1;
-			burst = 4;
+			burst = 2;
+            burstRangeMax = 8;
 			__AI_ROF_SMG_BURST;
 		};
     };
+    class hgun_Rook40_F;
     class rhs_weap_pya : hgun_Rook40_F {
 		__AI_ROF_PISTOL_SEMI;
     };
@@ -146,7 +205,7 @@ class CfgWeapons {
         };
 		__AI_MG_MODES(manual,FullAuto,manual);
     };
-    class rhs_weap_rpk74m : rhs_weap_pkp {
+    class rhs_weap_rpk74 : rhs_weap_pkp {
 		modes[] = {
             "manual", "Single",
             "AI_long", "AI_close", "AI_short", "AI_medium", "AI_far",
@@ -154,14 +213,8 @@ class CfgWeapons {
             "AI_far_optic2"
         };
 		__AI_MG_MODES(manual,Mode_FullAuto,Mode_SemiAuto);
-    };
-
-    class rhs_weap_orsis_Base_F : Rifle_Base_F {
-		modes[] = {"Single", "AI_Single_optics1", "AI_Single_optics2", "AI_Single_far_optics2"};
-		__AI_BIGSNIPER_MODES(Mode_SemiAuto);
 		__AI_DISPERSION_COEF;
     };
-
     class rhs_weap_rpg26 : Launcher_Base_F {
 		minRange = 10;
 		minRangeProbab = 0.3;
@@ -169,14 +222,14 @@ class CfgWeapons {
 		midRangeProbab = 0.8;
 		maxRange = 400;
 		maxRangeProbab = 0.1;
+		__AI_DISPERSION_COEF;
     };
     class rhs_weap_rpg7 : Launcher_Base_F {
-		minRange = 10;
-		minRangeProbab = 0.3;
-		midRange = 200;
-		midRangeProbab = 0.8;
-		maxRange = 400;
-		maxRangeProbab = 0.1;
+		__AI_DISPERSION_COEF;
     };
 
+    class rockets_Skyfire;
+    class rhs_weap_s5 : rockets_Skyfire {
+        __AI_DISPERSION_THIRDCOEF;
+    };
 };

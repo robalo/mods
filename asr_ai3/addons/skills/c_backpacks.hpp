@@ -391,7 +391,7 @@
 
     class B_Parachute : Bag_Base {
         //displayName = "Steerable Parachute";
-        __CAMO_B_LARGEMONO;
+        __CAMO_B_MEDIUMMONO;
     };
 
     class B_UAV_01_backpack_F : Weapon_Bag_Base {

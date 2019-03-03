@@ -2,7 +2,7 @@
     QGVAR(setskills), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "CHECKBOX", // setting type
     "AI skills reconfigured (class based)", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
-    "ASR AI3", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    ["ASR AI3", "skills"],
     true, // data for this setting
     1, // "global" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
@@ -12,7 +12,7 @@
     QGVAR(teamsuperai),
     "CHECKBOX",
     "Better skills for player group AI",
-    "ASR AI3",
+    ["ASR AI3", "skills"],
     true,
     1,
     {
@@ -82,9 +82,9 @@
     QGVAR(packNVG),
     "CHECKBOX",
     "Night vision device (un)equip (head-mounted)",
-    "ASR AI3",
+    ["ASR AI3", "main"],
     true
 ] call CBA_Settings_fnc_init;
 
-[ QGVAR(debug_setskill), "CHECKBOX", "Debug skills", "ASR AI3", false, 1 ] call CBA_Settings_fnc_init;
-[ QGVAR(debug_setcamo), "CHECKBOX", "Debug camouflage", "ASR AI3", false, 1 ] call CBA_Settings_fnc_init;
+[ QGVAR(debug_setskill), "CHECKBOX", "Debug skills", ["ASR AI3", "skills"], false, 1 ] call CBA_Settings_fnc_init;
+[ QGVAR(debug_setcamo), "CHECKBOX", "Debug camouflage", ["ASR AI3", "skills"], false, 1 ] call CBA_Settings_fnc_init;

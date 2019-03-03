@@ -13,42 +13,72 @@ class CfgWeapons {
 	class Default {
 		__AI_ROF_RIFLE_SMALL_SEMI;
 	};
-
-    class Binocular : Default {
-        minRangeProbab = 0.1;
-        midRangeProbab = 0.4;
-        maxRangeProbab = 0.04;
-	};
-
-	class RifleCore;
-	class MGunCore;
-	class CannonCore;
-
-	class MGun;
-
-	class LMG_RCWS: MGun {
+    class PistolCore : Default {
 		__AI_DISPERSION_COEF;
+    };
+    class RifleCore : Default {
+		__AI_DISPERSION_COEF;
+    };
+    class MGunCore : Default {
+		__AI_DISPERSION_COEF;
+    };
+    class LauncherCore : Default {
+		__AI_DISPERSION_COEF;
+    };
+    class GrenadeCore : Default {
+        __AI_DISPERSION_2XCOEF;
+    };
+    class CannonCore : Default {
+		__AI_DISPERSION_THIRDCOEF;
+    };
+    class RocketPods : LauncherCore {
+		__AI_DISPERSION_THIRDCOEF;
+	};
+    class MGun : MGunCore {
+		__AI_DISPERSION_COEF;
+    };
+	class LMG_RCWS: MGun {
+		__AI_DISPERSION_HALFCOEF;
 	};
     class LMG_Minigun : LMG_RCWS {
+		__AI_DISPERSION_HALFCOEF;
 	};
-    class HMG_01;
+    class HMG_127 : LMG_RCWS {
+		__AI_DISPERSION_HALFCOEF;
+	};
+    class HMG_01 : HMG_127 {
+		__AI_DISPERSION_HALFCOEF;
+    };
+    class HMG_static : HMG_01 {
+		__AI_DISPERSION_COEF;
+	};
     class HMG_M2 : HMG_01 {
 		__AI_DISPERSION_COEF;
 	};
 	class M134_minigun: MGunCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_HALFCOEF;
+	};
+    class gatling_20mm : CannonCore {
+		__AI_DISPERSION_HALFCOEF;
+	};
+    class gatling_30mm_base : CannonCore {
+		__AI_DISPERSION_HALFCOEF;
 	};
 	class cannon_120mm: CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
 	class cannon_125mm : CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
 	};
 	class cannon_105mm: CannonCore {
-		__AI_DISPERSION_COEF;
+		__AI_DISPERSION_THIRDCOEF;
+	};
+    class Gatling_30mm_Plane_CAS_01_F : CannonCore {
+		__AI_DISPERSION_HALFCOEF;
 	};
 
 	class GrenadeLauncher: Default {
+        __AI_DISPERSION_2XCOEF;
 		__AI_ROF_GL_SINGLE;
 	};
     class UGL_F : GrenadeLauncher {
@@ -89,6 +119,13 @@ class CfgWeapons {
 			midRange = 50;
 			midRangeProbab = 0.8;
 		};
+	};
+
+    class Binocular : Default {
+        minRangeProbab = 0;
+        midRangeProbab = 0;
+        maxRangeProbab = 0.001;
+        reloadtime = 1;
 	};
 
 	class DMR_01_base_F: Rifle_Long_Base_F {
@@ -234,7 +271,8 @@ class CfgWeapons {
 		};
 		class Burst: Mode_Burst {
 			showToPlayer = 0;
-			burst = 4;
+			burst = 2;
+            burstRangeMax = 8;
 			__AI_ROF_SMG_BURST;
 		};
 		class FullAuto: Mode_FullAuto {
@@ -382,8 +420,8 @@ class CfgWeapons {
 	};
 
     class DMR_07_base_F : Rifle_Long_Base_F {
-		modes[] = {"SemiAuto", "AI_Single_optics1", "AI_Single_optics2"};
-		__AI_RIFLE_SMALL_MODES(Mode_SemiAuto,Mode_FullAuto);
+		modes[] = {"Single", "AI_Single_optics1", "AI_Single_optics2"};
+		__AI_RIFLE_MEDIUMSEMI_MODES(Mode_SemiAuto);
 		__AI_DISPERSION_COEF;
     };
 
@@ -419,11 +457,12 @@ class CfgWeapons {
 		class AI_Burst_close: FullAuto {
 			showToPlayer = 0;
             aiBurstTerminable = 1;
-			burst = 7;
+			burst = 3;
+            burstRangeMax = 10;
 			__AI_ROF_AK_CLOSE_BURST;
 		};
 		class AI_Burst_far: AI_Burst_close {
-			burst = 4;
+            burstRangeMax = 5;
 			__AI_ROF_AK_FAR_BURST;
 		};
 		class AI_Single_optics1: Single {
@@ -505,7 +544,8 @@ class CfgWeapons {
 		class AI_Burst_close: FullAuto {
 			showToPlayer = 0;
             aiBurstTerminable = 1;
-			burst = 4;
+			burst = 2;
+            burstRangeMax = 8;
 			__AI_ROF_SMG_BURST;
 		};
     };

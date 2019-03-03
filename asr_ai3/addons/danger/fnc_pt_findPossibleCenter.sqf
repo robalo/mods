@@ -6,40 +6,33 @@
 //bounding center is not necessarily correct.
 //to this end, we will use line intersections inorder to find such a position
 
-private _coverObj = _this select 0;
-private _unit = _this select 1;
+params ["_coverObj", "_unit"];
 private _result = [];
 private _height = 0;
-private _unitCenter = ((getPosASL _unit) vectorAdd [0,0,1.2]);
-        //format ["find center attempting: %1",  _coverObj] call BIS_fnc_log;
+private _unitCenter = ((getPosASL _unit) vectorAdd [0, 0, 1.2]);
+//format ["find center attempting: %1",  _coverObj] call BIS_fnc_log;
 
 //if it doesn't matter the height, attempt shortcut
-if(count _this == 2) then {
+if (count _this == 2) then {
     _height = 0.4;
     private _boundingCenter = ATLToASL (_coverObj modelToWorld [0,0,0]);
     for "_x" from 0 to 3 do {
         _b = [_boundingCenter select 0, _boundingCenter select 1, (getPosASL _coverObj select 2) + _x * 0.4];
         //format ["find center attempting shortcut: %1",  _b] call BIS_fnc_log;
-        if(_coverObj in (lineIntersectsWith [_b, _unitCenter])) then {
+        if (_coverObj in (lineIntersectsWith [_b, _unitCenter])) then {
             //format ["find center shortcut: %1",  _b] call BIS_fnc_log;
             _result = _b;
         };
     };
-}else {
+} else {
     _height = _this select 2;
 };
 
-if(count _result != 0) exitWith {
-    if(GVAR(debug_findcover)) then {
-
-        if(isNil "centerPts") then {
+if !(_result isEqualTo []) exitWith {
+    if (GVAR(debug_findcover)) then {
+        if (isNil "centerPts") then {
             centerPts = [];
-            addMissionEventHandler ["Draw3D", {
-            {
-                drawLine3D [_x, _x vectorAdd [0,0,10], [0,0,1,1]];
-            } forEach centerPts;
-
-            }];
+            addMissionEventHandler ["Draw3D", { {drawLine3D [_x, _x vectorAdd [0,0,10], [0,0,1,1]]} forEach centerPts; }];
         };
         centerPts pushBack ASLToATL _result;
     };
@@ -60,8 +53,7 @@ private _corner1Dist = _corner1Pos distance (getPosASL _unit);
 private _corner2Dist = _corner2Pos distance (getPosASL _unit);
 private _corner3Dist = _corner3Pos distance (getPosASL _unit);
 private _corner4Dist = _corner4Pos distance (getPosASL _unit);
-        
-        
+
 //find the 2 distances in the middle
 private _cornerArray = [[_corner1Dist, _corner1Pos], [_corner2Dist, _corner2Pos],[_corner3Dist, _corner3Pos],[_corner4Dist, _corner4Pos]];
 _cornerArray sort true;
@@ -77,7 +69,7 @@ private _topAngle = _topAngleTemp max _bottomAngleTemp;
 private _bottomAngle = _topAngleTemp min _bottomAngleTemp;
 private _angleDiff = _topAngle - _bottomAngle;
 //normalize them
-if(_angleDiff > 180) then {
+if (_angleDiff > 180) then {
     _topAngle = _topAngle - 360;
 };
 _angleDiff = _topAngle - _bottomAngle;
@@ -93,43 +85,34 @@ _unitCenter = ((getPosASL _unit) vectorAdd [0,0,_height]);
 
 //TODO change so that it sweeps from the middle out
 for "_x" from 0 to 80 do {
-
-    if(_breakout == 1) exitWith{};
+    if (_breakout isEqualTo 1) exitWith {};
     _checkAngle = _bottomAngle + (_angleDiff * _x / 80);
     //move checkPos to an angle _x/80th the way from bottom angle to top angle
-    private["_checkPos"];
-    _checkPos =  ([_unitCenter, _farthestCheckDistance,  _bottomAngle + (_angleDiff * _x / 80)] call BIS_fnc_relPos);
-    if(_coverObj in lineIntersectsWith [ _checkPos, _unitCenter]) then {
-        if(_firstCheckAngle == 6000) then {
+    private _checkPos =  ([_unitCenter, _farthestCheckDistance,  _bottomAngle + (_angleDiff * _x / 80)] call BIS_fnc_relPos);
+    if (_coverObj in lineIntersectsWith [ _checkPos, _unitCenter]) then {
+        if (_firstCheckAngle == 6000) then {
             _firstCheckAngle = _checkAngle;
             _lastCheckAngle = _checkAngle;
-        }else {
+        } else {
             //this will be overwritten several times
             _lastCheckAngle = _checkAngle;
         };
-    }else {
-        if(_lastCheckAngle != 6000) then {
+    } else {
+        if (_lastCheckAngle != 6000) then {
             _breakout = 1;
         };
     };
-    
 };
-if(_firstCheckAngle != 6000) then { 
+if (_firstCheckAngle != 6000) then { 
     //return the average from the first and last intersections we recorded
     _result = [((getPosASL _unit) vectorAdd [0,0,_height]), _farthestCheckDistance,  (_lastCheckAngle + _firstCheckAngle) / 2] call BIS_fnc_relPos;
 };
 
-if(GVAR(debug_findcover)) then {
-
-    if(count _result > 0) then {
-        if(isNil "centerPts") then {
+if (GVAR(debug_findcover)) then {
+    if !(_result isEqualTo []) then {
+        if (isNil "centerPts") then {
             centerPts = [];
-            addMissionEventHandler ["Draw3D", {
-            {
-                drawLine3D [_x, _x vectorAdd [0,0,10], [0,0,1,1]];
-            } forEach centerPts;
-
-            }];
+            addMissionEventHandler ["Draw3D", { {drawLine3D [_x, _x vectorAdd [0,0,10], [0,0,1,1]]} forEach centerPts; }];
         };
         centerPts pushBack ASLToATL _result;
     };

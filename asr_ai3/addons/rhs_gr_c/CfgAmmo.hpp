@@ -12,24 +12,55 @@
 
 class CfgAmmo {
     class BulletBase;
-    class B_9x21_Ball;
-
-    class rhs_ammo_9x17 : B_9x21_Ball {
-		audibleFire = __AI_AMMO_AUDIBLE1; //5.65;
+    class rhs_ammo_20mm_AP;
+    class rhs_ammo_20x139mm_AP : rhs_ammo_20mm_AP {
+        ASR_AI_DANGER_RADIUS_EXPSMALL;
     };
-    class rhs_ammo_792x57_Ball : BulletBase {
-		audibleFire = __AI_AMMO_AUDIBLE1; //18;
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
-        suppressionRadiusBulletClose = 6;
-        suppressionRadiusHit = 8;
+    class rhs_ammo_20x139mm_HE : rhs_ammo_20x139mm_AP {
+        ASR_AI_DANGER_RADIUS_EXPSMALL;
+    };
+    class B_9x21_Ball;
+    class rhs_ammo_9x17 : B_9x21_Ball {
+        ASR_AI_AUDIBLE1;
+        ASR_AI_VISIBLE_SMALL;
     };
     class rhs_ammo_762x25_Ball : BulletBase {
-		audibleFire = __AI_AMMO_AUDIBLE1; //3
+        ASR_AI_AUDIBLE1;
+        ASR_AI_VISIBLE_SMALL;
+        ASR_AI_SUPPRESSION_BULLET_LOUD;
     };
-	class rhs_ammo_75x55_Ball: BulletBase {
-		audibleFire = __AI_AMMO_AUDIBLE1; //18;
-		dangerRadiusHit = __AI_AMMO_RANGE_HIT_SMALL;
-        suppressionRadiusBulletClose = 6;
-        suppressionRadiusHit = 8;
+    class rhs_ammo_8mm_mhp : BulletBase {
+        ASR_AI_AUDIBLE0;
+        ASR_AI_VISIBLE_SMALL;
+        ASR_AI_DANGER_RADIUS_SMALL;
+        ASR_AI_SUPPRESSION_BULLET_QUIET;
+    };
+    class rhs_ammo_792x57_Ball : BulletBase {
+        ASR_AI_AUDIBLE1;
+        ASR_AI_VISIBLE_SMALL;
+    };
+    class rhs_ammo_75x55_Ball : BulletBase {
+        ASR_AI_AUDIBLE1;
+        ASR_AI_VISIBLE_SMALL;
+    };
+    class rhs_ammo_762x63_M2B_ball : BulletBase {
+        ASR_AI_AUDIBLE1;
+        ASR_AI_VISIBLE_SMALL;
+    };
+    class rhs_ammo_762x63_M1T_tracer : BulletBase {
+        ASR_AI_AUDIBLE1;
+        ASR_AI_VISIBLE_TRACER;
+    };
+    class rhs_ammo_792x33_SmE_ball : BulletBase {
+        ASR_AI_AUDIBLE1;
+        ASR_AI_VISIBLE_SMALL;
+    };
+    class R_PG32V_F;
+    class rhs_ammo_rpg75_rocket : R_PG32V_F {
+        ASR_AI_AUDIBLE1;
+    };
+    class rhs_ammo_panzerfaust60_rocket : R_PG32V_F {
+        ASR_AI_AUDIBLE1;
+        aiAmmoUsageFlags = AIAmmoUsageOffensiveVeh + AIAmmoUsageOffensiveArmour;
     };
 };

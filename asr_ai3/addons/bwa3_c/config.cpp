@@ -2,7 +2,7 @@
 
 class CfgPatches {
 	class ADDON {
-        addonRootClass = "BWA3_Weapons";
+        addonRootClass = "bwa3_weapons";
 		units[] = {};
 		weapons[] = {};
         ammo[] = {};
@@ -10,8 +10,7 @@ class CfgPatches {
 		requiredAddons[] = {
 			QUOTE(MAIN_ADDON),
 			"A3_Characters_F","A3_Weapons_F",
-			"BWA3_Units","BWA3_Vests","BWA3_Backpacks",
-            "BWA3_Weapons","BWA3_Optics","BWA3_Attachments","BWA3_AssaultRifles","BWA3_BattleRifles","BWA3_Handguns","BWA3_Launchers","BWA3_MachineGuns","BWA3_SniperRifles"
+			"bwa3_units","bwa3_weapons"
 		};
 		version = VERSION;
 		author = "Robalo";

@@ -11,7 +11,7 @@ private _time = time;
 if (_time < (_unit getVariable [QGVAR(lastMoveToCoverTime),-1000]) + 90) exitWith {TRACE_1("too soon to move to cover again",_unit)};
 
 //found cover or not, don't bother trying to find again for 90 sec, so we save the time of last try
-_unit setVariable [QGVAR(lastMoveToCoverTime),time,false];
+_unit setVariable [QGVAR(lastMoveToCoverTime), time];
 
 private _mToCover = false;
 if (_unit call FNCMAIN(isValidUnitC) && {(nearestTerrainObjects [_unit, [], 10, false, true]) isEqualTo []}) then {_mToCover = true};
@@ -34,15 +34,20 @@ if (_mToCover) then {
 if (!_mToCover || _cpa isEqualTo []) exitWith {};
 
 //remember
-_grp setVariable [QGVAR(nearcover),_cpa,false];
+_grp setVariable [QGVAR(nearcover), _cpa];
 
 //proceed
 [_unit,_cpa select 0,_time] spawn {
 	params ["_unit", "_cover", "_until"];
 	TRACE_1("Choose cover",_cover);
+    scopeName "go";
     _unit doMove _cover;
     sleep 5;
-    waitUntil {time > _until + __DELAY_ || {_unit distance _cover < 2}};
+    waitUntil {
+        sleep 0.1;
+        if (isNull _unit || {!alive _unit}) exitWith {breakOut "go"; true};
+        time > _until + __DELAY_ || {_unit distance _cover < 2};
+    };
     //return
     sleep 5 + random 10;
     [_unit] joinSilent (group _unit);

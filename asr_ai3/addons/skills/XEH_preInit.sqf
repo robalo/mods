@@ -22,19 +22,19 @@ ASR_AI_SETDEFAULT(factions,[]);
 if (count GVAR(sets) < 10) then {
     GVAR(sets) = [
 	[	'general',[1.00,0.0],	'aiming',[1.00,0.0],	'spotting',[1.00,0.0]	],
-	[	'general',[0.90,0.1],	'aiming',[0.50,0.2],	'spotting',[0.50,0.1]	],
-	[	'general',[0.85,0.1],	'aiming',[0.40,0.2],	'spotting',[0.40,0.1]	],
-	[	'general',[0.80,0.1],	'aiming',[0.25,0.1],	'spotting',[0.30,0.1]	],
-	[	'general',[0.75,0.1],	'aiming',[0.20,0.1],	'spotting',[0.25,0.1]	],
-	[	'general',[0.70,0.1],	'aiming',[0.15,0.1],	'spotting',[0.20,0.1]	],
-	[	'general',[0.65,0.1],	'aiming',[0.10,0.1],	'spotting',[0.15,0.1]	],
-	[	'general',[0.60,0.1],	'aiming',[0.05,0.1],	'spotting',[0.10,0.1]	],
-	[	'general',[0.80,0.1],	'aiming',[0.20,0.1],	'spotting',[0.35,0.1]	],
-	[	'general',[0.75,0.1],	'aiming',[0.15,0.1],	'spotting',[0.30,0.1]	],
-	[	'general',[0.90,0.1],	'aiming',[0.70,0.3],	'spotting',[0.90,0.1]	]
+	[	'general',[0.80,0.2],	'aiming',[0.50,0.2],	'spotting',[0.50,0.2]	],
+	[	'general',[0.75,0.2],	'aiming',[0.40,0.2],	'spotting',[0.40,0.2]	],
+	[	'general',[0.65,0.2],	'aiming',[0.25,0.2],	'spotting',[0.30,0.2]	],
+	[	'general',[0.60,0.2],	'aiming',[0.20,0.2],	'spotting',[0.25,0.2]	],
+	[	'general',[0.55,0.2],	'aiming',[0.15,0.2],	'spotting',[0.20,0.2]	],
+	[	'general',[0.50,0.2],	'aiming',[0.10,0.2],	'spotting',[0.15,0.2]	],
+	[	'general',[0.45,0.2],	'aiming',[0.01,0.2],	'spotting',[0.10,0.2]	],
+	[	'general',[0.65,0.2],	'aiming',[0.20,0.2],	'spotting',[0.35,0.2]	],
+	[	'general',[0.60,0.2],	'aiming',[0.15,0.2],	'spotting',[0.30,0.2]	],
+	[	'general',[0.75,0.2],	'aiming',[0.80,0.2],	'spotting',[0.90,0.1]	]
     ]
 };
-if (count GVAR(levels_units) < 10) then {GVAR(levels_units) = [[],[],[],[],[],[],[],[],[],[],[]]};
+if (count GVAR(levels_units) < 11) then {GVAR(levels_units) = [[],[],[],[],[],[],[],[],[],[],[]]};
 
 GVAR(cfgQ) = [];
 

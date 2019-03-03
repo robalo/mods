@@ -1,6 +1,7 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 params ["_unit"];
+scopeName "main";
 
 sleep (20 + random 5);
 
@@ -10,7 +11,7 @@ if (_time < (_unit getVariable [QGVAR(lastRearmTime),-1000]) + 600) exitWith {TR
 if (isPlayer _unit || {getText (configFile >> "cfgVehicles" >> (typeOf _unit) >> "genericNames") == "VRMen"} || {!(_unit call FUNC(allowRearm))}) exitWith {};
 
 if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Start.",time,_unit]};
-_unit setVariable [QGVAR(lastRearmTime),time,false];
+_unit setVariable [QGVAR(lastRearmTime), time];
 
 // So what do I need ?
 private _need = _unit call FUNC(inventoryCheck);
@@ -19,7 +20,7 @@ TRACE_2("NEED",_unit,_need);
 
 if (!_need) exitWith {
 	if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Nothing needed. End.",time,_unit]};
-	_unit setVariable[QGVAR(inprogress),false];
+	_unit setVariable[QGVAR(inprogress), false];
 };
 
 private _leaderpos = getPosWorld _unit;
@@ -50,20 +51,24 @@ if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places
 	private _checkit = true;
 	if (_lootchkcnt < 1) then {
 		INC(_lootchkcnt);
-		_x setVariable [QGVAR(lootcnt),_lootchkcnt];
+		_x setVariable [QGVAR(lootcnt), _lootchkcnt];
 	} else {
 		if (time < _lootchktime + 300) then {
 			_checkit = false;
 		} else {
-			_x setVariable [QGVAR(loottime),time];
-			_x setVariable [QGVAR(lootcnt),0];
+			_x setVariable [QGVAR(loottime), time];
+			_x setVariable [QGVAR(lootcnt), 0];
 		};
 	};
 	
 	if (_checkit) then {
 		_unit doWatch _x;
-		_unit doMove (getPosWorld _x);
-		waitUntil {_unit distance _x < 4};
+        [_unit, getPosWorld _x] call FNCMAIN(moveTo);
+        waitUntil {
+            sleep 0.1;
+            if (isNull _unit || {!alive _unit}) exitWith {breakOut "main"; true};
+            unitReady _unit;
+        };
 		_unit doWatch _x;
 		if (alive _x && {_x isKindOf "CAManbase"}) then {_unit action ["REARM",unitBackpack _x]} else {_unit action ["REARM",_x]};
 	};
@@ -72,9 +77,9 @@ if (GVAR(debug_rearm)) then {diag_log format ["ASR AI3: %1 | %2 | [REARM] Places
 
 [_unit,_leaderpos] spawn {
 	params ["_unit", "_pos"];
-	private _group = group _unit;
+    private _leader = leader _unit;
 	_unit doWatch objNull;
-	if (_unit == leader _group) then {_unit doMove _pos} else {[_unit] joinSilent _group};
+	if (_unit isEqualTo _leader) then {_unit doMove _pos} else {_unit doFollow _leader};
 	sleep 7; //finish reloading anim
 	_unit call FUNC(pistolToPrimary);
 };

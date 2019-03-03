@@ -407,3 +407,8 @@
         //displayName = "Light Fatigues (Hex)";
         __CAMO_U_CAMOCAMO;
     };
+
+    class U_Tank_green_F : Uniform_Base {
+        //displayName = "Tanker Coveralls [AAF]";
+        __CAMO_U_MONOMONO;
+    };

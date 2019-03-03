@@ -1,7 +1,6 @@
 //#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 _this spawn {
-
     params ["_unit", "_dangerCausedBy", "_dangerCause"];
 
     // skip in singleplayer when player is too far and not the source of danger (save computing resources)
@@ -13,49 +12,37 @@ _this spawn {
     // don't send units away when less than 6 in group
     if (attackEnabled _grp && {count (units _grp) < 6}) then {_grp enableAttack false};
 
+    if (_unit getVariable[QGVAR(DANGER_SLEEP), 0] isEqualTo 0 && {_unit call FNCMAIN(isValidUnitC)} && {unitReady _unit} && {_grp call FNCMAIN(hasNoPlayer)} && {_time > (_unit getVariable [QGVAR(reacting),-1000]) + 60}) then {
 
-    //optional behavior: counterattack
-    TRACE_5("considering counterattacking", _dangerCause, GVAR(DC_ATTACK), GVAR(COUNTER_ATTACK), _unit, _unit == leader _unit);
-    if(_dangerCause in GVAR(DC_ATTACK) && GVAR(COUNTER_ATTACK) && _unit == leader _unit) then {
-        _unit  setVariable [QGVAR(AT),time + GVAR(ATTACK_TIMER),false];
-        if(_unit call FNCMAIN(isUnderRoof)) then {
-            TRACE_1("counter attack, is inside",  _unit);
-            _unit  setVariable [QGVAR(AD),GVAR(AD_INSIDE),false];
-        }else {
-            TRACE_1("counter attack, is outside",  _unit);
-            _unit  setVariable [QGVAR(AD),GVAR(AD_OUTSIDE),false];
-
-        };
-        [_unit, _dangerCausedBy] call FUNC(counterAttack);
-    };
-
-
-    if (_unit getVariable[QGVAR(DANGER_SLEEP), 0] == 0 && _unit call FNCMAIN(isValidUnitC) && {unitReady _unit} && {_grp call FNCMAIN(hasNoPlayer)} && {_time > (_unit getVariable [QGVAR(reacting),-1000]) + 60}) then {
-
-        _unit setVariable [QGVAR(reacting),_time,false]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
-
-
-        _unit setVariable [QGVAR(DANGER_SLEEP), 1, false];
+        _unit setVariable [QGVAR(reacting), _time]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
+        _unit setVariable [QGVAR(DANGER_SLEEP), 1];
         TRACE_1("sleep starting", _unit);
         //sleep half a second to let the AI find its attacker before making decisions
         sleep 0.5;
-        _unit setVariable [QGVAR(DANGER_SLEEP), 0, false];
+        _unit setVariable [QGVAR(DANGER_SLEEP), 0];
         TRACE_1("sleep ending", _unit);
-
-
-
-        if(_unit == leader _unit) then {
-            _unit  setVariable [QGVAR(ATTACKER_POS),(getPosATL _dangerCausedBy),false];
-        };
-
         private _leader = leader _grp;
+
+        //optional behavior: counterattack
+        TRACE_5("considering counterattacking", _dangerCause, GVAR(DC_ATTACK), GVAR(COUNTER_ATTACK), _unit, _unit isEqualTo _leader);
+        if(_dangerCause in GVAR(DC_ATTACK) && GVAR(COUNTER_ATTACK) && _unit isEqualTo _leader) then {
+            _unit setVariable [QGVAR(ATTACKER_POS), getPosATL _dangerCausedBy];
+            _unit setVariable [QGVAR(AT), time + GVAR(ATTACK_TIMER)];
+            if (_unit call FNCMAIN(isUnderRoof)) then {
+                TRACE_1("counter attack, is inside",_unit);
+                _unit setVariable [QGVAR(AD), GVAR(AD_INSIDE)];
+            } else {
+                TRACE_1("counter attack, is outside",_unit);
+                _unit setVariable [QGVAR(AD), GVAR(AD_OUTSIDE)];
+            };
+            [_unit, _dangerCausedBy] call FUNC(counterAttack);
+        };
 
         //optional behavior: broadcast to other units
         // report to near groups
-        if (GVAR(radiorange > 0) && {_unit == _leader} && {_unit knowsAbout _dangerCausedBy > 1.4}) then {
+        if (GVAR(radiorange > 0) && {_unit isEqualTo _leader} && {_unit knowsAbout _dangerCausedBy > 1.4}) then {
             [_grp,_dangerCausedBy] spawn FUNC(broadcastInfo);
         };
-
 
         // if mounted skip the rest
         if !(isNull objectParent _unit) exitWith {};
@@ -74,19 +61,16 @@ _this spawn {
 
         //optional behavior: check for cover near and divert
         if (GVAR(seekcover)) then {
-            if(!GVAR(ADVANCED_COVER)) then {
+            if (!GVAR(ADVANCED_COVER)) then {
                 private _coverRange = if (_grp call FNCMAIN(grpHasWP)) then {20} else {100};
-                [_unit,_dangerCausedBy,_coverRange] call FUNC(moveToCover);
-            }else {
-                if(!(_unit call FNCMAIN(isUnderRoof))) then {
-                    if(_dangerCausedBy distance _unit > GVAR(NO_COVER_FOR_DANGER_WITHIN)) then {
+                [_unit, _dangerCausedBy, _coverRange] call FUNC(moveToCover);
+            } else {
+                if (!(_unit call FNCMAIN(isUnderRoof))) then {
+                    if (_dangerCausedBy distance _unit > GVAR(NO_COVER_FOR_DANGER_WITHIN)) then {
                         [_unit, _dangerCausedBy, _dangerCause] call FUNC(pt_advancedCover);
                     };
-                }
-
+                };
             };
         };
-
     };
-
 };

@@ -1,37 +1,14 @@
 class CfgVehicles {
 
-    class B_AssaultPack_Base;
-    class B_AssaultPack_rgr;
-
-    class rhsusf_assault_eagleaiii_ucp : B_AssaultPack_Base {
-        //displayName = "Eagle A-III UCP";
-        __CAMO_B_MEDIUMCAMO;
-    };
-    class rhsusf_assault_eagleaiii_coy : rhsusf_assault_eagleaiii_ucp {
-        //displayName = "Eagle A-III Coyote";
-        __CAMO_B_MEDIUMMONO;
-    };
-    class rhsusf_falconii : B_AssaultPack_rgr {
-        //displayName = "Falcon-II RGR";
-        __CAMO_B_SMALLMONO;
-    };
-    class rhsusf_falconii_mc : B_AssaultPack_rgr {
-        //displayName = "Falcon-II MC";
-        __CAMO_B_SMALLCAMO;
-    };
-
-    class Weapon_Bag_Base;
-
-    class RHS_M2_Gun_Bag : Weapon_Bag_Base {
-        //displayName = "M2 Gun Bag";
-        __CAMO_B_HUGEMONO;
-    };
-    class RHS_M2_Tripod_Bag : Weapon_Bag_Base {
-        //displayName = "M2 Tripod Bag";
-        __CAMO_B_MEDIUMMONO;
-    };
+	#include "bags.hpp"
 
 	class SoldierWB;
+
+    class rhsusf_socom_uniform_base: SoldierWB {
+		ASR_AI_MINFIRETIME;
+		ASR_AI_AMMOCOEF_STANDARD;
+        ASR_AI_CAMO_BASE;
+    };
 
 //US Army
 
@@ -46,6 +23,10 @@ class CfgVehicles {
         //displayName = "Rifleman (Light)";
         ASR_AI_CAMO_BASE;
     };
+    class rhsusf_army_ocp_riflemanat : rhsusf_army_ocp_rifleman {
+        //displayName = "Rifleman (M136)";
+		ASR_AI_AMMOCOEF_AT;
+    };
     class rhsusf_army_ocp_autoriflemana : rhsusf_army_ocp_rifleman {
         //displayName = "Auto Rifleman Ass.";
         ASR_AI_CAMO_BASE;
@@ -54,29 +35,27 @@ class CfgVehicles {
         //displayName = "Machine Gunner Assistant";
         ASR_AI_CAMO_BASE;
     };
+    class rhsusf_army_ocp_marksman : rhsusf_infantry_army_base {
+        //displayName = "Marksman";
+		ASR_AI_SKILL_REG1;
+		ASR_AI_AMMOCOEF_SNIPER;
+    };
     class rhsusf_army_ocp_officer : rhsusf_infantry_army_base {
         //displayName = "Officer";
         ASR_AI_CAMO_BASE;
     };
-    class rhsusf_army_ocp_riflemanat : rhsusf_army_ocp_rifleman {
-		ASR_AI_AMMOCOEF_AT;
-    };
-    class rhsusf_army_ocp_maaws : rhsusf_army_ocp_riflemanat {
-        ASR_AI_CAMO_BASE;
-    };
-    class rhsusf_army_ocp_marksman : rhsusf_infantry_army_base {
-		ASR_AI_SKILL_REG1;
-		ASR_AI_AMMOCOEF_SNIPER;
-    };
     class rhsusf_army_ocp_squadleader : rhsusf_infantry_army_base {
+        //displayName = "Squad Leader";
 		ASR_AI_SKILL_REG1;
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_army_ocp_teamleader : rhsusf_infantry_army_base {
+        //displayName = "Team Leader";
 		ASR_AI_SKILL_REG1;
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_army_ocp_jfo : rhsusf_infantry_army_base {
+        //displayName = "Joint Fires Observer";
 		ASR_AI_SKILL_REG1;
     };
     class rhsusf_army_ocp_javelin : rhsusf_army_ocp_riflemanat {
@@ -84,9 +63,16 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_army_ocp_javelin_assistant : rhsusf_army_ocp_riflemanat {
+        //displayName = "AT Assistant (Javelin)";
+        ASR_AI_CAMO_BASE;
+		ASR_AI_AMMOCOEF_STANDARD;
+    };
+    class rhsusf_army_ocp_maaws : rhsusf_army_ocp_riflemanat {
+        //displayName = "AT Specialist (MAAWS)";
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_army_ocp_aa : rhsusf_army_ocp_riflemanat {
+        //displayName = "AA Specialist (FIM-92F)";
 		ASR_AI_AMMOCOEF_AT;
         ASR_AI_CAMO_BASE;
     };
@@ -99,6 +85,7 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_army_ocp_sniper : rhsusf_army_ocp_marksman {
+        //displayName = "Sniper";
 		ASR_AI_AMMOCOEF_SNIPER;
 		ASR_AI_SKILL_SNP1;
         ASR_AI_CAMO_BASE;
@@ -108,9 +95,15 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_army_ocp_helipilot : rhsusf_infantry_army_base {
+        //displayName = "Helicopter Pilot";
 		ASR_AI_SKILL_PIL1;
         ASR_AI_CAMO_BASE;
     };
+
+    class rhsusf_army_ocp_arb_riflemanat : rhsusf_army_ocp_riflemanat {
+		ASR_AI_AMMOCOEF_AT;
+    };
+
 
 //USMC
 
@@ -120,6 +113,14 @@ class CfgVehicles {
     class rhsusf_usmc_marpat_wd_rifleman_light : rhsusf_usmc_marpat_wd_rifleman {
         //displayName = "Rifleman (Light)";
         ASR_AI_CAMO_BASE;
+    };
+    class rhsusf_usmc_marpat_wd_riflemanat : rhsusf_usmc_marpat_wd_rifleman {
+        //displayName = "Rifleman (M136)";
+		ASR_AI_AMMOCOEF_AT;
+    };
+    class rhsusf_usmc_marpat_wd_rifleman_law : rhsusf_usmc_marpat_wd_riflemanat {
+        //displayName = "Rifleman (M72)";
+		ASR_AI_AMMOCOEF_AT;
     };
     class rhsusf_usmc_marpat_wd_autorifleman_m249_ass : rhsusf_usmc_marpat_wd_rifleman {
         //displayName = "Auto Rifleman Ass.";
@@ -133,26 +134,35 @@ class CfgVehicles {
         //displayName = "Officer";
         ASR_AI_CAMO_BASE;
     };
-    class rhsusf_usmc_marpat_wd_riflemanat : rhsusf_usmc_marpat_wd_rifleman {
-		ASR_AI_AMMOCOEF_AT;
-    };
     class rhsusf_usmc_marpat_wd_squadleader : rhsusf_usmc_marpat_wd_rifleman {
+        //displayName = "Squad Leader";
 		ASR_AI_SKILL_REG1;
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_usmc_marpat_wd_teamleader : rhsusf_infantry_usmc_base {
+        //displayName = "Team Leader";
 		ASR_AI_SKILL_REG1;
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_usmc_marpat_wd_jfo : rhsusf_usmc_marpat_wd_rifleman {
+        //displayName = "Joint Fires Observer";
 		ASR_AI_SKILL_REG1;
     };
     class rhsusf_usmc_marpat_wd_fso : rhsusf_usmc_marpat_wd_rifleman {
+        //displayName = "Fire Support Officer";
 		ASR_AI_SKILL_REG1;
     };
     class rhsusf_usmc_marpat_wd_smaw : rhsusf_usmc_marpat_wd_riflemanat {
         //displayName = "Assaultman (SMAW)";
         ASR_AI_CAMO_BASE;
+    };
+    class rhsusf_usmc_marpat_wd_javelin_assistant : rhsusf_usmc_marpat_wd_smaw {
+        //displayName = "AT Assistant (Javelin)";
+		ASR_AI_AMMOCOEF_STANDARD;
+    };
+    class rhsusf_usmc_marpat_wd_stinger : rhsusf_usmc_marpat_wd_smaw {
+        //displayName = "AA Specialist (FIM-92F)";
+		ASR_AI_AMMOCOEF_AT;
     };
     class rhsusf_usmc_marpat_wd_engineer : rhsusf_usmc_marpat_wd_rifleman {
         //displayName = "Combat Engineer";
@@ -162,19 +172,19 @@ class CfgVehicles {
         //displayName = "EOD Tech";
         ASR_AI_CAMO_BASE;
     };
-    class rhsusf_usmc_marpat_wd_stinger : rhsusf_usmc_marpat_wd_smaw {
-		ASR_AI_AMMOCOEF_AT;
-    };
     class rhsusf_usmc_marpat_wd_marksman : rhsusf_usmc_marpat_wd_rifleman {
+        //displayName = "Designated Marksman";
 		ASR_AI_SKILL_REG1;
 		ASR_AI_AMMOCOEF_SNIPER;
     };
     class rhsusf_usmc_marpat_wd_spotter : rhsusf_usmc_marpat_wd_marksman {
+        //displayName = "Scout Spotter";
 		ASR_AI_AMMOCOEF_STANDARD;
 		ASR_AI_SKILL_SOF2;
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_usmc_marpat_wd_sniper : rhsusf_usmc_marpat_wd_marksman {
+        //displayName = "Scout Sniper (M40)";
 		ASR_AI_AMMOCOEF_SNIPER;
 		ASR_AI_SKILL_SNP1;
         ASR_AI_CAMO_BASE;
@@ -184,14 +194,20 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_usmc_marpat_wd_helipilot : rhsusf_infantry_usmc_base {
+        //displayName = "Helicopter Pilot";
 		ASR_AI_SKILL_PIL1;
         ASR_AI_CAMO_BASE;
+    };
+    class rhsusf_usmc_marpat_wd_helicrew : rhsusf_usmc_marpat_wd_helipilot {
+        //displayName = "Helicopter Crew";
+		ASR_AI_SKILL_REG2;
     };
 
 
 // USMC LAR
 
     class rhsusf_usmc_lar_marpat_wd_rifleman : rhsusf_usmc_marpat_wd_rifleman {
+        //displayName = "Scout (M4)";
 		ASR_AI_SKILL_REG1;
     };
     class rhsusf_usmc_lar_marpat_wd_rifleman_light : rhsusf_usmc_lar_marpat_wd_rifleman {
@@ -199,9 +215,11 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_usmc_lar_marpat_wd_riflemanat : rhsusf_usmc_lar_marpat_wd_rifleman {
+        //displayName = "Scout (M136)";
 		ASR_AI_AMMOCOEF_AT;
     };
     class rhsusf_usmc_lar_marpat_wd_autorifleman : rhsusf_infantry_usmc_base {
+        //displayName = "Scout (M27)";
 		ASR_AI_SKILL_REG1;
     };
     class rhsusf_usmc_lar_marpat_wd_squadleader : rhsusf_usmc_lar_marpat_wd_rifleman {
@@ -209,13 +227,16 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_usmc_lar_marpat_wd_teamleader : rhsusf_infantry_usmc_base {
+        //displayName = "Scout (Team Leader)";
 		ASR_AI_SKILL_REG1;
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_usmc_lar_marpat_wd_marksman : rhsusf_usmc_lar_marpat_wd_rifleman {
+        //displayName = "Scout (Marksman)";
 		ASR_AI_AMMOCOEF_SNIPER;
     };
     class rhsusf_usmc_lar_marpat_wd_crewman : rhsusf_infantry_usmc_base {
+        //displayName = "Crew";
 		ASR_AI_SKILL_REG1;
         ASR_AI_CAMO_BASE;
     };
@@ -228,9 +249,11 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_usmc_recon_marpat_wd_rifleman_at : rhsusf_infantry_usmc_recon_base {
+        //displayName = "Rifleman (M136)";
 		ASR_AI_AMMOCOEF_AT;
     };
     class rhsusf_usmc_recon_marpat_wd_marksman : rhsusf_infantry_usmc_recon_base {
+        //displayName = "Marksman";
 		ASR_AI_AMMOCOEF_SNIPER;
     };
     class rhsusf_usmc_recon_marpat_wd_officer : rhsusf_infantry_usmc_recon_base {
@@ -244,11 +267,9 @@ class CfgVehicles {
 
 // ARMY SF
 
-    class rhsusf_socom_uniform_base: SoldierWB {
-		ASR_AI_MINFIRETIME;
-    };
     class rhsusf_socom_mc_uniform;
     class rhsusf_infantry_socom_armysf_base : rhsusf_socom_mc_uniform {
+        //displayName = "Rifleman";
 		ASR_AI_SKILL_SOF1;
 		ASR_AI_MINFIRETIME;
         ASR_AI_CAMO_BASE;
@@ -276,18 +297,20 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_socom_marsoc_cso_eod : rhsusf_infantry_socom_marsoc_base {
+        //displayName = "EOD Tech";
         ASR_AI_CAMO_BASE;
         canDeactivateMines = 1;
     };
     class rhsusf_socom_marsoc_cso_mechanic : rhsusf_infantry_socom_marsoc_base {
+        //displayName = "Mechanic";
         ASR_AI_CAMO_BASE;
-        engineer = 1;
     };
     class rhsusf_socom_marsoc_spotter : rhsusf_infantry_socom_marsoc_base {
         //displayName = "Scout Spotter";
         ASR_AI_CAMO_BASE;
     };
     class rhsusf_socom_marsoc_sniper : rhsusf_socom_marsoc_spotter {
+        //displayName = "Scout Sniper (M110)";
 		ASR_AI_AMMOCOEF_SNIPER;
 		ASR_AI_SKILL_SNP1;
         ASR_AI_CAMO_BASE;
@@ -296,7 +319,10 @@ class CfgVehicles {
         //displayName = "Sniper (M107)";
         ASR_AI_CAMO_BASE;
     };
-    class rhsusf_socom_swcc_crewman;
+    class rhsusf_socom_swcc_crewman : rhsusf_infantry_socom_marsoc_base {
+        //displayName = "Crew";
+		ASR_AI_SKILL_SOF2;
+    };
     class rhsusf_socom_swcc_officer : rhsusf_socom_swcc_crewman {
         //displayName = "Officer";
         ASR_AI_CAMO_BASE;
@@ -307,7 +333,7 @@ class CfgVehicles {
 
     class rhsusf_usmc_marpat_wd_rifleman_m4;
     class rhsusf_airforce_jetpilot : rhsusf_usmc_marpat_wd_rifleman_m4 {
+        //displayName = "Jet Pilot";
 		ASR_AI_SKILL_PIL1;
     };
-
 };

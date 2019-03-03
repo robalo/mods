@@ -4,7 +4,8 @@ LOG(MSG_INIT);
 
 #include "initSettings.sqf"
 
-GVAR(crithit) = [getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit"), getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit")];
+GVAR(critHeadHit) = getNumber (configFile >> "CfgFirstAid" >> "CriticalHeadHit");
+GVAR(critBodyHit) = getNumber (configFile >> "CfgFirstAid" >> "CriticalBodyHit");
 
 PREP(fallDown);
 PREP(handleHit);

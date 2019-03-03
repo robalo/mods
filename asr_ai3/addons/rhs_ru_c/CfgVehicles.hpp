@@ -1,28 +1,9 @@
 class CfgVehicles {
 
-//backpacks
-
-    class B_AssaultPack_Base;
-    class rhs_assault_umbts : B_AssaultPack_Base {
-        //displayName = "UMBTS Backpack";
-        __CAMO_B_MEDIUMMONO;
-    };
-    class rhs_rpg : B_AssaultPack_Base {
-        //displayName = "RPG Carrier";
-        __CAMO_B_MEDIUMMONO;
-    };
-    class rhs_sidor : B_AssaultPack_Base {
-        //displayName = "Sidor";
-        __CAMO_B_MEDIUMMONO;
-    };
-    class rhs_medic_bag: B_AssaultPack_Base {
-        __CAMO_B_SMALLMONO;
-    };
-
-
-//soldiers
+	#include "bags.hpp"
 
 	class SoldierGB;
+	class SoldierWB;
 
 //MSV
 
@@ -111,12 +92,15 @@ class CfgVehicles {
 		ASR_AI_SKILL_PIL1;
         ASR_AI_CAMO_BASE;
     };
+    class rhs_pilot : rhs_pilot_base {
+        //displayName = "Pilot";
+        ASR_AI_CAMO_BASE;
+    };
     class rhs_pilot_tan_base;
     class rhs_pilot_tan : rhs_pilot_tan_base {
         //displayName = "Pilot (Tan)";
         ASR_AI_CAMO_BASE;
     };
-
 
 //EMR
 
@@ -274,14 +258,16 @@ class CfgVehicles {
         ASR_AI_CAMO_BASE;
     };
 
+//RVA    
+
+    class rhs_rva_crew;
+    class rhs_rva_crew_officer : rhs_rva_crew {
+        ASR_AI_CAMO_BASE;
+    };
+
     class I_G_Soldier_F;
 
 //INS
-
-	class rhs_g_uniform1_base : SoldierGB {
-		ASR_AI_MINFIRETIME;
-        ASR_AI_CAMO_BASE;
-    };
 
     class rhs_ins_base : I_G_Soldier_F {
         //displayName = "Rifleman";
@@ -323,10 +309,8 @@ class CfgVehicles {
         //displayName = "Engineer";
         ASR_AI_CAMO_BASE;
     };
-
-    class rhs_rva_crew;
-    class rhs_rva_crew_officer : rhs_rva_crew {
+	class rhs_g_uniform1_base : SoldierGB {
+		ASR_AI_MINFIRETIME;
         ASR_AI_CAMO_BASE;
     };
-
 };

@@ -1,4 +1,3 @@
-
 #include "script_component.hpp"
 //#define DEBUG_MODE_FULL
 private _unit = _this select 0;
@@ -23,9 +22,10 @@ if(time < _attackTime) then {
     if(!alive _unit) exitWith {};
 
     //attack no longer pending, allow attack to be called again
-    _unit  setVariable [QGVAR(ATK_PEND),0,false];
+    _unit setVariable [QGVAR(ATK_PEND), 0];
     //this variable may have change between recursive calls
-    private _dangerPos = _unit getVariable  [QGVAR(ATTACKER_POS), 0];
+    private _dangerPos = _unit getVariable QGVAR(ATTACKER_POS);
+    if (isNil "_dangerPos") exitWith {};
 
     private _group = group _unit;
 
@@ -54,6 +54,6 @@ if(time < _attackTime) then {
     }else {
         [_unit, format ["not attacking, %1, %2, %3",(_unit distance2D _dangerPos), (_unit getVariable [QGVAR(AD), 0]), !_hasCheckpoint]] call FUNC(pt_setStatusText);
     };
-    _unit setVariable[QGVAR(AT), 0, false];
-    _unit setVariable[QGVAR(AD), 0, false];
+    _unit setVariable[QGVAR(AT), 0];
+    _unit setVariable[QGVAR(AD), 0];
 };
