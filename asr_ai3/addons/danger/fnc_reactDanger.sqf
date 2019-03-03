@@ -12,6 +12,22 @@ _this spawn {
     // don't send units away when less than 6 in group
     if (attackEnabled _grp && {count (units _grp) < 6}) then {_grp enableAttack false};
 
+
+    //optional behavior: counterattack
+    TRACE_5("considering counterattacking", _dangerCause, GVAR(DC_ATTACK), GVAR(COUNTER_ATTACK), _unit, _unit isEqualTo _leader);
+    if( {_unit call FNCMAIN(isValidUnitC)} && {_grp call FNCMAIN(hasNoPlayer)} && _dangerCause in GVAR(DC_ATTACK) && GVAR(COUNTER_ATTACK) && _unit isEqualTo _leader) then {
+        _unit setVariable [QGVAR(ATTACKER_POS), getPosATL _dangerCausedBy];
+        _unit setVariable [QGVAR(AT), time + GVAR(ATTACK_TIMER)];
+        if (_unit call FNCMAIN(isUnderRoof)) then {
+            TRACE_1("counter attack, is inside",_unit);
+            _unit setVariable [QGVAR(AD), GVAR(AD_INSIDE)];
+        } else {
+            TRACE_1("counter attack, is outside",_unit);
+            _unit setVariable [QGVAR(AD), GVAR(AD_OUTSIDE)];
+        };
+        [_unit, _dangerCausedBy] call FUNC(counterAttack);
+    };
+
     if (_unit getVariable[QGVAR(DANGER_SLEEP), 0] isEqualTo 0 && {_unit call FNCMAIN(isValidUnitC)} && {unitReady _unit} && {_grp call FNCMAIN(hasNoPlayer)} && {_time > (_unit getVariable [QGVAR(reacting),-1000]) + 60}) then {
 
         _unit setVariable [QGVAR(reacting), _time]; //save last time we ran this for this unit, so we don't run more than twice per minute / unit
@@ -23,20 +39,6 @@ _this spawn {
         TRACE_1("sleep ending", _unit);
         private _leader = leader _grp;
 
-        //optional behavior: counterattack
-        TRACE_5("considering counterattacking", _dangerCause, GVAR(DC_ATTACK), GVAR(COUNTER_ATTACK), _unit, _unit isEqualTo _leader);
-        if(_dangerCause in GVAR(DC_ATTACK) && GVAR(COUNTER_ATTACK) && _unit isEqualTo _leader) then {
-            _unit setVariable [QGVAR(ATTACKER_POS), getPosATL _dangerCausedBy];
-            _unit setVariable [QGVAR(AT), time + GVAR(ATTACK_TIMER)];
-            if (_unit call FNCMAIN(isUnderRoof)) then {
-                TRACE_1("counter attack, is inside",_unit);
-                _unit setVariable [QGVAR(AD), GVAR(AD_INSIDE)];
-            } else {
-                TRACE_1("counter attack, is outside",_unit);
-                _unit setVariable [QGVAR(AD), GVAR(AD_OUTSIDE)];
-            };
-            [_unit, _dangerCausedBy] call FUNC(counterAttack);
-        };
 
         //optional behavior: broadcast to other units
         // report to near groups
