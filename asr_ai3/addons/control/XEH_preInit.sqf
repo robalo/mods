@@ -8,14 +8,7 @@ LOG(MSG_INIT);
 GVAR(copymystance) = 0;
 GVAR(fireonme) = 0;
 
-PREP(copyMyStance);
-PREP(fireOnMyShot);
-PREP(getGearAt);
-PREP(onTeamSwitch);
-PREP(inventoryClosed);
-PREP(gunLights);
-PREP(flipGunLights);
-PREP(unFreeze);
+#include "XEH_PREP.hpp"
 
 ["ASR AI3", "asr_ai3_copymystance", ["Copy My Stance", "AI subordinates follow player stance"], {[player, 1] call FUNC(copyMyStance)}, {}, [DIK_BACKSLASH, [true, true, false]]] call cba_fnc_addKeybind;
 ["ASR AI3", "asr_ai3_copymystancestop", ["Do Not Copy My Stance", "AI subordinates stop following player stance"], {[player, 0] call FUNC(copyMyStance)}, {}, [DIK_SLASH, [true, true, false]]] call cba_fnc_addKeybind;

@@ -1,0 +1,9 @@
+PREP(setSkill);
+PREP(setUnitSkill);
+PREP(setUnitCamo);
+PREP(configureUnit);
+PREP(unitNVG);
+PREP(showHideNVG);
+PREP(setupGear);
+PREP(configLoop);
+PREP(handleLocal);

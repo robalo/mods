@@ -38,12 +38,4 @@ if (count GVAR(levels_units) < 11) then {GVAR(levels_units) = [[],[],[],[],[],[]
 
 GVAR(cfgQ) = [];
 
-PREP(setSkill);
-PREP(setUnitSkill);
-PREP(setUnitCamo);
-PREP(configureUnit);
-PREP(unitNVG);
-PREP(showHideNVG);
-PREP(setupGear);
-PREP(configLoop);
-PREP(handleLocal);
+#include "XEH_PREP.hpp"

@@ -4,12 +4,6 @@ LOG(MSG_INIT);
 
 #include "initSettings.sqf"
 
-PREP(isValidUnit);
-PREP(isValidUnitC);
-PREP(hasPlayer);
-PREP(hasNoPlayer);
-PREP(isUnderRoof);
-PREP(grpHasWP);
-PREP(moveTo);
+#include "XEH_PREP.hpp"
 
 //unused: reveal, isNearStuff
