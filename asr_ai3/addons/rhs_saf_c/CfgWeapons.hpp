@@ -14,7 +14,7 @@ class CfgWeapons {
 
     class GP25_Base;
     class PBG40_Base : GP25_Base {
-        class Single : Mode_SemiAuto {
+        class Single : Single {
             __AI_ROF_GL_SINGLE;
         };
         __AI_DISPERSION_2XCOEF;
